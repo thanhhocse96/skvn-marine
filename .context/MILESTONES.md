@@ -29,8 +29,8 @@ Khi chuyển milestone:
 1. Update `AGENTS.md` current milestone.
 2. Update `.context/MILESTONES.md` current milestone.
 3. Move completed milestone checklist/notes sang `.context/MILESTONES_HISTORY.md`.
-4. Move resolved tensions của milestone cũ sang `.context/TENSIONS_HISTORY.md`.
-5. Giữ lại OPEN tensions còn liên quan trong `.context/TENSIONS.md`.
+4. Move `RESOLVED_ACTIVE` tensions của milestone cũ từ `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md`, đổi `Status: ARCHIVED`.
+5. Giữ lại OPEN tensions còn liên quan trong `.context/TENSIONS_OPEN.md`.
 6. Không tự archive hoặc tự chuyển milestone nếu human chưa approve.
 
 ---

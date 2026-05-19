@@ -1,7 +1,7 @@
-﻿# TENSIONS_HISTORY.md — SKVN Marine
+# Tensions — History
 
-> Archive for resolved tensions from previous milestones/versions.
-> Không load file này mặc định khi bắt đầu task, trừ khi cần audit quyết định cũ.
-> Chỉ move resolved tensions vào đây khi human tuyên bố chuyển sang milestone/version mới.
+> Chỉ chứa `Status: ARCHIVED` entries.
+> KHÔNG load mặc định — chỉ đọc khi human yêu cầu audit hoặc task cần quyết định từ milestone cũ.
+> Chỉ move entries vào đây khi human approve milestone transition.
 
 ---

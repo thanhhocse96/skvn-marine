@@ -33,14 +33,30 @@ Move `.context/` out of production branch if needed.
   PLUGIN_SKVN_MARINE_BLOCKS.md
   BLOCK_SLIDER.md
   QUOTE_FLOW.md
-  TENSIONS.md
+  MILESTONES.md
+  MILESTONES_HISTORY.md
+  TENSIONS_OPEN.md
+  TENSIONS_ACTIVE.md
+  TENSIONS_HISTORY.md
 ```
 
 ## Tension Register
 
-Use `.context/TENSIONS.md` whenever AI finds a conflict, such as:
+Use `.context/TENSIONS_OPEN.md` whenever AI finds a new unresolved conflict, such as:
 
 - Wanting to edit GeneratePress parent theme.
 - Wanting to add a dependency without approval.
 - Wanting to place custom blocks in the theme.
 - Wanting to overwrite editor-provided ALT text.
+
+V3 state files:
+
+- `.context/TENSIONS_OPEN.md`: only `Status: OPEN`.
+- `.context/TENSIONS_ACTIVE.md`: only `Status: RESOLVED_ACTIVE` for the current milestone.
+- `.context/TENSIONS_HISTORY.md`: only `Status: ARCHIVED`.
+
+Run consistency check after changing context files:
+
+```bash
+context-gen check-consistency .
+```

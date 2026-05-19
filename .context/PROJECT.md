@@ -13,6 +13,7 @@
 - Use TypeScript for custom Gutenberg block plugin.
 - Use Swiper for slider.
 - Product Grid/List V1: use WooCommerce native blocks/patterns. Custom Product Grid/List or related style blocks are deferred to V2.
+- Plugin architecture: block-centric feature modules with minimal shared services. Blocks own feature logic; `src/shared/` is only for cross-block invariants/utilities such as motion, a11y, DOM/config parsing, and shared types.
 
 ## [manual] Invariants
 
