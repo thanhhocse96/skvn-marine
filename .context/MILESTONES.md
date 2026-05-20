@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 0.1.0 — Child theme skeleton + local runtime baseline**
+Current: **V1 / 0.2.0 — Design System, Block Styles, Patterns**
 Status: **IN_PROGRESS**
-Started: **2026-05-18**
+Started: **2026-05-20**
 
 AGENTS.md current milestone phải match file này.
 
@@ -37,37 +37,19 @@ Khi chuyển milestone:
 
 ## V1 Checkpoints
 
-### 0.1.0 — Child Theme Skeleton + Local Runtime Baseline
-
-Status: **IN_PROGRESS**
-
-Acceptance:
-
-- [x] Local WP runtime root exists: `D:\Github\minhhaifish`
-- [x] `.local/ENVIRONMENT.md` stores local paths and credentials
-- [x] `.local/` is git ignored
-- [x] WordPress core installed in runtime root
-- [x] GeneratePress parent theme installed in runtime root
-- [x] `skvn-marine` child theme active in runtime root
-- [x] `skvn-marine-blocks` plugin active in runtime root
-- [x] External required plugins installed in runtime root, not source repo
-- [x] PHP server smoke test returns HTTP 200 on `http://localhost:8080`
-- [x] Theme PHP syntax check passed after latest code changes
-- [x] Plugin build check passed after latest code changes
-- [ ] Human approves milestone completion
-
 ### 0.2.0 — Design System, Block Styles, Patterns
 
-Status: **PENDING**
+Status: **IN_PROGRESS**
+Started: **2026-05-20**
 
 Acceptance:
 
-- [ ] Theme tokens reviewed/refined
-- [ ] `theme.json` reviewed/refined
-- [ ] Base typography/layout implemented
+- [x] Theme tokens reviewed/refined
+- [x] `theme.json` reviewed/refined
+- [x] Base typography/layout implemented
 - [ ] Header baseline implemented with GeneratePress + SKVN child theme CSS, no header builder plugin
 - [ ] Footer baseline implemented with theme pattern/template + SKVN child theme CSS, no footer builder plugin
-- [ ] Block styles implemented
+- [x] Block styles implemented
 - [ ] Starter patterns implemented
 - [ ] Trust feature strip reusable pattern implemented
 - [ ] Newsletter signup band reusable pattern implemented with replaceable image block and no custom form handler

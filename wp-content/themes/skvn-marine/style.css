@@ -2,7 +2,110 @@
 Theme Name: SKVN Marine
 Template: generatepress
 Text Domain: skvn-marine
-Version: 0.1.0
+Version: 0.2.0
 Description: GeneratePress child theme for SKVN Marine B2B fishery/marine website.
 Author: SKVN
 */
+
+:root {
+	--skvn-color-blue-950: #082f49;
+	--skvn-color-blue-900: #0c4a6e;
+	--skvn-color-blue-700: #0369a1;
+	--skvn-color-teal-600: #0d9488;
+	--skvn-color-sky-50: #f0f9ff;
+	--skvn-color-slate-700: #334155;
+	--skvn-color-white: #ffffff;
+	--skvn-radius-card: 8px;
+	--skvn-shadow-card: 0 10px 30px rgba(8, 47, 73, 0.1);
+	--skvn-content-width: 760px;
+	--skvn-wide-width: 1200px;
+}
+
+body {
+	color: var(--skvn-color-slate-700);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.skvn-container {
+	margin-inline: auto;
+	max-width: var(--skvn-wide-width);
+	padding-inline: 1rem;
+	width: 100%;
+}
+
+.skvn-section {
+	padding-block: 4rem;
+}
+
+.skvn-section.has-skvn-sky-50-background-color,
+.skvn-section--soft {
+	background: var(--skvn-color-sky-50);
+}
+
+.skvn-button,
+.wp-block-button .wp-block-button__link.is-style-skvn-primary {
+	align-items: center;
+	border-radius: 6px;
+	display: inline-flex;
+	font-weight: 700;
+	justify-content: center;
+	line-height: 1.2;
+	min-height: 2.75rem;
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+}
+
+.skvn-button--primary,
+.wp-block-button.is-style-skvn-primary .wp-block-button__link {
+	background: var(--skvn-color-blue-700);
+	color: var(--skvn-color-white);
+}
+
+.skvn-button--primary:hover,
+.wp-block-button.is-style-skvn-primary .wp-block-button__link:hover {
+	background: var(--skvn-color-blue-900);
+	color: var(--skvn-color-white);
+}
+
+.skvn-card {
+	background: var(--skvn-color-white);
+	border: 1px solid rgba(51, 65, 85, 0.14);
+	border-radius: var(--skvn-radius-card);
+	box-shadow: var(--skvn-shadow-card);
+}
+
+.is-style-skvn-card {
+	background: var(--skvn-color-white);
+	border: 1px solid rgba(51, 65, 85, 0.14);
+	border-radius: var(--skvn-radius-card);
+	box-shadow: var(--skvn-shadow-card);
+	padding: 1.25rem;
+}
+
+.is-style-skvn-rounded-media img {
+	border-radius: var(--skvn-radius-card);
+	display: block;
+}
+
+.skvn-site-header {
+	background: rgba(255, 255, 255, 0.96);
+	border-bottom: 1px solid rgba(51, 65, 85, 0.12);
+	position: sticky;
+	top: 0;
+	z-index: 50;
+}
+
+.skvn-site-footer {
+	background: var(--skvn-color-blue-950);
+	color: rgba(255, 255, 255, 0.78);
+}
+
+@media (min-width: 768px) {
+	.skvn-container {
+		padding-inline: 1.5rem;
+	}
+
+	.skvn-section {
+		padding-block: 5rem;
+	}
+}

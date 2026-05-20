@@ -357,3 +357,345 @@ View seafood range
 [ ] Palette is adapted to SKVN marine/export colors, not beige/green nutrition colors.
 [ ] Section can be converted into a reusable theme pattern if accepted.
 ```
+
+---
+
+## Test Method 3 — Exporter Corporate Homepage
+
+### Source Reference
+
+Local prototype file:
+
+```text
+C:/Users/VPF-Champion/Downloads/Dựng-layout-trang-HTML.html
+```
+
+Provided MetaAI structure shows a B2B seafood exporter homepage with:
+
+```text
+Sticky header
+Hero with seafood image
+Overlapping feature cards
+About/factory section
+Product category cards
+Certification band
+Capacity stat cards
+Map/contact split section
+Footer
+```
+
+### Critique
+
+What works:
+
+- Strong B2B/export positioning.
+- Section order is close to SKVN V1 needs.
+- Feature cards, factory/about, certification, capacity, map, and footer are reusable pattern candidates.
+- Visual language fits seafood export better than a retail seafood shop.
+- Contact section gives a clear lead-generation path.
+
+What must change before SKVN implementation:
+
+- Prototype uses global CSS and custom selectors. Test implementation should express layout using Tailwind/WindPress utilities plus stable SKVN wrapper classes.
+- Prototype imports Google Fonts inside HTML. Production should not assume fonts are loaded unless added through theme policy.
+- Prototype uses Vietnamese content. Test content should be English placeholder copy.
+- Prototype uses `clamp()` for hero title. Production test should use Tailwind breakpoint text sizes.
+- Prototype uses `border-radius: 1rem` and pill buttons broadly. SKVN cards/buttons should use max 8px radius unless the design system changes.
+- Header/footer should remain GeneratePress + child theme CSS/pattern direction, not a builder plugin.
+- Product cards should map toward WooCommerce categories/products, not static product logic.
+- Certification badges can be static placeholders in V1, but should be replaceable images/content.
+- The map is currently a static image. SKVN test 3 must use **Out of the Block: OpenStreetMap**, wrapped by SKVN map/contact classes.
+- Inline styles and raw SVG repetition are acceptable in a prototype only; final pattern should move repeated visuals into theme styles or reusable block composition.
+
+### Test Goal
+
+Create a full homepage test page variant for a seafood exporter corporate site.
+
+This test validates:
+
+- Corporate B2B homepage information architecture.
+- GeneratePress-compatible header/footer direction.
+- Hero + overlapping feature-card pattern.
+- About/factory media stack with stat overlay.
+- Product category section suitable for WooCommerce-native categories.
+- Certification strip.
+- Capacity/stat card pattern.
+- OpenStreetMap contact section, not static map imagery.
+- Responsive stacking without overlap.
+
+### Page Structure
+
+1. Main header
+2. Hero exporter section
+3. Overlapping feature cards
+4. About/company section
+5. Product categories
+6. Certification band
+7. Capacity stats
+8. OpenStreetMap/contact split section
+9. Footer
+
+### Tailwind Layout Spec
+
+Header:
+
+```html
+<header class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 md:px-6 lg:px-8">
+```
+
+Header nav:
+
+```html
+<nav class="hidden items-center gap-7 text-xs font-semibold uppercase tracking-wide text-slate-700 lg:flex">
+  <a class="text-skvn-blue-700" href="/">Home</a>
+  <a href="/about/">About</a>
+  <a href="/products/">Products</a>
+  <a href="/capabilities/">Capabilities</a>
+  <a href="/news/">News</a>
+  <a href="/contact/">Contact</a>
+</nav>
+```
+
+Hero:
+
+```html
+<section class="relative overflow-hidden bg-sky-50">
+  <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_60%,rgba(255,255,255,1)_100%)]"></div>
+  <div class="relative mx-auto grid min-h-[520px] max-w-7xl grid-cols-12 items-end gap-8 px-4 py-12 md:px-6 lg:px-8 lg:py-16">
+    <div class="col-span-12 pb-4 lg:col-span-6">
+    <div class="col-span-12 lg:col-span-6">
+```
+
+Hero title:
+
+```html
+<p class="mb-4 text-sm font-semibold italic text-skvn-blue-700">
+  Premium Quality - Reliable Supply
+</p>
+<h1 class="max-w-xl text-4xl font-extrabold uppercase leading-tight text-skvn-blue-950 md:text-5xl lg:text-6xl">
+  Trusted Seafood Exporter From Viet Nam
+</h1>
+<p class="mt-5 max-w-lg text-base leading-7 text-slate-600">
+  Supplying fresh, frozen, and value-added seafood with verified origin, strict quality control, and reliable export handling.
+</p>
+```
+
+Hero CTAs:
+
+```html
+<div class="mt-7 flex flex-wrap gap-3">
+  <a class="inline-flex items-center justify-center rounded-md bg-skvn-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-skvn-blue-800" href="/products/">
+    Explore Products
+  </a>
+  <a class="inline-flex items-center justify-center rounded-md border border-skvn-blue-200 bg-white px-5 py-3 text-sm font-semibold text-skvn-blue-700 hover:border-skvn-blue-700" href="/about/">
+    About Us
+  </a>
+</div>
+```
+
+Hero image:
+
+```html
+<figure class="relative mx-auto max-w-xl">
+  <img class="h-auto w-full object-contain drop-shadow-2xl" src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=1200&q=80" alt="Fresh seafood export selection">
+</figure>
+```
+
+Overlapping feature cards:
+
+```html
+<section class="relative z-10 -mt-10 px-4 md:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-7xl gap-4 rounded-lg bg-white p-4 shadow-lg md:grid-cols-2 lg:grid-cols-4">
+    <article class="flex gap-4 rounded-lg border border-slate-100 p-4">
+```
+
+About/factory:
+
+```html
+<section class="mx-auto grid max-w-7xl grid-cols-12 items-center gap-10 px-4 py-16 md:px-6 lg:px-8">
+  <div class="col-span-12 lg:col-span-5">
+  <div class="col-span-12 lg:col-span-7">
+```
+
+About media stack:
+
+```html
+<div class="relative grid grid-cols-2 gap-4">
+  <figure class="col-span-2 aspect-[16/9] overflow-hidden rounded-lg bg-slate-100">
+  <figure class="aspect-[4/3] overflow-hidden rounded-lg bg-slate-100">
+  <figure class="aspect-[4/3] overflow-hidden rounded-lg bg-slate-100">
+  <div class="absolute left-1/2 top-1/2 w-48 -translate-x-1/2 -translate-y-1/4 rounded-lg bg-skvn-blue-900 p-5 text-center text-white shadow-xl">
+</div>
+```
+
+Product categories:
+
+```html
+<section class="bg-sky-50">
+  <div class="mx-auto max-w-7xl px-4 py-16 md:px-6 lg:px-8">
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      <article class="overflow-hidden rounded-lg border border-sky-100 bg-white shadow-sm">
+```
+
+Certification band:
+
+```html
+<section class="bg-skvn-blue-800 text-white">
+  <div class="mx-auto max-w-7xl px-4 py-12 text-center md:px-6 lg:px-8">
+    <div class="flex flex-wrap items-center justify-center gap-5">
+      <div class="grid h-20 w-20 place-items-center rounded-full bg-white text-xs font-extrabold text-skvn-blue-800 shadow-md">
+```
+
+Capacity stats:
+
+```html
+<section class="mx-auto max-w-7xl px-4 py-16 md:px-6 lg:px-8">
+  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <article class="rounded-lg border border-slate-200 bg-white p-6 text-center">
+```
+
+OpenStreetMap/contact split:
+
+```html
+<section class="bg-white px-4 py-12 md:px-6 lg:px-8">
+  <div class="mx-auto grid max-w-7xl overflow-hidden rounded-lg border border-slate-200 shadow-lg lg:grid-cols-[1.15fr_0.85fr]">
+    <div class="relative min-h-[420px] bg-slate-100">
+      <!-- Insert Out of the Block: OpenStreetMap block here. Do not use a static map image. -->
+      <div class="absolute left-6 bottom-6 max-w-xs rounded-lg bg-white p-5 shadow-xl">
+    </div>
+    <aside class="bg-skvn-blue-800 p-8 text-white lg:p-10">
+```
+
+Footer:
+
+```html
+<footer class="bg-skvn-blue-950 text-slate-300">
+  <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:px-8">
+```
+
+### Placeholder Content
+
+Hero:
+
+```text
+Premium Quality - Reliable Supply
+Trusted Seafood Exporter From Viet Nam
+Supplying fresh, frozen, and value-added seafood with verified origin, strict quality control, and reliable export handling.
+Explore Products
+About Us
+```
+
+Feature cards:
+
+```text
+Strict Quality Control
+Verified Sourcing
+Global Cold-Chain Delivery
+Experienced Export Team
+```
+
+About:
+
+```text
+About SKVN Marine
+With years of seafood sourcing and export experience, SKVN Marine connects reliable Vietnamese producers with restaurants, distributors, and food-service partners worldwide.
+```
+
+Products:
+
+```text
+Squid
+Octopus
+Shrimp
+Fish
+Shellfish
+Crab
+```
+
+Certifications:
+
+```text
+HACCP
+BRCGS
+ISO
+FDA
+HALAL
+ASC
+```
+
+Capacity:
+
+```text
+3 Factories
+7,000+ Tons / Year
+8,000+ Tons Cold Storage
+650+ Team Members
+```
+
+Contact:
+
+```text
+SKVN Marine Co., Ltd
+Ninh Thuan, Viet Nam
++84 000 000 000
+hello@skvn-marine.example
+Send a Quote Request
+```
+
+### OpenStreetMap Requirement
+
+The map area must be built with:
+
+```text
+Out of the Block: OpenStreetMap block
++ SKVN wrapper/card classes
++ Contact card overlay or split panel
+```
+
+Do not use:
+
+```text
+Static map image
+Hardcoded map screenshot
+Custom map block
+New map plugin
+```
+
+Desktop behavior:
+
+```text
+Map left
+Contact panel right
+Small floating company card over map bottom-left
+Minimum map height: 420px
+```
+
+Mobile behavior:
+
+```text
+Map stacks above contact panel
+Floating card becomes normal readable card if overlay reduces legibility
+Phone/email remain visible without hover
+```
+
+### Acceptance Checklist
+
+```text
+[ ] Header/footer follow GeneratePress + SKVN child theme direction.
+[ ] Layout uses Tailwind/WindPress utility classes plus stable SKVN wrapper classes.
+[ ] No builder plugin is introduced.
+[ ] Global CSS reset from prototype is not copied into theme unchanged.
+[ ] Hero uses breakpoint text sizes, not viewport clamp font sizing.
+[ ] Cards/buttons use max 8px radius unless design system changes.
+[ ] Feature cards overlap hero cleanly on desktop and stack safely on mobile.
+[ ] About media stack does not hide important text or image content.
+[ ] Product section can map to WooCommerce native categories/products.
+[ ] Certification badges are replaceable content/images.
+[ ] Capacity cards use reusable stat-card direction.
+[ ] Contact map uses Out of the Block: OpenStreetMap, not static image.
+[ ] No image URL is hardcoded in CSS.
+[ ] CTA buttons remain visible on mobile.
+[ ] Text does not overflow containers.
+[ ] Desktop and mobile screenshots match the intended section order.
+```

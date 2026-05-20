@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 0.1.0 — Child theme skeleton + local runtime baseline**
+Current milestone: **V1 / 0.2.0 — Design System, Block Styles, Patterns**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 

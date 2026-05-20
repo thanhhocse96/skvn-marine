@@ -30,4 +30,20 @@ function skvn_marine_register_block_styles() {
 			'label' => esc_html__( 'SKVN Section', 'skvn-marine' ),
 		)
 	);
+
+	register_block_style(
+		'core/group',
+		array(
+			'name'  => 'skvn-card',
+			'label' => esc_html__( 'SKVN Card', 'skvn-marine' ),
+		)
+	);
+
+	register_block_style(
+		'core/image',
+		array(
+			'name'  => 'skvn-rounded-media',
+			'label' => esc_html__( 'SKVN Rounded Media', 'skvn-marine' ),
+		)
+	);
 }
