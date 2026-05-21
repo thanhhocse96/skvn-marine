@@ -67,7 +67,7 @@ function skvn_marine_blocks_register_blocks() {
 	);
 
 	foreach ( $blocks as $block ) {
-		$block_path = __DIR__ . '/src/' . $block;
+		$block_path = __DIR__ . '/build/' . $block;
 
 		if ( file_exists( $block_path . '/block.json' ) ) {
 			$args = array();

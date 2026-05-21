@@ -84,6 +84,7 @@ Current active docs:
 - `docs/testing/frontpage-testing.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
+- `docs/workflows/deploy-artifact-workflow.md`
 - `docs/workflows/theme-development-workflow.md`
 - `docs/explain/explain-for-5-years-old.md`
 - `docs/artifacts/brand-palette-options.html`

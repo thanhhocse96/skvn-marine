@@ -46,6 +46,93 @@
 - [ ] No image URL is hardcoded in CSS.
 - [ ] CTA buttons remain visible on mobile.
 
+### Open Layout Issue — Full-Width Container Not Escaping
+
+Status:
+
+```text
+OPEN
+```
+
+Observed in local runtime:
+
+```text
+An `alignfull` group inside the pattern test page still appears constrained by the page/content container.
+The visual result looks like a large page wrapper with the content box trapped inside instead of the hero band reaching full viewport width.
+Local runtime was laggy, so no screenshot evidence is available yet.
+```
+
+Reference note:
+
+```text
+See user-provided diagram: page wrapper, header/menu inside, and content area still boxed instead of full-width.
+```
+
+Test snippet used:
+
+```html
+<!-- wp:group {"className":"skvn-pattern-test-page","layout":{"type":"default"}} -->
+<div class="wp-block-group skvn-pattern-test-page">
+	<!-- wp:group {"align":"full","className":"skvn-pattern-hero","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull skvn-pattern-hero">
+		<!-- wp:columns {"className":"skvn-pattern-hero__grid","verticalAlignment":"center"} -->
+		<div class="wp-block-columns are-vertically-aligned-center skvn-pattern-hero__grid">
+			<!-- wp:column {"verticalAlignment":"center"} -->
+			<div class="wp-block-column is-vertically-aligned-center">
+				<!-- wp:paragraph {"className":"skvn-pattern-hero__eyebrow"} -->
+				<p class="skvn-pattern-hero__eyebrow">Pattern UI Test 0.2.0</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:heading {"level":1} -->
+				<h1>Trusted Seafood Exporter From Viet Nam</h1>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>Testing the current SKVN theme pattern baseline with reusable blocks, marine colors, card surfaces, and a replaceable media band.</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:buttons -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"className":"is-style-skvn-primary"} -->
+					<div class="wp-block-button is-style-skvn-primary"><a class="wp-block-button__link wp-element-button" href="/contact/">Request a Quote</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+			<!-- /wp:column -->
+
+			<!-- wp:column {"verticalAlignment":"center","className":"skvn-pattern-hero__media"} -->
+			<div class="wp-block-column is-vertically-aligned-center skvn-pattern-hero__media">
+				<!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"is-style-skvn-rounded-media"} -->
+				<figure class="wp-block-image size-large is-style-skvn-rounded-media"><img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Fresh seafood selection on ice"/></figure>
+				<!-- /wp:image -->
+			</div>
+			<!-- /wp:column -->
+		</div>
+		<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
+```
+
+Likely investigation targets:
+
+```text
+[ ] GeneratePress page layout setting: full-width/no-sidebar/content container.
+[ ] Whether page title/content wrapper is still constrained.
+[ ] Whether `.entry-content` or `.site-content` limits `alignfull`.
+[ ] Whether `.alignfull` needs child-theme CSS escape rule.
+[ ] Whether pattern wrapper `.skvn-pattern-test-page` is preventing full-width behavior.
+```
+
+Do not close until:
+
+```text
+[ ] Runtime screenshot captured.
+[ ] Desktop full-width hero band reaches viewport width.
+[ ] Inner hero content remains constrained to SKVN wide width.
+[ ] Mobile has no horizontal scroll.
+```
+
 ## Encoding Guardrail
 
 - [ ] Context/docs remain UTF-8.
