@@ -62,6 +62,20 @@ Current planning file:
 
 Proposal files under `.context/proposals/` are not active protocol and are ignored by git. Do not load them unless the human explicitly asks to review a proposal.
 
+Project docs under `docs/` are grouped by reading purpose:
+
+- `docs/decisions/` — approved or working decisions that should be easy to audit.
+- `docs/testing/` — test methods, test prompts, manual verification notes.
+- `docs/explain/` — simplified explanations for human review.
+- `docs/artifacts/` — visual/static artifacts such as HTML mockups; useful for review, not source of truth.
+
+Current active docs:
+
+- `docs/decisions/design-direction.md`
+- `docs/testing/frontpage-testing.md`
+- `docs/explain/explain-for-5-years-old.md`
+- `docs/artifacts/brand-palette-options.html`
+
 ---
 
 [manual] Architecture Decisions â€” Project-Wide

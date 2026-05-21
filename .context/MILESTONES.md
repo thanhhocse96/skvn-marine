@@ -50,9 +50,9 @@ Acceptance:
 - [ ] Header baseline implemented with GeneratePress + SKVN child theme CSS, no header builder plugin
 - [ ] Footer baseline implemented with theme pattern/template + SKVN child theme CSS, no footer builder plugin
 - [x] Block styles implemented
-- [ ] Starter patterns implemented
-- [ ] Trust feature strip reusable pattern implemented
-- [ ] Newsletter signup band reusable pattern implemented with replaceable image block and no custom form handler
+- [x] Starter patterns implemented
+- [x] Trust feature strip reusable pattern implemented
+- [x] Newsletter signup band reusable pattern implemented with replaceable image block and no custom form handler
 - [ ] Homepage test page assembled in WP editor with placeholder content/images to validate layout before finalizing reusable patterns
 - [ ] Runtime smoke test passed
 - [ ] Human approves milestone completion

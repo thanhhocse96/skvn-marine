@@ -23,6 +23,16 @@
           "name": "SKVN Blue 700"
         },
         {
+          "slug": "skvn-mint-100",
+          "color": "#ddfaf4",
+          "name": "SKVN Mint 100"
+        },
+        {
+          "slug": "skvn-gold-300",
+          "color": "#e9c766",
+          "name": "SKVN Gold 300"
+        },
+        {
           "slug": "skvn-teal-600",
           "color": "#0d9488",
           "name": "SKVN Teal 600"
