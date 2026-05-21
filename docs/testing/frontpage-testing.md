@@ -4,6 +4,14 @@ This document stores reusable frontpage test prompts for SKVN Marine.
 
 Use these tests to build WordPress editor pages, validate layout/CSS, and then extract stable sections into theme patterns.
 
+## Current Status — Test Debt
+
+- Runtime/page-editor test is intentionally pending.
+- Source has a reusable homepage test pattern: `wp-content/themes/skvn-marine/patterns/homepage-test.php`.
+- The milestone item "Homepage test page assembled in WP editor" remains unchecked until the pattern is inserted into an actual WordPress page and visually reviewed.
+- The milestone item "Runtime smoke test passed" remains unchecked until the local WP server responds and the page is inspected.
+- Human approved continuing to V1 / 0.3.0 on 2026-05-21 with this test debt carried forward.
+
 Rules for all tests:
 
 - Use English placeholder copy.
@@ -13,6 +21,100 @@ Rules for all tests:
 - Do not add builder plugins.
 - Do not create custom blocks unless the pattern approach proves insufficient.
 - Verify desktop and mobile before marking a section stable.
+
+---
+
+## How To Test The Carried 0.2.0 Debt
+
+### Preconditions
+
+Runtime must be the WordPress runtime, not the source repo.
+
+```text
+WP URL: http://localhost:8080
+WP runtime Windows: D:\Github\minhhaifish
+WP runtime WSL: /mnt/d/Github/minhhaifish
+Theme source: D:\Github\skvn-marine\wp-content\themes\skvn-marine
+```
+
+Before visual testing:
+
+```text
+[ ] WordPress runtime responds at http://localhost:8080/wp-login.php.
+[ ] GeneratePress parent theme is installed in runtime.
+[ ] skvn-marine child theme is active.
+[ ] Custom theme files are deployed or symlinked from source repo to runtime.
+[ ] Browser is logged into WP Admin.
+```
+
+### Create The Page
+
+1. Go to WP Admin > Pages > Add New.
+2. Set title:
+
+```text
+Homepage Pattern Test 0.2 Debt
+```
+
+3. Insert pattern:
+
+```text
+SKVN Homepage Test Layout
+```
+
+4. Page setup:
+
+```text
+[ ] Full-width content if GeneratePress page layout option exists.
+[ ] No sidebar.
+[ ] Hide default page title if option exists.
+[ ] Do not add builder plugin.
+[ ] Do not add extra widgets just to make the test pass.
+```
+
+5. Publish or preview the page.
+
+### Visual Checks
+
+Desktop:
+
+```text
+[ ] Header is readable and not visually broken.
+[ ] Hero content and media do not overlap.
+[ ] Trust strip presents 4 clear items.
+[ ] Why choose cards form a clean grid.
+[ ] Factory/process areas use blue-first direction with soft mint support accents.
+[ ] Newsletter image is visible and replaceable.
+[ ] Footer appears as a real site footer, not raw unstyled content.
+[ ] No default Search/Recent Posts/Recent Comments sidebar appears.
+```
+
+Mobile:
+
+```text
+[ ] Sections stack in the same intended order.
+[ ] Buttons remain visible without hover.
+[ ] Text does not overflow containers.
+[ ] Media does not cover text.
+[ ] Newsletter image does not create horizontal scroll.
+[ ] Footer columns stack cleanly.
+```
+
+Evidence:
+
+```text
+[ ] Desktop screenshot saved/reviewed.
+[ ] Mobile screenshot saved/reviewed.
+[ ] Result recorded as PASS / FAIL / NEEDS REVISION.
+[ ] If FAIL, note exact section and reason.
+```
+
+Pass rule:
+
+```text
+No screenshot, no UI pass.
+Source/code pass does not equal visual pass.
+```
 
 ---
 

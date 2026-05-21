@@ -78,6 +78,7 @@ Current active docs:
 - `docs/decisions/design-direction.md`
 - `docs/decisions/product-data-model.md`
 - `docs/decisions/quote-flow.md`
+- `docs/decisions/slider-block.md`
 - `docs/standards/ai-rules.md`
 - `docs/standards/security-guidelines.md`
 - `docs/testing/frontpage-testing.md`

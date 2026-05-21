@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 0.2.0 — Design System, Block Styles, Patterns**
+Current milestone: **V1 / 0.4.0 — Woo Product Sections**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 

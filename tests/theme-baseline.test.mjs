@@ -61,6 +61,10 @@ for (const className of [
 	'.is-style-skvn-rounded-media',
 	'.skvn-site-header',
 	'.skvn-site-footer',
+	'.site-header',
+	'.main-navigation',
+	'.inside-header',
+	'.footer-widgets',
 	'.skvn-trust-strip',
 	'.skvn-trust-strip__grid',
 	'.skvn-newsletter-band',
@@ -119,7 +123,12 @@ for (const blockStyle of [
 	assert.ok(blockStylesPhp.includes(blockStyle), `block-styles.php missing ${blockStyle}`);
 }
 
-for (const file of ['section-intro.php', 'trust-strip.php', 'newsletter-band.php']) {
+for (const file of [
+	'section-intro.php',
+	'trust-strip.php',
+	'newsletter-band.php',
+	'site-footer.php',
+]) {
 	assert.ok(patternFiles.includes(file), `missing pattern file: ${file}`);
 }
 
@@ -143,3 +152,8 @@ assert.doesNotMatch(
 	/<form|wp_ajax|admin-post|wpcf7_mail_sent|action=/i,
 	'newsletter pattern must not include a custom form handler',
 );
+
+assert.match(patterns['site-footer.php'], /Slug: skvn-marine\/site-footer/);
+assert.match(patterns['site-footer.php'], /skvn-site-footer/);
+assert.match(patterns['site-footer.php'], /wp:navigation/);
+assert.match(patterns['site-footer.php'], /skvn-footer-brand/);

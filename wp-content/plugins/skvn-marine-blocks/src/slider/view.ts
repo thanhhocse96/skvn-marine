@@ -13,16 +13,28 @@ type SliderConfig = {
 
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function parseSliderConfig(rawConfig: string): SliderConfig {
+	try {
+		const parsed = JSON.parse(rawConfig) as SliderConfig;
+
+		return parsed && typeof parsed === 'object' ? parsed : {};
+	} catch {
+		return {};
+	}
+}
+
 document.querySelectorAll<HTMLElement>('[data-skvn-slider]').forEach((slider) => {
 	const rawConfig = slider.getAttribute('data-skvn-slider') || '{}';
-	const config = JSON.parse(rawConfig) as SliderConfig;
+	const config = parseSliderConfig(rawConfig);
+	const slidesPerView = Number.isFinite(config.slidesPerView) ? config.slidesPerView : 1;
+	const delay = Number.isFinite(config.delay) ? config.delay : 5000;
 
 	new Swiper(slider, {
 		modules: [Autoplay, EffectFade, Keyboard, Navigation, Pagination],
 		autoplay:
 			config.autoplay && !prefersReduced
 				? {
-						delay: config.delay || 5000,
+						delay,
 						pauseOnMouseEnter: true,
 					}
 				: false,
@@ -41,6 +53,6 @@ document.querySelectorAll<HTMLElement>('[data-skvn-slider]').forEach((slider) =>
 					el: slider.querySelector<HTMLElement>('.swiper-pagination'),
 				}
 			: false,
-		slidesPerView: config.slidesPerView || 1,
+		slidesPerView,
 	});
 });

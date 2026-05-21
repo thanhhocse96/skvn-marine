@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 0.2.0 — Design System, Block Styles, Patterns**
+Current: **V1 / 0.4.0 — Woo Product Sections**
 Status: **IN_PROGRESS**
-Started: **2026-05-20**
+Started: **2026-05-21**
 
 AGENTS.md current milestone phải match file này.
 
@@ -37,55 +37,18 @@ Khi chuyển milestone:
 
 ## V1 Checkpoints
 
-### 0.2.0 — Design System, Block Styles, Patterns
-
-Status: **IN_PROGRESS**
-Started: **2026-05-20**
-
-Acceptance:
-
-- [x] Theme tokens reviewed/refined
-- [x] `theme.json` reviewed/refined
-- [x] Base typography/layout implemented
-- [ ] Header baseline implemented with GeneratePress + SKVN child theme CSS, no header builder plugin
-- [ ] Footer baseline implemented with theme pattern/template + SKVN child theme CSS, no footer builder plugin
-- [x] Block styles implemented
-- [x] Starter patterns implemented
-- [x] Trust feature strip reusable pattern implemented
-- [x] Newsletter signup band reusable pattern implemented with replaceable image block and no custom form handler
-- [ ] Homepage test page assembled in WP editor with placeholder content/images to validate layout before finalizing reusable patterns
-- [ ] Runtime smoke test passed
-- [ ] Human approves milestone completion
-
-### 0.3.0 — Slider / Slide Block
-
-Status: **PENDING**
-
-Acceptance:
-
-- [ ] TypeScript build pipeline passes
-- [ ] Slider + Slide block registration works
-- [ ] Swiper dependency rationale documented
-- [ ] Swiper loads only for slider block frontend
-- [ ] Swiper config comes from block attributes
-- [ ] Keyboard navigation enabled
-- [ ] Pause on hover implemented
-- [ ] `prefers-reduced-motion` disables autoplay
-- [ ] Editor uses stacked/simplified preview, no autoplay
-- [ ] Runtime smoke test passed
-- [ ] Human approves milestone completion
-
 ### 0.4.0 — Woo Product Sections
 
-Status: **PENDING**
+Status: **IN_PROGRESS**
+Started: **2026-05-21**
 
 Acceptance:
 
 - [x] V1 decision: use WooCommerce native blocks/patterns
-- [ ] Woo native product patterns created/styled
-- [ ] Product card visual styling implemented
-- [ ] Mobile CTA remains visible
-- [ ] No custom Product Grid/List blocks in V1
+- [x] Woo native product patterns created/styled
+- [x] Product card visual styling implemented
+- [x] Mobile CTA remains visible
+- [x] No custom Product Grid/List blocks in V1
 - [ ] Runtime smoke test passed
 - [ ] Human approves milestone completion
 

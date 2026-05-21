@@ -18,8 +18,8 @@ add_action( 'init', 'skvn_marine_blocks_register_blocks' );
  * @return void
  */
 function skvn_marine_blocks_register_blocks() {
-	$editor_script = __DIR__ . '/build/index.js';
-	$editor_asset  = __DIR__ . '/build/index.asset.php';
+	$editor_script = __DIR__ . '/build/index.ts.js';
+	$editor_asset  = __DIR__ . '/build/index.ts.asset.php';
 	$editor_deps   = array();
 	$editor_ver    = file_exists( $editor_script ) ? filemtime( $editor_script ) : '0.1.0';
 
@@ -32,15 +32,15 @@ function skvn_marine_blocks_register_blocks() {
 	if ( file_exists( $editor_script ) ) {
 		wp_register_script(
 			'skvn-marine-blocks-editor',
-			plugins_url( 'build/index.js', __FILE__ ),
+			plugins_url( 'build/index.ts.js', __FILE__ ),
 			$editor_deps,
 			$editor_ver,
 			true
 		);
 	}
 
-	$view_script = __DIR__ . '/build/view.js';
-	$view_asset  = __DIR__ . '/build/view.asset.php';
+	$view_script = __DIR__ . '/build/view.ts.js';
+	$view_asset  = __DIR__ . '/build/view.ts.asset.php';
 	$view_deps   = array();
 	$view_ver    = file_exists( $view_script ) ? filemtime( $view_script ) : '0.1.0';
 
@@ -53,7 +53,7 @@ function skvn_marine_blocks_register_blocks() {
 	if ( file_exists( $view_script ) ) {
 		wp_register_script(
 			'skvn-marine-slider-view',
-			plugins_url( 'build/view.js', __FILE__ ),
+			plugins_url( 'build/view.ts.js', __FILE__ ),
 			$view_deps,
 			$view_ver,
 			true
