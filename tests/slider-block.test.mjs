@@ -57,3 +57,8 @@ assert.match(pluginPhp, /build\/index\.ts\.js/, 'PHP must register actual editor
 assert.match(pluginPhp, /build\/view\.ts\.js/, 'PHP must register actual slider view build output');
 assert.match(pluginPhp, /__DIR__\s*\.\s*'\/build\/'\s*\.\s*\$block/, 'PHP must register deployable build block metadata');
 assert.match(pluginPhp, /'slider' === \$block[\s\S]*'view_script'[\s\S]*'skvn-marine-slider-view'/);
+assert.match(
+	pluginPhp,
+	/function_exists\(\s*'register_block_type'\s*\)/,
+	'plugin block registration must be guarded for older WordPress installs',
+);

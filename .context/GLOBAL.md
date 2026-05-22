@@ -85,6 +85,8 @@ Current active docs:
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
 - `docs/workflows/deploy-artifact-workflow.md`
+- `docs/workflows/layout-translator-workflow.md`
+- `docs/workflows/onsite-qa-checklist.md`
 - `docs/workflows/theme-development-workflow.md`
 - `docs/explain/explain-for-5-years-old.md`
 - `docs/artifacts/brand-palette-options.html`
@@ -182,6 +184,14 @@ KHÔNG add dependency không có rationale.
 
 Mọi AI agent làm việc trong project này PHẢI đọc `AGENTS.md` trước.
 Xem thêm: `.context/TENSIONS_OPEN.md` trước khi modify bất kỳ module nào.
+
+When using external AI feedback such as MetaAI:
+
+- Treat it as review input, not source of truth.
+- Ask it for HTML artifacts, layout specs, QA checklists, copy variants, or critique.
+- Do not rely on it as the primary image generation source.
+- For image needs, use a dedicated image generation flow or create code/HTML artifacts that can be reviewed and exported.
+- Validate all external AI suggestions against `AGENTS.md`, `.context/`, and current repo files before applying.
 
 Những gì AI KHÔNG được làm (summary nhanh):
 - Sửa GeneratePress parent

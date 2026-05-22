@@ -15,6 +15,7 @@
 
 - [ ] GeneratePress parent installed.
 - [ ] `skvn-marine` child theme active.
+- [ ] Theme `screenshot.png` exists for admin preview.
 - [ ] Frontend loads.
 - [ ] Admin loads.
 - [ ] Block editor opens.
@@ -190,6 +191,30 @@ Test method:
 6. Preview mobile.
 7. Confirm no horizontal scroll and no overlap.
 8. Record PASS / FAIL / NEEDS REVISION.
+```
+
+## V1 Near-Term Technical Debt
+
+In scope for upcoming V1 work:
+
+```text
+[ ] Add theme screenshot.png.
+[ ] Runtime-check SKVN Full Width against GeneratePress wrappers.
+[ ] Add child-theme CSS for `.inside-article` padding only if runtime confirms the issue.
+[ ] Keep onsite deploy checklist updated with memory, backup, rollback, and log checks.
+[ ] Bump theme/plugin versions before tagged onsite test builds.
+[ ] Move new design tokens toward theme.json / WordPress variables.
+```
+
+Deferred proposals:
+
+```text
+[ ] Pure block theme / custom base theme experiment.
+[ ] Tailwind/PostCSS build pipeline.
+[ ] Pattern registration restructure.
+[ ] Composer/PHP package workflow.
+[ ] GitHub Actions release zip automation.
+[ ] Scoped block CSS/performance budget pass.
 ```
 
 ## Encoding Guardrail

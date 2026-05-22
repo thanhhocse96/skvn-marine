@@ -123,6 +123,12 @@ for (const blockStyle of [
 	assert.ok(blockStylesPhp.includes(blockStyle), `block-styles.php missing ${blockStyle}`);
 }
 
+assert.match(
+	blockStylesPhp,
+	/function_exists\(\s*'register_block_style'\s*\)/,
+	'block style registration must be guarded for older WordPress installs',
+);
+
 for (const file of [
 	'section-intro.php',
 	'trust-strip.php',
