@@ -21,6 +21,8 @@ Output should be a WordPress-native implementation plan first, then Gutenberg bl
 - Plugin `skvn-marine-blocks` owns custom Gutenberg blocks with logic or complex interaction state.
 - Core Gutenberg blocks own editable text, headings, paragraphs, buttons, images, groups, and columns.
 - Do not paste raw `<style>` or `<script>` into page content.
+- Do not paste a raw utility-heavy prototype into page content as the final output.
+- Do not mix untranslated prototype markup and translated Gutenberg markup in the same final page.
 - Do not turn primary text or CTA content into images/canvas.
 - Do not create a custom block when core blocks plus a pattern are enough.
 - Do not add dependencies without rationale.
@@ -70,6 +72,8 @@ risks
 - Use stable `skvn-*` classes.
 - Use core blocks where possible.
 - Do not include raw CSS or JavaScript.
+- Do not rely on prototype-only utility classes as the primary layout contract.
+- Every translated section must be a block composition, not an arbitrary `<div>` tree pasted from the artifact.
 - Keep content editable in the block editor.
 
 ### `required_classes`
@@ -138,6 +142,7 @@ List artifact parts that should not go into Gutenberg content:
 - Raw CSS resets.
 - Inline `<style>`.
 - Inline `<script>`.
+- Utility-heavy prototype wrappers that have not been mapped to core blocks.
 - Decorative particles or waves.
 - Hardcoded map screenshots.
 - Static copies of WooCommerce product data.
@@ -177,6 +182,24 @@ Use this pattern shape for simple sections:
 
 Use `core/columns` for editable column layout. Use theme CSS for exact responsive behavior when core controls are not enough.
 
+## No Mixed Prototype Markup
+
+The final page or pattern must not contain both:
+
+```text
+raw artifact/prototype div markup
++ translated Gutenberg block markup
+```
+
+If a section has not been translated yet, keep it out of `gutenberg_markup` and list it under `not_translated` with the missing CSS or asset contract. A translated section must use:
+
+- WordPress block comment syntax.
+- Core block wrappers.
+- Stable `skvn-*` classes.
+- Theme CSS for layout and visual presentation.
+
+Allowed exception: a `core/html` block may be used for a third-party embed such as an OpenStreetMap iframe when there is no PHP-8.0-compatible block/plugin in V1.
+
 ## Custom Block Decision Gate
 
 Do not create a custom block unless at least one condition is true:
@@ -193,8 +216,10 @@ If custom block need is uncertain, record it in `not_translated` or `risks` firs
 ```text
 [ ] No raw <style> in content.
 [ ] No raw <script> in content.
+[ ] No mixed prototype markup and Gutenberg markup in the final page.
 [ ] Uses core Gutenberg blocks first.
 [ ] Uses stable skvn-* classes.
+[ ] Prototype utility classes are translated into theme CSS contracts.
 [ ] Editable text remains editable.
 [ ] Images are core Image blocks unless decorative.
 [ ] Decorative layers are theme-controlled.
