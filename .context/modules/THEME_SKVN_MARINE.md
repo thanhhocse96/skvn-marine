@@ -72,6 +72,20 @@ Plugin `skvn-marine-blocks` owns the HTML-2-Gutenberg tool itself:
 
 Do not implement HTML-2-Gutenberg admin/tooling logic in the theme.
 
+## [manual] Site Branding Governance
+
+Brand customization is allowed, but brand variables and assets must be managed through the registry in `docs/standards/site-branding-guideline.md`.
+
+Theme-owned brand sources:
+
+- CSS tokens and component styles: `wp-content/themes/skvn-marine/style.css`.
+- Gutenberg presets: `wp-content/themes/skvn-marine/theme.json`.
+- Editor style loading: `wp-content/themes/skvn-marine/inc/setup.php`.
+- Patterns: `wp-content/themes/skvn-marine/patterns/*.php`.
+- Theme screenshot: `wp-content/themes/skvn-marine/screenshot.png`.
+
+Do not move the primary brand system into the plugin. Plugin assets may follow the brand, but do not define it.
+
 ## [manual] Forbidden
 
 - Do not edit parent GeneratePress.
