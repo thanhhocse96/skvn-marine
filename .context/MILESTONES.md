@@ -56,14 +56,14 @@ Started: **2026-05-22**
 
 Acceptance:
 
-- [ ] CF7/CFDB7 deferred until after V1 / 0.6.0
-- [ ] n8n deferred until after version 1.0.0
-- [ ] Quote UI/page surface moved to V1 / 0.6.0
-- [ ] Page editor exposes a Hide site header toggle
-- [ ] Page editor exposes a Hide site footer toggle
-- [ ] Toggle values are saved as page meta with `skvn_marine_`/`_skvn_` naming
-- [ ] Frontend applies header/footer visibility per page without editing GeneratePress parent
-- [ ] Controls are available through admin/editor UI, not raw class input
+- [x] CF7/CFDB7 deferred until after V1 / 0.6.0
+- [x] n8n deferred until after version 1.0.0
+- [x] Quote UI/page surface moved to V1 / 0.6.0
+- [x] Page editor exposes a Hide site header toggle
+- [x] Page editor exposes a Hide site footer toggle
+- [x] Toggle values are saved as page meta with `skvn_marine_`/`_skvn_` naming
+- [x] Frontend applies header/footer visibility per page without editing GeneratePress parent
+- [x] Controls are available through admin/editor UI, not raw class input
 - [ ] Runtime visual smoke test passed
 - [ ] Human approves milestone completion
 

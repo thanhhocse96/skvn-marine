@@ -80,6 +80,12 @@ User-facing feature name:
 HTML-2-Gutenberg
 ```
 
+Sub-label:
+
+```text
+Tailwind-ready artifact importer
+```
+
 Positioning:
 
 ```text

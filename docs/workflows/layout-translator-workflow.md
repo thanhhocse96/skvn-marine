@@ -4,6 +4,8 @@ Purpose: translate human-provided HTML artifacts into SKVN Marine Gutenberg patt
 
 Product name: **HTML-2-Gutenberg**.
 
+Sub-label: **Tailwind-ready artifact importer**.
+
 Positioning: **Best for SEO** because the final output remains editable, semantic Gutenberg content instead of screenshots, canvas, or raw prototype embeds.
 
 Internal term: "layout translator" may still describe the technical process, but user-facing docs and UI should prefer **HTML-2-Gutenberg**.
