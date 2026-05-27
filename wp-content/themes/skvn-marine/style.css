@@ -293,9 +293,10 @@ body.admin-bar .site-header {
 	width: 100%;
 }
 
+/* 64px is Wordpress Logo in Editor */
 body.block-editor-iframe__body.editor-styles-wrapper.post-type-page {
 	box-sizing: border-box;
-	padding-left: 10px;
+	padding-left: 64px; 
 }
 
 .skvn-full-width-canvas .entry-content > .mhf-maintenance,
