@@ -73,6 +73,24 @@ Before coding any branding change, update or verify this document first. If a ne
 
 HTML-2-Gutenberg may accept Tailwind-ready artifacts, but Tailwind classes are input hints only. The final WordPress output must use Gutenberg block markup and `skvn-*` classes controlled by the theme.
 
+HTML-2-Gutenberg brand report output must include:
+
+```text
+brand_source_scan
+brand_mapping
+brand_mismatch
+token_changes_needed
+```
+
+- `brand_source_scan` records artifact colors, Tailwind color utilities, fonts, radius, shadows, spacing, and CTA emphasis.
+- `brand_mapping` maps those cues to existing SKVN theme tokens, `theme.json` presets, block styles, or `skvn-*` classes.
+- `brand_mismatch` records visual choices that conflict with SKVN direction.
+- `token_changes_needed` records token/class/preset gaps needed for parity without raw CSS in content.
+
+Artifact colors must map back to SKVN theme tokens. Prototype hex/rgb/hsl values and Tailwind color utilities must not be preserved as the production contract. If a token is missing, the translator records `token_changes_needed`; it does not add raw color declarations, inline styles, or utility-heavy prototype color classes to Gutenberg content.
+
+V1 / 0.5.1 documents this contract only. Theme-owned brand profile and token implementation remain deferred to V1 / 0.7.0.
+
 When the importer outputs a new `skvn-*` class, record the class contract in the workflow output and implement its styling in the theme files listed above.
 
 For SKVN Marine translated artifacts, prefer implemented CSS families first:
@@ -95,6 +113,7 @@ Do not use new layout-critical families such as `skvn-card-grid`, `skvn-logo-gri
 
 - Update or verify this guideline before coding branding changes.
 - Do not place raw `<style>` or `<script>` in Gutenberg content.
+- Do not preserve prototype/Tailwind colors as production content classes or inline styles.
 - Do not edit GeneratePress parent files.
 - Do not move brand tokens into the plugin.
 - Do not create dynamic Tailwind class contracts that the theme cannot audit.

@@ -14,6 +14,12 @@ Run from Windows using WSL Debian:
 wsl -d Debian bash -lc "source /home/shinkuro/.nvm/nvm.sh && nvm use 20 && cd /mnt/d/Github/skvn-marine && node tools/build-deploy-artifact.mjs"
 ```
 
+Run directly inside the Debian shell:
+
+```bash
+source /home/shinkuro/.nvm/nvm.sh && nvm use 20 && cd /mnt/d/Github/skvn-marine && node tools/build-deploy-artifact.mjs
+```
+
 ## Output
 
 The deployable output is gitignored:

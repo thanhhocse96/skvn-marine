@@ -37,6 +37,8 @@ Do not build screenshot parsing, image upload, or AI API calls into V1.
 
 Tailwind is allowed as an **input language** because it helps external AI tools produce attractive, structured artifacts quickly. Tailwind must not become the production content contract.
 
+Artifact colors are also input hints. Prototype hex/rgb/hsl values and Tailwind color utilities must be mapped back to SKVN theme tokens, Gutenberg presets, existing `skvn-*` classes, or block styles before output is considered production-ready. If the current token set cannot represent the visual intent, report it in `token_changes_needed`; do not preserve raw prototype colors in Gutenberg content.
+
 Output remains:
 
 - Gutenberg core block markup.
@@ -69,6 +71,8 @@ Do not add API keys, AI SDK dependencies, screenshot upload handling, or runtime
 - Screenshot-to-HTML parsing is delegated to external AI tools in V1.
 - Do not paste raw `<style>` or `<script>` into page content.
 - Do not paste a raw utility-heavy prototype into page content as the final output.
+- Do not preserve prototype/Tailwind colors as the production color contract.
+- Do not add raw color declarations to Gutenberg content when SKVN tokens are missing; report missing token needs instead.
 - Do not mix untranslated prototype markup and translated Gutenberg markup in the same final page.
 - Do not turn primary text or CTA content into images/canvas.
 - Do not create a custom block when core blocks plus a pattern are enough.
@@ -140,6 +144,33 @@ Rules:
 - If no implemented CSS family exists, use native Gutenberg layout such as `core/columns` for paste-ready output.
 - If the human asks for visual parity, implement the missing CSS in the theme instead of putting CSS in page content.
 
+## Brand Mapping Contract
+
+Every formal translation result must include a brand report before or alongside markup:
+
+```text
+brand_source_scan
+brand_mapping
+brand_mismatch
+token_changes_needed
+```
+
+Definitions:
+
+- `brand_source_scan`: colors, Tailwind color utilities, font cues, radius, shadows, spacing, contrast, and CTA emphasis detected in the artifact.
+- `brand_mapping`: how artifact cues map to existing SKVN theme tokens, `theme.json` presets, `skvn-*` classes, block styles, or known visual rules.
+- `brand_mismatch`: artifact choices that conflict with SKVN direction, such as non-blue primary CTAs, dominant gold backgrounds, unrelated brand palettes, low contrast, or prototype-only color systems.
+- `token_changes_needed`: token, class, preset, or component-style additions needed for visual parity without raw CSS in Gutenberg content.
+
+Rules:
+
+- Map artifact colors to SKVN theme tokens first.
+- Use prototype/Tailwind colors only to infer intent; do not keep them as the production contract.
+- If no SKVN token exists, use the closest existing token for paste-ready markup and record the gap in `token_changes_needed`.
+- Do not put raw hex/rgb/hsl colors, inline styles, or utility-heavy color classes into Gutenberg content to compensate for missing tokens.
+- Theme-owned implementation of new brand profile tokens is deferred to V1 / 0.7.0.
+- 0.5.1 only documents the contract and prepares translator output; it does not implement a brand profile UI or new token system.
+
 ## Ownership Boundary
 
 HTML-2-Gutenberg is split across plugin and theme:
@@ -205,6 +236,10 @@ Every translator result should use this structure:
 ```text
 project_contract
 css_source_scan
+brand_source_scan
+brand_mapping
+brand_mismatch
+token_changes_needed
 gutenberg_markup
 required_classes
 missing_theme_classes
@@ -222,6 +257,7 @@ risks
 - Use core blocks where possible.
 - Do not include raw CSS or JavaScript.
 - Do not rely on prototype-only utility classes as the primary layout contract.
+- Do not include raw prototype colors or Tailwind color utilities as the production color contract.
 - Every translated section must be a block composition, not an arbitrary `<div>` tree pasted from the artifact.
 - Keep content editable in the block editor.
 - Preserve semantic headings, paragraphs, links, and images for SEO.
@@ -259,6 +295,7 @@ Describe the CSS responsibility without writing full CSS unless requested:
 - Inner width and full-width behavior.
 - Spacing rhythm.
 - Color token intent.
+- Brand token mapping and any token gaps.
 - Card/border/shadow rules.
 - Responsive stacking.
 - Editor preview expectations.
@@ -303,6 +340,7 @@ List artifact parts that should not go into Gutenberg content:
 - Inline `<style>`.
 - Inline `<script>`.
 - Utility-heavy prototype wrappers that have not been mapped to core blocks.
+- Prototype colors or Tailwind color utilities that have not been mapped to SKVN theme tokens.
 - Decorative particles or waves.
 - Hardcoded map screenshots.
 - Static copies of WooCommerce product data.
@@ -400,6 +438,9 @@ This belongs to plugin/admin tooling, not theme CSS. It must require admin capab
 [ ] No mixed prototype markup and Gutenberg markup in the final page.
 [ ] Uses core Gutenberg blocks first.
 [ ] Uses stable skvn-* classes.
+[ ] Includes `brand_source_scan`, `brand_mapping`, `brand_mismatch`, and `token_changes_needed`.
+[ ] Artifact colors are mapped to SKVN theme tokens/classes.
+[ ] Missing brand tokens are reported in `token_changes_needed`, not patched with raw content CSS.
 [ ] Reuses existing theme CSS families before inventing new classes.
 [ ] Missing theme classes are listed in `missing_theme_classes`.
 [ ] Tailwind classes are treated as input hints only.

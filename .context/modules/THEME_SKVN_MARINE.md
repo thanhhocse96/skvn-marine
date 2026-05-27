@@ -129,6 +129,14 @@ Theme-owned brand sources:
 
 Do not move the primary brand system into the plugin. Plugin assets may follow the brand, but do not define it.
 
+HTML-2-Gutenberg brand-mapping contract for 0.5.1:
+
+- Translator output must report `brand_source_scan`, `brand_mapping`, `brand_mismatch`, and `token_changes_needed`.
+- Artifact colors, Tailwind color utilities, fonts, radius, shadows, and spacing cues are input hints only.
+- Production output must map those cues to SKVN theme tokens, existing `skvn-*` classes, Gutenberg presets, or block styles.
+- If the current theme token set cannot represent an artifact cue, record it in `token_changes_needed`; do not put raw hex/rgb/hsl values or Tailwind color utilities into Gutenberg content as the production contract.
+- Theme token implementation and brand profile work remain parked until V1 / 0.7.0. Do not code a brand profile UI or new token system during 0.5.1.
+
 ## [manual] Forbidden
 
 - Do not edit parent GeneratePress.

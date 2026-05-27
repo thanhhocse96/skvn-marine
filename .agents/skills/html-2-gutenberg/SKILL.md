@@ -15,6 +15,7 @@ For SKVN Marine:
 - Theme `skvn-marine` owns visual output contract: `skvn-*` classes, CSS, tokens, block styles, patterns, editor/frontend parity, decorative/background animation, and shared animation runtime.
 - Core blocks own editable content: groups, columns, headings, paragraphs, buttons, images, lists.
 - Custom blocks are last resort: only if core blocks plus theme patterns are insufficient.
+- Artifact colors and Tailwind color utilities are input hints only. Production Gutenberg output must map color intent to SKVN theme tokens/classes or report token gaps; do not preserve raw prototype colors in content.
 
 ## Required Project Context
 
@@ -38,11 +39,12 @@ For another WordPress project, first discover the project contract instead of as
 1. Inspect the artifact.
 2. Build a project contract inventory before choosing classes.
 3. Build a theme CSS inventory before choosing layout-critical classes.
-4. Extract semantic content: heading, paragraph, CTA, image, list, card, product/category text.
-5. Classify presentation-only parts: wrappers, grids, spacing, colors, decorative SVG/waves/particles, background motion.
-6. Emit Gutenberg block markup using core blocks and existing stable project classes.
-7. Emit implementation contracts, not inline CSS/JS.
-8. Validate paste-safety before returning output.
+4. Build a brand source scan before choosing tokens.
+5. Extract semantic content: heading, paragraph, CTA, image, list, card, product/category text.
+6. Classify presentation-only parts: wrappers, grids, spacing, colors, decorative SVG/waves/particles, background motion.
+7. Emit Gutenberg block markup using core blocks and existing stable project classes.
+8. Emit implementation contracts, not inline CSS/JS.
+9. Validate paste-safety before returning output.
 
 ## Project Contract Intake
 
@@ -78,6 +80,32 @@ Decision rules:
 - In SKVN Marine, prefer existing implemented families such as `skvn-translated-*`, `skvn-kpi-strip*`, `skvn-section__*`, `skvn-placeholder-media`, `skvn-card`, and registered `is-style-skvn-*` styles before inventing `skvn-hero__*`, `skvn-logo-card__*`, or other new families.
 - Never create a new layout-critical class family unless the task also asks to implement theme CSS or the class is explicitly listed as missing.
 - Keep project-specific rules in the output contract so another project can swap in its own prefix and implemented classes.
+
+## Brand Mapping Contract
+
+For SKVN Marine translation work, output must include:
+
+```text
+brand_source_scan
+brand_mapping
+brand_mismatch
+token_changes_needed
+```
+
+Definitions:
+
+- `brand_source_scan`: artifact colors, Tailwind color utilities, font cues, radius, shadows, spacing, contrast, and CTA emphasis.
+- `brand_mapping`: mapping from artifact cues to existing SKVN theme tokens, `theme.json` presets, `skvn-*` classes, and block styles.
+- `brand_mismatch`: artifact choices that conflict with SKVN direction, such as non-blue primary CTAs, dominant gold backgrounds, unrelated palettes, low contrast, or prototype-only color systems.
+- `token_changes_needed`: token, class, preset, or component-style gaps required for visual parity without raw CSS in Gutenberg content.
+
+Rules:
+
+- Map artifact colors to SKVN theme tokens first.
+- Treat prototype/Tailwind colors as intent, not production contract.
+- If no token exists, use the closest existing SKVN token in paste-ready markup and record the gap in `token_changes_needed`.
+- Do not put raw hex/rgb/hsl colors, inline styles, or utility-heavy color classes into Gutenberg content to compensate for missing tokens.
+- Theme-owned brand profile and token implementation remain deferred to V1 / 0.7.0. Do not implement a brand profile UI or new token system in 0.5.1 translation work.
 
 ## Reuse Existing Pattern Contract
 
@@ -156,6 +184,10 @@ For formal translation tasks, return:
 ```text
 project_contract
 css_source_scan
+brand_source_scan
+brand_mapping
+brand_mismatch
+token_changes_needed
 gutenberg_markup
 required_classes
 missing_theme_classes

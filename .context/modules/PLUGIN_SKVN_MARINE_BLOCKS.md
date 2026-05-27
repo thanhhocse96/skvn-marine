@@ -103,6 +103,7 @@ Plugin responsibilities for HTML-2-Gutenberg:
 - HTML artifact intake.
 - Translation workflow/tooling.
 - Gutenberg markup validation.
+- Brand scan/report output: `brand_source_scan`, `brand_mapping`, `brand_mismatch`, and `token_changes_needed`.
 - Future admin publisher/create-page flow.
 - Custom blocks only when core Gutenberg blocks plus theme patterns are insufficient.
 
@@ -118,6 +119,13 @@ Theme `skvn-marine` still owns the visual output contract:
 Do not implement the HTML-2-Gutenberg admin tool in the theme.
 
 Do not make this plugin own the primary SKVN visual system.
+
+0.5.1 brand-mapping contract:
+
+- Treat artifact colors and Tailwind classes as source hints, not production contracts.
+- Map visual cues to theme-owned SKVN tokens/classes when producing Gutenberg output.
+- If a required token/class does not exist, report it in `token_changes_needed` or `missing_theme_classes`; do not inject raw color CSS into content.
+- Leave brand profile/theme token implementation for V1 / 0.7.0.
 
 ## [manual] Rules
 

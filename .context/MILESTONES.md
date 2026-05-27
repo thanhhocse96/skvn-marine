@@ -64,7 +64,7 @@ Acceptance:
 - [x] Toggle values are saved as page meta with `skvn_marine_`/`_skvn_` naming
 - [x] Frontend applies header/footer visibility per page without editing GeneratePress parent
 - [x] Controls are available through admin/editor UI, not raw class input
-- [ ] HTML-2-Gutenberg brand-mapping contract documented for manual translation output
+- [x] HTML-2-Gutenberg brand-mapping contract documented for manual translation output
 - [ ] Runtime visual smoke test passed
 - [ ] Human approves milestone completion
 
