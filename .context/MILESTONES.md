@@ -64,6 +64,7 @@ Acceptance:
 - [x] Toggle values are saved as page meta with `skvn_marine_`/`_skvn_` naming
 - [x] Frontend applies header/footer visibility per page without editing GeneratePress parent
 - [x] Controls are available through admin/editor UI, not raw class input
+- [ ] HTML-2-Gutenberg brand-mapping contract documented for manual translation output
 - [ ] Runtime visual smoke test passed
 - [ ] Human approves milestone completion
 
@@ -80,6 +81,26 @@ Acceptance:
 - [ ] Runtime visual smoke test passed
 - [ ] Human approves milestone completion
 
+### 0.7.0 — Brand Profile & Theme Tokens
+
+Status: **PENDING**
+
+Purpose:
+
+- Create a theme-owned brand profile layer so translated Gutenberg pages map prototype colors and visual intent into SKVN theme tokens instead of raw artifact colors.
+- Keep HTML-2-Gutenberg as a translator/tooling concern, while the theme owns actual brand variables, editor/frontend parity, and visual output.
+
+Acceptance:
+
+- [ ] Brand profile source of truth is documented before code.
+- [ ] External references are recorded for manual development without AI.
+- [ ] Theme token names are defined for primary, accent, dark/navy, surface, text, CTA, card radius, card shadow, and section spacing.
+- [ ] `theme.json` presets and `style.css` CSS variables have a documented sync rule.
+- [ ] Editor and frontend use the same token contract.
+- [ ] HTML-2-Gutenberg output can report `brand_source_scan`, `brand_mapping`, `brand_mismatch`, and `token_changes_needed`.
+- [ ] No raw prototype colors are required in Gutenberg content.
+- [ ] GeneratePress parent remains untouched.
+
 ### 1.0.0 — V1 Launch Ready
 
 Status: **PENDING**
@@ -95,3 +116,33 @@ Acceptance:
 - [ ] No external plugins committed to source repo
 - [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
 - [ ] Human approves V1 launch readiness
+
+### 1.1.0 — Visual Governance Layer
+
+Status: **FUTURE CANDIDATE**
+
+Purpose:
+
+- Add a governance layer for brand-aware sections, pattern variants, and safer editor controls after V1 launch readiness.
+
+Acceptance:
+
+- [ ] Brand preset/profile variants are planned.
+- [ ] Pattern and section style variants are documented.
+- [ ] HTML-2-Gutenberg review report includes artifact palette, mapped theme tokens, rejected prototype colors, and missing tokens.
+- [ ] Marketing/editor controls avoid raw class entry where practical.
+- [ ] External references remain listed in planning docs for non-AI implementation.
+
+### 2.0.0 / Future Candidate — Brand System Productization
+
+Status: **FUTURE CANDIDATE**
+
+Purpose:
+
+- Evaluate productized multi-brand support, admin workflows, and optional AI-assisted brand/artifact review after the manual and governance layers are stable.
+
+Acceptance:
+
+- [ ] Multi-brand or client-specific brand-pack need is validated.
+- [ ] Admin workflow boundaries are documented before implementation.
+- [ ] Optional AI-assisted intake has approved credential, privacy, logging, cost, and review rules before any code.

@@ -8,7 +8,7 @@ Sub-label: **Tailwind-ready artifact importer**.
 
 Positioning: **Best for SEO** because the final output remains editable, semantic Gutenberg content instead of screenshots, canvas, or raw prototype embeds.
 
-Internal term: "layout translator" may still describe the technical process, but user-facing docs and UI should prefer **HTML-2-Gutenberg**.
+Use **HTML-2-Gutenberg** consistently in docs, UI, and agent instructions.
 
 ## Scope
 
@@ -75,6 +75,71 @@ Do not add API keys, AI SDK dependencies, screenshot upload handling, or runtime
 - Do not add dependencies without rationale.
 - Do not ship AI API integration until a future/pro milestone explicitly approves credential, cost, timeout, logging, and data-handling rules.
 
+## Project Contract Intake
+
+HTML-2-Gutenberg is a theme-contract-aware translator. Before generating markup, inspect the target project contract:
+
+- Theme CSS files.
+- `theme.json`.
+- Registered block styles.
+- Pattern files.
+- Existing class families.
+- CSS prefix.
+- Allowed core/custom blocks.
+
+For SKVN Marine, scan:
+
+```powershell
+Select-String -Path wp-content\themes\skvn-marine\style.css -Pattern "\.skvn-|--skvn-|wp-block-" -Encoding UTF8
+Select-String -Path wp-content\themes\skvn-marine\theme.json -Pattern "skvn|layout|palette|spacing" -Encoding UTF8
+Select-String -Path wp-content\themes\skvn-marine\inc\block-styles.php -Pattern "register_block_style|skvn|core/" -Encoding UTF8
+Get-ChildItem wp-content\themes\skvn-marine\patterns -Filter *.php | Select-String -Pattern "skvn-|wp:" -Encoding UTF8
+```
+
+SKVN implemented translated-layout families:
+
+```text
+skvn-translated-page
+skvn-translated-hero
+skvn-translated-hero__grid
+skvn-translated-hero__content
+skvn-translated-hero__media
+skvn-translated-hero__eyebrow
+skvn-translated-hero__heading
+skvn-translated-hero__lead
+skvn-translated-hero__actions
+skvn-translated-hero__image
+skvn-kpi-strip
+skvn-kpi-strip__grid
+skvn-kpi-strip__item
+skvn-translated-split
+skvn-translated-split__grid
+skvn-placeholder-media
+skvn-section__eyebrow
+skvn-section__heading
+skvn-section__lead
+skvn-card
+skvn-button
+skvn-button--primary
+skvn-button--secondary
+is-style-skvn-primary
+```
+
+Reference pattern:
+
+```text
+wp-content/themes/skvn-marine/patterns/artifact-exporter-test.php
+```
+
+Rules:
+
+- Reuse existing class families before inventing new ones.
+- Mirror an existing pattern when it already implements a similar section.
+- Do not rely on missing custom classes for layout-critical behavior.
+- Put missing classes in `missing_theme_classes`.
+- If no implemented CSS family exists, use native Gutenberg layout such as `core/columns` for paste-ready output.
+- If the human asks for visual parity, implement the missing CSS in the theme instead of putting CSS in page content.
+
 ## Ownership Boundary
 
 HTML-2-Gutenberg is split across plugin and theme:
@@ -138,8 +203,11 @@ For each artifact, identify:
 Every translator result should use this structure:
 
 ```text
+project_contract
+css_source_scan
 gutenberg_markup
 required_classes
+missing_theme_classes
 theme_css_contract
 animation_contract
 assets_needed
@@ -162,16 +230,26 @@ risks
 
 List the `skvn-*` classes the theme must implement, grouped by section if useful.
 
-Example:
+Prefer already implemented SKVN families:
 
 ```text
-skvn-layout-translated-section
-skvn-hero-panel
-skvn-hero-panel__media
-skvn-card-grid
+skvn-translated-hero
+skvn-translated-hero__grid
+skvn-translated-hero__heading
+skvn-kpi-strip
+skvn-kpi-strip__grid
+skvn-translated-split__grid
+skvn-placeholder-media
 skvn-card
-skvn-motion-reveal
 ```
+
+Do not invent class families such as `skvn-hero__*`, `skvn-card-grid`, `skvn-logo-grid`, or `skvn-testimonial-grid` unless CSS is implemented or the class is listed as missing.
+
+### `missing_theme_classes`
+
+List every new `skvn-*` class that the theme does not currently implement.
+
+For each missing class, state whether it is layout-critical. Layout-critical missing classes cannot be used as the only mechanism for grid, spacing, width, or responsive behavior in paste-ready markup.
 
 ### `theme_css_contract`
 
@@ -322,6 +400,8 @@ This belongs to plugin/admin tooling, not theme CSS. It must require admin capab
 [ ] No mixed prototype markup and Gutenberg markup in the final page.
 [ ] Uses core Gutenberg blocks first.
 [ ] Uses stable skvn-* classes.
+[ ] Reuses existing theme CSS families before inventing new classes.
+[ ] Missing theme classes are listed in `missing_theme_classes`.
 [ ] Tailwind classes are treated as input hints only.
 [ ] Prototype utility classes are translated into theme CSS contracts.
 [ ] Editable text remains editable.

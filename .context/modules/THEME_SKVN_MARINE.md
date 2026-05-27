@@ -72,6 +72,47 @@ Plugin `skvn-marine-blocks` owns the HTML-2-Gutenberg tool itself:
 
 Do not implement HTML-2-Gutenberg admin/tooling logic in the theme.
 
+## [manual] HTML-2-Gutenberg CSS Families
+
+HTML-2-Gutenberg output must reuse implemented theme CSS families before inventing new `skvn-*` classes.
+
+Implemented translated-layout families in `wp-content/themes/skvn-marine/style.css`:
+
+- `skvn-translated-page`
+- `skvn-translated-hero`
+- `skvn-translated-hero__grid`
+- `skvn-translated-hero__content`
+- `skvn-translated-hero__media`
+- `skvn-translated-hero__eyebrow`
+- `skvn-translated-hero__heading`
+- `skvn-translated-hero__lead`
+- `skvn-translated-hero__actions`
+- `skvn-translated-hero__image`
+- `skvn-kpi-strip`
+- `skvn-kpi-strip__grid`
+- `skvn-kpi-strip__item`
+- `skvn-translated-split`
+- `skvn-translated-split__grid`
+- `skvn-placeholder-media`
+- `skvn-section__eyebrow`
+- `skvn-section__heading`
+- `skvn-section__lead`
+- `skvn-card`
+- `skvn-button`
+- `skvn-button--primary`
+- `skvn-button--secondary`
+- registered button style `is-style-skvn-primary`
+
+Reference pattern:
+
+- `wp-content/themes/skvn-marine/patterns/artifact-exporter-test.php`
+
+Translator rule:
+
+- Reuse `skvn-translated-*`, `skvn-kpi-strip*`, `skvn-section__*`, `skvn-placeholder-media`, `skvn-card`, and `is-style-skvn-*` when translating generic HTML artifacts.
+- Do not create new layout-critical families like `skvn-hero__*`, `skvn-card-grid`, `skvn-logo-grid`, or `skvn-testimonial-grid` unless their theme CSS is implemented in the same task or they are explicitly listed in `missing_theme_classes`.
+- If exact artifact layout requires classes not yet implemented, output native Gutenberg structure first and record the CSS contract separately.
+
 ## [manual] Site Branding Governance
 
 Brand customization is allowed, but brand variables and assets must be managed through the registry in `docs/standards/site-branding-guideline.md`.

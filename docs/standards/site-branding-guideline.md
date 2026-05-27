@@ -38,6 +38,7 @@ Before coding any branding change, update or verify this document first. If a ne
 | Radius/shadow | `wp-content/themes/skvn-marine/style.css` `--skvn-radius-card`, `--skvn-shadow-card` | None | Use tokens before component overrides |
 | Buttons | `wp-content/themes/skvn-marine/style.css` `.skvn-button*` and block button selectors | Patterns using `core/buttons` | Primary CTA remains blue |
 | Sections/cards | `wp-content/themes/skvn-marine/style.css` `.skvn-section*`, `.skvn-card*`, translated classes | `wp-content/themes/skvn-marine/patterns/*.php` | Use `skvn-*` classes |
+| HTML-2-Gutenberg translated layouts | `wp-content/themes/skvn-marine/style.css` `.skvn-translated-*`, `.skvn-kpi-strip*`, `.skvn-placeholder-media` | `wp-content/themes/skvn-marine/patterns/artifact-exporter-test.php` | Reuse these implemented families before inventing new translated layout classes |
 | Block styles | `wp-content/themes/skvn-marine/inc/block-styles.php` | `style.css` | Register editor-visible styles here |
 | Editor parity | `wp-content/themes/skvn-marine/inc/setup.php` | `style.css`, future editor CSS if split | `add_editor_style()` must load required visual CSS |
 | Theme screenshot | `wp-content/themes/skvn-marine/screenshot.png` | None | Theme marketplace/admin preview image |
@@ -73,6 +74,22 @@ Before coding any branding change, update or verify this document first. If a ne
 HTML-2-Gutenberg may accept Tailwind-ready artifacts, but Tailwind classes are input hints only. The final WordPress output must use Gutenberg block markup and `skvn-*` classes controlled by the theme.
 
 When the importer outputs a new `skvn-*` class, record the class contract in the workflow output and implement its styling in the theme files listed above.
+
+For SKVN Marine translated artifacts, prefer implemented CSS families first:
+
+- `skvn-translated-page`
+- `skvn-translated-hero*`
+- `skvn-kpi-strip*`
+- `skvn-translated-split*`
+- `skvn-placeholder-media`
+- `skvn-section__eyebrow`
+- `skvn-section__heading`
+- `skvn-section__lead`
+- `skvn-card`
+- `skvn-button*`
+- `is-style-skvn-primary`
+
+Do not use new layout-critical families such as `skvn-card-grid`, `skvn-logo-grid`, `skvn-testimonial-grid`, or `skvn-hero__*` unless the same task implements theme CSS or the translator lists them under `missing_theme_classes`.
 
 ## Guardrails
 

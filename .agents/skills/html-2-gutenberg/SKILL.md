@@ -29,7 +29,7 @@ When working inside `D:\Github\skvn-marine`, load these before acting:
 7. `.context/modules/PLUGIN_SKVN_MARINE_BLOCKS.md`
 8. `docs/standards/site-branding-guideline.md`
 
-If the workflow doc exists, read `docs/workflows/html-2-gutenberg-workflow.md`; otherwise read `docs/workflows/layout-translator-workflow.md` and treat it as the legacy name.
+Read `docs/workflows/html-2-gutenberg-workflow.md`.
 
 For another WordPress project, first discover the project contract instead of assuming SKVN paths or classes. Find the local agent/project instructions, theme root, custom plugin root, CSS prefix, theme CSS files, `theme.json`, block style registrations, and pattern files before translating.
 
@@ -224,15 +224,15 @@ Before final answer or file output:
 
 ## Useful Commands
 
-Existing repo CLI may be available:
+No repo CLI exists yet. If the project adds one later, use the HTML-2-Gutenberg naming:
 
 ```bash
-node tools/layout-translator/translate-layout.mjs --input path/to/artifact.html
-node tools/layout-translator/translate-layout.mjs --input path/to/artifact.html --output translated.md
+node tools/html-2-gutenberg/translate.mjs --input path/to/artifact.html
+node tools/html-2-gutenberg/translate.mjs --input path/to/artifact.html --output translated.md
 ```
 
 On this machine, use WSL Node if Windows `node.exe` is blocked:
 
 ```bash
-wsl -d Debian -- bash -lc "source /home/shinkuro/.nvm/nvm.sh && nvm use 20 && cd /mnt/d/Github/skvn-marine && node tools/layout-translator/translate-layout.mjs --input path/to/artifact.html"
+wsl -d Debian -- bash -lc "source /home/shinkuro/.nvm/nvm.sh && nvm use 20 && cd /mnt/d/Github/skvn-marine && node tools/html-2-gutenberg/translate.mjs --input path/to/artifact.html"
 ```

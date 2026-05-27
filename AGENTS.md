@@ -362,6 +362,9 @@ HTML-2-Gutenberg boundary:
 
 - Plugin `skvn-marine-blocks` owns artifact intake, translation tooling, validation, and future admin publisher/create-page flow.
 - Theme `skvn-marine` owns visual output contract: `skvn-*` classes, CSS, tokens, patterns, editor/frontend parity, and shared animation runtime.
+- Before translating artifacts, inspect and reuse the existing theme CSS/pattern contract.
+- Current translated-layout CSS families to prefer: `skvn-translated-*`, `skvn-kpi-strip*`, `skvn-section__*`, `skvn-placeholder-media`, `skvn-card`, `skvn-button*`, and registered `is-style-skvn-*`.
+- New layout-critical `skvn-*` classes must be implemented in theme CSS in the same task or listed in `missing_theme_classes`; do not silently rely on missing CSS.
 - Do not paste raw `<style>`, `<script>`, base64/data URI image, or decorative SVG/canvas into Gutenberg content.
 - Do not implement HTML-2-Gutenberg tooling/admin logic in the theme.
 
@@ -400,7 +403,10 @@ HTML-2-Gutenberg boundary:
 | 0.5.0 | SKVN Full Width layout |
 | 0.5.1 | Page display and sidebar controls |
 | 0.6.0 | Quote UI and editor controls |
+| 0.7.0 | Brand profile and theme tokens |
 | 1.0.0 | V1 launch-ready |
+| 1.1.0 | Visual governance layer |
+| 2.0.0 / Future Candidate | Brand system productization |
 
 ### Version naming rules
 

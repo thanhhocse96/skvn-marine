@@ -59,6 +59,8 @@ Planning snapshots live in `.context/planning/` and use a three-digit ordering p
 Current planning file:
 
 - `.context/planning/000_VERSION_1_1_0_PLANNING.md`
+- `.context/planning/001_VERSION_0_7_0_BRAND_PROFILE_PLANNING.md`
+- `.context/planning/002_VERSION_1_1_0_VISUAL_GOVERNANCE_PLANNING.md`
 
 Proposal files under `.context/proposals/` are not active protocol and are ignored by git. Do not load them unless the human explicitly asks to review a proposal.
 
@@ -86,7 +88,7 @@ Current active docs:
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
 - `docs/workflows/deploy-artifact-workflow.md`
-- `docs/workflows/layout-translator-workflow.md`
+- `docs/workflows/html-2-gutenberg-workflow.md`
 - `docs/workflows/onsite-qa-checklist.md`
 - `docs/workflows/theme-development-workflow.md`
 - `docs/explain/explain-for-5-years-old.md`
