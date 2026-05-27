@@ -62,7 +62,8 @@ body {
 	background: var(--skvn-accent-support);
 }
 
-.skvn-button,
+.skvn-button:not(.wp-block-button),
+.wp-block-button.skvn-button .wp-block-button__link,
 .wp-block-button .wp-block-button__link.is-style-skvn-primary {
 	align-items: center;
 	border-radius: 6px;
@@ -75,13 +76,21 @@ body {
 	text-decoration: none;
 }
 
-.skvn-button--primary,
+.wp-block-button.skvn-button {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	min-height: 0;
+	padding: 0;
+}
+
+.skvn-button--primary:not(.wp-block-button),
 .wp-block-button.is-style-skvn-primary .wp-block-button__link {
 	background: var(--skvn-color-blue-700);
 	color: var(--skvn-color-white);
 }
 
-.skvn-button--primary:hover,
+.skvn-button--primary:not(.wp-block-button):hover,
 .wp-block-button.is-style-skvn-primary .wp-block-button__link:hover {
 	background: var(--skvn-color-blue-900);
 	color: var(--skvn-color-white);
