@@ -130,9 +130,13 @@ Use `skvn-translated-hero__grid` for translated hero grids because theme CSS alr
 Do not replace it with `skvn-hero__columns` unless theme CSS for `skvn-hero__columns` exists or is being added.
 ```
 
-## Theme CSS Intake
+## Theme CSS Intake — MANDATORY
 
-Before translating inside `D:\Github\skvn-marine`, inspect the theme sources that actually ship CSS:
+**This step is not optional. Do not choose any layout-critical class before completing this scan.**
+
+Visual contract (background, text color, grid behavior) comes from the live theme CSS, not from assumptions or prior knowledge. The theme can change at any time. Always scan before translating.
+
+For SKVN Marine, inspect the theme sources that actually ship CSS:
 
 ```powershell
 Select-String -Path wp-content\themes\skvn-marine\style.css -Pattern "\.skvn-|--skvn-|wp-block-" -Encoding UTF8
@@ -141,7 +145,7 @@ Select-String -Path wp-content\themes\skvn-marine\inc\block-styles.php -Pattern 
 Get-ChildItem wp-content\themes\skvn-marine\patterns -Filter *.php | Select-String -Pattern "skvn-|wp:" -Encoding UTF8
 ```
 
-Summarize the scan in the result:
+Summarize the scan in the result before producing any markup:
 
 ```text
 project_contract
@@ -160,6 +164,32 @@ Decision rules:
 - If the user explicitly asks to implement theme CSS, write the CSS in the theme layer, not in Gutenberg content.
 - If the user only asks for paste-ready markup, prefer native Gutenberg structure over custom classes that require new CSS.
 - For SKVN Marine, if `skvn-translated-*` can represent the section, use it before creating new `skvn-*` section families.
+
+## Editorial Content Decision Rules
+
+These rules govern decisions that are not about CSS classes but about what content to put inside blocks.
+
+### Image: real upload vs placeholder
+
+- Use the real uploaded image URL when the client has already uploaded an image to the WordPress media library and the URL is known. Do not replace a real image with a placeholder.
+- Use a placeholder (`placehold.co` or equivalent) only when no real image exists yet. State this in `assets_needed`.
+- For hero sections: prefer real images when available — a dark-background hero with a placeholder reads poorly in editor and frontend.
+- For split/about sections: placeholder is acceptable when the factory or product photo is not yet available.
+
+### Eyebrow pattern: simple `<p>` vs flex group with dot
+
+- Use a simple `<p className="skvn-...eyebrow">` when the section already uses a heading below it and does not need a decorative inline element.
+- Use a flex group (dot + agency name) only when the artifact explicitly shows that layout and the implemented CSS supports it.
+- Do not invent a flex eyebrow pattern if the theme CSS only implements the simple `<p>` version.
+- Check `css_source_scan` for which eyebrow variant is implemented before deciding.
+
+### KPI/stat headings
+
+- Do not add extra `className` to headings inside `skvn-kpi-strip__item`. The styling comes from the parent container selector in theme CSS. Adding a class risks overriding it.
+
+### Outer page wrapper
+
+- If wrapping all sections in an outer `skvn-translated-page` group, it must have a valid Gutenberg block comment: `<!-- wp:group {"className":"skvn-translated-page",...} -->`. A bare `<div>` without the block comment is invalid and Gutenberg will not recognize it as a block.
 
 ## Mapping Rules
 
@@ -210,6 +240,7 @@ For user requests asking only for paste-ready markup, lead with the `gutenberg_m
 - Escape visible text for HTML when needed.
 - Keep primary text and CTA editable.
 - Use `skvn-*` classes only for project contracts.
+- **className encoding: always write `--` as literal dashes in block comment JSON. Never emit `\u002d` or any Unicode escape for dashes in className values.** WordPress renders both correctly on frontend, but Unicode escape breaks `grep`, `rg`, and Git diff. Example: write `"className":"skvn-button--primary"`, not `"className":"skvn-button\u002d\u002dprimary"`.
 
 Safe image pattern:
 
@@ -238,7 +269,8 @@ Before final answer or file output:
 
 ```text
 [ ] Project contract was discovered.
-[ ] Theme CSS inventory was checked before choosing layout-critical classes.
+[ ] Theme CSS inventory was checked (MANDATORY) before choosing layout-critical classes.
+[ ] css_source_scan was completed and summarized before producing any markup.
 [ ] Existing pattern/class families were reused before inventing new ones.
 [ ] Missing skvn-* classes are listed, not silently relied on.
 [ ] Custom grid classes are only layout-critical when theme CSS exists.
@@ -246,12 +278,17 @@ Before final answer or file output:
 [ ] No raw <script> in Gutenberg markup.
 [ ] No self-closing image blocks.
 [ ] No src="data: images.
+[ ] No \u002d or Unicode escape in className values — dashes are literal --.
 [ ] Text/CTA remains editable.
 [ ] Uses core blocks first.
 [ ] Uses skvn-* classes.
 [ ] Decorative/motion items are in contracts, not content.
 [ ] Theme/plugin ownership boundary is respected.
 [ ] No GeneratePress parent change.
+[ ] Real image used when client has uploaded to media library; placeholder only when image is not yet available.
+[ ] Eyebrow pattern matches the implemented CSS variant (simple <p> vs flex group).
+[ ] KPI headings have no extra className added beyond what the artifact requires.
+[ ] Outer page wrapper group has a valid wp:group block comment if used.
 ```
 
 ## Useful Commands
