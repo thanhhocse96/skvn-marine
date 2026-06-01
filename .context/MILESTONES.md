@@ -56,9 +56,9 @@ Started: **2026-06-01**
 
 Acceptance:
 
-- [ ] Quote CTA visual path uses `/request-a-quote/?product_id=123`
-- [ ] Request quote page visual surface exists or is planned as an editor-owned page
-- [ ] Quote UI uses project visual classes/tokens
+- [x] Quote CTA visual path uses `/request-a-quote/?product_id=123`
+- [x] Request quote page visual surface exists or is planned as an editor-owned page
+- [x] Quote UI uses project visual classes/tokens
 - [ ] Editing controls that marketing users need are exposed through sidebar controls, not raw class input
 - [ ] Runtime visual smoke test passed
 - [ ] Human approves milestone completion

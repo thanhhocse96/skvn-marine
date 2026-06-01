@@ -643,7 +643,8 @@ body.admin-bar.skvn-full-width-canvas .entry-content > .wp-block-html > .mhf-mai
 .skvn-product-card__cta .wp-block-button__link,
 .skvn-product-card__cta button,
 .skvn-product-grid .wp-block-button__link,
-.skvn-product-grid .button {
+.skvn-product-grid .button,
+.skvn-product-quote-cta .skvn-button {
 	background: var(--skvn-color-blue-700);
 	border-radius: 6px;
 	color: var(--skvn-color-white);
@@ -656,6 +657,14 @@ body.admin-bar.skvn-full-width-canvas .entry-content > .wp-block-html > .mhf-mai
 	padding: 0.7rem 1rem;
 	text-decoration: none;
 	width: 100%;
+}
+
+.skvn-product-quote-cta {
+	margin-block: 1.25rem 0;
+}
+
+.skvn-product-quote-cta .skvn-button {
+	width: auto;
 }
 
 .skvn-product-category-strip {
@@ -1032,6 +1041,42 @@ body.admin-bar.skvn-full-width-canvas .entry-content > .wp-block-html > .mhf-mai
 	font-size: 0.88rem;
 	line-height: 1.55;
 	margin-block: 0;
+}
+
+.skvn-quote-context-card {
+	background: var(--skvn-color-white);
+	border: 1px solid rgba(51, 65, 85, 0.14);
+	border-radius: var(--skvn-radius-card);
+	box-shadow: var(--skvn-shadow-card);
+	color: var(--skvn-color-slate-700);
+	padding: 1.5rem;
+}
+
+.skvn-quote-context-card h2,
+.skvn-quote-surface__card h3 {
+	color: var(--skvn-color-blue-950);
+	font-size: 1.15rem;
+	font-weight: 800;
+	letter-spacing: 0;
+	line-height: 1.25;
+	margin-block: 0 1rem;
+}
+
+.skvn-quote-context-card ul {
+	margin-block: 0;
+	padding-inline-start: 1.25rem;
+}
+
+.skvn-quote-context-card li + li {
+	margin-block-start: 0.65rem;
+}
+
+.skvn-quote-surface__grid {
+	margin-block-start: 1.5rem;
+}
+
+.skvn-quote-surface__card {
+	height: 100%;
 }
 
 .skvn-cert-strip {
