@@ -90,6 +90,7 @@ Current active docs:
 - `docs/standards/security-guidelines.md`
 - `docs/standards/site-branding-guideline.md`
 - `docs/testing/frontpage-testing.md`
+- `docs/testing/quote-flow-onsite-test.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
 - `docs/workflows/deploy-artifact-workflow.md`

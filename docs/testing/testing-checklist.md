@@ -233,12 +233,13 @@ Deferred proposals:
 ## Quote Flow
 
 - [ ] Product CTA links to `/request-a-quote/?product_id=...`.
-- [ ] CF7 form renders.
-- [ ] CFDB7 stores submission.
-- [ ] n8n receives lead.
-- [ ] Thank-you page is reached.
-- [ ] Admin email works.
-- [ ] Customer confirmation works if enabled.
+- [ ] Single product CTA links to `/request-a-quote/?product_id=...`.
+- [ ] Request Quote page visual surface loads.
+- [ ] Request Quote page accepts missing or invalid `product_id` without fatal error.
+- [ ] CTA remains visible on mobile.
+- [ ] No custom quote form handler exists in theme/plugin code.
+- [ ] CF7/CFDB7/n8n behavior is not tested in 0.6.0.
+- [ ] See `docs/testing/quote-flow-onsite-test.md` for onsite execution.
 
 ## Woo/Product Grid
 

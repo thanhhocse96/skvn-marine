@@ -112,13 +112,13 @@ If `.inside-article` padding still affects the full-width template, record scree
 - [ ] Publish.
 - [ ] View Product.
 - [ ] Confirm single product layout does not break.
-- [ ] Confirm Add to Cart button is visible.
+- [ ] Confirm Request a Quote button is visible.
+- [ ] Confirm Request a Quote button links to `/request-a-quote/?product_id=...`.
 - [ ] Open Shop page.
 - [ ] Confirm product grid is readable and has no strange spacing.
-- [ ] Add product to cart.
-- [ ] Proceed to checkout.
-- [ ] Place a test order using an offline method such as Cash on Delivery if available.
-- [ ] Orders > confirm the order exists.
+- [ ] Confirm product grid CTA is visible on mobile.
+- [ ] Confirm product grid CTA links to `/request-a-quote/?product_id=...`.
+- [ ] Do not test cart/checkout/order flow for the quote-first V1 / 0.6.0 smoke.
 
 ## 7. Error Log Capture
 
