@@ -137,6 +137,12 @@ HTML-2-Gutenberg brand-mapping contract for 0.5.1:
 - If the current theme token set cannot represent an artifact cue, record it in `token_changes_needed`; do not put raw hex/rgb/hsl values or Tailwind color utilities into Gutenberg content as the production contract.
 - Theme token implementation and brand profile work remain parked until V1 / 0.7.0. Do not code a brand profile UI or new token system during 0.5.1.
 
+0.5.1 Tailwind artifact CSS hardening decision:
+
+- `docs/decisions/css-change-logs.md` records human-approved CSS hardening discovered while generating test data from real Tailwind web artifacts.
+- This is allowed inside 0.5.1 only as visual contract hardening for existing theme CSS/classes; it does not move HTML-2-Gutenberg tooling, publisher UI, brand profile, or token-system implementation into the theme.
+- Before marking a class as missing or adding CSS, scan `wp-content/themes/skvn-marine/style.css` first and reuse existing `skvn-*` families.
+
 ## [manual] Forbidden
 
 - Do not edit parent GeneratePress.

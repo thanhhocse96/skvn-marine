@@ -7,10 +7,10 @@
 
 ## Reference Files — Đọc khi cần, không load mặc định
 
-- Architecture, naming, PHP security: `AGENTS_ARCH.md`
-- Coding standards & animation: `AGENTS_STANDARDS.md`
-- Module-specific rules: `AGENTS_MODULES.md`
-- Environment, runtime, WSL, WP-CLI: `AGENTS_ENV.md`
+1. Architecture, naming, PHP security: `AGENTS_ARCH.md`
+2. Coding standards & animation: `AGENTS_STANDARDS.md`
+3. Module-specific rules: `AGENTS_MODULES.md`
+4. Environment, runtime, WSL, WP-CLI: `AGENTS_ENV.md`
 
 ---
 

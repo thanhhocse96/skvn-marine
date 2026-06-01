@@ -78,6 +78,7 @@ Current active docs:
 
 - `docs/decisions/architecture.md`
 - `docs/decisions/caching-strategy.md`
+- `docs/decisions/css-change-logs.md`
 - `docs/decisions/design-direction.md`
 - `docs/decisions/product-data-model.md`
 - `docs/decisions/quote-flow.md`

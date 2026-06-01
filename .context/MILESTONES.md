@@ -65,6 +65,7 @@ Acceptance:
 - [x] Frontend applies header/footer visibility per page without editing GeneratePress parent
 - [x] Controls are available through admin/editor UI, not raw class input
 - [x] HTML-2-Gutenberg brand-mapping contract documented for manual translation output
+- [x] Real Tailwind artifact CSS hardening decision documented in `docs/decisions/css-change-logs.md`
 - [ ] Runtime visual smoke test passed
 - [ ] Human approves milestone completion
 
