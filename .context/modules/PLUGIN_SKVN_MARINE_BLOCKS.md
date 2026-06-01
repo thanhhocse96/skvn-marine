@@ -2,7 +2,7 @@
 
 ## [manual] Role
 
-Custom Gutenberg blocks with logic.
+Custom Gutenberg blocks with logic, and future plugin-owned editor/admin tooling.
 
 ## [manual] Architecture
 
@@ -93,6 +93,39 @@ src/
 - V1 KHÔNG build custom `skvn-marine/product-list`.
 - V1 dùng WooCommerce native blocks/patterns cho product grid/list.
 - V2 mới thêm Product Grid/List custom hoặc style blocks liên quan nếu cần.
+
+## [manual] Future Admin Tooling
+
+HTML-2-Gutenberg tooling belongs to this plugin, not the theme.
+
+Plugin responsibilities for HTML-2-Gutenberg:
+
+- HTML artifact intake.
+- Translation workflow/tooling.
+- Gutenberg markup validation.
+- Brand scan/report output: `brand_source_scan`, `brand_mapping`, `brand_mismatch`, and `token_changes_needed`.
+- Future admin publisher/create-page flow.
+- Custom blocks only when core Gutenberg blocks plus theme patterns are insufficient.
+
+Theme `skvn-marine` still owns the visual output contract:
+
+- `skvn-*` classes.
+- Theme CSS.
+- Design tokens.
+- Patterns.
+- Editor/frontend CSS parity.
+- Shared animation runtime.
+
+Do not implement the HTML-2-Gutenberg admin tool in the theme.
+
+Do not make this plugin own the primary SKVN visual system.
+
+0.5.1 brand-mapping contract:
+
+- Treat artifact colors and Tailwind classes as source hints, not production contracts.
+- Map visual cues to theme-owned SKVN tokens/classes when producing Gutenberg output.
+- If a required token/class does not exist, report it in `token_changes_needed` or `missing_theme_classes`; do not inject raw color CSS into content.
+- Leave brand profile/theme token implementation for V1 / 0.7.0.
 
 ## [manual] Rules
 

@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $skvn_marine_includes = array(
 	'inc/setup.php',
 	'inc/enqueue.php',
+	'inc/page-display-controls.php',
 	'inc/block-styles.php',
 	'inc/media.php',
 	'inc/plugin-notices.php',

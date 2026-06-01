@@ -3,7 +3,10 @@
  * Plugin Name: SKVN Marine Blocks
  * Description: Custom Gutenberg blocks for SKVN Marine.
  * Version: 0.1.0
+ * Requires at least: 6.5
+ * Requires PHP: 7.4
  * Text Domain: skvn-marine-blocks
+ * Update URI: false
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,6 +21,10 @@ add_action( 'init', 'skvn_marine_blocks_register_blocks' );
  * @return void
  */
 function skvn_marine_blocks_register_blocks() {
+	if ( ! function_exists( 'register_block_type' ) ) {
+		return;
+	}
+
 	$editor_script = __DIR__ . '/build/index.ts.js';
 	$editor_asset  = __DIR__ . '/build/index.ts.asset.php';
 	$editor_deps   = array();
@@ -67,7 +74,7 @@ function skvn_marine_blocks_register_blocks() {
 	);
 
 	foreach ( $blocks as $block ) {
-		$block_path = __DIR__ . '/src/' . $block;
+		$block_path = __DIR__ . '/build/' . $block;
 
 		if ( file_exists( $block_path . '/block.json' ) ) {
 			$args = array();

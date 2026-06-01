@@ -15,6 +15,10 @@ add_action( 'init', 'skvn_marine_register_block_styles' );
  * @return void
  */
 function skvn_marine_register_block_styles() {
+	if ( ! function_exists( 'register_block_style' ) ) {
+		return;
+	}
+
 	register_block_style(
 		'core/button',
 		array(

@@ -86,3 +86,82 @@ Test debt carried into V1:
 - Create a `Slider Runtime Test 0.3.0` page in runtime.
 - Insert `skvn-marine/slider` with at least 3 `skvn-marine/slide` children.
 - Verify frontend slider initialization, arrows, dots, keyboard navigation, hover pause, reduced-motion autoplay behavior, and console status.
+
+---
+
+## V1 / 0.4.0 — Woo Product Sections
+
+Status: **CARRIED_WITH_TEST_DEBT**
+Started: **2026-05-21**
+Carried forward: **2026-05-21**
+Approved by human to continue: **2026-05-21**
+
+Acceptance:
+
+- [x] V1 decision: use WooCommerce native blocks/patterns
+- [x] Woo native product patterns created/styled
+- [x] Product card visual styling implemented
+- [x] Mobile CTA remains visible
+- [x] No custom Product Grid/List blocks in V1
+- [ ] Runtime smoke test passed
+- [x] Human approves continuing to 0.5.0 with test debt
+
+Test debt carried into V1:
+
+- Create a `Woo Product Sections Test 0.4.0` page in runtime.
+- Insert `SKVN Woo Category Strip` and `SKVN Woo Product Grid`.
+- Verify categories/products render from real WooCommerce data.
+- Verify product card CTA remains visible on mobile.
+- Verify no invalid block warning after save/reload.
+
+---
+
+## V1 / 0.5.0 — SKVN Full Width Layout
+
+Status: **DONE**
+Started: **2026-05-21**
+Completed: **2026-05-22**
+Approved by human: **2026-05-22**
+
+Acceptance:
+
+- [x] `SKVN Full Width` page template exists in child theme
+- [x] Template keeps GeneratePress header/footer intact
+- [x] Template removes the narrow default content wrapper for selected pages
+- [x] `.alignfull` sections can reach viewport width
+- [x] Inner content remains constrained to SKVN wide width
+- [x] Pattern UI test page uses the full-width layout
+- [x] Desktop hero headline no longer collapses into a narrow column
+- [x] Mobile has no horizontal scroll
+- [x] PHP syntax check passed
+- [x] Runtime smoke test passed
+- [x] Human approves milestone completion
+
+---
+
+## V1 / 0.5.1 — Page Display & Sidebar Controls
+
+Status: **DONE**
+Started: **2026-05-22**
+Completed: **2026-06-01**
+Approved by human: **2026-06-01**
+
+Acceptance:
+
+- [x] CF7/CFDB7 deferred until after V1 / 0.6.0
+- [x] n8n deferred until after version 1.0.0
+- [x] Quote UI/page surface moved to V1 / 0.6.0
+- [x] Page editor exposes a Hide site header toggle
+- [x] Page editor exposes a Hide site footer toggle
+- [x] Toggle values are saved as page meta with `skvn_marine_`/`_skvn_` naming
+- [x] Frontend applies header/footer visibility per page without editing GeneratePress parent
+- [x] Controls are available through admin/editor UI, not raw class input
+- [x] Page editor exposes an SKVN Landing Canvas preset for the standard hide-title/full-width/no-sidebar page setup
+- [x] HTML-2-Gutenberg brand-mapping contract documented for manual translation output
+- [x] Real Tailwind artifact CSS hardening decision documented in `docs/decisions/css-change-logs.md`
+- [x] Runtime visual smoke test passed
+- [x] Human approves milestone completion
+
+Notes:
+
+- Human confirmed basic hero/section editing and page-display behavior were tested before moving to V1 / 0.6.0.

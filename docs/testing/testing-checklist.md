@@ -15,6 +15,7 @@
 
 - [ ] GeneratePress parent installed.
 - [ ] `skvn-marine` child theme active.
+- [ ] Theme `screenshot.png` exists for admin preview.
 - [ ] Frontend loads.
 - [ ] Admin loads.
 - [ ] Block editor opens.
@@ -45,6 +46,176 @@
 - [ ] No custom newsletter form handler exists in theme.
 - [ ] No image URL is hardcoded in CSS.
 - [ ] CTA buttons remain visible on mobile.
+
+### Open Layout Issue — Full-Width Container Not Escaping
+
+Status:
+
+```text
+OPEN
+```
+
+Observed in local runtime:
+
+```text
+An `alignfull` group inside the pattern test page still appears constrained by the page/content container.
+The visual result looks like a large page wrapper with the content box trapped inside instead of the hero band reaching full viewport width.
+Screenshot evidence is now available from 2026-05-21 local runtime.
+The light-blue hero background reaches the viewport, but the hero grid/content is still visually trapped in a narrow centered column.
+The headline wraps too aggressively because the text column is too narrow for the intended desktop hero layout.
+The media column renders, but the composition does not match the intended wide ecommerce landing-page hero.
+```
+
+Reference note:
+
+```text
+See user-provided diagram: page wrapper, header/menu inside, and content area still boxed instead of full-width.
+See user-provided screenshot: C:/Users/VPF-Champion/Downloads/Screenshot 2026-05-21 at 14-31-52 Minh Hai Fish Local.png
+```
+
+Test snippet used:
+
+```html
+<!-- wp:group {"className":"skvn-pattern-test-page","layout":{"type":"default"}} -->
+<div class="wp-block-group skvn-pattern-test-page">
+	<!-- wp:group {"align":"full","className":"skvn-pattern-hero","layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull skvn-pattern-hero">
+		<!-- wp:columns {"className":"skvn-pattern-hero__grid","verticalAlignment":"center"} -->
+		<div class="wp-block-columns are-vertically-aligned-center skvn-pattern-hero__grid">
+			<!-- wp:column {"verticalAlignment":"center"} -->
+			<div class="wp-block-column is-vertically-aligned-center">
+				<!-- wp:paragraph {"className":"skvn-pattern-hero__eyebrow"} -->
+				<p class="skvn-pattern-hero__eyebrow">Pattern UI Test 0.2.0</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:heading {"level":1} -->
+				<h1>Trusted Seafood Exporter From Viet Nam</h1>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>Testing the current SKVN theme pattern baseline with reusable blocks, marine colors, card surfaces, and a replaceable media band.</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:buttons -->
+				<div class="wp-block-buttons">
+					<!-- wp:button {"className":"is-style-skvn-primary"} -->
+					<div class="wp-block-button is-style-skvn-primary"><a class="wp-block-button__link wp-element-button" href="/contact/">Request a Quote</a></div>
+					<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+			</div>
+			<!-- /wp:column -->
+
+			<!-- wp:column {"verticalAlignment":"center","className":"skvn-pattern-hero__media"} -->
+			<div class="wp-block-column is-vertically-aligned-center skvn-pattern-hero__media">
+				<!-- wp:image {"sizeSlug":"large","linkDestination":"none","className":"is-style-skvn-rounded-media"} -->
+				<figure class="wp-block-image size-large is-style-skvn-rounded-media"><img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Fresh seafood selection on ice"/></figure>
+				<!-- /wp:image -->
+			</div>
+			<!-- /wp:column -->
+		</div>
+		<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
+```
+
+Likely investigation targets:
+
+```text
+[ ] GeneratePress page layout setting: full-width/no-sidebar/content container.
+[ ] Whether page title/content wrapper is still constrained.
+[ ] Whether `.entry-content` or `.site-content` limits `alignfull`.
+[ ] Whether `.alignfull` needs child-theme CSS escape rule.
+[ ] Whether pattern wrapper `.skvn-pattern-test-page` is preventing full-width behavior.
+```
+
+Do not close until:
+
+```text
+[x] Runtime screenshot captured.
+[ ] Desktop full-width hero band reaches viewport width.
+[ ] Inner hero content remains constrained to SKVN wide width.
+[ ] Mobile has no horizontal scroll.
+[ ] Desktop headline keeps intended line breaks and does not collapse into a narrow text column.
+[ ] Desktop image column aligns with the hero content and supports the intended wide composition.
+```
+
+## 0.5.0 SKVN Full Width Layout
+
+Objective:
+
+```text
+Create a reusable theme-owned page layout for pages that need full-width Gutenberg sections without losing GeneratePress header/footer.
+```
+
+Scope:
+
+```text
+In scope:
+- SKVN Full Width page template/layout.
+- Full-width content surface for selected pages.
+- alignfull escape behavior.
+- Inner SKVN max-width constraints.
+- Pattern UI test page validation.
+
+Out of scope:
+- Quote flow integration.
+- Custom product grid/list blocks.
+- Custom hero block.
+- Editing GeneratePress parent theme.
+```
+
+Acceptance:
+
+```text
+[x] Page can select/use SKVN Full Width at source/template level.
+[x] Header/footer calls remain in the template.
+[x] Default narrow page content wrapper is bypassed by the template source.
+[x] alignfull section backgrounds can reach viewport width at CSS contract level.
+[x] Inner content remains aligned to SKVN wide container at CSS contract level.
+[ ] Desktop hero headline no longer collapses into an unintended narrow column.
+[ ] Image/media column aligns with the intended wide composition.
+[ ] Mobile has no horizontal scroll.
+[x] PHP syntax check passes.
+[ ] Runtime screenshot reviewed.
+```
+
+Test method:
+
+```text
+1. Apply SKVN Full Width to Pattern UI Test 0.2.0 or a new layout test page.
+2. Insert the existing homepage/pattern hero test content.
+3. Preview desktop at wide viewport.
+4. Confirm hero background reaches viewport width.
+5. Confirm hero inner grid uses SKVN wide width, not the old narrow content column.
+6. Preview mobile.
+7. Confirm no horizontal scroll and no overlap.
+8. Record PASS / FAIL / NEEDS REVISION.
+```
+
+## V1 Near-Term Technical Debt
+
+In scope for upcoming V1 work:
+
+```text
+[ ] Add theme screenshot.png.
+[ ] Runtime-check SKVN Full Width against GeneratePress wrappers.
+[ ] Add child-theme CSS for `.inside-article` padding only if runtime confirms the issue.
+[ ] Keep onsite deploy checklist updated with memory, backup, rollback, and log checks.
+[ ] Bump theme/plugin versions before tagged onsite test builds.
+[ ] Move new design tokens toward theme.json / WordPress variables.
+```
+
+Deferred proposals:
+
+```text
+[ ] Pure block theme / custom base theme experiment.
+[ ] Tailwind/PostCSS build pipeline.
+[ ] Pattern registration restructure.
+[ ] Composer/PHP package workflow.
+[ ] GitHub Actions release zip automation.
+[ ] Scoped block CSS/performance budget pass.
+```
 
 ## Encoding Guardrail
 

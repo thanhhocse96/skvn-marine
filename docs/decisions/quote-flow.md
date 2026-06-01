@@ -6,7 +6,23 @@ The Request a Quote flow stays on the same website.
 
 Do not redirect users to a separate contact site in V1.
 
-## V1 Flow
+Human scope update on 2026-05-26:
+
+- 0.5.1 focuses on page display/sidebar controls.
+- 0.6.0 focuses on quote UI and editor/sidebar-controlled visual editing.
+- CF7/CFDB7 implementation is deferred until after 0.6.0.
+- n8n automation is deferred until after version 1.0.0.
+
+## 0.6.0 Flow
+
+```txt
+Product page / Product grid
+→ Request a Quote CTA
+→ /request-a-quote/?product_id=123
+→ Same-site quote UI/page surface
+```
+
+## Future Flow
 
 ```txt
 Product page / Product grid
@@ -14,11 +30,11 @@ Product page / Product grid
 → /request-a-quote/?product_id=123
 → Contact Form 7 form
 → CFDB7 stores submission
-→ n8n webhook processes lead
 → /quote-thank-you/
+→ n8n webhook processes lead after 1.0.0
 ```
 
-## Recommended Form Fields
+## Future Recommended Form Fields
 
 Required:
 

@@ -70,6 +70,189 @@ Custom block strategy:
 
 ---
 
+## HTML-2-Gutenberg Planning
+
+Planning status: **DECIDED AS FUTURE WORK**.
+
+User-facing feature name:
+
+```text
+HTML-2-Gutenberg
+```
+
+Sub-label:
+
+```text
+Tailwind-ready artifact importer
+```
+
+Positioning:
+
+```text
+Best for SEO
+```
+
+Reason:
+
+- Final output remains semantic WordPress/Gutenberg content.
+- Headings, paragraphs, buttons, links, and images stay editable.
+- Theme CSS owns presentation through stable `skvn-*` classes.
+- The site avoids screenshot-as-content, canvas text, raw prototype embeds, and inline style/script content.
+
+### Ownership Boundary
+
+HTML-2-Gutenberg is not a theme feature by itself.
+
+Plugin `skvn-marine-blocks` owns:
+
+- HTML artifact intake.
+- Translation workflow/tooling.
+- Validation.
+- Future admin publisher/create-page flow.
+- Custom blocks only when core Gutenberg blocks are insufficient.
+
+Theme `skvn-marine` owns:
+
+- `skvn-*` visual system.
+- Theme CSS contracts.
+- Design tokens.
+- Block styles.
+- Patterns.
+- Editor/frontend style parity.
+- Shared animation runtime.
+
+Decision rule:
+
+```text
+If changing the theme would remove the tool itself, the tool belongs to the plugin.
+If changing the theme would only change the visual output, the visual contract belongs to the theme.
+```
+
+Do not implement HTML-2-Gutenberg admin tooling inside the theme.
+
+Do not make the plugin own the primary SKVN visual system.
+
+### Scope Split
+
+HTML-2-Gutenberg should be split into progressive milestones:
+
+1. **Manual HTML/Tailwind Intake**
+   - Human provides an HTML artifact.
+   - Recommended source is an external AI-generated Tailwind HTML artifact.
+   - The translator reads HTML structure and utility classes as layout intent.
+   - Output is Gutenberg block markup plus SKVN contracts.
+
+2. **Manual Gutenberg Publishing**
+   - Human reviews translated output.
+   - Human pastes Gutenberg markup into the editor.
+   - No auto page creation in the first cut.
+
+3. **Admin Publisher Tool**
+   - Future tool accepts reviewed Gutenberg markup.
+   - Form fields: page title, author, status.
+   - Creates a new WordPress page.
+   - Belongs to plugin/admin tooling, not theme visual CSS.
+
+4. **AI-Assisted / Pro Intake**
+   - Future/pro scope only.
+   - Direct screenshot upload.
+   - AI API parsing.
+   - Auto-generate HTML/Tailwind intermediate artifact.
+   - Review before publishing.
+
+### V1 Decision
+
+V1 does **not** ship runtime AI API integration.
+
+V1 does **not** parse screenshots directly.
+
+V1 HTML-2-Gutenberg intake accepts only human-provided HTML/Tailwind artifacts.
+
+Recommended user workflow:
+
+```text
+Screenshot / visual idea
+-> use external free AI tool to recreate or parse into Tailwind HTML
+-> provide HTML artifact to SKVN HTML-2-Gutenberg workflow
+-> receive Gutenberg markup + required skvn-* classes + contracts
+-> paste into Gutenberg Code Editor
+```
+
+### Guardrails
+
+- Tailwind is an input language, not the production contract.
+- Do not paste Tailwind-heavy prototype markup directly into page content.
+- Do not include raw `<style>` or `<script>` in page content.
+- Do not turn text or CTA content into images.
+- Do not add AI SDK/API dependencies in V1.
+- Do not store API keys in WordPress admin for V1.
+- Do not create a custom block if core Gutenberg blocks plus pattern CSS are sufficient.
+- Do not auto-create pages until publisher validation is separately designed.
+
+### Future Milestone Candidates
+
+#### Candidate: V1 / 1.1.0 - HTML-2-Gutenberg Manual Workflow
+
+Goal:
+
+- Make manual HTML/Tailwind artifact translation repeatable enough for launch-prep content work.
+
+Acceptance:
+
+- [ ] Project skill or prompt exists for requesting Tailwind HTML artifacts from external AI tools.
+- [ ] HTML-2-Gutenberg workflow doc defines intake, output, guardrails, and review checklist.
+- [ ] Example HTML artifact can be translated into Gutenberg block markup.
+- [ ] Output includes `gutenberg_markup`, `required_classes`, `theme_css_contract`, `animation_contract`, `assets_needed`, `not_translated`, and `risks`.
+- [ ] Paste-ready Gutenberg test file exists for manual editor smoke test.
+- [ ] No AI API or screenshot parser is shipped.
+
+Out of scope:
+
+- Admin page publisher.
+- Screenshot upload.
+- AI API integration.
+- Automatic page creation.
+
+#### Candidate: V2 - HTML-2-Gutenberg Publisher
+
+Goal:
+
+- Add a protected admin workflow that creates a new page from reviewed Gutenberg markup.
+
+Acceptance:
+
+- [ ] Admin-only access gate.
+- [ ] Form fields for page title, author, and status.
+- [ ] Gutenberg markup validation blocks raw `<style>` and `<script>`.
+- [ ] `core/html` usage is warned or restricted.
+- [ ] New page is created as draft by default.
+- [ ] Theme continues to own visual presentation.
+
+Out of scope:
+
+- AI API integration.
+- Screenshot parsing.
+
+#### Candidate: V2+ / Pro - AI-Assisted Intake
+
+Goal:
+
+- Add optional AI-assisted screenshot or HTML parsing after manual workflow is stable.
+
+Acceptance:
+
+- [ ] API key storage and capability model approved.
+- [ ] Cost/rate-limit behavior documented.
+- [ ] Timeout and retry behavior documented.
+- [ ] Prompt/content logging policy documented.
+- [ ] Human review remains required before publishing.
+
+Out of scope:
+
+- Shipping AI parsing in V1.
+
+---
+
 ## Homepage Test Page Workflow
 
 V1 layout development should use a WordPress test page before finalizing reusable patterns.
@@ -80,7 +263,7 @@ Method:
 
 ```text
 Create a WP test page
-→ assemble the full homepage using core blocks, WooCommerce native blocks, map block, placeholder/network images, and English placeholder copy
+→ assemble the full homepage using core blocks, WooCommerce native blocks, OpenStreetMap iframe embed, placeholder/network images, and English placeholder copy
 → apply SKVN wrapper classes and Tailwind/WindPress utility classes
 → code/refine child theme CSS and theme patterns
 → refresh desktop/mobile views
@@ -366,20 +549,21 @@ Reason:
 
 Selected direction:
 
-- Use **Out of the Block: OpenStreetMap** as the map engine.
+- Use OpenStreetMap iframe embed for V1.
 - SKVN theme provides the pattern and visual wrapper.
+- Reason: target shared host supports PHP 8.0 only; `Out of the Block: OpenStreetMap` requires PHP 8.1.
 
 V1 implementation should be:
 
 ```text
-Out of the Block: OpenStreetMap block
+Core HTML block or pattern markup containing an OpenStreetMap iframe
 + SKVN contact/location pattern
 + SKVN CSS wrapper
 ```
 
 Pattern should include:
 
-- Map block
+- OSM iframe embed, not a map plugin block
 - Contact card overlaid on the map on desktop, aligned to the right side.
 - Card company name heading.
 - Address
@@ -414,10 +598,11 @@ Mobile behavior:
 - Phone/email remain visible without hover.
 
 Do not create a custom map block in V1.
+Do not add a new map plugin in V1 unless iframe embed proves insufficient.
 
 Future condition:
 
-- If the site needs stronger brand control, fewer map POIs, or custom tile styling, evaluate Mapbox/custom tile provider later.
+- If the site needs stronger brand control, fewer map POIs, custom tile styling, multiple markers, or richer editor controls, evaluate Mapbox/custom tile provider or a PHP-compatible map plugin later.
 
 ---
 
@@ -481,7 +666,6 @@ External plugins discussed for V1 runtime:
 - Rank Math
 - Antispam Bee
 - WindPress
-- Out of the Block: OpenStreetMap
 
 Polylang:
 
@@ -509,10 +693,10 @@ Do in V1:
 - Stat/icon card pattern
 - About/factory pattern
 - WooCommerce product/category sections using native blocks
-- Map/contact pattern using Out of the Block: OpenStreetMap
+- Map/contact pattern using OpenStreetMap iframe embed
 - Slider block
 - Accordion block
-- Quote flow using CF7 + CFDB7 + n8n
+- Page display/sidebar controls in 0.5.1; Quote UI/editor controls in 0.6.0; CF7/CFDB7 after 0.6.0; n8n automation after 1.0.0
 - Product data entry using WooCommerce
 
 Do not do in V1 by default:
@@ -536,6 +720,6 @@ V1 uses Gutenberg patterns and theme CSS for most visual sections. Custom blocks
 
 Product data uses WooCommerce native products, categories, attributes, and native WooCommerce blocks/patterns in V1.
 
-Map uses Out of the Block: OpenStreetMap as the map engine, wrapped by SKVN patterns and CSS.
+Map uses OpenStreetMap iframe embed in V1, wrapped by SKVN patterns and CSS. A map plugin is deferred because the target shared host only supports PHP 8.0.
 
 Hero, feature strip, stat/icon cards, about/factory, and map/contact are implemented as theme patterns first. Custom wrapper blocks may be considered later only if editor controls become necessary.
