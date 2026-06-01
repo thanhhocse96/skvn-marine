@@ -875,6 +875,59 @@ body.admin-bar.skvn-full-width-canvas .entry-content > .wp-block-html > .mhf-mai
 	gap: 1rem;
 }
 
+.skvn-translated-hero__trust {
+	align-items: center;
+	display: flex !important;
+	flex-wrap: nowrap;
+	gap: 1rem;
+	margin-block-start: 1.5rem;
+}
+
+.skvn-avatar-stack {
+	align-items: center;
+	display: flex !important;
+	flex: 0 0 auto;
+	flex-direction: row;
+	gap: 0;
+	margin: 0;
+}
+
+.skvn-avatar-stack .wp-block-image,
+.skvn-avatar {
+	border-radius: 999px;
+	flex: 0 0 auto;
+	height: 2.375rem !important;
+	margin: 0;
+	overflow: hidden;
+	width: 2.375rem !important;
+}
+
+.skvn-avatar-stack .wp-block-image + .wp-block-image,
+.skvn-avatar + .skvn-avatar {
+	margin-left: -0.65rem;
+}
+
+.skvn-avatar img {
+	aspect-ratio: 1;
+	border: 2px solid var(--skvn-color-white);
+	border-radius: 999px;
+	display: block;
+	height: 2.375rem !important;
+	object-fit: cover;
+	width: 2.375rem !important;
+}
+
+.skvn-trust-text {
+	color: rgba(15, 23, 42, 0.82);
+	font-size: 0.95rem;
+	line-height: 1.45;
+	margin: 0;
+}
+
+.skvn-trust-text strong {
+	color: var(--skvn-color-blue-950);
+}
+
 .skvn-translated-hero__image img,
 .skvn-placeholder-media img {
 	aspect-ratio: 4 / 3;
