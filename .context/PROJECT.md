@@ -6,7 +6,7 @@
 - V3 may become a reusable base theme.
 - Use GeneratePress child theme, not a fork, for V1.
 - Use WooCommerce native product model.
-- Page display/sidebar controls completed in 0.5.1; Quote UI/editor controls completed in 0.6.0; basic CF7/CFDB7 quote form is current 0.7.0 scope; onsite quote-flow test debt resolves in 0.10.0; n8n is deferred until after 1.0.0.
+- Page display/sidebar controls completed in 0.5.1; Quote UI/editor controls completed in 0.6.0; basic CF7/CFDB7 quote form is current 0.7.0 scope; 0.7.1 verifies quote-flow runtime handoff; 0.8.0 adds SKVN Editor Controls; 0.9.0 adds Footer Page Settings; onsite quote-flow test debt resolves in 0.10.0; n8n is deferred until after 1.0.0.
 - Use Rank Math for SEO and GEO/AEO-friendly content structure.
 - Use Polylang as multilingual candidate.
 - Use WindPress/Tailwind for design system implementation.
@@ -14,7 +14,7 @@
 - Use Swiper for slider.
 - Product Grid/List V1: use WooCommerce native blocks/patterns. Custom Product Grid/List or related style blocks are deferred to V2.
 - Plugin architecture: block-centric feature modules with minimal shared services. Blocks own feature logic; `src/shared/` is only for cross-block invariants/utilities such as motion, a11y, DOM/config parsing, and shared types.
-- Version 0.1.0 planning decisions are recorded in `.context/planning/000_VERSION_0_1_0_PLANNING.md`: V1 uses Gutenberg patterns + theme CSS for hero, feature strips, stat/icon cards, about/factory, and map/contact; custom blocks are reserved for interaction-heavy logic or future editor governance.
+- Version planning decisions are recorded in `.context/planning/000_VERSION_1_1_0_PLANNING.md`: V1 uses Gutenberg patterns + theme CSS for hero, feature strips, stat/icon cards, about/factory, and map/contact; custom blocks are reserved for interaction-heavy logic or future editor governance.
 
 ## [manual] Invariants
 

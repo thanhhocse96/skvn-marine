@@ -13,6 +13,7 @@ Human scope update on 2026-05-26:
 - 0.7.0 focuses on basic CF7/CFDB7 quote form implementation.
 - 0.10.0 resolves onsite hidden/context field and quote-flow UX smoke test debt.
 - n8n automation is deferred until after version 1.0.0.
+- 1.4.0 is reserved for a deeper discussion of an wp-admin "SKVN Theme Init Setup UI" that can load reviewed setup templates from Admin.
 
 ## 0.6.0 Flow
 
@@ -40,6 +41,34 @@ Product page / Product grid
 CF7 / CFDB7 submission
 → n8n webhook processes lead
 ```
+
+## Future 1.4.0 Admin Setup UI Candidate
+
+The admin setup UI idea is deferred to milestone 1.4.0.
+
+Initial wireframe:
+
+```text
+Admin sidebar
+└── SKVN Theme init setup
+    ├── [Request A Quote Workflow]
+    ├── [Future setup card]
+    ├── [Future setup card]
+    └── [Nạp setup]
+```
+
+Intent:
+
+- Give site admins a reviewed wp-admin screen for loading setup templates.
+- Reduce reliance on WP-CLI for repeated setup tasks.
+- Keep 0.10.0 onsite testing possible through normal WP Admin steps.
+
+Constraints:
+
+- Do not build this UI before 1.4.0.
+- Discuss exact UX, permissions, idempotency, rollback, and audit behavior before coding.
+- The Request A Quote setup may create/update CF7 markup and WordPress pages, but must not replace CF7 handling with a custom PHP form handler.
+- n8n remains out of scope here unless a later human-approved milestone moves it into scope.
 
 ## 0.7.0 Recommended Form Fields
 

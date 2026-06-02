@@ -21,6 +21,17 @@ No n8n automation.
 No custom PHP form handler.
 ```
 
+## Related Docs / Files
+
+Open these before testing or debugging:
+
+- `docs/testing/onsite-quote-flow-0.7.0.md` — this checklist.
+- `docs/artifacts/cf7-quote-form-0.7.0.md` — expected CF7 markup, classes, visible fields, and hidden fields.
+- `docs/decisions/quote-flow.md` — quote-flow scope and n8n deferral decision.
+- `.context/modules/QUOTE_FLOW.md` — active module rules for quote flow.
+- `docs/standards/security-guidelines.md` — security constraints: no custom handler, no exposed n8n webhook.
+- `wp-content/themes/skvn-marine/style.css` — source CSS for `skvn-form`, `skvn-quote-form`, `skvn-button`, `skvn-button--primary`.
+
 ## Preconditions
 
 - Onsite WordPress page exists: `/request-a-quote/`.
@@ -33,6 +44,30 @@ No custom PHP form handler.
   - `skvn-quote-form`
   - `skvn-button`
   - `skvn-button--primary`
+
+## 0.10.0 Setup Path
+
+Preferred onsite setup path:
+
+- Use WP Admin.
+- Create or update the CF7 form manually using `docs/artifacts/cf7-quote-form-0.7.0.md`.
+- Create or update the `/request-a-quote/` page in the editor and insert the CF7 shortcode.
+- Create or update the `/quote-thank-you/` page in the editor.
+- Use the page/sidebar controls from the theme to set the intended page display options.
+- Run the checklist below and report evidence back to the agent.
+
+WP-CLI fallback:
+
+- `tools/setup-quote-flow-070.php` is a dev/runtime shortcut only.
+- It runs only when explicitly called with `wp eval-file`.
+- It is not required for onsite testing if the admin can create the CF7 form and pages manually.
+- It must be run only against a real WordPress runtime root, not the source repo.
+
+Future admin UI:
+
+- A wp-admin "SKVN Theme Init Setup UI" is deferred to milestone 1.4.0.
+- Candidate card: `Request A Quote Workflow`.
+- The 1.4.0 UI must be discussed before implementation and must not be built during 0.10.0 test debt resolution.
 
 ## Expected Form Fields
 

@@ -12,7 +12,7 @@
 - WooCommerce — native products, categories, attributes
 - WindPress (Tailwind integration) — utility classes, animations, responsive
 - Plugin: `skvn-marine-blocks` — custom Gutenberg blocks (TypeScript, @wordpress/scripts)
-- Page display/sidebar controls completed in 0.5.1; Quote UI completed in 0.6.0; basic CF7/CFDB7 quote form in 0.7.0; onsite quote-flow test debt resolves in 0.10.0; n8n after 1.0.0
+- Page display/sidebar controls completed in 0.5.1; Quote UI completed in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite quote-flow test debt resolves in 0.10.0; n8n after 1.0.0
 - Rank Math — SEO, schema
 - Polylang — multilingual (standby V1, activate later)
 - Antispam Bee — comment spam. CF7 honeypot + optional Turnstile — form spam
@@ -58,7 +58,7 @@ Planning snapshots live in `.context/planning/` and use a three-digit ordering p
 
 Current planning file:
 
-- `.context/planning/000_VERSION_0_1_0_PLANNING.md`
+- `.context/planning/000_VERSION_1_1_0_PLANNING.md`
 
 Proposal files under `.context/proposals/` are not active protocol and are ignored by git. Do not load them unless the human explicitly asks to review a proposal.
 
@@ -78,10 +78,12 @@ Current active docs:
 - `docs/decisions/design-direction.md`
 - `docs/decisions/product-data-model.md`
 - `docs/decisions/quote-flow.md`
+- `docs/decisions/skvn-editor-controls-0.8.0.md`
 - `docs/decisions/slider-block.md`
 - `docs/standards/ai-rules.md`
 - `docs/standards/security-guidelines.md`
 - `docs/testing/frontpage-testing.md`
+- `docs/testing/onsite-editor-controls-0.8.0.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
 - `docs/workflows/deploy-artifact-workflow.md`
@@ -108,11 +110,17 @@ Invariant: custom blocks KHÔNG được đặt trong theme.
 Dùng WooCommerce native products. Custom fields (ACF/Meta Box) chỉ thêm khi WC attributes không đủ.
 
 **A4. Quote path phased by milestone**
-0.5.1 completed page-level display/sidebar controls. 0.6.0 completed Quote UI, same-site request quote page surface, and CTA polish. 0.7.0 implements the basic CF7/CFDB7 quote form. Onsite hidden/context field and full UX smoke test debt is deferred to 0.10.0. n8n automation dời sau version 1.0.0. KHÔNG custom-code form handler. KHÔNG popup/modal làm primary flow.
+0.5.1 completed page-level display/sidebar controls. 0.6.0 completed Quote UI, same-site request quote page surface, and CTA polish. 0.7.0 prepares the basic CF7/CFDB7 source/docs contract. 0.7.1 verifies runtime/admin setup and closes the immediate handoff gap. Onsite hidden/context field and full UX smoke test debt is deferred to 0.10.0. n8n automation dời sau version 1.0.0. KHÔNG custom-code form handler. KHÔNG popup/modal làm primary flow.
 URL pattern giữ: `/request-a-quote/?product_id=123`
 
 **A10. Page display controls**
 Page-level controls such as Hide site header and Hide site footer belong to the `skvn-marine` child theme. Use safe editor/admin controls and page meta; do not require marketing users to type raw classes. Do not add a header/footer builder plugin by default.
+
+**A11. SKVN Editor Controls**
+0.8.0 adds token-governed sidebar controls for SKVN-owned Gutenberg blocks and translated layout surfaces. Theme owns tone, spacing, width, radius, shadow, and visual classes. Plugin owns block sidebar UI, attributes, saved markup, and interactive behavior. Editors should not need raw class input, raw colors, or arbitrary inline spacing values.
+
+**A12. Footer Page Settings**
+0.9.0 adds a plugin settings page for `skvn_footer_page_id`. The theme renders the selected footer page through GeneratePress' `generate_footer` surface, with GeneratePress default footer as fallback. No custom CPT, no display rules system, and no GeneratePress replacement.
 
 **A5. Animation runtime dùng chung**
 `assets/js/animations.js` là single runtime. KHÔNG tạo animation logic riêng per block trừ khi bắt buộc.
@@ -156,7 +164,7 @@ Shared host chỉ hỗ trợ PHP 8.0. `Out of the Block: OpenStreetMap` yêu c�
 **V1 (current)** — Một website B2B marine, local-first
 - Theme child + design system + block styles + patterns
 - Plugin blocks: Slider, Accordion, Product Grid, Product List
-- Page display/sidebar controls in 0.5.1; Quote UI/editor controls in 0.6.0; basic CF7/CFDB7 quote form in 0.7.0; onsite quote-flow test debt in 0.10.0; n8n after 1.0.0
+- Page display/sidebar controls in 0.5.1; Quote UI/editor controls in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite quote-flow test debt in 0.10.0; n8n after 1.0.0
 - English content, prepare cho multilingual nhưng KHÔNG activate Polylang
 
 **V2 (future)**

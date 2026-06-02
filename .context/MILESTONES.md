@@ -8,7 +8,7 @@
 
 ## Current Milestone
 
-Current: **V1 / 0.7.0 — Basic CF7/CFDB7 Quote Form**
+Current: **V1 / 0.7.1 — Quote Flow Runtime Verification & Handoff**
 Status: **IN_PROGRESS**
 Started: **2026-06-02**
 
@@ -49,27 +49,79 @@ Khi chuyển milestone:
 
 ## V1 Checkpoints
 
-### 0.7.0 — Basic CF7/CFDB7 Quote Form
+### 0.7.1 — Quote Flow Runtime Verification & Handoff
 
 Status: **IN_PROGRESS**
 Started: **2026-06-02**
 
+Purpose:
+
+- Close the remaining 0.7.0 verification gap without pretending this is a new feature milestone.
+- Confirm that the manually created onsite/admin setup matches the source/docs contract.
+- Apply only small quote-flow fixes if onsite evidence shows a mismatch.
+- Do not add new quote-flow features before onsite/runtime evidence or explicit approval.
+
 Acceptance:
 
-- [ ] CF7 form exists for Request a Quote
-- [ ] CF7 markup uses project classes: `skvn-form`, `skvn-quote-form`, `skvn-button`, `skvn-button--primary`
-- [ ] Required visible fields prepared
-- [ ] Required hidden fields prepared: `product_id`, `product_sku`, `product_name`, `product_url`, `source_url`, UTM fields
-- [ ] CFDB7 stores quote submission
-- [ ] Thank-you page exists
-- [ ] n8n remains deferred/unexposed
-- [ ] Runtime quote form smoke test passed
+- [x] Onsite/admin handoff checklist exists in `docs/testing/onsite-quote-flow-0.7.1.md`
+- [ ] Human confirms the onsite CF7 form exists
+- [ ] Human confirms `/request-a-quote/` contains the CF7 shortcode/form
+- [ ] Human confirms `/quote-thank-you/` exists
+- [ ] CF7 form markup matches `docs/artifacts/cf7-quote-form-0.7.0.md`
+- [ ] CFDB7 stores at least one test submission
+- [ ] Hidden/context fields appear in stored submission or mismatch is documented for 0.10.0
+- [ ] Runtime smoke test result is recorded
+- [ ] No n8n webhook is exposed
+- [ ] Human approves closing 0.7.x quote-form setup
+
+### 0.8.0 — SKVN Editor Controls
+
+Status: **PENDING**
+
+Purpose:
+
+- Add Elementor-inspired but token-governed sidebar controls for SKVN-owned Gutenberg blocks and translated layout surfaces.
+- Let editors adjust tone, spacing, width, margin, padding, responsive visibility, and block-specific behavior without raw classes, raw hex values, or unrestricted inline CSS.
+- Keep theme-owned visual tokens as the source of truth while plugin-owned blocks expose safe presets.
+
+Acceptance:
+
+- [x] Editor controls contract is documented before code in `docs/decisions/skvn-editor-controls-0.8.0.md`
+- [x] Onsite editor-controls test checklist exists in `docs/testing/onsite-editor-controls-0.8.0.md`
+- [ ] Theme owns tone, spacing, width, radius, shadow, and visual classes
+- [ ] Plugin owns block sidebar UI, block attributes, saved markup, and interactive block behavior
+- [ ] Controls are grouped into Content, Style, Layout, and Advanced sections
+- [ ] Margin and padding controls use presets/tokens first, with responsive overrides only where needed
+- [ ] No freeform raw class input is required for marketing editors
+- [ ] No raw hex/rgb/hsl values or arbitrary inline spacing values are required in Gutenberg content
+- [ ] Slider editor UX tension is resolved before implementing slider-specific controls
+- [ ] Editor and frontend output stay visually aligned
+- [ ] GeneratePress parent remains untouched
 - [ ] Human approves milestone completion
 
-Deferred test debt:
+### 0.9.0 — Footer Page Settings
 
-- [ ] Onsite hidden/context field and full UX smoke test is intentionally deferred to V1 / 0.10.0 because human is working under time pressure.
-- [ ] See `docs/testing/onsite-quote-flow-0.7.0.md`.
+Status: **PENDING**
+
+Purpose:
+
+- Add a plugin settings page that stores the selected reusable footer page ID in `skvn_footer_page_id`.
+- Let the theme render the selected footer page into GeneratePress' `generate_footer` surface.
+- Keep GeneratePress as the footer foundation and fall back to the default GeneratePress footer when no page is selected.
+
+Acceptance:
+
+- [ ] Plugin settings page stores `skvn_footer_page_id`
+- [ ] Setting value is restricted to a valid WordPress page ID
+- [ ] Theme `inc/footer.php` renders the selected footer page through `generate_footer`
+- [ ] Default GeneratePress footer remains the fallback when no page is selected
+- [ ] No custom CPT is introduced
+- [ ] No display rules system is introduced
+- [ ] GeneratePress parent remains untouched
+- [ ] Footer output is escaped/sanitized through WordPress-safe rendering paths
+- [ ] Runtime smoke test confirms selected footer page renders
+- [ ] Runtime smoke test confirms fallback footer works
+- [ ] Human approves milestone completion
 
 ### 0.10.0 — Onsite Quote Flow Test Debt Resolution
 
@@ -78,6 +130,7 @@ Status: **PENDING**
 Acceptance:
 
 - [ ] Human runs `docs/testing/onsite-quote-flow-0.7.0.md` on the onsite site
+- [ ] Agent reminds human to open the related docs/files listed in the 0.7.0 deferred test debt section
 - [ ] Product CTA/query params confirmed from onsite product/product-card flow
 - [ ] CF7 hidden/context fields confirmed in submitted data
 - [ ] CFDB7 row confirms visible and hidden fields are stored
@@ -100,3 +153,44 @@ Acceptance:
 - [ ] No external plugins committed to source repo
 - [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
 - [ ] Human approves V1 launch readiness
+
+## Future V1.x Checkpoints
+
+### 1.4.0 — SKVN Theme Init Setup UI
+
+Status: **PENDING**
+
+Purpose:
+
+- Discuss and design an wp-admin setup screen for reusable SKVN setup tasks.
+- Candidate setup card: Request A Quote Workflow.
+- The UI should let an admin load a reviewed setup template from wp-admin instead of requiring WP-CLI for every setup pass.
+
+Wireframe note:
+
+```text
+Admin sidebar
+└── SKVN Theme init setup
+    ├── [Request A Quote Workflow]
+    ├── [Future setup card]
+    ├── [Future setup card]
+    └── [Nạp setup]
+```
+
+Constraints:
+
+- Do not implement in 0.7.0 or 0.10.0.
+- Must be discussed carefully before implementation.
+- Must not add a dependency/plugin unless human explicitly changes dependency policy.
+- Must not custom-code CF7 form handling; setup UI may only create/update approved WP content/config.
+- Must require wp-admin capability checks and nonce protection when implemented.
+
+Acceptance draft:
+
+- [ ] Human approves exact setup cards and button behavior
+- [ ] Admin capability requirement is defined
+- [ ] Setup actions are previewable or clearly described before running
+- [ ] Setup actions are idempotent where possible
+- [ ] Request A Quote Workflow setup maps to approved CF7/page/docs contract
+- [ ] No n8n webhook is exposed
+- [ ] Human approves milestone completion

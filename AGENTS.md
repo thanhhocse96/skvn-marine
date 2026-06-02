@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 0.7.0 — Basic CF7/CFDB7 Quote Form**
+Current milestone: **V1 / 0.7.1 — Quote Flow Runtime Verification & Handoff**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
@@ -311,6 +311,24 @@ if (!prefersReduced) { /* run animation */ }
 - Do not add a header/footer builder plugin in V1 unless human explicitly changes dependency policy.
 - Do not edit GeneratePress parent theme.
 
+### SKVN Editor Controls
+
+- 0.8.0 scope: token-governed sidebar controls for SKVN-owned Gutenberg blocks and translated layout surfaces.
+- Theme owns tone, spacing, width, radius, shadow, and visual classes.
+- Plugin owns block sidebar UI, block attributes, saved markup, and interactive block behavior.
+- Controls should be grouped into Content, Style, Layout, and Advanced sections.
+- No raw class input, raw hex/rgb/hsl values, or arbitrary inline spacing values should be required for marketing editors.
+- Resolve the OPEN slider editor UX tension before implementing slider-specific controls.
+
+### Footer Page Settings
+
+- 0.9.0 scope: plugin settings page stores `skvn_footer_page_id`; theme renders the selected footer page through GeneratePress' `generate_footer` surface.
+- Theme render code belongs in `wp-content/themes/skvn-marine/inc/footer.php`.
+- Fallback to the default GeneratePress footer when no valid footer page is selected.
+- Do not introduce a custom CPT.
+- Do not introduce display rules.
+- Do not remove or replace GeneratePress.
+
 ### Quote Flow / Quote UI
 
 - URL pattern: `/request-a-quote/?product_id=123`
@@ -388,8 +406,12 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 0.5.1 | Page display and sidebar controls |
 | 0.6.0 | Quote UI and editor controls |
 | 0.7.0 | Basic CF7/CFDB7 quote form |
+| 0.7.1 | Quote Flow runtime verification and handoff |
+| 0.8.0 | SKVN Editor Controls |
+| 0.9.0 | Footer Page Settings |
 | 0.10.0 | Onsite quote flow test debt resolution |
 | 1.0.0 | V1 launch-ready |
+| 1.4.0 | SKVN Theme Init Setup UI |
 
 ### Version naming rules
 

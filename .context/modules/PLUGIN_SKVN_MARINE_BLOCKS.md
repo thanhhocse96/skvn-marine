@@ -120,6 +120,31 @@ Do not implement the HTML-2-Gutenberg admin tool in the theme.
 
 Do not make this plugin own the primary SKVN visual system.
 
+## [manual] SKVN Editor Controls
+
+0.8.0 editor-control contract:
+
+- Contract doc: `docs/decisions/skvn-editor-controls-0.8.0.md`
+- Onsite test checklist: `docs/testing/onsite-editor-controls-0.8.0.md`
+
+Plugin responsibilities:
+
+- Sidebar UI for supported SKVN-owned blocks/surfaces.
+- Block attributes.
+- Saved markup.
+- Interactive behavior.
+
+Theme responsibilities remain visual:
+
+- Tokens.
+- `skvn-*` classes.
+- Width, spacing, radius, shadow, and tone presets.
+- Editor/frontend CSS parity.
+
+Do not require raw class input, raw color values, arbitrary inline spacing, custom CSS, or custom JavaScript for normal marketing-editor use.
+
+Slider-specific controls remain blocked until the OPEN slider editor UX tension is resolved.
+
 0.5.1 brand-mapping contract:
 
 - Treat artifact colors and Tailwind classes as source hints, not production contracts.

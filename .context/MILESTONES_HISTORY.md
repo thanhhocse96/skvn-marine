@@ -176,3 +176,60 @@ Acceptance:
 - [x] Editing controls that marketing users need are exposed through sidebar controls, not raw class input
 - [x] Runtime visual smoke test passed
 - [x] Human approves milestone completion
+
+---
+
+## V1 / 0.7.0 — Basic CF7/CFDB7 Quote Form
+
+Status: **CARRIED_WITH_RUNTIME_VERIFICATION_DEBT**
+Started: **2026-06-02**
+Carried forward: **2026-06-02**
+Approved by human to continue: **2026-06-02**
+
+Acceptance:
+
+- [x] CF7 form contract prepared for Request a Quote
+- [x] CF7 markup uses project classes: `skvn-form`, `skvn-quote-form`, `skvn-button`, `skvn-button--primary`
+- [x] Required visible fields prepared
+- [x] Required hidden fields prepared: `product_id`, `product_sku`, `product_name`, `product_url`, `source_url`, UTM fields
+- [x] Thank-you page contract prepared
+- [x] n8n remains deferred/unexposed
+- [x] WP Admin setup path documented for onsite testing
+- [ ] Onsite CF7 form existence confirmed by human evidence
+- [ ] Onsite request quote page contains the CF7 form
+- [ ] Onsite thank-you page exists
+- [ ] CFDB7 stores quote submission
+- [ ] Runtime quote form smoke test passed
+- [ ] Human approves milestone completion
+
+Completion snapshot:
+
+Done:
+
+- CF7 markup contract exists in `docs/artifacts/cf7-quote-form-0.7.0.md`.
+- Visible and hidden field contract exists.
+- Theme source contains SKVN form/button styling for quote form classes.
+- Dev/runtime setup shortcut exists in `tools/setup-quote-flow-070.php`.
+- Onsite-first test checklist exists in `docs/testing/onsite-quote-flow-0.7.0.md`.
+- WP Admin manual setup path is documented for onsite testing.
+- n8n remains deferred and unexposed by repo/source changes.
+
+Not done / carried to 0.7.1:
+
+- Onsite CF7 form existence has not been confirmed with evidence in repo.
+- Onsite request quote page shortcode placement has not been confirmed with evidence in repo.
+- Onsite thank-you page existence has not been confirmed with evidence in repo.
+- CFDB7 storage has not been confirmed with a submitted row.
+- Runtime smoke test has not passed.
+
+Deferred test debt:
+
+- [ ] Onsite hidden/context field and full UX smoke test is intentionally deferred to V1 / 0.10.0 because human is working under time pressure.
+- [ ] See `docs/testing/onsite-quote-flow-0.7.0.md`.
+- [ ] Related docs/files to open at V1 / 0.10.0:
+  - `docs/testing/onsite-quote-flow-0.7.0.md` — exact onsite test checklist and evidence format
+  - `docs/artifacts/cf7-quote-form-0.7.0.md` — expected CF7 form markup/classes/fields
+  - `docs/decisions/quote-flow.md` — quote-flow scope and deferred n8n decision
+  - `.context/modules/QUOTE_FLOW.md` — active quote-flow module protocol
+  - `docs/standards/security-guidelines.md` — form/security constraints
+  - `wp-content/themes/skvn-marine/style.css` — source styles for `skvn-form` / `skvn-quote-form`
