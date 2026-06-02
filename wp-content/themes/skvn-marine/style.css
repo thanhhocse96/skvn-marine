@@ -1212,7 +1212,7 @@ body.admin-bar.skvn-full-width-canvas .entry-content > .wp-block-html > .mhf-mai
 	}
 
 	.skvn-kpi-strip__grid {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 	}
 
 	.skvn-product-card-grid {

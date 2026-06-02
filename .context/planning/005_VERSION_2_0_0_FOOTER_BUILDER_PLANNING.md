@@ -17,7 +17,7 @@ phải được rebuild anyway — đó là thời điểm justification cho B r
 
 ```
 Giai đoạn C  →  Giai đoạn A  →  [trigger: bỏ GP]  →  Giai đoạn B
-V1 scope         V1 hoặc V2                              V2.0.0+
+V1 / 0.9.0       1.2.0 hoặc 1.3.0 candidate              V2.0.0+
 ```
 
 ---
@@ -85,8 +85,8 @@ Theme owns:   generate_footer hook, rendering logic, skvn-* CSS cho footer
 
 ### Target version
 
-V1 hoặc V2 tùy khi nào marketing cần guardrails trong editor.
-Chưa có human xác nhận → ghi `Future Candidate`.
+Sau V1 launch, dự kiến `1.2.0` hoặc `1.3.0`.
+Chưa có human xác nhận slot version chính xác → ghi `Future Candidate / 1.2.0-1.3.0`.
 
 ### Vấn đề giải quyết
 

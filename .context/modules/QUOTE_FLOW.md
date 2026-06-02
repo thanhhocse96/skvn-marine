@@ -26,6 +26,21 @@ Future:
 
 Product CTA → `/request-a-quote/?product_id=123` → CF7 → CFDB7 → thank-you page → n8n after 1.0.0.
 
+## [manual] Business UX Contexts
+
+Canonical endpoint remains `/request-a-quote/`.
+
+Multiple marketing pages may route into the same quote flow with query/context fields:
+
+- Product-specific quote: `/request-a-quote/?product_id=123`
+- Category quote: `/request-a-quote/?category=frozen-fish`
+- Packing/private-label quote: `/request-a-quote/?intent=packing`
+- Export inquiry: `/request-a-quote/?intent=export`
+- Sample request: `/request-a-quote/?intent=sample`
+- Campaign or landing-page quote: `/request-a-quote/?source=campaign-vn-seafood`
+
+Rule: many marketing pages are allowed, but keep one canonical quote flow. Future CF7 hidden fields should capture this context when form handling returns to scope.
+
 ## [manual] Cache Rule
 
 Do not cache request quote or thank-you pages.

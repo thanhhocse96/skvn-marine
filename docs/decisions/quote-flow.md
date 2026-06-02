@@ -66,6 +66,71 @@ Hidden/context fields:
 - utm_content
 - utm_term
 
+## Business UX Contexts
+
+The canonical quote endpoint remains:
+
+```txt
+/request-a-quote/
+```
+
+Different marketing or product pages may route buyers into the same quote flow with different context. These examples are for UX design and future hidden-field mapping; they do not create separate form handlers.
+
+Product-specific quote:
+
+```txt
+/request-a-quote/?product_id=123
+```
+
+Use when the buyer starts from a single product page or product card.
+
+Category quote:
+
+```txt
+/request-a-quote/?category=frozen-fish
+```
+
+Use when the buyer is comparing a category such as frozen fish, shrimp, squid, crab, or value-added seafood.
+
+Packing/private-label quote:
+
+```txt
+/request-a-quote/?intent=packing
+```
+
+Use when the buyer needs carton size, private label, packing specification, documentation, or cold-chain support.
+
+Export inquiry:
+
+```txt
+/request-a-quote/?intent=export
+```
+
+Use when the buyer is asking about export capability, certificates, destination market, logistics, or company qualification.
+
+Sample request:
+
+```txt
+/request-a-quote/?intent=sample
+```
+
+Use when the buyer wants a sample before container-scale quotation.
+
+Campaign or landing-page quote:
+
+```txt
+/request-a-quote/?source=campaign-vn-seafood
+```
+
+Use when the buyer arrives from a campaign, homepage section, or dedicated landing page. Standard UTM fields may also be carried.
+
+Rule:
+
+- Many marketing pages may exist.
+- Keep one quote flow and one canonical quote endpoint.
+- Use query/context fields to preserve buyer intent.
+- Future CF7 hidden fields should capture the context when form handling returns to scope.
+
 ## Caching
 
 Cache product pages.
