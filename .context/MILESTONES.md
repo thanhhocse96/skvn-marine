@@ -145,6 +145,36 @@ Acceptance:
 
 ## Future V1.x Checkpoints
 
+### 1.1.0 — Layout Blocks
+
+Status: **PENDING**
+
+Purpose:
+
+- Add governed layout blocks for repeated artifact sections that are too fragile with core blocks plus raw class names.
+- Start with `skvn-marine/card-grid` and `skvn-marine/card`.
+- Evaluate `skvn-marine/quote` after card-grid/card are validated.
+- Keep visual styling theme-owned and block logic plugin-owned.
+
+Planning:
+
+- `.context/planning/003_VERSION_1_1_0_LAYOUT_BLOCKS_PLANNING.md`
+- Source proposal: `.context/proposals/proposal-layout-blocks.md`
+
+Acceptance draft:
+
+- [ ] At least two real layout artifacts justify the same grid/card governance
+- [ ] Core block plus theme-pattern alternative is documented as too fragile or too slow for editors
+- [ ] `skvn-marine/card-grid` block exists in plugin
+- [ ] `skvn-marine/card` block exists in plugin
+- [ ] Blocks use `block.json`, TypeScript, and InnerBlocks
+- [ ] Editor preview matches frontend closely enough for layout decisions
+- [ ] Theme CSS implements all layout-critical `skvn-*` classes used by saved markup
+- [ ] No frontend JavaScript runtime is added unless a real interaction requires it
+- [ ] `skvn-marine/quote` is evaluated only after card-grid/card validation
+- [ ] Build passes for `skvn-marine-blocks`
+- [ ] Human approves milestone completion
+
 ### 1.4.0 — SKVN Theme Init Setup UI
 
 Status: **PENDING**

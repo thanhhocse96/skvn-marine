@@ -59,6 +59,7 @@ Planning snapshots live in `.context/planning/` and use a three-digit ordering p
 Current planning file:
 
 - `.context/planning/000_VERSION_1_1_0_PLANNING.md`
+- `.context/planning/003_VERSION_1_1_0_LAYOUT_BLOCKS_PLANNING.md` — checkpoint plan for layout blocks promoted from `.context/proposals/proposal-layout-blocks.md`. Covers `skvn-marine/card-grid`, `skvn-marine/card`, and quote/testimonial block evaluation for repeated artifact sections that are too fragile for core blocks plus raw class names.
 
 Future plugin architecture planning:
 

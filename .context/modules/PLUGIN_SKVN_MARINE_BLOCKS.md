@@ -94,6 +94,19 @@ src/
 - V1 dùng WooCommerce native blocks/patterns cho product grid/list.
 - V2 mới thêm Product Grid/List custom hoặc style blocks liên quan nếu cần.
 
+## [manual] Future Layout Blocks
+
+V1.x / 1.1.0 planned layout blocks:
+
+- Planning file: `.context/planning/003_VERSION_1_1_0_LAYOUT_BLOCKS_PLANNING.md`.
+- Source proposal: `.context/proposals/proposal-layout-blocks.md`.
+- Candidate blocks: `skvn-marine/card-grid`, `skvn-marine/card`, and later `skvn-marine/quote`.
+- Purpose: repeated artifact sections where core blocks plus raw class names are too fragile for editors.
+- `card-grid` and `card` are the first implementation candidates; `quote` is evaluation-only until card-grid/card are validated.
+- Theme owns visual CSS, decorative presentation, editor/frontend parity, and `skvn-*` classes.
+- Plugin owns block registration, attributes, editor UI, saved markup, and any real interaction runtime.
+- Not current 0.8.0 scope unless human explicitly changes milestone priority.
+
 ## [manual] Future Admin Tooling
 
 HTML-2-Gutenberg tooling belongs to this plugin, not the theme.

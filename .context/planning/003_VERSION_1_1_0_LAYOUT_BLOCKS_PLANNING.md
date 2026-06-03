@@ -7,11 +7,12 @@
 
 ## Status
 
-Status: **FUTURE CANDIDATE**
+Status: **PENDING**
 Primary target: **V1 / 1.1.0**
-Optional earlier target: **V1 / 0.8.0 — Layout Blocks**, only if human explicitly adds a milestone.
 
-This file does not change the current milestone. Current milestone remains **V1 / 0.5.1 — Page Display & Sidebar Controls** until `.context/MILESTONES.md` is updated by explicit human approval.
+This file is the planning source for the `1.1.0 — Layout Blocks` future checkpoint in `.context/MILESTONES.md`.
+
+This is not current 0.8.0 scope and not V1 launch-required work unless the human explicitly changes milestone priority.
 
 Source proposal:
 
@@ -166,14 +167,12 @@ Reason:
 
 Human confirmation needed before implementation:
 
-- Target milestone: keep as `1.1.0`, create `0.8.0 — Layout Blocks`, or defer to V2.
 - Strategy: custom blocks vs theme CSS patterns with class names.
 - Card highlight model: `featured` attribute on `skvn-marine/card` vs separate `skvn-marine/featured-card`.
 - Quote decorative model: theme CSS pseudo-element vs saved inline SVG/element.
 
 Default recommendation:
 
-- Target `1.1.0` unless content production proves the blocks are needed before launch.
 - Use custom blocks only for repeated sections where class-based core block editing is fragile.
 - Use a single `skvn-marine/card` block with variant and `featured` attributes.
 - Use theme-owned decorative CSS for quote visuals.
@@ -247,4 +246,3 @@ Mitigation:
 - Implement the smallest useful block pair first.
 - Keep visual styling theme-owned.
 - Keep block attributes limited to editor-safe layout decisions.
-

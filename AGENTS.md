@@ -418,6 +418,7 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 0.9.0 | Footer Page Settings |
 | 0.10.0 | Onsite quote flow test debt resolution |
 | 1.0.0 | V1 launch-ready |
+| 1.1.0 | Layout Blocks |
 | 1.4.0 | SKVN Theme Init Setup UI |
 | 1.6.0 | SKVN Surface Presets |
 
