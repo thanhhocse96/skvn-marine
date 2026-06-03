@@ -15,7 +15,7 @@ Quy tắc quản lý tension theo milestone:
 
 - Trong cùng milestone hiện tại, tension đã `RESOLVED_ACTIVE` nằm trong `.context/TENSIONS_ACTIVE.md` để agent thấy decision liên quan khi làm task V1.
 - Chỉ khi human tuyên bố chuyển sang milestone/version mới (ví dụ V1 → V2), agent mới move các tensions đã `RESOLVED_ACTIVE` của milestone cũ sang `.context/TENSIONS_HISTORY.md` và đổi `Status: ARCHIVED`.
-- Khi chuyển milestone, agent phải update cả `AGENTS.md` và `.context/MILESTONES.md`, đồng thời move milestone cũ sang `.context/MILESTONES_HISTORY.md`. Nếu đó là release/deploy boundary, sync WordPress theme/plugin release metadata bằng `node tools/bump-project-version.mjs <version>` theo `docs/workflows/versioning-release-workflow.md`.
+- Khi chuyển milestone, agent phải update cả `AGENTS.md` và `.context/MILESTONES.md`, đồng thời move milestone cũ sang `.context/MILESTONES_HISTORY.md`. Nếu đó là release/deploy boundary, sync WordPress theme/plugin release metadata bằng `node tools/bump-project-version.mjs <version>` theo `docs/workflows/versioning-release-workflow.md`. Nếu milestone thêm hoặc đổi PHP runtime `require`/`include`, phải audit deploy artifact theo `docs/workflows/deploy-artifact-workflow.md` trước khi zip/upload.
 - `.context/TENSIONS_HISTORY.md` không load mặc định, chỉ đọc khi cần audit quyết định cũ hoặc human yêu cầu.
 
 ---
@@ -109,6 +109,7 @@ echo wp_kses_post($content);
 9. Self-check (xem checklist cuối file)
 10. Update .context/ nếu có quyết định mới
 11. Chỉ khi human chuyển version/milestone mới, update `AGENTS.md` + `.context/MILESTONES.md`, move milestone cũ sang `.context/MILESTONES_HISTORY.md`, và move tension `RESOLVED_ACTIVE` của milestone cũ khỏi `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md` với `Status: ARCHIVED`
+12. Nếu task thêm/đổi PHP runtime `require`/`include`, update deploy artifact packaging và verify zip chứa file/folder runtime tương ứng
 ```
 
 ### Sau khi implement xong
@@ -122,6 +123,11 @@ cd wp-content/plugins/skvn-marine-blocks && npm run build 2>&1 | tail -10
 
 # Kiểm tra block nếu thay đổi block registration
 grep -r "registerBlockType" wp-content/plugins/skvn-marine-blocks/src/
+
+# Nếu thay đổi runtime PHP require/include hoặc thêm module plugin
+node tools/build-deploy-artifact.mjs
+bash tools/package-plugin-zip.sh
+unzip -l build/skvn-marine-blocks.zip | grep 'skvn-marine-blocks/modules/'
 ```
 
 ### Onsite-first UX/runtime testing
@@ -437,6 +443,7 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 - Khi đổi version/milestone thật, phải update đồng bộ `AGENTS.md`, `.context/MILESTONES.md`, và file planning/docs liên quan.
 - `.context/MILESTONES.md` là planning/scope source of truth, không tự động bump WordPress theme/plugin release headers.
 - Trước khi package/deploy milestone release, chạy `node tools/bump-project-version.mjs <version>` rồi rebuild plugin assets.
+- Nếu milestone thêm/đổi PHP runtime `require`/`include`, chạy deploy artifact runtime file audit trước khi zip/upload.
 - Release version sync phải cập nhật theme `style.css`, plugin main header, plugin `package.json` / `package-lock.json`, và block metadata versions.
 
 ---

@@ -59,7 +59,15 @@ The zip root must contain the plugin/theme folder itself:
 skvn-marine/style.css
 skvn-marine/functions.php
 skvn-marine-blocks/skvn-marine-blocks.php
+skvn-marine-blocks/build/
+skvn-marine-blocks/modules/
 ```
+
+Before upload:
+
+- [ ] If the plugin bootstrap loads `modules/`, `includes/`, or another runtime folder, confirm that folder exists inside `skvn-marine-blocks.zip`.
+- [ ] Confirm `skvn-marine-blocks.zip` contains runtime PHP files required by the current milestone.
+- [ ] If activation reports `failed opening required`, stop and compare the required path against the zip contents before re-uploading.
 
 ## 3. Upload Artifact
 

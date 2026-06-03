@@ -171,6 +171,10 @@ Implemented 0.9.0 source:
 - Admin surface: `Settings → SKVN Footer`.
 - The selector only stores a published WordPress page ID or `0`.
 - Human chose online/onsite smoke testing instead of local runtime testing for 0.9.0.
+- Runtime PHP modules under `modules/` are production files, not dev-only source.
+- Deploy artifacts and plugin zips must include any plugin folder loaded by `require`, `require_once`, `include`, or `include_once`.
+- When a future milestone adds a runtime folder such as `modules/`, `includes/`, or runtime `assets/`, update `tools/build-deploy-artifact.mjs` and `docs/workflows/deploy-artifact-workflow.md` in the same task.
+- After packaging, verify the zip contains the required runtime module paths before onsite upload.
 
 Future direction:
 

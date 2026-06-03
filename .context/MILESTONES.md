@@ -29,10 +29,11 @@ Khi chuyển milestone:
 1. Update `AGENTS.md` current milestone.
 2. Update `.context/MILESTONES.md` current milestone.
 3. If this is a release/deploy boundary, sync WordPress theme/plugin release metadata with `node tools/bump-project-version.mjs <version>` and follow `docs/workflows/versioning-release-workflow.md`.
-4. Move completed milestone checklist/notes sang `.context/MILESTONES_HISTORY.md`.
-5. Move `RESOLVED_ACTIVE` tensions của milestone cũ từ `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md`, đổi `Status: ARCHIVED`.
-6. Giữ lại OPEN tensions còn liên quan trong `.context/TENSIONS_OPEN.md`.
-7. Không tự archive hoặc tự chuyển milestone nếu human chưa approve.
+4. If the milestone added or changed runtime PHP `require`/`include` paths, run the runtime file audit in `docs/workflows/deploy-artifact-workflow.md` before zip upload.
+5. Move completed milestone checklist/notes sang `.context/MILESTONES_HISTORY.md`.
+6. Move `RESOLVED_ACTIVE` tensions của milestone cũ từ `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md`, đổi `Status: ARCHIVED`.
+7. Giữ lại OPEN tensions còn liên quan trong `.context/TENSIONS_OPEN.md`.
+8. Không tự archive hoặc tự chuyển milestone nếu human chưa approve.
 
 ## Version Naming Rule
 

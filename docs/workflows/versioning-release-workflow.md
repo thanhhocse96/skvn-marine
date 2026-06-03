@@ -64,7 +64,9 @@ Do not bump for every small local edit.
 [ ] Run PHP syntax checks for touched PHP files.
 [ ] Run git diff --check.
 [ ] Build deploy artifact.
+[ ] Audit deploy artifact contents for runtime PHP include/require paths added in this milestone.
 [ ] Package theme/plugin zip if needed.
+[ ] Confirm plugin zip contains required runtime folders such as build/, modules/, and assets/ before upload.
 [ ] Confirm WordPress admin shows the expected theme/plugin version after upload.
 ```
 
@@ -72,5 +74,7 @@ Do not bump for every small local edit.
 
 - Do not treat build asset hashes as project versions.
 - Do not rely on `npm run build` to update WordPress `Version:` headers.
+- Do not rely on `npm run build` to package arbitrary runtime PHP folders.
+- If a milestone adds plugin PHP outside `build/`, update `tools/build-deploy-artifact.mjs` before packaging.
 - Do not change plugin/theme slug, text domain, namespace, or option keys while bumping version.
 - Do not bump future planning candidates such as `Gutenberg Supercharger` into the current SKVN Marine plugin identity.
