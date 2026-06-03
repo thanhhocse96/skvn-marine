@@ -120,6 +120,48 @@ Do not implement the HTML-2-Gutenberg admin tool in the theme.
 
 Do not make this plugin own the primary SKVN visual system.
 
+## [manual] Footer Settings Module And Future Gutenberg Supercharger Boundary
+
+0.9.0 footer page settings must be implemented as a migration-ready module inside the current `skvn-marine-blocks` plugin.
+
+Allowed current structure:
+
+```text
+wp-content/plugins/skvn-marine-blocks/
+  modules/
+    footer-settings/
+```
+
+or:
+
+```text
+wp-content/plugins/skvn-marine-blocks/
+  includes/
+    modules/
+      footer-settings/
+```
+
+Current 0.9.0 rules:
+
+- Keep plugin slug `skvn-marine-blocks`.
+- Keep plugin text domain `skvn-marine-blocks`.
+- Keep option key `skvn_footer_page_id`.
+- Keep bootstrap and build paths compatible with the current plugin.
+- Do not create a `gutenberg-supercharger` or `gutenberg-turbo` plugin in V1.
+- Do not rename namespaces, option keys, plugin headers, or activation path.
+- Do not add a custom CPT or display-rules system for footer settings.
+
+Future direction:
+
+- `Gutenberg Supercharger` is a possible V4 / 4.0.0 umbrella-plugin direction and standard/core product name.
+- `Gutenberg Supercharger Stage 2` is the pro/commercial stage name.
+- `Gutenberg Remap` is retained only as an alternate/redirect candidate.
+- Tagline: `Remap Gutenberg. Turbocharge your site.`
+- Community tagline: `Make your site feel more "Á đù VTEC".`
+- Planning file: `.context/planning/008_FUTURE_CANDIDATE_GUTENBERG_TURBO_PLANNING.md`.
+- When future migration is approved, modules such as `footer-settings/`, `article-templates/`, and `layout-controls/` may move under `gutenberg-supercharger/modules/`.
+- Until that future milestone is explicitly approved, only use the migration-ready module shape inside the current plugin.
+
 ## [manual] SKVN Editor Controls
 
 0.8.0 editor-control contract:
@@ -142,6 +184,14 @@ Theme responsibilities remain visual:
 - Editor/frontend CSS parity.
 
 Do not require raw class input, raw color values, arbitrary inline spacing, custom CSS, or custom JavaScript for normal marketing-editor use.
+
+V1.x / 1.6.0 planned SKVN surface presets:
+
+- Planning file: `.context/planning/009_VERSION_1_6_0_SKVN_SURFACE_PRESETS_PLANNING.md`.
+- Plugin/editor controls may expose a safe `surfaceStyle` attribute after the theme owns the visual classes.
+- Allowed values should stay preset-based: `flat`, `soft`, `glass`, `elevated`, `outlined`.
+- Do not save Tailwind/WindPress utility classes as the production contract.
+- Do not expose arbitrary blur, shadow, color, or raw CSS inputs for normal editors.
 
 Slider-specific controls remain blocked until the OPEN slider editor UX tension is resolved.
 

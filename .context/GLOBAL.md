@@ -10,7 +10,7 @@
 
 - WordPress + GeneratePress (parent) + `skvn-marine` (child theme)
 - WooCommerce — native products, categories, attributes
-- WindPress (Tailwind integration) — utility classes, animations, responsive
+- WindPress (Tailwind integration) — optional/prototyping aid; not the production visual-system source of truth
 - Plugin: `skvn-marine-blocks` — custom Gutenberg blocks (TypeScript, @wordpress/scripts)
 - Page display/sidebar controls completed in 0.5.1; Quote UI completed in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite quote-flow test debt resolves in 0.10.0; n8n after 1.0.0
 - Rank Math — SEO, schema
@@ -62,7 +62,8 @@ Current planning file:
 
 Future plugin architecture planning:
 
-- `.context/planning/008_FUTURE_CANDIDATE_GUTENBERG_TURBO_PLANNING.md` — split small Gutenberg enhancement plugins first, then possibly consolidate into an umbrella plugin named `Gutenberg Turbo` / `Gutenberg Supercharger`.
+- `.context/planning/008_FUTURE_CANDIDATE_GUTENBERG_TURBO_PLANNING.md` — split small Gutenberg enhancement plugins first, then possibly consolidate into an umbrella plugin named `Gutenberg Supercharger` around a future V4 / 4.0.0 candidate. Standard/core edition name: `Gutenberg Supercharger`; pro/commercial edition name: `Gutenberg Supercharger Stage 2`; `Gutenberg Remap` is retained only as an alternate/redirect candidate; community tagline: "Make your site feel more \"Á đù VTEC\"." Current V1 work may use migration-ready module structure, but must not create/rename to `gutenberg-supercharger` or `gutenberg-turbo`.
+- `.context/planning/009_VERSION_1_6_0_SKVN_SURFACE_PRESETS_PLANNING.md` — SKVN-local hardening plan for approved flat/soft/glass/elevated/outlined surface presets. Theme owns `skvn-surface--*` classes and tokens; plugin/editor controls may select presets later. Production output must not depend on WindPress/Tailwind utilities.
 
 Proposal files under `.context/proposals/` are not active protocol and are ignored by git. Do not load them unless the human explicitly asks to review a proposal.
 
@@ -95,6 +96,7 @@ Current active docs:
 - `docs/workflows/layout-translator-workflow.md`
 - `docs/workflows/onsite-qa-checklist.md`
 - `docs/workflows/theme-development-workflow.md`
+- `docs/workflows/versioning-release-workflow.md`
 - `docs/explain/explain-for-5-years-old.md`
 - `docs/artifacts/brand-palette-options.html`
 
@@ -125,7 +127,7 @@ Page-level controls such as Hide site header and Hide site footer belong to the 
 0.8.0 adds token-governed sidebar controls for SKVN-owned Gutenberg blocks and translated layout surfaces. Theme owns tone, spacing, width, radius, shadow, and visual classes. Plugin owns block sidebar UI, attributes, saved markup, and interactive behavior. Editors should not need raw class input, raw colors, or arbitrary inline spacing values.
 
 **A12. Footer Page Settings**
-0.9.0 adds a plugin settings page for `skvn_footer_page_id`. The theme renders the selected footer page through GeneratePress' `generate_footer` surface, with GeneratePress default footer as fallback. No custom CPT, no display rules system, and no GeneratePress replacement.
+0.9.0 adds a plugin settings page for `skvn_footer_page_id`. The theme renders the selected footer page through GeneratePress' `generate_footer` surface, with GeneratePress default footer as fallback. No custom CPT, no display rules system, and no GeneratePress replacement. Implement footer settings as a migration-ready module inside the current `skvn-marine-blocks` plugin; do not create or rename to `gutenberg-supercharger` or `gutenberg-turbo` in V1.
 
 **A5. Animation runtime dùng chung**
 `assets/js/animations.js` là single runtime. KHÔNG tạo animation logic riêng per block trừ khi bắt buộc.

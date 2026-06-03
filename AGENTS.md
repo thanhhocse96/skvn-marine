@@ -15,7 +15,7 @@ Quy tắc quản lý tension theo milestone:
 
 - Trong cùng milestone hiện tại, tension đã `RESOLVED_ACTIVE` nằm trong `.context/TENSIONS_ACTIVE.md` để agent thấy decision liên quan khi làm task V1.
 - Chỉ khi human tuyên bố chuyển sang milestone/version mới (ví dụ V1 → V2), agent mới move các tensions đã `RESOLVED_ACTIVE` của milestone cũ sang `.context/TENSIONS_HISTORY.md` và đổi `Status: ARCHIVED`.
-- Khi chuyển milestone, agent phải update cả `AGENTS.md` và `.context/MILESTONES.md`, đồng thời move milestone cũ sang `.context/MILESTONES_HISTORY.md`.
+- Khi chuyển milestone, agent phải update cả `AGENTS.md` và `.context/MILESTONES.md`, đồng thời move milestone cũ sang `.context/MILESTONES_HISTORY.md`. Nếu đó là release/deploy boundary, sync WordPress theme/plugin release metadata bằng `node tools/bump-project-version.mjs <version>` theo `docs/workflows/versioning-release-workflow.md`.
 - `.context/TENSIONS_HISTORY.md` không load mặc định, chỉ đọc khi cần audit quyết định cũ hoặc human yêu cầu.
 
 ---
@@ -323,6 +323,11 @@ if (!prefersReduced) { /* run animation */ }
 ### Footer Page Settings
 
 - 0.9.0 scope: plugin settings page stores `skvn_footer_page_id`; theme renders the selected footer page through GeneratePress' `generate_footer` surface.
+- Implement 0.9.0 footer settings as a migration-ready module inside the current `skvn-marine-blocks` plugin; do not create or rename to a `gutenberg-supercharger` or `gutenberg-turbo` plugin in V1.
+- The future umbrella plugin concept `Gutenberg Supercharger` is documented as a possible V4 / 4.0.0 direction and standard/core product name, not current scope. `Gutenberg Supercharger Stage 2` is the pro/commercial stage name. `Gutenberg Remap` is retained only as an alternate/redirect candidate.
+- Footer settings may use a module-shaped folder such as `modules/footer-settings/` or `includes/modules/footer-settings/` inside `wp-content/plugins/skvn-marine-blocks/`.
+- Keep current plugin slug, text domain, and option key: `skvn-marine-blocks`, `skvn-marine-blocks`, and `skvn_footer_page_id`.
+- Do not rename namespaces, option keys, plugin headers, build entrypoints, or activation path for 0.9.0.
 - Theme render code belongs in `wp-content/themes/skvn-marine/inc/footer.php`.
 - Fallback to the default GeneratePress footer when no valid footer page is selected.
 - Do not introduce a custom CPT.
@@ -414,6 +419,7 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 0.10.0 | Onsite quote flow test debt resolution |
 | 1.0.0 | V1 launch-ready |
 | 1.4.0 | SKVN Theme Init Setup UI |
+| 1.6.0 | SKVN Surface Presets |
 
 ### Version naming rules
 
@@ -427,6 +433,9 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 - Tên file planning phải khớp version chính trong nội dung. Ví dụ planning cho `1.1.0` dùng dạng `001_VERSION_1_1_0_<TOPIC>_PLANNING.md`; planning cho `2.0.0` dùng dạng `002_VERSION_2_0_0_<TOPIC>_PLANNING.md`.
 - Không đổi tên planning file hoặc milestone version nếu chưa có human xác nhận.
 - Khi đổi version/milestone thật, phải update đồng bộ `AGENTS.md`, `.context/MILESTONES.md`, và file planning/docs liên quan.
+- `.context/MILESTONES.md` là planning/scope source of truth, không tự động bump WordPress theme/plugin release headers.
+- Trước khi package/deploy milestone release, chạy `node tools/bump-project-version.mjs <version>` rồi rebuild plugin assets.
+- Release version sync phải cập nhật theme `style.css`, plugin main header, plugin `package.json` / `package-lock.json`, và block metadata versions.
 
 ---
 

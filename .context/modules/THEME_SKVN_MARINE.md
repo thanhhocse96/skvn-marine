@@ -147,6 +147,14 @@ V1 / 0.7.0 brand profile source of truth:
 
 This document defines semantic profile aliases, current token mapping, `theme.json` / `style.css` sync pairs, editor/frontend contract, HTML-2-Gutenberg brand report mapping, and external implementation references. Runtime token changes must follow it.
 
+V1.x / 1.6.0 planned SKVN surface presets:
+
+- Planning file: `.context/planning/009_VERSION_1_6_0_SKVN_SURFACE_PRESETS_PLANNING.md`.
+- Theme owns `skvn-surface--flat`, `skvn-surface--soft`, `skvn-surface--glass`, `skvn-surface--elevated`, and `skvn-surface--outlined` if implemented.
+- Surface preset CSS must use SKVN tokens/classes and must not depend on WindPress/Tailwind utilities in production output.
+- Glass must have a readable non-blur fallback and must not be used for long article body content by default.
+- Plugin/editor controls may select presets later, but the visual implementation stays theme-owned for SKVN-local hardening.
+
 Theme-owned brand sources:
 
 - CSS tokens and component styles: `wp-content/themes/skvn-marine/style.css`.

@@ -9,7 +9,7 @@
 - Page display/sidebar controls completed in 0.5.1; Quote UI/editor controls completed in 0.6.0; basic CF7/CFDB7 quote form is current 0.7.0 scope; 0.7.1 verifies quote-flow runtime handoff; 0.8.0 adds SKVN Editor Controls; 0.9.0 adds Footer Page Settings; onsite quote-flow test debt resolves in 0.10.0; n8n is deferred until after 1.0.0.
 - Use Rank Math for SEO and GEO/AEO-friendly content structure.
 - Use Polylang as multilingual candidate.
-- Use WindPress/Tailwind for design system implementation.
+- WindPress/Tailwind may be used as a prototyping aid, but production visual-system implementation should be SKVN theme tokens/classes and must not require WindPress for future plugin portability.
 - Use TypeScript for custom Gutenberg block plugin.
 - Use Swiper for slider.
 - Product Grid/List V1: use WooCommerce native blocks/patterns. Custom Product Grid/List or related style blocks are deferred to V2.

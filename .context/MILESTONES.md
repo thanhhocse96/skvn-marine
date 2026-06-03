@@ -28,10 +28,11 @@ Khi chuyển milestone:
 
 1. Update `AGENTS.md` current milestone.
 2. Update `.context/MILESTONES.md` current milestone.
-3. Move completed milestone checklist/notes sang `.context/MILESTONES_HISTORY.md`.
-4. Move `RESOLVED_ACTIVE` tensions của milestone cũ từ `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md`, đổi `Status: ARCHIVED`.
-5. Giữ lại OPEN tensions còn liên quan trong `.context/TENSIONS_OPEN.md`.
-6. Không tự archive hoặc tự chuyển milestone nếu human chưa approve.
+3. If this is a release/deploy boundary, sync WordPress theme/plugin release metadata with `node tools/bump-project-version.mjs <version>` and follow `docs/workflows/versioning-release-workflow.md`.
+4. Move completed milestone checklist/notes sang `.context/MILESTONES_HISTORY.md`.
+5. Move `RESOLVED_ACTIVE` tensions của milestone cũ từ `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md`, đổi `Status: ARCHIVED`.
+6. Giữ lại OPEN tensions còn liên quan trong `.context/TENSIONS_OPEN.md`.
+7. Không tự archive hoặc tự chuyển milestone nếu human chưa approve.
 
 ## Version Naming Rule
 
@@ -44,6 +45,8 @@ Khi chuyển milestone:
 - Nếu chưa chắc version của future work, ghi `Future Candidate` thay vì tự gán version.
 - Planning filename phải khớp target version chính, ví dụ `001_VERSION_1_1_0_<TOPIC>_PLANNING.md` hoặc `002_VERSION_2_0_0_<TOPIC>_PLANNING.md`.
 - Không đổi current milestone/version nếu chưa có human approve rõ ràng.
+- `.context/MILESTONES.md` is the planning/scope source of truth. It does not automatically update WordPress theme/plugin `Version:` headers.
+- Before packaging or deploying a milestone release, run `node tools/bump-project-version.mjs <version>` and rebuild plugin assets.
 
 ---
 
@@ -84,6 +87,8 @@ Purpose:
 - Add a plugin settings page that stores the selected reusable footer page ID in `skvn_footer_page_id`.
 - Let the theme render the selected footer page into GeneratePress' `generate_footer` surface.
 - Keep GeneratePress as the footer foundation and fall back to the default GeneratePress footer when no page is selected.
+- Implement the footer settings code as a migration-ready module inside the current `skvn-marine-blocks` plugin; do not create or rename to `gutenberg-supercharger` or `gutenberg-turbo` in 0.9.0.
+- Treat `Gutenberg Supercharger` as a possible V4 / 4.0.0 umbrella-plugin direction and standard/core product name only. `Gutenberg Supercharger Stage 2` is the pro/commercial stage name. `Gutenberg Remap` is retained only as an alternate/redirect candidate.
 
 Acceptance:
 
@@ -93,6 +98,8 @@ Acceptance:
 - [ ] Default GeneratePress footer remains the fallback when no page is selected
 - [ ] No custom CPT is introduced
 - [ ] No display rules system is introduced
+- [ ] Footer settings are module-shaped inside `skvn-marine-blocks`, with current slug/text domain/option key preserved
+- [ ] No `gutenberg-supercharger`/`gutenberg-turbo` plugin, plugin slug rename, namespace rename, or option-key rename is introduced
 - [ ] GeneratePress parent remains untouched
 - [ ] Footer output is escaped/sanitized through WordPress-safe rendering paths
 - [ ] Runtime smoke test confirms selected footer page renders
@@ -175,4 +182,30 @@ Acceptance draft:
 - [ ] Setup actions are idempotent where possible
 - [ ] Request A Quote Workflow setup maps to approved CF7/page/docs contract
 - [ ] No n8n webhook is exposed
+- [ ] Human approves milestone completion
+
+### 1.6.0 — SKVN Surface Presets
+
+Status: **PENDING**
+
+Purpose:
+
+- Add SKVN-local approved surface presets such as flat, soft, glass, elevated, and outlined.
+- Keep production visual output independent from WindPress/Tailwind utilities.
+- Let the theme own `skvn-surface--*` classes, tokens, fallbacks, and contrast/readability rules.
+- Let plugin/editor controls select safe presets later without raw CSS, raw class, arbitrary color, blur, or shadow input.
+
+Planning:
+
+- `.context/planning/009_VERSION_1_6_0_SKVN_SURFACE_PRESETS_PLANNING.md`
+
+Acceptance draft:
+
+- [ ] Surface preset contract is documented before code
+- [ ] Theme CSS defines approved `skvn-surface--*` classes
+- [ ] Presets use SKVN tokens and do not depend on WindPress
+- [ ] Glass has a non-blur fallback
+- [ ] Editor/frontend parity is checked for the first supported surface
+- [ ] At least one SKVN-owned block or layout surface can select a preset through safe controls
+- [ ] No raw class, raw CSS, or arbitrary color/blur/shadow input is required
 - [ ] Human approves milestone completion

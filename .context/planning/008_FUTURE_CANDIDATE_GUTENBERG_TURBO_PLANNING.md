@@ -1,4 +1,4 @@
-# Future Candidate Planning - Gutenberg Turbo / Gutenberg Supercharger
+# Future Candidate Planning - Gutenberg Supercharger / Gutenberg Remap
 
 > Planning reference for the future umbrella plugin that may consolidate smaller Gutenberg enhancement plugins after they are stable.
 > Load this file when planning article templates, Gutenberg content templates, editor supercharger features, reusable post-type layout systems, or plugin consolidation.
@@ -11,24 +11,98 @@ Status: **FUTURE_CANDIDATE**
 
 This file does not change the current milestone. Current milestone remains managed by `.context/MILESTONES.md`.
 
-Candidate product names:
+Candidate target:
 
 ```text
-Gutenberg Turbo
+V4 / 4.0.0
+```
+
+This is a planning candidate only. Do not rename current plugins, namespaces, option keys, or build paths unless the human explicitly moves the project into that future milestone.
+
+Candidate project name:
+
+```text
 Gutenberg Supercharger
 ```
 
-Working preference:
+Primary product name:
 
 ```text
-Gutenberg Turbo
+Gutenberg Supercharger
 ```
 
-Reason:
+Pro / commercial stage name:
 
 ```text
-Shorter, clearer, and easier to use as a plugin/product name. "Supercharger" remains a useful metaphor for the concept.
+Gutenberg Supercharger Stage 2
 ```
+
+Retained naming candidate:
+
+```text
+Gutenberg Remap
+```
+
+Tagline:
+
+```text
+Remap Gutenberg. Turbocharge your site.
+```
+
+Community tagline:
+
+```text
+Make your site feel more "Á đù VTEC".
+```
+
+Naming notes:
+
+```text
+Gutenberg Supercharger is the project direction/name for the future umbrella plugin.
+The normal/core product edition should be named Gutenberg Supercharger.
+The pro/commercial edition should be named Gutenberg Supercharger Stage 2.
+Gutenberg Remap remains a researched alternate/redirect candidate, not the preferred current product name.
+Gutenberg Turbo remains a retired/legacy codename and should not be used as the current preferred name.
+```
+
+---
+
+## Product Packaging Stages
+
+Use stage naming for product packaging, not SemVer.
+
+Stage 1:
+
+```text
+Gutenberg Supercharger
+```
+
+Purpose:
+
+- Core/free or standard edition.
+- Proves the foundation: safe Gutenberg layout remapping, template presets, editor governance, and migration-ready modules.
+- Must be useful on real sites, not only a demo or teaser.
+- Should avoid raw CSS/class workflows for normal editors.
+
+Stage 2:
+
+```text
+Gutenberg Supercharger Stage 2
+```
+
+Purpose:
+
+- Pro/commercial edition.
+- Adds advanced governance, reusable template libraries, site/client presets, import/export, compatibility modules, and workflow automation.
+- Should sell workflow depth and control, not just more sliders or arbitrary styling controls.
+
+Community tagline remains:
+
+```text
+Make your site feel more "Á đù VTEC".
+```
+
+This tagline is for community/dev flavor. It should not become the formal plugin header name.
 
 ---
 
@@ -62,10 +136,26 @@ skvn-article-templates
 Future umbrella plugin:
 
 ```text
-gutenberg-turbo
+gutenberg-supercharger
 ```
 
 The future umbrella plugin should behave like a modular Gutenberg enhancement suite, not a visual freeform page builder.
+
+Current application rule:
+
+```text
+Use the module-shaped architecture now, but do not create the umbrella plugin now.
+```
+
+For 0.9.0 Footer Page Settings, this means:
+
+- Implement `footer-settings` as a module inside the current `skvn-marine-blocks` plugin.
+- Keep plugin slug `skvn-marine-blocks`.
+- Keep text domain `skvn-marine-blocks`.
+- Keep option key `skvn_footer_page_id`.
+- Do not create a `gutenberg-supercharger` or `gutenberg-turbo` plugin.
+- Do not rename namespaces, plugin headers, build entrypoints, activation paths, or option keys.
+- The module should be easy to move later into `gutenberg-supercharger/modules/footer-settings/`.
 
 ---
 
@@ -82,7 +172,7 @@ future-small-plugin/
 Consolidate later:
 
 ```text
-gutenberg-turbo/
+gutenberg-supercharger/
   modules/
     article-templates/
     marine-blocks/
@@ -219,7 +309,9 @@ Avoid:
 
 ## Migration To Umbrella Plugin
 
-Small plugins should be built so they can later move into `gutenberg-turbo/modules/*` with minimal rewrite.
+Small plugins should be built so they can later move into `gutenberg-supercharger/modules/*` with minimal rewrite.
+
+For current SKVN Marine V1 work, "migration-ready" means folder/module separation only. It does not mean migrating the live plugin identity.
 
 Rules:
 
@@ -240,8 +332,8 @@ CSS prefix:    skvn-article-
 Umbrella plugin candidate prefixes:
 
 ```text
-PHP prefix:    gutenberg_turbo_
-Option prefix: gutenberg_turbo_
+PHP prefix:    gutenberg_supercharger_
+Option prefix: gutenberg_supercharger_
 CSS prefix:    gt-
 ```
 
@@ -272,7 +364,7 @@ Migration may preserve old option keys temporarily and map them into umbrella mo
 
 ### Phase 3 - Consolidation Candidate
 
-- Decide whether to keep standalone or merge into `Gutenberg Turbo`.
+- Decide whether to keep standalone or merge into `Gutenberg Supercharger`.
 - If merged, move code into `modules/article-templates/`.
 - Keep backward-compatible option migration.
 - Keep the standalone plugin installable until migration is verified.
@@ -282,10 +374,12 @@ Migration may preserve old option keys temporarily and map them into umbrella mo
 ## Acceptance For Planning
 
 - [x] Split-first, merge-later strategy is documented.
-- [x] Future umbrella plugin names are documented.
+- [x] Future umbrella plugin and product/marketing names are documented.
+- [x] Tagline and community tagline are documented.
+- [x] V4 / 4.0.0 is documented as candidate timing, not current scope.
 - [x] Article template module candidate is documented.
 - [x] Template customization model is documented.
 - [x] Source-of-truth boundaries are documented.
 - [x] Migration direction is documented.
+- [x] Current 0.9.0 footer settings guardrail is documented: module-shaped implementation inside `skvn-marine-blocks`, no umbrella plugin rename.
 - [x] Current milestone remains unchanged.
-

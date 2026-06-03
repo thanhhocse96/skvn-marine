@@ -8,6 +8,14 @@ Server does not need Node/npm for this artifact.
 
 ## Build Command
 
+Before building a milestone release artifact, sync release metadata if the human approved a target version:
+
+```bash
+node tools/bump-project-version.mjs 0.9.0
+```
+
+See `docs/workflows/versioning-release-workflow.md`.
+
 Run from Windows using WSL Debian:
 
 ```bash

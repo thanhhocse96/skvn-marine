@@ -1,5 +1,25 @@
-<!-- wp:html -->
+<?php
+if ( ! headers_sent() ) {
+	header( 'HTTP/1.1 503 Service Unavailable' );
+	header( 'Content-Type: text/html; charset=utf-8' );
+	header( 'Retry-After: 3600' );
+}
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Site under maintenance - Minh Hai Fishery</title>
 <style>
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  background: #001a33;
+}
+
 body.page-id-33 .site-footer,
 body.page-id-33 .entry-title {
   display: none;
@@ -13,10 +33,6 @@ body.page-id-33 .entry-content {
 
 body.page-id-33 .site-main {
   margin: 0;
-}
-
-body.page-id-33 {
-  background: #001a33;
 }
 
 .mhf-maintenance,
@@ -35,15 +51,13 @@ body.page-id-33 {
   position: relative;
   width: 100vw;
   /*
-   * WordPress page mode:
-   * - Logged-out view has no admin bar, but this page keeps the normal WP/GeneratePress shell.
-   * - The old 88px offset matches the hidden header/footer canvas used by the pasted page artifact.
-   * - Logged-in/admin-bar state is handled separately below because the admin bar is 32px desktop,
-   *   not 120px. Using 120px makes the section too short and exposes white space below.
+   * Standalone maintenance.php mode:
+   * WordPress includes this file directly during updates, outside the theme/page shell.
+   * Do not subtract GeneratePress header, footer, or admin-bar heights here; use the full viewport.
    */
-  min-height: calc(100svh - 88px);
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  min-height: 100svh;
+  margin-left: 0;
+  margin-right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +68,11 @@ body.page-id-33 {
 }
 
 body.admin-bar .mhf-maintenance {
-  min-height: calc(100svh - 32px);
+  /*
+   * Defensive only. In real update-maintenance mode the admin bar is not rendered.
+   * Keep full height so this standalone file cannot inherit the page-artifact offsets.
+   */
+  min-height: 100svh;
 }
 
 .mhf-maintenance__bg {
@@ -439,13 +457,8 @@ body.admin-bar .mhf-maintenance {
     min-height: 100svh;
   }
 
-  /*
-   * WordPress admin bar is taller on narrow screens.
-   * Keep this tied to the actual admin-bar height so the maintenance section fills the visible page
-   * without leaving a white strip after the custom footer.
-   */
   body.admin-bar .mhf-maintenance {
-    min-height: calc(100svh - 46px);
+    min-height: 100svh;
   }
 
   .mhf-maintenance__content {
@@ -505,6 +518,8 @@ body.admin-bar .mhf-maintenance {
   }
 }
 </style>
+</head>
+<body>
 
 <section class="mhf-maintenance" aria-label="Site under maintenance">
   <img src="https://minhhaifishery.com/wp-content/uploads/2026/05/Minh-Hai-Fishery-Fish-background.webp" alt="Ocean background with fish and soft waves" class="mhf-maintenance__bg" loading="eager" />
@@ -553,4 +568,5 @@ body.admin-bar .mhf-maintenance {
 
   <footer class="mhf-maintenance__footnote">© 2026 - Under maintenance</footer>
 </section>
-<!-- /wp:html -->
+</body>
+</html>
