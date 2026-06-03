@@ -12,6 +12,22 @@
     "heading": {
       "type": "string",
       "default": "Accordion heading"
+    },
+    "tone": {
+      "type": "string",
+      "default": "default"
+    },
+    "spacing": {
+      "type": "string",
+      "default": "md"
+    },
+    "width": {
+      "type": "string",
+      "default": "content"
+    },
+    "ariaLabel": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {

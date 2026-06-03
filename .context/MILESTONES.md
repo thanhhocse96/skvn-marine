@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 0.7.1 — Quote Flow Runtime Verification & Handoff**
+Current: **V1 / 0.8.0 — SKVN Editor Controls**
 Status: **IN_PROGRESS**
-Started: **2026-06-02**
+Started: **2026-06-03**
 
 AGENTS.md current milestone phải match file này.
 
@@ -49,34 +49,10 @@ Khi chuyển milestone:
 
 ## V1 Checkpoints
 
-### 0.7.1 — Quote Flow Runtime Verification & Handoff
-
-Status: **IN_PROGRESS**
-Started: **2026-06-02**
-
-Purpose:
-
-- Close the remaining 0.7.0 verification gap without pretending this is a new feature milestone.
-- Confirm that the manually created onsite/admin setup matches the source/docs contract.
-- Apply only small quote-flow fixes if onsite evidence shows a mismatch.
-- Do not add new quote-flow features before onsite/runtime evidence or explicit approval.
-
-Acceptance:
-
-- [x] Onsite/admin handoff checklist exists in `docs/testing/onsite-quote-flow-0.7.1.md`
-- [ ] Human confirms the onsite CF7 form exists
-- [ ] Human confirms `/request-a-quote/` contains the CF7 shortcode/form
-- [ ] Human confirms `/quote-thank-you/` exists
-- [ ] CF7 form markup matches `docs/artifacts/cf7-quote-form-0.7.0.md`
-- [ ] CFDB7 stores at least one test submission
-- [ ] Hidden/context fields appear in stored submission or mismatch is documented for 0.10.0
-- [ ] Runtime smoke test result is recorded
-- [ ] No n8n webhook is exposed
-- [ ] Human approves closing 0.7.x quote-form setup
-
 ### 0.8.0 — SKVN Editor Controls
 
-Status: **PENDING**
+Status: **IN_PROGRESS**
+Started: **2026-06-03**
 
 Purpose:
 
@@ -88,12 +64,12 @@ Acceptance:
 
 - [x] Editor controls contract is documented before code in `docs/decisions/skvn-editor-controls-0.8.0.md`
 - [x] Onsite editor-controls test checklist exists in `docs/testing/onsite-editor-controls-0.8.0.md`
-- [ ] Theme owns tone, spacing, width, radius, shadow, and visual classes
-- [ ] Plugin owns block sidebar UI, block attributes, saved markup, and interactive block behavior
-- [ ] Controls are grouped into Content, Style, Layout, and Advanced sections
-- [ ] Margin and padding controls use presets/tokens first, with responsive overrides only where needed
-- [ ] No freeform raw class input is required for marketing editors
-- [ ] No raw hex/rgb/hsl values or arbitrary inline spacing values are required in Gutenberg content
+- [x] Theme owns tone, spacing, width, radius, shadow, and visual classes for the first `SKVN Accordion` control pass
+- [x] Plugin owns block sidebar UI, block attributes, saved markup, and interactive block behavior for the first `SKVN Accordion` control pass
+- [x] Controls are grouped into Content, Style, Layout, and Advanced sections for `SKVN Accordion`
+- [x] Margin and padding controls use presets/tokens first, with responsive overrides only where needed
+- [x] No freeform raw class input is required for marketing editors in `SKVN Accordion`
+- [x] No raw hex/rgb/hsl values or arbitrary inline spacing values are required in `SKVN Accordion`
 - [ ] Slider editor UX tension is resolved before implementing slider-specific controls
 - [ ] Editor and frontend output stay visually aligned
 - [ ] GeneratePress parent remains untouched
@@ -129,8 +105,14 @@ Status: **PENDING**
 
 Acceptance:
 
+- [ ] Human runs `docs/testing/onsite-quote-flow-0.7.1.md` on the onsite site and reports evidence
 - [ ] Human runs `docs/testing/onsite-quote-flow-0.7.0.md` on the onsite site
 - [ ] Agent reminds human to open the related docs/files listed in the 0.7.0 deferred test debt section
+- [ ] Onsite CF7 form existence confirmed by human evidence
+- [ ] Onsite request quote page contains the CF7 shortcode/form
+- [ ] Onsite thank-you page exists
+- [ ] CF7 form markup matches `docs/artifacts/cf7-quote-form-0.7.0.md` or mismatch is documented
+- [ ] CFDB7 stores at least one test submission
 - [ ] Product CTA/query params confirmed from onsite product/product-card flow
 - [ ] CF7 hidden/context fields confirmed in submitted data
 - [ ] CFDB7 row confirms visible and hidden fields are stored

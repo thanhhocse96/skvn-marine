@@ -72,13 +72,17 @@ Slug: skvn-editor-controls-test-080
 Visibility: Draft or Private unless human wants it public
 ```
 
-Insert one supported 0.8.0 target block/surface.
+Insert the first supported 0.8.0 target block/surface:
+
+```text
+SKVN Accordion
+```
 
 Record:
 
 ```text
 [ ] Test page URL:
-[ ] Tested block/surface name:
+[ ] Tested block/surface name: SKVN Accordion
 [ ] Initial inserted state screenshot:
 ```
 

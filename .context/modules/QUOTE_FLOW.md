@@ -8,11 +8,11 @@ Quote UI/page surface was completed in V1 / 0.6.0.
 
 0.7.0 prepared the basic CF7/CFDB7 quote form source/docs contract.
 
-Current 0.7.1 scope is runtime/admin setup verification and immediate handoff fixes only.
+0.7.1 prepared runtime/admin setup verification and immediate handoff testing.
 
 0.7.1 onsite/admin handoff checklist lives in `docs/testing/onsite-quote-flow-0.7.1.md`.
 
-Onsite hidden/context field and full UX smoke test debt is deferred to V1 / 0.10.0.
+Remaining onsite/admin evidence, hidden/context field checks, and full UX smoke test debt are deferred to V1 / 0.10.0.
 
 n8n automation is deferred until after version 1.0.0.
 

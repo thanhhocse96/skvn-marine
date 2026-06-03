@@ -166,13 +166,13 @@ Recommended order:
 Preferred first target:
 
 ```text
-Translated layout / SKVN section surfaces that already map to theme-owned `skvn-*` classes.
+SKVN Accordion, followed by translated layout / SKVN section surfaces that already map to theme-owned `skvn-*` classes.
 ```
 
 Reason:
 
 ```text
-These surfaces are visual and token-driven, so they match the 0.8.0 goal without touching slider runtime behavior.
+Accordion is an existing SKVN-owned block with low runtime risk, and translated layout surfaces are visual and token-driven. This keeps 0.8.0 moving without touching slider runtime behavior.
 ```
 
 ## Slider Boundary

@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 0.7.1 — Quote Flow Runtime Verification & Handoff**
+Current milestone: **V1 / 0.8.0 — SKVN Editor Controls**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
@@ -333,7 +333,9 @@ if (!prefersReduced) { /* run animation */ }
 
 - URL pattern: `/request-a-quote/?product_id=123`
 - Quote UI/page surface completed in V1 / 0.6.0.
-- Current 0.7.0 scope: basic same-site CF7/CFDB7 quote form.
+- 0.7.0 scope: basic same-site CF7/CFDB7 quote form source/docs contract.
+- 0.7.1 prepared runtime/admin handoff testing.
+- Remaining onsite quote-flow checks are deferred to V1 / 0.10.0.
 - n8n automation is deferred until after version 1.0.0.
 - Do not custom-code quote form handling; use CF7 and CFDB7.
 - CF7 markup must use class `skvn-form`, `skvn-quote-form`, `skvn-button`, `skvn-button--primary`.

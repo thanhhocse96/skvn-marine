@@ -3,7 +3,7 @@
 Status:
 
 ```text
-READY_FOR_HUMAN_ONSITE_TEST
+DEFERRED_TO_0.10.0
 ```
 
 Purpose:
@@ -12,6 +12,13 @@ Purpose:
 Verify the real onsite/admin setup for the basic CF7/CFDB7 Request a Quote flow.
 This is a handoff/runtime verification checklist, not a new feature build.
 Do not run this against local WordPress unless the human explicitly asks.
+```
+
+Reason:
+
+```text
+Human will run the onsite check later and report evidence back.
+Agent must remind human to run this checklist when V1 / 0.10.0 becomes current.
 ```
 
 ## Scope

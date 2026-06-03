@@ -233,3 +233,43 @@ Deferred test debt:
   - `.context/modules/QUOTE_FLOW.md` — active quote-flow module protocol
   - `docs/standards/security-guidelines.md` — form/security constraints
   - `wp-content/themes/skvn-marine/style.css` — source styles for `skvn-form` / `skvn-quote-form`
+
+---
+
+## V1 / 0.7.1 — Quote Flow Runtime Verification & Handoff
+
+Status: **CARRIED_TO_0.10.0**
+Started: **2026-06-02**
+Carried forward: **2026-06-03**
+Approved by human to continue: **2026-06-03**
+
+Purpose:
+
+- Close the remaining 0.7.0 verification gap without pretending this is a new feature milestone.
+- Confirm that the manually created onsite/admin setup matches the source/docs contract.
+- Apply only small quote-flow fixes if onsite evidence shows a mismatch.
+- Do not add new quote-flow features before onsite/runtime evidence or explicit approval.
+
+Acceptance:
+
+- [x] Onsite/admin handoff checklist exists in `docs/testing/onsite-quote-flow-0.7.1.md`
+- [ ] Human confirms the onsite CF7 form exists
+- [ ] Human confirms `/request-a-quote/` contains the CF7 shortcode/form
+- [ ] Human confirms `/quote-thank-you/` exists
+- [ ] CF7 form markup matches `docs/artifacts/cf7-quote-form-0.7.0.md`
+- [ ] CFDB7 stores at least one test submission
+- [ ] Hidden/context fields appear in stored submission or mismatch is documented for 0.10.0
+- [ ] Runtime smoke test result is recorded
+- [ ] No n8n webhook is exposed
+- [ ] Human approves closing 0.7.x quote-form setup
+
+Carried to 0.10.0:
+
+- Onsite CF7 form existence evidence.
+- Request quote page CF7 shortcode/form evidence.
+- Thank-you page existence evidence.
+- CF7 markup comparison.
+- CFDB7 stored submission evidence.
+- Hidden/context field verification.
+- Runtime smoke test result.
+- No exposed n8n webhook evidence.

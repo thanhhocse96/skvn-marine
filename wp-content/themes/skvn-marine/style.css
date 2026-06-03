@@ -115,6 +115,70 @@ body {
 	box-shadow: var(--skvn-shadow-card);
 }
 
+.skvn-accordion {
+	background: var(--skvn-color-white);
+	border: 1px solid rgba(51, 65, 85, 0.14);
+	border-radius: var(--skvn-radius-card);
+	box-shadow: 0 8px 22px rgba(8, 47, 73, 0.06);
+	margin-inline: auto;
+	max-width: var(--skvn-content-width);
+	padding: 1.25rem;
+}
+
+.skvn-accordion--tone-fresh {
+	background: var(--skvn-color-sky-50);
+	border-color: rgba(3, 105, 161, 0.16);
+}
+
+.skvn-accordion--tone-trust {
+	background: var(--skvn-accent-support);
+	border-color: rgba(13, 148, 136, 0.18);
+}
+
+.skvn-accordion--tone-navy {
+	background: var(--skvn-color-blue-900);
+	border-color: rgba(255, 255, 255, 0.16);
+	color: rgba(255, 255, 255, 0.84);
+}
+
+.skvn-accordion--tone-navy .skvn-accordion__heading {
+	color: var(--skvn-color-white);
+}
+
+.skvn-accordion--spacing-sm {
+	padding: 0.85rem;
+}
+
+.skvn-accordion--spacing-lg {
+	padding: 1.75rem;
+}
+
+.skvn-accordion--width-wide {
+	max-width: var(--skvn-wide-width);
+}
+
+.skvn-accordion--width-full {
+	max-width: none;
+	width: 100%;
+}
+
+.skvn-accordion__heading {
+	color: var(--skvn-color-blue-950);
+	font-size: 1.25rem;
+	font-weight: 800;
+	letter-spacing: 0;
+	line-height: 1.2;
+	margin-block: 0 0.85rem;
+}
+
+.skvn-accordion__panel > :first-child {
+	margin-top: 0;
+}
+
+.skvn-accordion__panel > :last-child {
+	margin-bottom: 0;
+}
+
 .skvn-form {
 	display: grid;
 	gap: 1rem;
