@@ -86,6 +86,37 @@ Record:
 [ ] Initial inserted state screenshot:
 ```
 
+## Editor UI Note
+
+Gutenberg may show a native panel named `Styles` with options such as:
+
+```text
+Default
+SKVN Section
+SKVN Card
+```
+
+This native `Styles` panel is not the main 0.8.0 SKVN Accordion control surface.
+
+For this test, select the `SKVN Accordion` block and test the accordion-specific sidebar panels:
+
+```text
+Content
+Style
+Layout
+Advanced
+```
+
+Expected usage:
+
+```text
+Use `Content` to edit Heading.
+Use `Style` to choose accordion Tone: Default, Fresh, Trust, Navy.
+Use `Layout` to choose Spacing and Width presets.
+Use `Advanced` only for the optional ARIA label.
+Do not use raw class input, raw color values, arbitrary spacing, custom CSS, or custom JavaScript.
+```
+
 ## Test Case 1 — Control Grouping
 
 Steps:

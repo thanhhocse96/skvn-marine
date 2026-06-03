@@ -112,7 +112,9 @@ body {
 	background: var(--skvn-color-white);
 	border: 1px solid rgba(51, 65, 85, 0.14);
 	border-radius: var(--skvn-radius-card);
+	box-sizing: border-box;
 	box-shadow: var(--skvn-shadow-card);
+	padding: 1.25rem;
 }
 
 .skvn-accordion {
@@ -950,6 +952,67 @@ body.admin-bar .site-header {
 	gap: 1rem;
 }
 
+.skvn-translated-hero__trust {
+	align-items: center;
+	display: flex !important;
+	flex-wrap: nowrap;
+	gap: 1rem;
+	margin-block-start: 1.5rem;
+}
+
+.skvn-avatar-stack {
+	align-items: center;
+	display: flex !important;
+	flex: 0 0 auto;
+	flex-direction: row;
+	gap: 0;
+	margin: 0;
+}
+
+.skvn-avatar-stack .wp-block-image,
+.skvn-avatar {
+	border-radius: 999px;
+	flex: 0 0 auto;
+	height: 2.375rem !important;
+	margin: 0;
+	overflow: hidden;
+	width: 2.375rem !important;
+}
+
+.skvn-avatar-stack .wp-block-image + .wp-block-image,
+.skvn-avatar + .skvn-avatar {
+	margin-left: -0.65rem;
+}
+
+.skvn-avatar img {
+	aspect-ratio: 1;
+	border: 2px solid var(--skvn-color-white);
+	border-radius: 999px;
+	display: block;
+	height: 2.375rem !important;
+	object-fit: cover;
+	width: 2.375rem !important;
+}
+
+.skvn-trust-text {
+	color: rgba(15, 23, 42, 0.82);
+	font-size: 0.95rem;
+	line-height: 1.45;
+	margin: 0;
+}
+
+.skvn-trust-text strong {
+	color: var(--skvn-color-blue-950);
+}
+
+.skvn-translated-hero .skvn-trust-text {
+	color: rgba(255, 255, 255, 0.88);
+}
+
+.skvn-translated-hero .skvn-trust-text strong {
+	color: var(--skvn-color-white);
+}
+
 .skvn-translated-hero__image img,
 .skvn-placeholder-media img {
 	aspect-ratio: 4 / 3;
@@ -1032,6 +1095,19 @@ body.admin-bar .site-header {
 	margin-inline: auto;
 	max-width: var(--skvn-wide-width);
 	padding-inline: 1rem;
+}
+
+.skvn-card-grid.skvn-card-grid--3 {
+	align-items: stretch;
+	display: grid !important;
+	gap: 1.5rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.skvn-card-grid.skvn-card-grid--3 > .wp-block-column {
+	flex: unset !important;
+	min-width: 0;
+	width: unset !important;
 }
 
 .skvn-product-card .wp-block-image {
@@ -1185,11 +1261,11 @@ body.admin-bar .site-header {
 	}
 
 	.skvn-kpi-strip__grid {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 	}
 
 	.skvn-product-card-grid {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 	}
 
 	.skvn-translated-hero__heading {
@@ -1198,6 +1274,18 @@ body.admin-bar .site-header {
 
 	.skvn-section__heading {
 		font-size: 2.35rem;
+	}
+}
+
+@media (max-width: 1024px) {
+	.skvn-card-grid.skvn-card-grid--3 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 640px) {
+	.skvn-card-grid.skvn-card-grid--3 {
+		grid-template-columns: 1fr;
 	}
 }
 

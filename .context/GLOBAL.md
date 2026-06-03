@@ -83,6 +83,7 @@ Current active docs:
 - `docs/standards/ai-rules.md`
 - `docs/standards/security-guidelines.md`
 - `docs/testing/frontpage-testing.md`
+- `docs/testing/onsite-test-debt-checklist.md`
 - `docs/testing/onsite-editor-controls-0.8.0.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
