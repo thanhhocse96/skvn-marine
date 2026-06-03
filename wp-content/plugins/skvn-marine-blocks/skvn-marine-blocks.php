@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once __DIR__ . '/modules/footer-settings/footer-settings.php';
+
 add_action( 'init', 'skvn_marine_blocks_register_blocks' );
 
 /**

@@ -84,12 +84,14 @@ Current active docs:
 - `docs/decisions/design-direction.md`
 - `docs/decisions/product-data-model.md`
 - `docs/decisions/quote-flow.md`
+- `docs/decisions/footer-page-settings-0.9.0.md`
 - `docs/decisions/skvn-editor-controls-0.8.0.md`
 - `docs/decisions/slider-block.md`
 - `docs/standards/ai-rules.md`
 - `docs/standards/security-guidelines.md`
 - `docs/testing/frontpage-testing.md`
 - `docs/testing/onsite-test-debt-checklist.md`
+- `docs/testing/footer-page-settings-0.9.0.md`
 - `docs/testing/onsite-editor-controls-0.8.0.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`

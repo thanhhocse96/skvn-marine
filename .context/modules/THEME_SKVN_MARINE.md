@@ -165,6 +165,18 @@ Theme-owned brand sources:
 
 Do not move the primary brand system into the plugin. Plugin assets may follow the brand, but do not define it.
 
+## [manual] Footer Page Rendering
+
+0.9.0 source:
+
+- Theme render module: `wp-content/themes/skvn-marine/inc/footer.php`.
+- Theme bootstrap: `wp-content/themes/skvn-marine/functions.php`.
+- Option key read by the theme: `skvn_footer_page_id`.
+- The theme replaces GeneratePress footer callbacks only when the option points to a published WordPress page.
+- Fallback remains the default GeneratePress footer when no valid footer page is selected.
+- Do not edit GeneratePress parent theme.
+- Do not add a custom CPT or display-rules system for footer rendering in 0.9.0.
+
 HTML-2-Gutenberg brand-mapping contract for 0.5.1:
 
 - Translator output must report `brand_source_scan`, `brand_mapping`, `brand_mismatch`, and `token_changes_needed`.

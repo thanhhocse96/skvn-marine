@@ -67,18 +67,19 @@ Purpose:
 
 Acceptance:
 
-- [ ] Plugin settings page stores `skvn_footer_page_id`
-- [ ] Setting value is restricted to a valid WordPress page ID
-- [ ] Theme `inc/footer.php` renders the selected footer page through `generate_footer`
-- [ ] Default GeneratePress footer remains the fallback when no page is selected
-- [ ] No custom CPT is introduced
-- [ ] No display rules system is introduced
-- [ ] Footer settings are module-shaped inside `skvn-marine-blocks`, with current slug/text domain/option key preserved
-- [ ] No `gutenberg-supercharger`/`gutenberg-turbo` plugin, plugin slug rename, namespace rename, or option-key rename is introduced
-- [ ] GeneratePress parent remains untouched
-- [ ] Footer output is escaped/sanitized through WordPress-safe rendering paths
-- [ ] Runtime smoke test confirms selected footer page renders
-- [ ] Runtime smoke test confirms fallback footer works
+- [x] Plugin settings page stores `skvn_footer_page_id`
+- [x] Setting value is restricted to a valid WordPress page ID
+- [x] Theme `inc/footer.php` renders the selected footer page through `generate_footer`
+- [x] Default GeneratePress footer remains the fallback when no page is selected
+- [x] No custom CPT is introduced
+- [x] No display rules system is introduced
+- [x] Footer settings are module-shaped inside `skvn-marine-blocks`, with current slug/text domain/option key preserved
+- [x] No `gutenberg-supercharger`/`gutenberg-turbo` plugin, plugin slug rename, namespace rename, or option-key rename is introduced
+- [x] GeneratePress parent remains untouched
+- [x] Footer output is escaped/sanitized through WordPress-safe rendering paths
+- [ ] Online smoke test confirms selected footer page renders
+- [ ] Online smoke test confirms fallback footer works
+- [x] Online test checklist/report exists in `docs/testing/footer-page-settings-0.9.0.md` and `docs/decisions/footer-page-settings-0.9.0.md`
 - [ ] Human approves milestone completion
 
 ### 0.10.0 — Onsite Quote Flow Test Debt Resolution

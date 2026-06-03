@@ -164,6 +164,14 @@ Current 0.9.0 rules:
 - Do not rename namespaces, option keys, plugin headers, or activation path.
 - Do not add a custom CPT or display-rules system for footer settings.
 
+Implemented 0.9.0 source:
+
+- Module path: `wp-content/plugins/skvn-marine-blocks/modules/footer-settings/footer-settings.php`.
+- Bootstrap path: `wp-content/plugins/skvn-marine-blocks/skvn-marine-blocks.php`.
+- Admin surface: `Settings → SKVN Footer`.
+- The selector only stores a published WordPress page ID or `0`.
+- Human chose online/onsite smoke testing instead of local runtime testing for 0.9.0.
+
 Future direction:
 
 - `Gutenberg Supercharger` is a possible V4 / 4.0.0 umbrella-plugin direction and standard/core product name.
