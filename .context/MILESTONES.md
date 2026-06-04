@@ -100,6 +100,28 @@ Acceptance:
 - [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
 - [ ] Human approves V1 launch readiness
 
+### 0.11.0 — SKVN Marine Admin Menu
+
+Status: **PENDING**
+
+Purpose:
+
+- Move the existing SKVN Footer admin surface out of `Settings`.
+- Create a top-level `SKVN Marine` admin menu owned by `skvn-marine-blocks`.
+- Put the footer settings screen under the `SKVN Marine` admin menu as one tab/page.
+- Leave admin menu ordering/repositioning to the external ASE plugin instead of hardcoding menu position rules in SKVN code.
+
+Acceptance draft:
+
+- [ ] `Settings → SKVN Footer` is no longer the primary admin location.
+- [ ] Top-level `SKVN Marine` admin menu exists.
+- [ ] Footer settings are available under the `SKVN Marine` admin menu.
+- [ ] Existing option key `skvn_footer_page_id` remains unchanged.
+- [ ] Existing footer rendering behavior remains unchanged.
+- [ ] Capability checks and nonce protection remain in place.
+- [ ] SKVN code does not hardcode advanced admin menu ordering; ASE handles menu repositioning onsite.
+- [ ] Human approves milestone completion.
+
 ## Future V1.x Checkpoints
 
 ### 1.1.0 — Layout Blocks

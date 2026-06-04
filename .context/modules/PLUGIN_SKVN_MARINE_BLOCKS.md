@@ -133,6 +133,20 @@ Do not implement the HTML-2-Gutenberg admin tool in the theme.
 
 Do not make this plugin own the primary SKVN visual system.
 
+## [manual] Portable Plugin Animation Boundary
+
+Decision doc: `docs/decisions/block-animation-strategy.md`.
+
+Future scope may rename or migrate this plugin toward `Gutenberg Supercharger`, so plugin-owned block behavior must remain portable.
+
+Mandatory rule:
+
+- If any animation behavior is exposed by a `skvn-marine-blocks` custom block, the plugin must ship the required behavior without depending on the `skvn-marine` theme.
+- Required behavior includes attributes, editor controls, frontend JS, CSS classes, keyframes, transitions, reduced-motion fallback, device targeting, and no-JS visible fallback.
+- Theme CSS/JS may skin or override plugin motion, but must not be required for plugin block animation to work.
+- Theme animation remains acceptable for core blocks, page sections, and theme decoration that are not plugin-owned block behavior.
+- Tailwind/WindPress is prototype-only and must not become the production animation contract.
+
 ## [manual] Footer Settings Module And Future Gutenberg Supercharger Boundary
 
 0.9.0 footer page settings must be implemented as a migration-ready module inside the current `skvn-marine-blocks` plugin.
@@ -175,6 +189,14 @@ Implemented 0.9.0 source:
 - Deploy artifacts and plugin zips must include any plugin folder loaded by `require`, `require_once`, `include`, or `include_once`.
 - When a future milestone adds a runtime folder such as `modules/`, `includes/`, or runtime `assets/`, update `tools/build-deploy-artifact.mjs` and `docs/workflows/deploy-artifact-workflow.md` in the same task.
 - After packaging, verify the zip contains the required runtime module paths before onsite upload.
+
+Planned 0.11.0 admin menu refinement:
+
+- Move SKVN Footer out of `Settings`.
+- Create a top-level `SKVN Marine` admin menu in the current `skvn-marine-blocks` plugin.
+- Put footer settings under the `SKVN Marine` admin menu as a tab/page.
+- Keep option key `skvn_footer_page_id` and existing render behavior unchanged.
+- Do not hardcode advanced menu ordering in SKVN code; onsite menu repositioning belongs to the external ASE plugin.
 
 Future direction:
 

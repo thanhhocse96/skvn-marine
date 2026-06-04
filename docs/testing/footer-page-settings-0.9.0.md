@@ -28,10 +28,10 @@ When V1 / 0.10.0 becomes current, run this checklist before closing onsite test 
 ## Preconditions
 
 ```text
-[ ] `skvn-marine` child theme is active.
-[ ] `skvn-marine-blocks` plugin is active.
-[ ] GeneratePress parent theme is installed and untouched.
-[ ] A published WordPress page exists for testing the reusable footer.
+[x] `skvn-marine` child theme is active.
+[x] `skvn-marine-blocks` plugin is active.
+[x] GeneratePress parent theme is installed and untouched.
+[x] A published WordPress page exists for testing the reusable footer.
 ```
 
 ## Test Setup

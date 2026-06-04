@@ -86,6 +86,7 @@ Current active docs:
 - `docs/decisions/product-data-model.md`
 - `docs/decisions/quote-flow.md`
 - `docs/decisions/footer-page-settings-0.9.0.md`
+- `docs/decisions/block-animation-strategy.md`
 - `docs/decisions/skvn-editor-controls-0.8.0.md`
 - `docs/decisions/slider-block.md`
 - `docs/standards/ai-rules.md`
