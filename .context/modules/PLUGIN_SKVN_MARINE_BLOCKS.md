@@ -100,9 +100,10 @@ V1.x / 1.1.0 planned layout blocks:
 
 - Planning file: `.context/planning/003_VERSION_1_1_0_LAYOUT_BLOCKS_PLANNING.md`.
 - Source proposal: `.context/proposals/proposal-layout-blocks.md`.
-- Candidate blocks: `skvn-marine/card-grid`, `skvn-marine/card`, and later `skvn-marine/quote`.
+- Candidate blocks: `skvn-marine/card-grid`, `skvn-marine/card`, and later `skvn-marine/quote` / `skvn-marine/hashtag-list`.
 - Purpose: repeated artifact sections where core blocks plus raw class names are too fragile for editors.
-- `card-grid` and `card` are the first implementation candidates; `quote` is evaluation-only until card-grid/card are validated.
+- `card-grid` and `card` are the first implementation candidates; `quote` and `hashtag-list` are evaluation-only until card-grid/card are validated, unless repeated real artifacts prove earlier editor pain.
+- `hashtag-list` must include style controls if implemented: preset-based style, tone, prefix, gap, and wrap. Do not expose raw classes, raw CSS, arbitrary colors, or require manual `#` typing from editors.
 - Theme owns visual CSS, decorative presentation, editor/frontend parity, and `skvn-*` classes.
 - Plugin owns block registration, attributes, editor UI, saved markup, and any real interaction runtime.
 - Not current 0.8.0 scope unless human explicitly changes milestone priority.
@@ -215,6 +216,15 @@ Planned 0.12.0 header actions and B2B search:
 - Phase 1 search should use native WordPress/WooCommerce queries with taxonomy/title-first matching.
 - Do not add Elastic/OpenSearch in phase 1.
 - Do not add custom search query cache, custom SQL cache table, or transient registry in phase 1; rely on native queries and available object cache.
+
+Planned V1.x SKVN Element CPT foundation:
+
+- Planning file: `.context/planning/014_VERSION_1_X_SKVN_ELEMENT_CPT_PLANNING.md`.
+- Register plugin-owned CPT `skvn_element` for reusable site elements such as `site_header` and `site_footer`.
+- The CPT must be admin/editable but not public: no public single URL, no archive, excluded from search, hidden from nav menus, and excluded from sitemap exposure.
+- This is the SEO-safe successor to using normal WordPress Pages for reusable header/footer content.
+- Theme owns rendering selected elements into header/footer surfaces and any GeneratePress adapter during the 2.0.0 migration window.
+- Keep existing `skvn_footer_page_id` bridge working until an explicit migration step is approved.
 
 Future direction:
 

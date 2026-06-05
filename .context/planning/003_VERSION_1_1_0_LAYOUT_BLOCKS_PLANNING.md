@@ -73,6 +73,9 @@ Attributes:
 - `mobileColumns`: mobile columns, range 1-2, default 1.
 - `gap`: `sm`, `md`, `lg`, default `md`.
 - `cardStyle`: `default`, `elevated`, `bordered`, `featured`, default `default`.
+- `inset`: `none`, `sm`, `md`, `lg`, default `md`; controls the horizontal space between outer cards and the grid edge.
+- `contentAlign`: `left`, `center`, `right`, `justify`, default `left`; controls heading/copy/CTA alignment through preset classes.
+- `equalHeights`: boolean, default `false`; when enabled, cards stretch to the same row height.
 
 InnerBlocks:
 
@@ -90,6 +93,12 @@ Frontend:
 - CSS Grid only.
 - No JavaScript required.
 
+Benchmark-derived class contract:
+
+- Current theme CSS supports product-card benchmark classes documented in `docs/decisions/product-card-grid-layout-contract.md`.
+- Future `card-grid` / `card` block controls should map preset attributes to stable `skvn-*` classes instead of requiring raw class input.
+- Dynamic WooCommerce product grid/list block controls remain deferred unless human explicitly changes product-block scope.
+
 ### `skvn-marine/card`
 
 Goal:
@@ -101,6 +110,7 @@ Attributes:
 - `variant`: `default`, `featured`, `process-step`, `pricing`, default `default`.
 - `stepNumber`: string, used only for `process-step`.
 - `featured`: boolean, used for highlighted pricing or emphasis state.
+- `imageTreatment`: `inset`, `full-bleed`, default `full-bleed` for product/card benchmark parity.
 
 InnerBlocks:
 
@@ -142,6 +152,39 @@ Frontend:
 
 - Decorative icon should be theme CSS or a stable non-editable element controlled by the block attribute.
 
+### `skvn-marine/hashtag-list`
+
+Goal:
+
+- Provide a governed horizontal hashtag/badge list for compact B2B facts such as MOQ, cold-chain requirements, private label availability, certification cues, or buyer-facing proof points.
+- Replace fragile core List + raw class editing when this pattern repeats across quote, product, hero, and landing surfaces.
+
+Attributes:
+
+- `items`: editable list items.
+- `stylePreset`: `pill`, `plain`, `compact`, `outlined`, default `pill`.
+- `tone`: `light-on-dark`, `dark-on-light`, `accent`, default `light-on-dark`.
+- `prefix`: `hash`, `none`, `check`, default `hash`.
+- `gap`: `sm`, `md`, `lg`, default `md`.
+- `wrap`: boolean, default true.
+
+Style controls:
+
+- Expose preset controls in the block sidebar.
+- Do not expose raw class input, raw CSS, or arbitrary colors.
+- Theme owns the actual CSS for each style/tone preset.
+- Saved markup should remain stable and simple, for example `ul.skvn-hashtag-list`.
+
+InnerBlocks / editing model:
+
+- Prefer a list-item editing model that lets editors add/remove/reorder items without editing HTML.
+- Do not require editors to manually add `#`; the prefix control owns it.
+
+Frontend:
+
+- CSS-only.
+- No frontend JavaScript required.
+
 ---
 
 ## Recommended Direction
@@ -154,12 +197,13 @@ Reason:
 - They reduce raw class reliance for editors.
 - They create a useful target for future HTML-2-Gutenberg recommendations without forcing admin publisher work.
 
-Defer `quote` until after `card-grid` and `card` are validated.
+Defer `quote` and `hashtag-list` until after `card-grid` and `card` are validated, unless repeated quote/product-page artifacts prove the hashtag list is becoming editor-fragile earlier.
 
 Reason:
 
 - Quote/testimonial content can often be represented with core blocks plus theme pattern CSS.
 - The custom block becomes justified only if author/avatar/decorative controls need repeated editor governance.
+- Hashtag list can currently be represented with core List + `skvn-hashtag-list`; the custom block becomes justified when style presets and add/remove/reorder controls matter.
 
 ---
 
@@ -197,6 +241,7 @@ Acceptance:
 - [ ] `skvn-marine/card` block exists in plugin.
 - [ ] Both blocks use `block.json` and TypeScript.
 - [ ] InnerBlocks keep heading, copy, buttons, and images editable.
+- [ ] Sidebar controls include preset-based grid inset, content alignment, image treatment, and equal-height options.
 - [ ] Editor preview matches frontend closely enough for layout decisions.
 - [ ] No JavaScript frontend runtime is added unless a real interaction requires it.
 - [ ] Theme CSS implements all layout-critical `skvn-*` classes used by saved markup.
@@ -211,11 +256,23 @@ Acceptance:
 - [ ] Decorative elements do not obscure editor content.
 - [ ] Avatar output is escaped and rendered through WordPress media-safe APIs if server-rendered later.
 
+### Phase 2.5 — Hashtag List Block Evaluation
+
+Acceptance:
+
+- [ ] At least two real pages use `skvn-hashtag-list` or equivalent compact fact chips.
+- [ ] A core List + theme class approach is documented as too fragile for editors or insufficient for style variation.
+- [ ] Style controls are preset-based: `stylePreset`, `tone`, `prefix`, `gap`, and `wrap`.
+- [ ] No raw class, raw CSS, arbitrary color, or manual `#` prefix is required from editors.
+- [ ] Saved markup remains stable and readable.
+- [ ] Theme CSS implements every style/tone preset before the block exposes it.
+
 ### Phase 3 — HTML-2-Gutenberg Integration
 
 Acceptance:
 
 - [ ] Translator can recommend `card-grid` and `card` when artifact structure matches.
+- [ ] Translator can recommend `hashtag-list` when artifact structure matches repeated short facts/badges.
 - [ ] Translation report records why a custom block is needed instead of core blocks.
 - [ ] Output still reports `missing_theme_classes` and `token_changes_needed`.
 - [ ] Admin publisher flow remains out of scope unless separately approved.

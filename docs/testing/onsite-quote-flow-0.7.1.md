@@ -3,7 +3,13 @@
 Status:
 
 ```text
-DEFERRED_TO_0.10.0
+PARTIAL_ONSITE_UI_PASS_DATA_FLOW_PENDING
+```
+
+Latest human feedback:
+
+```text
+2026-06-05: CF7/Request Quote interface has been tested onsite. Runtime data flow is still pending: submit one quote, verify CFDB7 row, verify visible and hidden/context fields, and confirm success/thank-you behavior.
 ```
 
 Purpose:
@@ -17,8 +23,8 @@ Do not run this against local WordPress unless the human explicitly asks.
 Reason:
 
 ```text
-Human will run the onsite check later and report evidence back.
-Agent must remind human to run this checklist when V1 / 0.10.0 becomes current.
+Human has completed the onsite CF interface check and still needs to run the runtime data-flow portion.
+Agent must keep this checklist open until submission and CFDB7 evidence are reported.
 ```
 
 ## Scope

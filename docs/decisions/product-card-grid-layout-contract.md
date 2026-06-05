@@ -1,0 +1,69 @@
+# Product Card Grid Layout Contract
+
+Status: working contract.
+Current use: theme CSS classes for benchmark/manual Gutenberg output.
+Future enhancement target: V1 / 1.1.0 layout block controls.
+
+## Current CSS Contract
+
+Use `skvn-product-card-grid` on the grid wrapper and `skvn-product-card` on each card.
+
+```html
+<div class="wp-block-group skvn-product-card-grid skvn-product-card-grid--inset-md skvn-product-card-grid--content-left">
+	<div class="wp-block-group skvn-product-card">...</div>
+	<div class="wp-block-group skvn-product-card">...</div>
+	<div class="wp-block-group skvn-product-card">...</div>
+</div>
+```
+
+Grid inset presets:
+
+```text
+skvn-product-card-grid--inset-none
+skvn-product-card-grid--inset-sm
+skvn-product-card-grid--inset-md
+skvn-product-card-grid--inset-lg
+```
+
+Content alignment presets:
+
+```text
+skvn-product-card-grid--content-left
+skvn-product-card-grid--content-center
+skvn-product-card-grid--content-right
+skvn-product-card-grid--content-justify
+```
+
+`content-justify` keeps headings and CTA left-aligned while paragraph copy uses justified text. This avoids awkward stretched heading/button layouts.
+
+Product card images use a full-bleed card media treatment by default:
+
+```text
+figure.wp-block-image spans through the card padding.
+img uses 4:3 aspect ratio, object-fit: cover, and full card width.
+```
+
+## Future 1.1.0 Block Controls
+
+When `skvn-marine/card-grid` and `skvn-marine/card` are implemented, expose equivalent preset controls instead of raw class input.
+
+Recommended attributes:
+
+```text
+inset: none | sm | md | lg
+contentAlign: left | center | right | justify
+imageTreatment: inset | full-bleed
+equalHeights: boolean
+```
+
+Control rules:
+
+```text
+- Controls live in the block sidebar.
+- Do not expose raw class input for normal editors.
+- Do not expose raw px/rem spacing values.
+- Saved markup maps preset attributes to stable `skvn-*` classes.
+- Frontend output stays CSS-only unless a real interaction is introduced.
+```
+
+Dynamic WooCommerce product grid/list controls remain deferred unless human explicitly changes the product-block milestone scope.

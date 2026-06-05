@@ -3,14 +3,20 @@
 Status:
 
 ```text
-DEFERRED_TO_0.10.0
+PARTIAL_ONSITE_UI_PASS_DATA_FLOW_PENDING
+```
+
+Latest human feedback:
+
+```text
+2026-06-05: CF7/Request Quote interface has been tested onsite. Data flow is still untested: frontend submission, CFDB7 storage, visible/hidden submitted fields, and thank-you/success behavior remain pending.
 ```
 
 Reason:
 
 ```text
-Human is working under time pressure and will test onsite later.
-Agent must remind human to run this checklist when V1 / 0.10.0 becomes current.
+Human has completed the CF interface check onsite, but the full submission/data-flow check has not been run yet.
+Agent must keep reminding human to test the remaining data flow before closing V1 / 0.10.0 onsite quote-flow debt.
 ```
 
 Scope:

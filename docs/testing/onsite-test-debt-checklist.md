@@ -140,6 +140,12 @@ Kết quả: P / F
 
 ## 0.7.x / 0.10.0 Quote Flow Runtime Test Debt
 
+Status note:
+
+```text
+2026-06-05: Human reported that the CF interface has been tested onsite. Remaining untested debt is data flow: filled submission, CFDB7 storage, visible/hidden field storage, and success/thank-you behavior.
+```
+
 28. Tính năng: CF7 plugin active
 Hành vi mong muốn: Contact Form 7 active trên onsite site.
 Kết quả: P / F
@@ -150,15 +156,15 @@ Kết quả: P / F
 
 30. Tính năng: CF7 Request a Quote form exists
 Hành vi mong muốn: WP Admin > Contact có form Request a Quote.
-Kết quả: P / F
+Kết quả: P
 
 31. Tính năng: CF7 form project classes
 Hành vi mong muốn: Form wrapper có `skvn-form` và `skvn-quote-form`; submit button có `skvn-button` và `skvn-button--primary`.
-Kết quả: P / F
+Kết quả: P
 
 32. Tính năng: CF7 visible required fields
 Hành vi mong muốn: Form có `full_name`, `company_name`, `email`, `country`, `product_interest`, `quantity`, `message`.
-Kết quả: P / F
+Kết quả: P
 
 33. Tính năng: CF7 optional visible fields
 Hành vi mong muốn: Form có hoặc ghi rõ mismatch cho `phone`, `destination_port`, `packaging_requirement`.
@@ -170,11 +176,11 @@ Kết quả: P / F
 
 35. Tính năng: Request Quote page embeds CF7
 Hành vi mong muốn: `/request-a-quote/` tồn tại và chứa đúng CF7 shortcode/block.
-Kết quả: P / F
+Kết quả: P
 
 36. Tính năng: Request Quote frontend form render
 Hành vi mong muốn: Frontend render CF7 form, form nhìn theo SKVN style, không plain unstyled CF7 defaults.
-Kết quả: P / F
+Kết quả: P
 
 37. Tính năng: Thank-you page exists
 Hành vi mong muốn: `/quote-thank-you/` tồn tại, không 404/fatal, message phù hợp sau submit quote.

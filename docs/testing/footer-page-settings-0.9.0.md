@@ -3,7 +3,13 @@
 Status:
 
 ```text
-DEFERRED_TO_V1_0.10.0_BY_HUMAN
+PASS_ONSITE_REPORTED_BY_HUMAN
+```
+
+Latest human feedback:
+
+```text
+2026-06-05: Footer onsite testing is complete. Treat the 0.9.0 footer selected-page render, default GeneratePress fallback, and invalid-ID fallback/mismatch documentation debt as closed for V1 / 0.10.0.
 ```
 
 Purpose:

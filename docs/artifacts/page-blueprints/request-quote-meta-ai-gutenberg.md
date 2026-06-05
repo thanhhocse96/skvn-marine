@@ -79,8 +79,8 @@ Paste this into Gutenberg Code Editor:
 				</div>
 				<!-- /wp:buttons -->
 
-				<!-- wp:list -->
-				<ul>
+				<!-- wp:list {"className":"skvn-hashtag-list"} -->
+				<ul class="skvn-hashtag-list">
 					<li>MOQ from 1 FCL</li>
 					<li>Cold chain -18 C</li>
 					<li>Private label available</li>
@@ -105,8 +105,8 @@ Paste this into Gutenberg Code Editor:
 					<p>Provide these details to speed up pricing.</p>
 					<!-- /wp:paragraph -->
 
-					<!-- wp:list -->
-					<ul>
+					<!-- wp:list {"className":"skvn-quote-context-list"} -->
+					<ul class="skvn-quote-context-list">
 						<li><strong>Product interest and size/specification:</strong> Species, size grade, glaze, treatment.</li>
 						<li><strong>Estimated volume or container need:</strong> KG/MT, number of FCLs, frequency.</li>
 						<li><strong>Destination country/port:</strong> Port of discharge, Incoterms preference.</li>
@@ -312,10 +312,12 @@ Paste this into Gutenberg Code Editor:
 - `skvn-translated-hero__lead`
 - `skvn-translated-hero__actions`
 - `skvn-translated-hero__image`
+- `skvn-hashtag-list`
 - `skvn-button`
 - `skvn-button--primary`
 - `skvn-button--secondary`
 - `skvn-quote-context-card`
+- `skvn-quote-context-list`
 - `skvn-section`
 - `skvn-section--soft`
 - `skvn-section--support`

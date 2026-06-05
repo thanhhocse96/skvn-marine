@@ -60,10 +60,10 @@ Started: **2026-06-03**
 
 Acceptance:
 
-- [ ] Human runs `docs/testing/footer-page-settings-0.9.0.md` on the online site and reports evidence
-- [ ] Footer Page Settings selected footer page renders online
-- [ ] Footer Page Settings default GeneratePress fallback works online
-- [ ] Footer Page Settings invalid page ID fallback is confirmed or mismatch is documented
+- [x] Human runs `docs/testing/footer-page-settings-0.9.0.md` on the online site and reports evidence
+- [x] Footer Page Settings selected footer page renders online
+- [x] Footer Page Settings default GeneratePress fallback works online
+- [x] Footer Page Settings invalid page ID fallback is confirmed or mismatch is documented
 - [ ] Human runs `docs/testing/onsite-editor-controls-0.8.0.md` on the onsite site and reports evidence
 - [ ] Agent reminds human to validate 0.8.0 editor/frontend visual parity before closing onsite test debt
 - [ ] SKVN Accordion editor controls persist after save/reload onsite
@@ -72,8 +72,8 @@ Acceptance:
 - [ ] Human runs `docs/testing/onsite-quote-flow-0.7.1.md` on the onsite site and reports evidence
 - [ ] Human runs `docs/testing/onsite-quote-flow-0.7.0.md` on the onsite site
 - [ ] Agent reminds human to open the related docs/files listed in the 0.7.0 deferred test debt section
-- [ ] Onsite CF7 form existence confirmed by human evidence
-- [ ] Onsite request quote page contains the CF7 shortcode/form
+- [x] Onsite CF7 form existence confirmed by human evidence
+- [x] Onsite request quote page contains the CF7 shortcode/form
 - [ ] Onsite thank-you page exists
 - [ ] CF7 form markup matches `docs/artifacts/cf7-quote-form-0.7.0.md` or mismatch is documented
 - [ ] CFDB7 stores at least one test submission
@@ -183,6 +183,7 @@ Purpose:
 Planning:
 
 - `.context/planning/003_VERSION_1_1_0_LAYOUT_BLOCKS_PLANNING.md`
+- `docs/decisions/product-card-grid-layout-contract.md`
 - Source proposal: `.context/proposals/proposal-layout-blocks.md`
 
 Acceptance draft:
@@ -193,6 +194,7 @@ Acceptance draft:
 - [ ] `skvn-marine/card-grid` block exists in plugin
 - [ ] `skvn-marine/card` block exists in plugin
 - [ ] Blocks use `block.json`, TypeScript, and InnerBlocks
+- [ ] Card grid controls map inset, content alignment, image treatment, and equal-height presets to stable `skvn-*` classes
 - [ ] Editor preview matches frontend closely enough for layout decisions
 - [ ] Theme CSS implements all layout-critical `skvn-*` classes used by saved markup
 - [ ] No frontend JavaScript runtime is added unless a real interaction requires it
