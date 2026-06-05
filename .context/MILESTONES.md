@@ -8,7 +8,7 @@
 
 ## Current Milestone
 
-Current: **V1 / 1.0.0 — V1 Launch Ready**
+Current: **V1 / 1.1.0 — Layout Blocks**
 Status: **IN_PROGRESS**
 Started: **2026-06-05**
 
@@ -51,42 +51,7 @@ Khi chuyển milestone:
 
 ---
 
-## V1 Checkpoints
-
-### 1.0.0 — V1 Launch Ready
-
-Status: **IN_PROGRESS**
-
-Carry-in:
-
-- 0.11.0 and 0.12.0 source implementation completed, with onsite testing intentionally deferred by human.
-- Remaining 0.11/0.12 onsite evidence target: `docs/testing/onsite-0.11-0.12-completion-checklist.md`.
-- Do not mark 0.11/0.12 DONE until human reports onsite evidence.
-
-Recommended onsite stability plugins:
-
-- Admin and Site Enhancements (ASE) — recommended onsite admin/governance helper for menu organization and wp-admin workflow polish. SKVN source must not hardcode advanced admin menu ordering that belongs to ASE.
-- Ultra Addons for Contact Form 7 — recommended onsite CF7 helper for form UI/stability enhancements around the existing CF7 workflow. This does not change the V1 rule: do not custom-code quote form handling; CF7/CFDB7 remain the quote form/data layer.
-- Both plugins are external WordPress runtime dependencies only. Do not copy or commit them into this source repo.
-
-Acceptance:
-
-- [ ] Accessibility pass
-- [ ] Mobile QA pass
-- [ ] SEO/GEO structure pass
-- [ ] Performance and asset loading review
-- [ ] Admin and Site Enhancements (ASE) is reviewed/active onsite if needed for admin workflow stability.
-- [ ] Ultra Addons for Contact Form 7 is reviewed/active onsite if needed for CF7 form UI/stability.
-- [ ] No forbidden parent-theme changes
-- [ ] No external plugins committed to source repo
-- [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
-- [ ] Human approves V1 launch readiness
-
-Init prompt:
-
-- `docs/artifacts/init-prompt-v1-1.0.0-launch-ready.md`
-
-## Future V1.x Checkpoints
+## Current V1.x Checkpoint
 
 ### 1.1.0 — Layout Blocks
 
@@ -98,6 +63,7 @@ Purpose:
 - Start with `skvn-marine/card-grid` and `skvn-marine/card`.
 - Evaluate `skvn-marine/quote` after card-grid/card are validated.
 - Keep visual styling theme-owned and block logic plugin-owned.
+- Carry forward admin preset UX hardening for footer background controls: use native selects for stability, but add swatch/preview UI showing dark presets with light text and light presets with dark text instead of styling native `<option>` elements directly.
 
 Planning:
 
@@ -107,6 +73,7 @@ Planning:
 
 Acceptance draft:
 
+- [ ] Footer background preset admin UI includes a stable swatch/preview treatment: dark backgrounds use light preview text, light backgrounds use dark preview text, and the native select remains accessible.
 - [ ] At least two real layout artifacts justify the same grid/card governance
 - [ ] Brainstorm trigger reviewed for `1.7.0 — Front page trang Chuyển đổi số`: identify which layout pieces can reuse card-grid/card, and which pieces need separate resource/search/taxonomy planning
 - [ ] Core block plus theme-pattern alternative is documented as too fragile or too slow for editors

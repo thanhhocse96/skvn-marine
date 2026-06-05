@@ -18,6 +18,13 @@ Source proposal:
 
 - `.context/proposals/proposal-layout-blocks.md`
 
+Carry-in admin UX note:
+
+- Footer background preset dropdown should remain a native select for browser/OS stability and accessibility.
+- Do not rely on styling individual native `<option>` rows for dark/light contrast because browser support is inconsistent.
+- Add a stable swatch/preview treatment near the setting instead: dark presets preview with light text, light presets preview with dark text.
+- Keep the setting preset-based; do not expose raw color input.
+
 ---
 
 ## Problem
@@ -229,6 +236,7 @@ Default recommendation:
 
 Acceptance:
 
+- [ ] Footer background preset admin preview is evaluated as a small 1.1.0 UX hardening task before or alongside layout-block implementation.
 - [ ] At least two real layout artifacts require the same grid/card governance.
 - [ ] A core-block plus theme-pattern attempt is documented as too fragile or too slow for editors.
 - [ ] Missing theme CSS classes are listed before block implementation.

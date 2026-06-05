@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 1.0.0 — V1 Launch Ready**
+Current milestone: **V1 / 1.1.0 — Layout Blocks**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
@@ -148,7 +148,7 @@ Current operational rule:
 - If human defers onsite tests because of schedule, agent must mark the test file as deferred and add the target milestone to `.context/MILESTONES.md`.
 - When the target milestone becomes current, agent must remind human to run the deferred tests before implementing unrelated follow-up work.
 - Agent must not assume onsite credentials or make production changes unless human explicitly requests it.
-- n8n remains out of scope until after version 1.0.0.
+- n8n remains deferred/unexposed and should be reviewed only at the V1 → V2 boundary unless human explicitly moves it into scope earlier.
 
 ---
 
@@ -347,7 +347,7 @@ if (!prefersReduced) { /* run animation */ }
 - 0.7.0 scope: basic same-site CF7/CFDB7 quote form source/docs contract.
 - 0.7.1 prepared runtime/admin handoff testing.
 - Remaining quote data-flow checks are deferred to V1 / 1.1.2 because the CF7 interface is visually OK, but form submission, CFDB7 storage, hidden/context data, product-page/block origin, and success/thank-you behavior still need testing.
-- n8n automation is deferred until after version 1.0.0.
+- n8n automation remains deferred/unexposed and should be reviewed only at the V1 → V2 boundary unless human explicitly moves it into scope earlier.
 - Do not custom-code quote form handling; use CF7 and CFDB7.
 - CF7 markup must use class `skvn-form`, `skvn-quote-form`, `skvn-button`, `skvn-button--primary`.
 - Hidden fields: `product_id`, `product_sku`, `product_name`, `product_url`, `source_url`, UTM fields.

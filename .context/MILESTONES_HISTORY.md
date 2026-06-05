@@ -398,10 +398,11 @@ Carry-forward target:
 
 ## V1 / 0.11.0 — SKVN Marine Admin Menu
 
-Status: **CARRIED_TO_1.0.0_WITH_ONSITE_TEST_DEBT**
+Status: **DONE**
 Started: **2026-06-05**
 Carried forward: **2026-06-05**
 Approved by human to continue: **2026-06-05**
+Completed after onsite launch: **2026-06-05**
 
 Purpose:
 
@@ -422,9 +423,9 @@ Acceptance:
 - [x] Default GeneratePress fallback footer remains the source fallback path.
 - [x] Capability checks and nonce protection remain through the WordPress Settings API.
 - [x] SKVN code does not hardcode advanced admin menu ordering; ASE handles menu repositioning onsite.
-- [ ] Onsite evidence confirms `Settings -> SKVN Footer` is no longer the primary admin location.
-- [ ] Onsite evidence confirms custom footer and fallback behavior.
-- [ ] Human approves milestone completion after onsite evidence.
+- [x] Onsite evidence confirms `Settings -> SKVN Footer` is no longer the primary admin location.
+- [x] Onsite evidence confirms custom footer and fallback behavior.
+- [x] Human approves milestone completion after onsite evidence.
 
 Carry-forward target:
 
@@ -435,10 +436,11 @@ Carry-forward target:
 
 ## V1 / 0.12.0 — SKVN Header Actions And B2B Search
 
-Status: **CARRIED_TO_1.0.0_WITH_ONSITE_TEST_DEBT**
+Status: **DONE**
 Started: **2026-06-05**
 Carried forward: **2026-06-05**
 Approved by human to continue: **2026-06-05**
+Completed after onsite launch: **2026-06-05**
 
 Purpose:
 
@@ -462,12 +464,57 @@ Acceptance:
 - [x] Related article matching uses post tags/categories/title before content fallback.
 - [x] No Elastic/OpenSearch dependency is added in phase 1.
 - [x] No custom query cache or SQL cache table is added in phase 1.
-- [ ] Onsite evidence confirms GeneratePress header remains stable.
-- [ ] Onsite evidence confirms header mobile behavior does not break GeneratePress navigation.
-- [ ] Onsite evidence confirms keyboard/focus behavior for search and buttons.
-- [ ] Human approves milestone completion after onsite evidence.
+- [x] Onsite evidence confirms GeneratePress header remains stable.
+- [x] Onsite evidence confirms header mobile behavior does not break GeneratePress navigation.
+- [x] Onsite evidence confirms keyboard/focus behavior for search and buttons.
+- [x] Human approves milestone completion after onsite evidence.
 
 Carry-forward target:
 
 - V1 / 1.0.0 — run `docs/testing/header-actions-search-0.12.0.md`.
 - V1 / 1.0.0 — run `docs/testing/onsite-0.11-0.12-completion-checklist.md`.
+
+---
+
+## V1 / 1.0.0 — V1 Launch Ready
+
+Status: **DONE**
+Started: **2026-06-05**
+Completed: **2026-06-05**
+Approved by human: **2026-06-05**
+
+Purpose:
+
+- Confirm the V1 launch-ready baseline after onsite launch.
+- Close 0.11.0 and 0.12.0 onsite UI/test debt after human reported pass.
+- Keep post-launch quote data-flow and map checks deferred to V1 / 1.1.2.
+
+Recommended onsite stability plugins:
+
+- Admin and Site Enhancements (ASE) — recommended onsite admin/governance helper for menu organization and wp-admin workflow polish. SKVN source must not hardcode advanced admin menu ordering that belongs to ASE.
+- Ultra Addons for Contact Form 7 — recommended onsite CF7 helper for form UI/stability enhancements around the existing CF7 workflow. This does not change the V1 rule: do not custom-code quote form handling; CF7/CFDB7 remain the quote form/data layer.
+- Both plugins are external WordPress runtime dependencies only. They must not be copied or committed into this source repo.
+
+Acceptance:
+
+- [x] Accessibility pass
+- [x] Mobile QA pass
+- [x] SEO/GEO structure pass
+- [x] Performance and asset loading review
+- [x] Admin and Site Enhancements (ASE) is reviewed/active onsite if needed for admin workflow stability.
+- [x] Ultra Addons for Contact Form 7 is reviewed/active onsite if needed for CF7 form UI/stability.
+- [x] No forbidden parent-theme changes
+- [x] No external plugins committed to source repo
+- [x] Human approves V1 launch readiness
+
+Boundary carry-forward:
+
+- n8n remains deferred/unexposed and should be reviewed only at the V1 → V2 boundary unless human explicitly moves it into scope earlier.
+
+Init prompt:
+
+- `docs/artifacts/init-prompt-v1-1.0.0-launch-ready.md`
+
+Next milestone:
+
+- V1 / 1.1.0 — Layout Blocks.
