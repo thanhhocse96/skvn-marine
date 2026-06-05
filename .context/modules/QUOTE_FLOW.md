@@ -12,7 +12,7 @@ Quote UI/page surface was completed in V1 / 0.6.0.
 
 0.7.1 onsite/admin handoff checklist lives in `docs/testing/onsite-quote-flow-0.7.1.md`.
 
-Remaining onsite/admin evidence, hidden/context field checks, and full UX smoke test debt are deferred to V1 / 0.10.0.
+The onsite CF7/Request Quote interface is visually OK as of 2026-06-05. Remaining data-flow evidence is deferred to V1 / 1.1.2 because it depends on product/page block flows: frontend submission, CFDB7 storage, hidden/context fields, product-origin query params, and success/thank-you behavior.
 
 n8n automation is deferred until after version 1.0.0.
 
@@ -21,7 +21,8 @@ n8n automation is deferred until after version 1.0.0.
 - 0.6.0: visual quote path, request quote page surface, CTA styling, editor/sidebar-controlled UI.
 - 0.7.0: Contact Form 7 + CFDB7 source/docs contract.
 - 0.7.1: runtime/admin setup verification and handoff fixes.
-- 0.10.0: onsite hidden/context field and UX smoke test debt resolution.
+- 0.10.0: onsite UI/test debt resolution, with footer and CF interface evidence closed.
+- 1.1.2: quote data-flow testing tied to product/page blocks and CFDB7 evidence.
 - After 1.0.0: n8n webhook automation.
 
 ## [manual] Flow

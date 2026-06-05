@@ -32,7 +32,7 @@ Out of scope:
 - Arbitrary inline margin/padding values.
 - GeneratePress parent theme edits.
 - Footer Page Settings 0.9.0.
-- Quote flow runtime checks 0.7.1 / 0.10.0.
+- Quote flow runtime checks 0.7.1 / 1.1.2.
 - New external dependencies.
 ```
 

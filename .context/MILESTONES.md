@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 0.10.0 — Onsite Test Debt Resolution**
+Current: **V1 / 1.0.0 — V1 Launch Ready**
 Status: **IN_PROGRESS**
-Started: **2026-06-03**
+Started: **2026-06-05**
 
 AGENTS.md current milestone phải match file này.
 
@@ -52,40 +52,6 @@ Khi chuyển milestone:
 ---
 
 ## V1 Checkpoints
-
-### 0.10.0 — Onsite Test Debt Resolution
-
-Status: **IN_PROGRESS**
-Started: **2026-06-03**
-
-Acceptance:
-
-- [x] Human runs `docs/testing/footer-page-settings-0.9.0.md` on the online site and reports evidence
-- [x] Footer Page Settings selected footer page renders online
-- [x] Footer Page Settings default GeneratePress fallback works online
-- [x] Footer Page Settings invalid page ID fallback is confirmed or mismatch is documented
-- [ ] Human runs `docs/testing/onsite-editor-controls-0.8.0.md` on the onsite site and reports evidence
-- [ ] Agent reminds human to validate 0.8.0 editor/frontend visual parity before closing onsite test debt
-- [ ] SKVN Accordion editor controls persist after save/reload onsite
-- [ ] SKVN Accordion frontend output matches editor intent onsite
-- [ ] Desktop/mobile visual smoke for 0.8.0 editor controls is reviewed
-- [ ] Human runs `docs/testing/onsite-quote-flow-0.7.1.md` on the onsite site and reports evidence
-- [ ] Human runs `docs/testing/onsite-quote-flow-0.7.0.md` on the onsite site
-- [ ] Agent reminds human to open the related docs/files listed in the 0.7.0 deferred test debt section
-- [x] Onsite CF7 form existence confirmed by human evidence
-- [x] Onsite request quote page contains the CF7 shortcode/form
-- [ ] Onsite thank-you page exists
-- [ ] CF7 form markup matches `docs/artifacts/cf7-quote-form-0.7.0.md` or mismatch is documented
-- [ ] CFDB7 stores at least one test submission
-- [ ] Product CTA/query params confirmed from onsite product/product-card flow
-- [ ] CF7 hidden/context fields confirmed in submitted data
-- [ ] CFDB7 row confirms visible and hidden fields are stored
-- [ ] Thank-you/success UX confirmed
-- [ ] Desktop/mobile screenshots reviewed
-- [ ] Console/log issues recorded or confirmed clean
-- [ ] Human approves closing onsite test debt
-
-
 
 ### 0.11.0 — SKVN Marine Admin Menu
 
@@ -156,7 +122,7 @@ Acceptance draft:
 
 ### 1.0.0 — V1 Launch Ready
 
-Status: **PENDING**
+Status: **IN_PROGRESS**
 
 Acceptance:
 
@@ -204,6 +170,40 @@ Acceptance draft:
 - [ ] `skvn-marine/quote` is evaluated only after card-grid/card validation
 - [ ] Build passes for `skvn-marine-blocks`
 - [ ] Human approves milestone completion
+
+### 1.1.2 — Product Quote Flow & Map Block Testing
+
+Status: **PENDING**
+
+Purpose:
+
+- Resolve deferred quote data-flow testing after the CF7 interface has already passed onsite visual review.
+- Test quote submission from product/product-card/page-block flows, not only the standalone Request Quote page.
+- Confirm map block/display issue because the current map surface is not viewable.
+- Treat this as testing and source hardening around blocks/pages, not a custom CF7 form handler.
+
+Carry-in from 0.10.0:
+
+- CF7/Request Quote interface visual check: **PASS by human feedback on 2026-06-05**.
+- Remaining quote debt is data flow only: submit, store, hidden/context fields, product-origin query params, and success/thank-you behavior.
+
+Acceptance draft:
+
+- [ ] Human runs `docs/testing/onsite-quote-flow-0.7.0.md` data-flow section from a product/product-card/page-block origin
+- [ ] Human runs `docs/testing/onsite-quote-flow-0.7.1.md` runtime handoff data-flow section
+- [ ] Human runs `docs/testing/onsite-map-block-1.1.2.md` on the onsite map page/surface
+- [ ] Request Quote form submission succeeds from product-origin URL/query params
+- [ ] CFDB7 stores at least one test submission
+- [ ] CFDB7 row confirms visible fields are stored
+- [ ] CFDB7 row confirms hidden/context fields are stored: `product_id`, `product_sku`, `product_name`, `product_url`, `source_url`, and UTM fields
+- [ ] Thank-you/success UX confirmed
+- [ ] Product CTA/query params confirmed from onsite product/product-card/page-block flow
+- [ ] Console/log issues recorded or confirmed clean for quote flow
+- [ ] Map block/display surface is visible onsite
+- [ ] If current map cannot be viewed, mismatch is documented with screenshot, target URL, block markup/source, and console notes
+- [ ] No custom PHP form handler is introduced
+- [ ] No n8n webhook is exposed or required
+- [ ] Human approves closing 1.1.2 testing
 
 ### Future Candidate — Gutenberg Supercharger Motion
 

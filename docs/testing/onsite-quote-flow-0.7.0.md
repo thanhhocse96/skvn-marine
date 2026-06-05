@@ -1,4 +1,4 @@
-# Onsite Quote Flow Test — Deferred To 0.10.0
+# Onsite Quote Flow Test — Data Flow Deferred To 1.1.2
 
 Status:
 
@@ -16,7 +16,7 @@ Reason:
 
 ```text
 Human has completed the CF interface check onsite, but the full submission/data-flow check has not been run yet.
-Agent must keep reminding human to test the remaining data flow before closing V1 / 0.10.0 onsite quote-flow debt.
+Agent must remind human to test the remaining data flow during V1 / 1.1.2 because it is tied to product/product-card/page-block origin and stored CFDB7 data.
 ```
 
 Scope:
@@ -51,7 +51,7 @@ Open these before testing or debugging:
   - `skvn-button`
   - `skvn-button--primary`
 
-## 0.10.0 Setup Path
+## 1.1.2 Data-Flow Test Path
 
 Preferred onsite setup path:
 
@@ -61,6 +61,7 @@ Preferred onsite setup path:
 - Create or update the `/quote-thank-you/` page in the editor.
 - Use the page/sidebar controls from the theme to set the intended page display options.
 - Run the checklist below and report evidence back to the agent.
+- Prefer starting from an onsite product/product-card/page-block CTA so query params and hidden/context fields can be verified end to end.
 
 WP-CLI fallback:
 

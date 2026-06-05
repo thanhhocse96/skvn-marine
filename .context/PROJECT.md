@@ -6,7 +6,7 @@
 - V3 may become a reusable base theme.
 - Use GeneratePress child theme, not a fork, for V1.
 - Use WooCommerce native product model.
-- Page display/sidebar controls completed in 0.5.1; Quote UI/editor controls completed in 0.6.0; basic CF7/CFDB7 quote form is current 0.7.0 scope; 0.7.1 verifies quote-flow runtime handoff; 0.8.0 adds SKVN Editor Controls; 0.9.0 adds Footer Page Settings; onsite quote-flow test debt resolves in 0.10.0; n8n is deferred until after 1.0.0.
+- Page display/sidebar controls completed in 0.5.1; Quote UI/editor controls completed in 0.6.0; basic CF7/CFDB7 quote form source/docs completed in 0.7.0; 0.7.1 verifies quote-flow runtime handoff; 0.8.0 adds SKVN Editor Controls; 0.9.0 adds Footer Page Settings; 0.10.0 closes onsite UI/test debt for footer and CF7 interface; remaining CF7 data-flow and map block/display testing moves to 1.1.2; n8n is deferred until after 1.0.0.
 - Use Rank Math for SEO and GEO/AEO-friendly content structure.
 - Use Polylang as multilingual candidate.
 - WindPress/Tailwind may be used as a prototyping aid, but production visual-system implementation should be SKVN theme tokens/classes and must not require WindPress for future plugin portability.

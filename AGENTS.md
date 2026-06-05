@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 0.10.0 — Onsite Test Debt Resolution**
+Current milestone: **V1 / 1.0.0 — V1 Launch Ready**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
@@ -346,7 +346,7 @@ if (!prefersReduced) { /* run animation */ }
 - Quote UI/page surface completed in V1 / 0.6.0.
 - 0.7.0 scope: basic same-site CF7/CFDB7 quote form source/docs contract.
 - 0.7.1 prepared runtime/admin handoff testing.
-- Remaining onsite quote-flow checks are deferred to V1 / 0.10.0.
+- Remaining quote data-flow checks are deferred to V1 / 1.1.2 because the CF7 interface is visually OK, but form submission, CFDB7 storage, hidden/context data, product-page/block origin, and success/thank-you behavior still need testing.
 - n8n automation is deferred until after version 1.0.0.
 - Do not custom-code quote form handling; use CF7 and CFDB7.
 - CF7 markup must use class `skvn-form`, `skvn-quote-form`, `skvn-button`, `skvn-button--primary`.
@@ -426,6 +426,7 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 0.11.0 | SKVN Marine Admin Menu |
 | 1.0.0 | V1 launch-ready |
 | 1.1.0 | Layout Blocks |
+| 1.1.2 | Product Quote Flow & Map Block Testing |
 | 1.4.0 | SKVN Theme Init Setup UI |
 | 1.6.0 | SKVN Surface Presets |
 | 1.7.0 | Front page trang Chuyển đổi số |

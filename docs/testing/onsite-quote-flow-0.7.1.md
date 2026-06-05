@@ -24,7 +24,7 @@ Reason:
 
 ```text
 Human has completed the onsite CF interface check and still needs to run the runtime data-flow portion.
-Agent must keep this checklist open until submission and CFDB7 evidence are reported.
+Agent must keep this checklist open until V1 / 1.1.2 submission and CFDB7 evidence are reported.
 ```
 
 ## Scope
@@ -50,7 +50,7 @@ Out of scope:
 - New admin setup UI.
 - Editor controls milestone 0.8.0.
 - Footer settings milestone 0.9.0.
-- Full product CTA/query-param UX debt reserved for 0.10.0.
+- Full product CTA/query-param data-flow debt is deferred to V1 / 1.1.2.
 ```
 
 ## Related Files
@@ -261,7 +261,7 @@ Evidence to report:
 [ ] CF7 markup matches the approved contract, or mismatch is documented.
 [ ] One onsite frontend submission succeeds.
 [ ] CFDB7 stores the submitted row.
-[ ] Hidden/context fields are present, or mismatch is documented for 0.10.0.
+[ ] Hidden/context fields are present, or mismatch is documented for V1 / 1.1.2.
 [ ] No n8n webhook URL or secret is exposed in page content/source.
 [ ] Evidence is reported back to the agent.
 ```

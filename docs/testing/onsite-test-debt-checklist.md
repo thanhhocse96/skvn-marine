@@ -138,12 +138,12 @@ Kết quả: P / F
 Hành vi mong muốn: CTA tab được bằng keyboard, focus visible, accessible name có quote intent.
 Kết quả: P / F
 
-## 0.7.x / 0.10.0 Quote Flow Runtime Test Debt
+## 0.7.x / 1.1.2 Quote Flow Runtime Test Debt
 
 Status note:
 
 ```text
-2026-06-05: Human reported that the CF interface has been tested onsite. Remaining untested debt is data flow: filled submission, CFDB7 storage, visible/hidden field storage, and success/thank-you behavior.
+2026-06-05: Human reported that the CF interface has been tested onsite. Remaining untested debt is data flow: filled submission, CFDB7 storage, visible/hidden field storage, product/product-card/page-block origin query params, and success/thank-you behavior. Target milestone: V1 / 1.1.2.
 ```
 
 28. Tính năng: CF7 plugin active

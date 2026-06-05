@@ -11,7 +11,9 @@ Human scope update on 2026-05-26:
 - 0.5.1 focuses on page display/sidebar controls.
 - 0.6.0 focuses on quote UI and editor/sidebar-controlled visual editing.
 - 0.7.0 focuses on basic CF7/CFDB7 quote form implementation.
-- 0.10.0 resolves onsite hidden/context field and quote-flow UX smoke test debt.
+- 0.10.0 closed onsite UI/test debt for footer and the CF7 Request Quote interface.
+- 1.1.2 resolves remaining quote data-flow evidence: product/page block origin, form submission, CFDB7 storage, hidden/context fields, and thank-you behavior.
+- 1.1.2 also checks the map block/display surface because the current onsite map is not viewable.
 - n8n automation is deferred until after version 1.0.0.
 - 1.4.0 is reserved for a deeper discussion of an wp-admin "SKVN Theme Init Setup UI" that can load reviewed setup templates from Admin.
 
@@ -61,7 +63,7 @@ Intent:
 
 - Give site admins a reviewed wp-admin screen for loading setup templates.
 - Reduce reliance on WP-CLI for repeated setup tasks.
-- Keep 0.10.0 onsite testing possible through normal WP Admin steps.
+- Keep future onsite testing possible through normal WP Admin steps.
 
 Constraints:
 

@@ -12,7 +12,7 @@
 - WooCommerce — native products, categories, attributes
 - WindPress (Tailwind integration) — optional/prototyping aid; not the production visual-system source of truth
 - Plugin: `skvn-marine-blocks` — custom Gutenberg blocks (TypeScript, @wordpress/scripts)
-- Page display/sidebar controls completed in 0.5.1; Quote UI completed in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite/online test debt resolves in 0.10.0; n8n after 1.0.0
+- Page display/sidebar controls completed in 0.5.1; Quote UI completed in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite UI/test debt closed in 0.10.0; CF7 data-flow and map block/display testing deferred to 1.1.2; n8n after 1.0.0
 - Rank Math — SEO, schema
 - Polylang — multilingual (standby V1, activate later)
 - Antispam Bee — comment spam. CF7 honeypot + optional Turnstile — form spam
@@ -91,6 +91,7 @@ Current active docs:
 - `docs/decisions/footer-page-settings-0.9.0.md`
 - `docs/decisions/footer-appearance-settings-0.11.0.md`
 - `docs/decisions/header-actions-search-0.12.0.md`
+- `docs/decisions/product-card-grid-layout-contract.md`
 - `docs/decisions/block-animation-strategy.md`
 - `docs/decisions/skvn-editor-controls-0.8.0.md`
 - `docs/decisions/slider-block.md`
@@ -98,6 +99,7 @@ Current active docs:
 - `docs/standards/security-guidelines.md`
 - `docs/testing/frontpage-testing.md`
 - `docs/testing/onsite-test-debt-checklist.md`
+- `docs/testing/onsite-map-block-1.1.2.md`
 - `docs/testing/footer-page-settings-0.9.0.md`
 - `docs/testing/onsite-editor-controls-0.8.0.md`
 - `docs/testing/testing-checklist.md`
@@ -127,7 +129,7 @@ Invariant: custom blocks KHÔNG được đặt trong theme.
 Dùng WooCommerce native products. Custom fields (ACF/Meta Box) chỉ thêm khi WC attributes không đủ.
 
 **A4. Quote path phased by milestone**
-0.5.1 completed page-level display/sidebar controls. 0.6.0 completed Quote UI, same-site request quote page surface, and CTA polish. 0.7.0 prepares the basic CF7/CFDB7 source/docs contract. 0.7.1 verifies runtime/admin setup and closes the immediate handoff gap. Onsite hidden/context field and full UX smoke test debt is deferred to 0.10.0. n8n automation dời sau version 1.0.0. KHÔNG custom-code form handler. KHÔNG popup/modal làm primary flow.
+0.5.1 completed page-level display/sidebar controls. 0.6.0 completed Quote UI, same-site request quote page surface, and CTA polish. 0.7.0 prepares the basic CF7/CFDB7 source/docs contract. 0.7.1 verifies runtime/admin setup and closes the immediate handoff gap. 0.10.0 closed onsite UI evidence for footer and CF7 interface. Remaining CF7 data-flow evidence is deferred to V1 / 1.1.2 because it depends on product/page block origin, hidden/context fields, CFDB7 storage, and thank-you behavior. n8n automation dời sau version 1.0.0. KHÔNG custom-code form handler. KHÔNG popup/modal làm primary flow.
 URL pattern giữ: `/request-a-quote/?product_id=123`
 
 **A10. Page display controls**
@@ -181,7 +183,7 @@ Shared host chỉ hỗ trợ PHP 8.0. `Out of the Block: OpenStreetMap` yêu c�
 **V1 (current)** — Một website B2B marine, local-first
 - Theme child + design system + block styles + patterns
 - Plugin blocks: Slider, Accordion, Product Grid, Product List
-- Page display/sidebar controls in 0.5.1; Quote UI/editor controls in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite/online test debt in 0.10.0; n8n after 1.0.0
+- Page display/sidebar controls in 0.5.1; Quote UI/editor controls in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite UI/test debt closed in 0.10.0; CF7 data-flow and map block/display testing in 1.1.2; n8n after 1.0.0
 - English content, prepare cho multilingual nhưng KHÔNG activate Polylang
 
 **V2 (future)**

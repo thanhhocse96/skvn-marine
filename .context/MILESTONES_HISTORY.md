@@ -352,3 +352,44 @@ Carried to 0.10.0:
 - Confirm selected footer page renders.
 - Confirm default GeneratePress fallback works.
 - Confirm invalid page ID fallback or document mismatch.
+
+---
+
+## V1 / 0.10.0 — Onsite Test Debt Resolution
+
+Status: **DONE_WITH_CARRIED_DATA_FLOW_DEBT**
+Started: **2026-06-03**
+Completed: **2026-06-05**
+Approved by human: **2026-06-05**
+
+Purpose:
+
+- Resolve onsite test debt carried from 0.8.0 and 0.9.0.
+- Record footer evidence and CF7 interface evidence.
+- Separate remaining CF7 form/data flow checks from visual/UI readiness.
+
+Acceptance:
+
+- [x] Human runs `docs/testing/footer-page-settings-0.9.0.md` on the online site and reports evidence
+- [x] Footer Page Settings selected footer page renders online
+- [x] Footer Page Settings default GeneratePress fallback works online
+- [x] Footer Page Settings invalid page ID fallback is confirmed or mismatch is documented
+- [x] Onsite CF7 form existence confirmed by human evidence
+- [x] Onsite request quote page contains the CF7 shortcode/form
+- [x] CF7/Request Quote interface visual check passed onsite
+- [x] Desktop/mobile benchmark UI issues were reviewed and source CSS hardening was applied where needed
+- [x] Human approves closing onsite test debt milestone
+
+Not closed in 0.10.0 / carried to 1.1.2:
+
+- CF7 form submission/data flow.
+- CFDB7 stored submission evidence.
+- Visible field storage evidence.
+- Hidden/context field storage evidence.
+- Product/product-card/page-block origin query params.
+- Thank-you/success UX after submit.
+- Map block/display issue because the current map surface is not viewable.
+
+Carry-forward target:
+
+- V1 / 1.1.2 — Product Quote Flow & Map Block Testing.
