@@ -85,20 +85,7 @@ Acceptance:
 - [ ] Console/log issues recorded or confirmed clean
 - [ ] Human approves closing onsite test debt
 
-### 1.0.0 — V1 Launch Ready
 
-Status: **PENDING**
-
-Acceptance:
-
-- [ ] Accessibility pass
-- [ ] Mobile QA pass
-- [ ] SEO/GEO structure pass
-- [ ] Performance and asset loading review
-- [ ] No forbidden parent-theme changes
-- [ ] No external plugins committed to source repo
-- [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
-- [ ] Human approves V1 launch readiness
 
 ### 0.11.0 — SKVN Marine Admin Menu
 
@@ -166,6 +153,21 @@ Acceptance draft:
 - [ ] Header mobile behavior does not break GeneratePress navigation.
 - [ ] Keyboard/focus behavior is reviewed for search and buttons.
 - [ ] Human approves milestone completion.
+
+### 1.0.0 — V1 Launch Ready
+
+Status: **PENDING**
+
+Acceptance:
+
+- [ ] Accessibility pass
+- [ ] Mobile QA pass
+- [ ] SEO/GEO structure pass
+- [ ] Performance and asset loading review
+- [ ] No forbidden parent-theme changes
+- [ ] No external plugins committed to source repo
+- [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
+- [ ] Human approves V1 launch readiness
 
 ## Future V1.x Checkpoints
 

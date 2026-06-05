@@ -51,6 +51,10 @@ body.block-editor-iframe__body.editor-styles-wrapper.post-type-page {
 	padding-block: 4rem;
 }
 
+.skvn-section.alignfull {
+	padding-inline: 1rem;
+}
+
 .skvn-section > .wp-block-group__inner-container,
 .skvn-section > .wp-block-columns,
 .skvn-trust-strip > .wp-block-group__inner-container,
@@ -59,6 +63,13 @@ body.block-editor-iframe__body.editor-styles-wrapper.post-type-page {
 	margin-inline: auto;
 	max-width: var(--skvn-wide-width);
 	padding-inline: 1rem;
+}
+
+.skvn-section.alignfull > .skvn-section__eyebrow,
+.skvn-section.alignfull > .skvn-section__heading,
+.skvn-section.alignfull > .skvn-section__lead,
+.skvn-section.alignfull > .wp-block-buttons {
+	padding-inline: 0;
 }
 
 .skvn-section.has-skvn-sky-50-background-color,
@@ -337,10 +348,6 @@ body.block-editor-iframe__body.editor-styles-wrapper.post-type-page {
 	position: sticky;
 	top: 0;
 	z-index: 50;
-}
-
-body.admin-bar .site-header {
-	top: 32px;
 }
 
 .inside-header {
@@ -1989,6 +1996,10 @@ body.skvn-has-footer-page .site {
 		padding-inline: 1.5rem;
 	}
 
+	.skvn-section.alignfull {
+		padding-inline: 1.5rem;
+	}
+
 	.inside-header {
 		padding-inline: 1.5rem;
 	}
@@ -2147,8 +2158,45 @@ body.skvn-has-footer-page .site {
 }
 
 @media (max-width: 767px) {
-	body.admin-bar .site-header {
-		top: 46px;
+	.site-header.has-inline-mobile-toggle .inside-header {
+		min-height: 88px;
+		padding-block: 0.5rem;
+	}
+
+	.site-header .site-branding {
+		min-width: 0;
+	}
+
+	.site-header .main-title {
+		font-size: 1.45rem;
+		line-height: 1.15;
+		margin: 0;
+	}
+
+	.site-header .main-title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.site-header .mobile-menu-control-wrapper {
+		flex: 0 0 auto;
+	}
+
+	.site-header .menu-toggle {
+		align-items: center;
+		display: inline-flex;
+		height: 48px;
+		justify-content: center;
+		line-height: 1;
+		min-height: 48px;
+		min-width: 48px;
+		padding: 0.65rem;
+	}
+
+	.site-header .menu-toggle .gp-icon {
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
 	}
 
 	.skvn-product-card__cta {
