@@ -393,3 +393,81 @@ Not closed in 0.10.0 / carried to 1.1.2:
 Carry-forward target:
 
 - V1 / 1.1.2 — Product Quote Flow & Map Block Testing.
+
+---
+
+## V1 / 0.11.0 — SKVN Marine Admin Menu
+
+Status: **CARRIED_TO_1.0.0_WITH_ONSITE_TEST_DEBT**
+Started: **2026-06-05**
+Carried forward: **2026-06-05**
+Approved by human to continue: **2026-06-05**
+
+Purpose:
+
+- Move the existing SKVN Footer admin surface out of `Settings`.
+- Create a top-level `SKVN Marine` admin menu owned by `skvn-marine-blocks`.
+- Put the footer settings screen under the `SKVN Marine` admin menu as one tab/page.
+- Add a safe footer background preset setting for the selected footer page.
+- Leave admin menu ordering/repositioning to the external ASE plugin instead of hardcoding menu position rules in SKVN code.
+
+Acceptance:
+
+- [x] Source implements `SKVN Marine -> Footer` under the plugin-owned admin menu.
+- [x] Existing option key `skvn_footer_page_id` remains unchanged.
+- [x] New option key `skvn_footer_background_preset` stores an approved preset, not raw color input.
+- [x] Footer background preset is sanitized to approved values.
+- [x] Theme applies footer background only when a valid custom footer page is active.
+- [x] Theme styles `.skvn-footer-page` and outer `.skvn-site-footer` for selected presets.
+- [x] Default GeneratePress fallback footer remains the source fallback path.
+- [x] Capability checks and nonce protection remain through the WordPress Settings API.
+- [x] SKVN code does not hardcode advanced admin menu ordering; ASE handles menu repositioning onsite.
+- [ ] Onsite evidence confirms `Settings -> SKVN Footer` is no longer the primary admin location.
+- [ ] Onsite evidence confirms custom footer and fallback behavior.
+- [ ] Human approves milestone completion after onsite evidence.
+
+Carry-forward target:
+
+- V1 / 1.0.0 — run `docs/testing/footer-appearance-settings-0.11.0.md`.
+- V1 / 1.0.0 — run `docs/testing/onsite-0.11-0.12-completion-checklist.md`.
+
+---
+
+## V1 / 0.12.0 — SKVN Header Actions And B2B Search
+
+Status: **CARRIED_TO_1.0.0_WITH_ONSITE_TEST_DEBT**
+Started: **2026-06-05**
+Carried forward: **2026-06-05**
+Approved by human to continue: **2026-06-05**
+
+Purpose:
+
+- Add governed header actions without replacing the GeneratePress header shell.
+- Support product search, post/site search, contact CTA, and optional Request Quote CTA.
+- Plan the B2B search results experience as a governed page that separates Products from Related articles.
+- Keep phase 1 search lightweight: taxonomy/title-first native WP/Woo queries, no Elastic/OpenSearch, and no custom query cache.
+
+Acceptance:
+
+- [x] Human confirms 0.12.0 as the exact implementation target before code.
+- [x] Source renders header actions through GeneratePress hook integration without editing GeneratePress parent files.
+- [x] `SKVN Marine -> Header` settings are documented and implemented.
+- [x] Product search can be enabled/disabled in source settings.
+- [x] Post/site search can be enabled/disabled in source settings.
+- [x] Contact button can be enabled/disabled in source settings.
+- [x] Request Quote button can be enabled/disabled in source settings.
+- [x] Search target is explicit in source: products, articles, or all site.
+- [x] B2B search results template separates Products from Related articles.
+- [x] Product matching uses product tags/categories/title before content fallback.
+- [x] Related article matching uses post tags/categories/title before content fallback.
+- [x] No Elastic/OpenSearch dependency is added in phase 1.
+- [x] No custom query cache or SQL cache table is added in phase 1.
+- [ ] Onsite evidence confirms GeneratePress header remains stable.
+- [ ] Onsite evidence confirms header mobile behavior does not break GeneratePress navigation.
+- [ ] Onsite evidence confirms keyboard/focus behavior for search and buttons.
+- [ ] Human approves milestone completion after onsite evidence.
+
+Carry-forward target:
+
+- V1 / 1.0.0 — run `docs/testing/header-actions-search-0.12.0.md`.
+- V1 / 1.0.0 — run `docs/testing/onsite-0.11-0.12-completion-checklist.md`.

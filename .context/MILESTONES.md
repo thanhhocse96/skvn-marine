@@ -8,7 +8,7 @@
 
 ## Current Milestone
 
-Current: **V1 / 0.12.0 — SKVN Header Actions And B2B Search**
+Current: **V1 / 1.0.0 — V1 Launch Ready**
 Status: **IN_PROGRESS**
 Started: **2026-06-05**
 
@@ -53,76 +53,21 @@ Khi chuyển milestone:
 
 ## V1 Checkpoints
 
-### 0.11.0 — SKVN Marine Admin Menu
-
-Status: **CARRIED_TO_ONSITE_TEST_WITH_0.12.0**
-
-Purpose:
-
-- Move the existing SKVN Footer admin surface out of `Settings`.
-- Create a top-level `SKVN Marine` admin menu owned by `skvn-marine-blocks`.
-- Put the footer settings screen under the `SKVN Marine` admin menu as one tab/page.
-- Add a safe footer background preset setting for the selected footer page.
-- Leave admin menu ordering/repositioning to the external ASE plugin instead of hardcoding menu position rules in SKVN code.
-
-Decision contract:
-
-- `docs/decisions/footer-appearance-settings-0.11.0.md`
-
-Acceptance draft:
-
-- [ ] `Settings → SKVN Footer` is no longer the primary admin location.
-- [ ] Top-level `SKVN Marine` admin menu exists.
-- [ ] Footer settings are available under the `SKVN Marine` admin menu.
-- [ ] Existing option key `skvn_footer_page_id` remains unchanged.
-- [ ] New option key `skvn_footer_background_preset` stores an approved preset, not raw color input.
-- [ ] Footer background preset applies only when `skvn_footer_page_id` points to a valid published footer page.
-- [ ] Footer background preset affects `.skvn-footer-page` and the outermost `.skvn-site-footer` Gutenberg block.
-- [ ] Viewport space below the custom footer uses the same footer background preset.
-- [ ] Default GeneratePress fallback footer is unaffected by the footer background preset.
-- [ ] Existing footer rendering behavior remains unchanged.
-- [ ] Capability checks and nonce protection remain in place.
-- [ ] SKVN code does not hardcode advanced admin menu ordering; ASE handles menu repositioning onsite.
-- [ ] Human approves milestone completion.
-
-### 0.12.0 — SKVN Header Actions And B2B Search
+### 1.0.0 — V1 Launch Ready
 
 Status: **IN_PROGRESS**
 
-Purpose:
+Carry-in:
 
-- Add governed header actions without replacing the GeneratePress header shell.
-- Support product search, post/site search, contact CTA, and optional Request Quote CTA.
-- Plan the B2B search results experience as a governed page that separates Products from Related articles.
-- Keep phase 1 search lightweight: taxonomy/title-first native WP/Woo queries, no Elastic/OpenSearch, and no custom query cache.
+- 0.11.0 and 0.12.0 source implementation completed, with onsite testing intentionally deferred by human.
+- Remaining 0.11/0.12 onsite evidence target: `docs/testing/onsite-0.11-0.12-completion-checklist.md`.
+- Do not mark 0.11/0.12 DONE until human reports onsite evidence.
 
-Decision contract:
+Recommended onsite stability plugins:
 
-- `docs/decisions/header-actions-search-0.12.0.md`
-
-Acceptance draft:
-
-- [x] Human confirms 0.12.0 as the exact implementation target before code.
-- [ ] GeneratePress header remains the shell.
-- [ ] No GeneratePress parent files are edited.
-- [ ] `SKVN Marine → Header` settings are documented and implemented.
-- [ ] Product search can be enabled/disabled.
-- [ ] Post/site search can be enabled/disabled.
-- [ ] Contact button can be enabled/disabled.
-- [ ] Request Quote button can be enabled/disabled.
-- [ ] Search target is explicit: products, articles, or all site.
-- [ ] B2B search results page separates Products from Related articles.
-- [ ] Product matching uses product tags/categories/title before content fallback.
-- [ ] Related article matching uses post tags/categories/title before content fallback.
-- [ ] No Elastic/OpenSearch dependency is added in phase 1.
-- [ ] No custom query cache or SQL cache table is added in phase 1.
-- [ ] Header mobile behavior does not break GeneratePress navigation.
-- [ ] Keyboard/focus behavior is reviewed for search and buttons.
-- [ ] Human approves milestone completion.
-
-### 1.0.0 — V1 Launch Ready
-
-Status: **PENDING**
+- Admin and Site Enhancements (ASE) — recommended onsite admin/governance helper for menu organization and wp-admin workflow polish. SKVN source must not hardcode advanced admin menu ordering that belongs to ASE.
+- Ultra Addons for Contact Form 7 — recommended onsite CF7 helper for form UI/stability enhancements around the existing CF7 workflow. This does not change the V1 rule: do not custom-code quote form handling; CF7/CFDB7 remain the quote form/data layer.
+- Both plugins are external WordPress runtime dependencies only. Do not copy or commit them into this source repo.
 
 Acceptance:
 
@@ -130,10 +75,16 @@ Acceptance:
 - [ ] Mobile QA pass
 - [ ] SEO/GEO structure pass
 - [ ] Performance and asset loading review
+- [ ] Admin and Site Enhancements (ASE) is reviewed/active onsite if needed for admin workflow stability.
+- [ ] Ultra Addons for Contact Form 7 is reviewed/active onsite if needed for CF7 form UI/stability.
 - [ ] No forbidden parent-theme changes
 - [ ] No external plugins committed to source repo
 - [ ] n8n remains deferred/unexposed unless human explicitly moves it into scope
 - [ ] Human approves V1 launch readiness
+
+Init prompt:
+
+- `docs/artifacts/init-prompt-v1-1.0.0-launch-ready.md`
 
 ## Future V1.x Checkpoints
 

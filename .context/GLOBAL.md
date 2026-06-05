@@ -101,6 +101,9 @@ Current active docs:
 - `docs/testing/onsite-test-debt-checklist.md`
 - `docs/testing/onsite-map-block-1.1.2.md`
 - `docs/testing/footer-page-settings-0.9.0.md`
+- `docs/testing/footer-appearance-settings-0.11.0.md`
+- `docs/testing/header-actions-search-0.12.0.md`
+- `docs/testing/onsite-0.11-0.12-completion-checklist.md`
 - `docs/testing/onsite-editor-controls-0.8.0.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
@@ -110,6 +113,7 @@ Current active docs:
 - `docs/workflows/theme-development-workflow.md`
 - `docs/workflows/versioning-release-workflow.md`
 - `docs/explain/explain-for-5-years-old.md`
+- `docs/artifacts/init-prompt-v1-1.0.0-launch-ready.md`
 - `docs/artifacts/brand-palette-options.html`
 
 ---
