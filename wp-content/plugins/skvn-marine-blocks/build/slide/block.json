@@ -11,6 +11,24 @@
     "skvn-marine/slider"
   ],
   "textdomain": "skvn-marine-blocks",
+  "attributes": {
+    "backgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 35
+    }
+  },
   "supports": {
     "html": false,
     "reusable": false

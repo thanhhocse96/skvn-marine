@@ -555,4 +555,4 @@ Deferred by explicit human decision:
 
 Next milestone:
 
-- V1 / 1.2.0 — Gutenberg Supercharger Motion.
+- V1 / 1.2.0 — Slider Editor & Motion.

@@ -201,6 +201,10 @@ CSS:
 
 Implementation lives in `src/accordion/view.ts`.
 
+Implemented in 1.2.0 as progressive enhancement. Saved Accordion content remains
+visible without JavaScript; the frontend runtime adds the button, ARIA state,
+collapsed state, real-height transition, and Arrow/Home/End navigation.
+
 ---
 
 ## Slider Entrance Animation
@@ -411,18 +415,25 @@ Allowed only for: prototyping motion intent before implementing in the owning pl
 
 ---
 
-## When To Build
+## 1.2.0 Implementation Placement
 
-Animation is deferred until after 1.0.0. Current site (footer + products) does not need animation.
+Implemented:
 
-Build order when the time comes:
+1. `src/accordion/view.ts` — accordion expand/collapse using real `scrollHeight`.
+2. `src/shared/motion.ts` — reduced-motion, device targeting, and one-shot observer invariants.
+3. `src/card/view.ts` — first governed block motion surface.
+4. `src/motion.css` — plugin-owned motion and fallback styles.
 
-1. `src/accordion/view.ts` — accordion expand/collapse (JS scrollHeight).
-2. `src/slider/view.ts` — first slide entrance fade.
-3. `skvn-marine/stat-counter` block — counter animation with sidebar controls.
-4. `assets/js/animations.js` in theme — scroll reveal for core block sections.
-5. Ambient CSS animations in `style.css` — wave-float, slow-drift, marine-hover-lift.
+Card controls use these exact combinations:
 
-For steps 1-3, required CSS/JS must ship inside `skvn-marine-blocks`, not only in the SKVN theme. For steps 4-5, the theme owns behavior because the target is core blocks, page sections, or theme decoration.
+- Fade up: On scroll or Always.
+- Fade in: On scroll or Always.
+- Hover lift: On hover automatically.
+- Devices: independent Desktop, Tablet, and Mobile toggles.
 
-Do not start with a full interaction builder. Start small, validate on real device, extend only when there is a real use case.
+Deferred until a real content case justifies them:
+
+- Slider first-slide entrance.
+- Stat Counter block.
+- Theme `assets/js/animations.js` for core/page/theme-level targets.
+- Additional ambient presets beyond Card Hover lift.

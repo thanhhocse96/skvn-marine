@@ -1,16 +1,149 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import {
+	InnerBlocks,
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+	useBlockProps,
+} from '@wordpress/block-editor';
+import { Button, PanelBody, RangeControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 const TEMPLATE = [
-	['core/heading', { level: 3, placeholder: 'Slide heading' }],
-	['core/paragraph', { placeholder: 'Slide copy' }],
+	[ 'core/heading', { level: 3, placeholder: 'Slide heading' } ],
+	[ 'core/paragraph', { placeholder: 'Slide copy' } ],
+	[ 'core/buttons', {}, [ [ 'core/button', { text: 'Learn more' } ] ] ],
 ];
 
-export function Edit() {
-	const blockProps = useBlockProps({ className: 'skvn-slide' });
+type SlideAttributes = {
+	backgroundImageId: number;
+	backgroundImageUrl: string;
+	backgroundImageAlt: string;
+	overlayOpacity: number;
+};
+
+type SlideEditProps = {
+	attributes: SlideAttributes;
+	setAttributes: ( attributes: Partial< SlideAttributes > ) => void;
+};
+
+type SelectedImage = {
+	id: number;
+	url: string;
+	alt?: string;
+};
+
+export function Edit( { attributes, setAttributes }: SlideEditProps ) {
+	const hasImage = Boolean( attributes.backgroundImageUrl );
+	const blockProps = useBlockProps( {
+		className: `skvn-slide skvn-slide--editor${
+			hasImage ? ' skvn-slide--has-background' : ''
+		}`,
+	} );
+	const selectImage = ( image: SelectedImage ) => {
+		setAttributes( {
+			backgroundImageAlt: image.alt || '',
+			backgroundImageId: image.id,
+			backgroundImageUrl: image.url,
+		} );
+	};
+	const removeImage = () => {
+		setAttributes( {
+			backgroundImageAlt: '',
+			backgroundImageId: 0,
+			backgroundImageUrl: '',
+		} );
+	};
 
 	return (
-		<div {...blockProps}>
-			<InnerBlocks template={TEMPLATE} />
+		<div { ...blockProps }>
+			<InspectorControls>
+				<PanelBody
+					title={ __( 'Background image', 'skvn-marine-blocks' ) }
+				>
+					<MediaUploadCheck>
+						<MediaUpload
+							allowedTypes={ [ 'image' ] }
+							onSelect={ selectImage }
+							render={ ( { open } ) => (
+								<Button onClick={ open } variant="secondary">
+									{ hasImage
+										? __(
+												'Replace image',
+												'skvn-marine-blocks'
+										  )
+										: __(
+												'Choose image',
+												'skvn-marine-blocks'
+										  ) }
+								</Button>
+							) }
+							value={ attributes.backgroundImageId }
+						/>
+					</MediaUploadCheck>
+					{ hasImage && (
+						<Button
+							isDestructive
+							onClick={ removeImage }
+							variant="link"
+						>
+							{ __( 'Remove image', 'skvn-marine-blocks' ) }
+						</Button>
+					) }
+					{ hasImage && (
+						<RangeControl
+							label={ __(
+								'Overlay opacity',
+								'skvn-marine-blocks'
+							) }
+							max={ 80 }
+							min={ 0 }
+							onChange={ ( overlayOpacity ) =>
+								setAttributes( {
+									overlayOpacity: overlayOpacity || 0,
+								} )
+							}
+							step={ 5 }
+							value={ attributes.overlayOpacity }
+						/>
+					) }
+				</PanelBody>
+			</InspectorControls>
+			{ hasImage ? (
+				<>
+					<img
+						alt={ attributes.backgroundImageAlt }
+						className="skvn-slide__background-image"
+						src={ attributes.backgroundImageUrl }
+					/>
+					<span
+						aria-hidden="true"
+						className="skvn-slide__overlay"
+						style={ { opacity: attributes.overlayOpacity / 100 } }
+					/>
+				</>
+			) : (
+				<MediaUploadCheck>
+					<MediaUpload
+						allowedTypes={ [ 'image' ] }
+						onSelect={ selectImage }
+						render={ ( { open } ) => (
+							<Button
+								className="skvn-slide__choose-image"
+								onClick={ open }
+								variant="secondary"
+							>
+								{ __(
+									'Choose background image',
+									'skvn-marine-blocks'
+								) }
+							</Button>
+						) }
+					/>
+				</MediaUploadCheck>
+			) }
+			<div className="skvn-slide__content">
+				<InnerBlocks template={ TEMPLATE } />
+			</div>
 		</div>
 	);
 }

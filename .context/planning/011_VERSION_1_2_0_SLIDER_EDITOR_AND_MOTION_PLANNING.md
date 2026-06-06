@@ -1,4 +1,4 @@
-# Version 1.2.0 — Gutenberg Supercharger Motion Planning
+# Version 1.2.0 — Slider Editor & Motion Planning
 
 Status: active
 Created: 2026-06-04
@@ -6,7 +6,15 @@ Promoted: 2026-06-07
 
 ## Purpose
 
-Implement portable animation/motion support for `skvn-marine-blocks`, while preserving a possible later migration or rename toward `Gutenberg Supercharger`.
+Complete the practical Slider/Slide editing experience and implement portable animation/motion support for `skvn-marine-blocks`.
+
+Slider editor scope:
+
+- Stacked editor preview; no Swiper/autoplay inside Gutenberg.
+- Per-slide WordPress Media Library image selection, replacement, and removal.
+- Directly editable heading, lead, and CTA.
+- Governed overlay opacity.
+- Plugin-owned structural and Swiper CSS.
 
 ## Source Decision
 
@@ -14,7 +22,7 @@ Implement portable animation/motion support for `skvn-marine-blocks`, while pres
 
 ## Version Placement
 
-Active milestone: **1.2.0 — Gutenberg Supercharger Motion**.
+Active milestone: **1.2.0 — Slider Editor & Motion**.
 
 Human approved promotion and milestone start on **2026-06-07**.
 
@@ -89,9 +97,8 @@ Motion preset
 - Hover lift
 
 Trigger
-- On scroll
-- On hover
-- Always
+- Fade up / Fade in: On scroll or Always
+- Hover lift: On hover automatically
 
 Devices
 [x] Desktop
@@ -161,13 +168,14 @@ Plugin block animation assets are separate and should use block-owned `viewScrip
 
 - [x] Human approves exact milestone version before implementation.
 - [x] Motion implementation remains deferred until after 1.0.0.
-- [ ] Plugin-owned animation works without `skvn-marine` theme active.
-- [ ] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin.
-- [ ] No frontend content remains invisible when JS fails.
-- [ ] Editor content is not hidden by animation fallback.
-- [ ] Device targeting uses independent Desktop/Tablet/Mobile checkboxes.
-- [ ] Hover motion does not run on touch-only devices unless explicitly designed.
-- [ ] Theme `animations.js` is used only for core/page/theme-level animation.
-- [ ] Tailwind/WindPress is prototype-only and not the production animation contract.
-- [ ] Build passes for `skvn-marine-blocks`.
+- [x] Plugin-owned animation works without `skvn-marine` theme active by source architecture; onsite verification pending.
+- [x] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin.
+- [x] No frontend content remains invisible when JS fails by fallback design; onsite verification pending.
+- [x] Editor content is not hidden by animation fallback; onsite verification pending.
+- [x] Device targeting uses independent Desktop/Tablet/Mobile checkboxes.
+- [x] Hover motion is guarded to hover-capable pointer devices; onsite touch verification pending.
+- [x] Theme `animations.js` remains reserved for core/page/theme-level animation and was not added without a use case.
+- [x] Tailwind/WindPress is prototype-only and not the production animation contract.
+- [x] Build passes for `skvn-marine-blocks`.
+- [ ] Human runs `docs/testing/onsite-slider-motion-1.2.0.md`.
 - [ ] Human approves milestone completion.

@@ -1,4 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
+import './slider/style.css';
 
 import accordionMetadata from './accordion/block.json';
 import { Edit as AccordionEdit } from './accordion/edit';
@@ -20,32 +21,32 @@ import cardMetadata from './card/block.json';
 import { Edit as CardEdit } from './card/edit';
 import { save as cardSave } from './card/save';
 
-registerBlockType(accordionMetadata.name, {
+registerBlockType( accordionMetadata.name, {
 	...accordionMetadata,
 	edit: AccordionEdit,
 	save: accordionSave,
-});
+} );
 
-registerBlockType(slideMetadata.name, {
+registerBlockType( slideMetadata.name, {
 	...slideMetadata,
 	edit: SlideEdit,
 	save: slideSave,
-});
+} );
 
-registerBlockType(sliderMetadata.name, {
+registerBlockType( sliderMetadata.name, {
 	...sliderMetadata,
 	edit: SliderEdit,
 	save: sliderSave,
-});
+} );
 
-registerBlockType(cardGridMetadata.name, {
+registerBlockType( cardGridMetadata.name, {
 	...cardGridMetadata,
 	edit: CardGridEdit,
 	save: cardGridSave,
-});
+} );
 
-registerBlockType(cardMetadata.name, {
+registerBlockType( cardMetadata.name, {
 	...cardMetadata,
 	edit: CardEdit,
 	save: cardSave,
-});
+} );

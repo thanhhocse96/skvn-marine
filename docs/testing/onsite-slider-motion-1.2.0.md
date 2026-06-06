@@ -1,0 +1,117 @@
+# Onsite Slider Editor & Motion 1.2.0 Test
+
+Status: **READY FOR HUMAN TEST**
+Target milestone: **V1 / 1.2.0 — Slider Editor & Motion**
+
+## Target
+
+- Onsite WordPress editor and frontend.
+- A draft test page containing at least two SKVN Accordion blocks and one SKVN Card Grid with four SKVN Card blocks.
+
+## Preconditions
+
+- Deploy the `skvn-marine-blocks` plugin development build version `1.2.0`.
+- Clear page/cache layers that can retain old plugin JavaScript or CSS.
+- Keep the browser console open during frontend checks.
+- Use a draft or private test page instead of changing production content directly.
+
+## Setup
+
+1. Create a draft page using the normal onsite SKVN editing workflow.
+2. Add one `SKVN Slider` and keep its two default `SKVN Slide` children.
+3. Add two `SKVN Accordion` blocks with different content lengths.
+4. Add one `SKVN Card Grid` containing four `SKVN Card` blocks.
+5. Configure the cards:
+   - Card 1: `Fade up`, `On scroll`, Desktop and Tablet enabled, Mobile disabled.
+   - Card 2: `Fade in`, `Always`, all devices enabled.
+   - Card 3: `Hover lift`, Desktop enabled, Tablet and Mobile disabled.
+   - Card 4: `None`.
+6. Save the draft and open its frontend preview.
+
+## Slider Editor Checks
+
+1. Confirm each stacked Slide shows `Choose background image` instead of only bare heading/copy fields.
+2. Choose an image from the WordPress Media Library for Slide 1.
+3. Confirm the selected image appears as the Slide background in the editor.
+4. Edit the heading, lead paragraph, and CTA button directly over the image.
+5. Change Overlay opacity between 0% and 80% and confirm the preview updates.
+6. Use `Replace image`, select a different image, and confirm the preview updates.
+7. Use `Remove image` and confirm the media chooser returns without deleting text/CTA content.
+8. Set different images on both slides, save, and reload the editor.
+9. Confirm images and overlay settings persist without invalid-block or recovery warnings.
+
+## Slider Frontend Checks
+
+1. Confirm the Slider shows one slide at a time rather than a vertical list.
+2. Confirm each background image covers its slide without stretching.
+3. Confirm heading, lead, and CTA remain readable above the overlay.
+4. Confirm arrows, dots, keyboard navigation, loop, autoplay, and pause-on-hover follow Slider settings.
+5. Confirm Swiper layout/navigation CSS loads without relying on the SKVN theme.
+6. Enable Reduce motion and confirm autoplay is disabled.
+
+## Editor Checks
+
+1. Confirm Accordion content remains visible and editable in the editor.
+2. Confirm Card content remains visible when any motion preset is selected.
+3. Confirm the Motion panel offers only `None`, `Fade up`, `Fade in`, and `Hover lift`.
+4. Confirm Fade up/Fade in offer only `On scroll` and `Always`.
+5. Confirm Hover lift does not show an irrelevant trigger selector.
+6. Confirm Desktop, Tablet, and Mobile are independent toggles.
+7. Save and reload the editor.
+8. Confirm no invalid-block or block-recovery warning appears.
+
+## Accordion Frontend Checks
+
+1. Confirm both Accordion panels load collapsed after JavaScript enhancement.
+2. Open each panel and confirm its real content height is shown without clipping.
+3. Close each panel and confirm height animates smoothly to zero.
+4. Rapidly open and close one panel; confirm it does not remain stuck or clipped.
+5. Use `Tab`, then `Enter` and `Space`, to focus and toggle a heading.
+6. Use `Arrow Down` / `Arrow Up` to move between headings.
+7. Use `Home` / `End` to move to the first/last heading.
+8. Confirm focus is visible.
+9. Confirm the accessibility tree reports a button with `aria-expanded` and `aria-controls`.
+
+## Card Motion Frontend Checks
+
+1. At desktop width, scroll Card 1 into view. It should reveal once with Fade up; resizing must not replay it.
+2. Reload and confirm Card 2 runs Fade in on page load.
+3. On a mouse/trackpad desktop device, hover Card 3 and confirm it lifts slightly.
+4. Confirm Card 4 remains static.
+5. At tablet width, Card 1 remains enabled and Card 3 remains static.
+6. At mobile width, Card 1 and Card 3 remain static; Card 2 remains enabled.
+7. On a touch-only device, confirm Hover lift does not activate.
+
+## Fallback And Accessibility Checks
+
+1. Enable operating-system/browser `Reduce motion`, reload, and confirm:
+   - Accordion opens and closes without animated transition.
+   - Card content is immediately visible.
+   - No card entrance or hover animation runs.
+2. Disable JavaScript for one reload and confirm:
+   - Accordion content remains visible instead of being trapped collapsed.
+   - All Card content remains visible.
+3. Re-enable JavaScript after this check.
+
+## Pass Criteria
+
+- No invalid-block warning appears.
+- Slider images can be chosen, replaced, removed, saved, and rendered.
+- Slider editor remains stacked and editable; frontend initializes as Swiper.
+- Accordion interaction, ARIA state, focus, and keyboard navigation work.
+- Accordion content is never clipped after open/close or rapid toggling.
+- Card controls save and reload correctly.
+- Device targeting matches all three independent toggles.
+- Motion runs only for the matching preset, trigger, and device combination.
+- Reduced-motion and no-JavaScript fallbacks leave all content visible.
+- No frontend console error references `skvn-marine-blocks`, motion runtime, or Accordion.
+
+## Fail Evidence To Report
+
+- Target page URL.
+- Browser/device and viewport width.
+- Screenshot or short screen recording.
+- Exact block preset, trigger, and device-toggle combination.
+- Whether Reduce motion or JavaScript-disable mode was active.
+- Console error text and stack trace, if present.
+- Whether the issue occurs in editor, frontend, or both.

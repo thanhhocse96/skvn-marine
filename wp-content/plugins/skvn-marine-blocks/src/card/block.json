@@ -24,6 +24,22 @@
     "imageTreatment": {
       "type": "string",
       "default": "full-bleed"
+    },
+    "motionPreset": {
+      "type": "string",
+      "default": "none"
+    },
+    "motionTrigger": {
+      "type": "string",
+      "default": "on-scroll"
+    },
+    "motionDevices": {
+      "type": "object",
+      "default": {
+        "desktop": true,
+        "tablet": true,
+        "mobile": false
+      }
     }
   },
   "supports": {

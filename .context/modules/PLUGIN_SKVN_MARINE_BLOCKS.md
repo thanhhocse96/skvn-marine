@@ -150,6 +150,17 @@ Mandatory rule:
 - Theme animation remains acceptable for core blocks, page sections, and theme decoration that are not plugin-owned block behavior.
 - Tailwind/WindPress is prototype-only and must not become the production animation contract.
 
+Implemented V1 / 1.2.0:
+
+- `src/shared/motion.ts` owns reduced-motion, device-targeting, and one-shot viewport observer invariants.
+- `src/accordion/view.ts` progressively enhances saved Accordion markup with an accessible trigger, ARIA state, real-height animation, and keyboard navigation.
+- `src/card/view.ts` is the first governed block motion surface.
+- Card presets are limited to Fade up, Fade in, and Hover lift.
+- Fade presets support On scroll or Always; Hover lift uses On hover automatically.
+- Desktop, Tablet, and Mobile are independent toggles.
+- `src/motion.css` and the motion frontend entry are plugin-owned and do not depend on the SKVN theme.
+- Onsite verification contract: `docs/testing/onsite-slider-motion-1.2.0.md`.
+
 ## [manual] Footer Settings Module And Future Gutenberg Supercharger Boundary
 
 0.9.0 footer page settings must be implemented as a migration-ready module inside the current `skvn-marine-blocks` plugin.
@@ -279,7 +290,12 @@ V1.x / 1.6.0 planned SKVN surface presets:
 - Do not save Tailwind/WindPress utility classes as the production contract.
 - Do not expose arbitrary blur, shadow, color, or raw CSS inputs for normal editors.
 
-Slider-specific controls remain blocked until the OPEN slider editor UX tension is resolved.
+Slider editor UX decision for V1 / 1.2.0:
+
+- Use a stacked editor preview; do not run Swiper/autoplay inside Gutenberg.
+- Each Slide directly edits its background image, heading, lead, and CTA.
+- Background image uses the WordPress Media Library with choose, replace, and remove actions.
+- Overlay opacity is governed from 0–80%; raw CSS is not exposed.
 
 0.5.1 brand-mapping contract:
 

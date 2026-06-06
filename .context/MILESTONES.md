@@ -8,7 +8,7 @@
 
 ## Current Milestone
 
-Current: **V1 / 1.2.0 — Gutenberg Supercharger Motion**
+Current: **V1 / 1.2.0 — Slider Editor & Motion**
 Status: **IN_PROGRESS**
 Started: **2026-06-07**
 
@@ -54,12 +54,13 @@ Khi chuyển milestone:
 
 ## Current V1.x Checkpoint
 
-### 1.2.0 — Gutenberg Supercharger Motion
+### 1.2.0 — Slider Editor & Motion
 
 Status: **IN_PROGRESS**
 
 Purpose:
 
+- Complete the Slider/Slide editor experience so each slide can select, replace, remove, and preview its background image directly in Gutenberg.
 - Add portable, preset-based motion support for plugin-owned blocks.
 - Keep plugin-owned motion functional without the `skvn-marine` theme.
 - Preserve visible no-JS fallback, editor visibility, reduced-motion behavior, and independent device targeting.
@@ -67,22 +68,29 @@ Purpose:
 
 Planning:
 
-- `.context/planning/011_VERSION_1_2_0_GUTENBERG_SUPERCHARGER_MOTION_PLANNING.md`
+- `.context/planning/011_VERSION_1_2_0_SLIDER_EDITOR_AND_MOTION_PLANNING.md`
 - `docs/decisions/block-animation-strategy.md`
 
 Acceptance draft:
 
 - [x] Human approves `1.2.0` as the exact target milestone/version
-- [ ] Accordion height animation is audited and hardened before adding broader shared motion
-- [ ] Motion presets and triggers are documented before block controls are added
-- [ ] Plugin-owned animation works without `skvn-marine` theme active
-- [ ] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin
-- [ ] Device targeting uses independent Desktop/Tablet/Mobile checkboxes
-- [ ] No frontend content remains invisible when JS fails
-- [ ] Editor content remains visible and editable
-- [ ] Hover motion is guarded for hover-capable pointer devices
-- [ ] Theme animation remains limited to core blocks, page sections, and theme decoration
-- [ ] Build passes for `skvn-marine-blocks`
+- [x] Slider editor uses a stacked, directly editable preview instead of running Swiper in the editor
+- [x] Each Slide can choose, replace, and remove a background image through the WordPress Media Library
+- [x] Each Slide exposes governed overlay opacity and editable heading, lead, and CTA content
+- [x] Slider frontend ships required Swiper and structural CSS from the plugin
+- [ ] Human verifies Slider image editing and frontend output onsite
+- [x] Accordion height animation is audited and hardened before adding broader shared motion
+- [x] Motion presets and triggers are documented before block controls are added
+- [x] Plugin-owned animation works without `skvn-marine` theme active by source architecture; onsite verification pending
+- [x] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin
+- [x] Device targeting uses independent Desktop/Tablet/Mobile checkboxes
+- [x] No frontend content remains invisible when JS fails by fallback design; onsite verification pending
+- [x] Editor content remains visible and editable by editor implementation; onsite verification pending
+- [x] Hover motion is guarded for hover-capable pointer devices
+- [x] Theme animation remains limited to core blocks, page sections, and theme decoration
+- [x] Build passes for `skvn-marine-blocks`
+- [ ] Human runs `docs/testing/onsite-slider-motion-1.2.0.md`
+- [ ] Human reports onsite motion test pass or actionable failure evidence
 - [ ] Human approves milestone completion
 
 ### 1.1.2 — Product Quote Flow & Map Block Testing

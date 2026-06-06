@@ -1,9 +1,9 @@
 # Slider Block — Decision Log
 
-Status: working decision  
-Milestone: V1 / 0.3.0  
-Layer: Plugin `skvn-marine-blocks` (logic) + Theme `skvn-marine` (CSS/tokens)  
-Last updated: 2026-05-28
+Status: active decision — editor implementation completed in 1.2.0
+Milestone: V1 / 0.3.0; editor completion: V1 / 1.2.0
+Layer: Plugin `skvn-marine-blocks` (logic/portable structure) + Theme `skvn-marine` (tokens/visual overrides)
+Last updated: 2026-06-07
 
 ---
 
@@ -171,6 +171,7 @@ Class `is-active` được add/remove qua Swiper `slideChangeTransitionStart` ev
 - `prefers-reduced-motion`: disable autoplay, disable parallax.
 - Frontend JSON config parsing phải được guard.
 - Editor preview: stacked, không run Swiper, không run autoplay.
+- Each stacked Slide previews and edits its selected background image directly.
 - Không set `opacity: 0` trong editor nếu không có safe fallback.
 
 ---
