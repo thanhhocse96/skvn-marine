@@ -1,13 +1,12 @@
-# Future Candidate — Gutenberg Supercharger Motion Planning
+# Version 1.2.0 — Gutenberg Supercharger Motion Planning
 
-Status: planning
+Status: active
 Created: 2026-06-04
+Promoted: 2026-06-07
 
 ## Purpose
 
-Plan a future portable animation/motion scope for `skvn-marine-blocks`, with a possible later migration or rename toward `Gutenberg Supercharger`.
-
-Do not implement this before V1 launch readiness. The current 0.10.0 / 0.11.0 / 1.0.0 path stays focused on onsite test debt, admin menu refinement, and launch readiness.
+Implement portable animation/motion support for `skvn-marine-blocks`, while preserving a possible later migration or rename toward `Gutenberg Supercharger`.
 
 ## Source Decision
 
@@ -15,13 +14,11 @@ Do not implement this before V1 launch readiness. The current 0.10.0 / 0.11.0 / 
 
 ## Version Placement
 
-Current planning status: **Future Candidate**.
+Active milestone: **1.2.0 — Gutenberg Supercharger Motion**.
 
-Possible promotion target after human approval: **1.2.0 — Gutenberg Supercharger Motion**.
+Human approved promotion and milestone start on **2026-06-07**.
 
-Do not rename this planning file or add `1.2.0` as an active milestone until the human explicitly approves the target version.
-
-## Non-Scope Before Motion Milestone
+## Completed Deferral Boundaries
 
 ### 0.10.0
 
@@ -162,8 +159,8 @@ Plugin block animation assets are separate and should use block-owned `viewScrip
 
 ## Acceptance Draft
 
-- [ ] Human approves exact milestone version before implementation.
-- [ ] Motion implementation remains deferred until after 1.0.0.
+- [x] Human approves exact milestone version before implementation.
+- [x] Motion implementation remains deferred until after 1.0.0.
 - [ ] Plugin-owned animation works without `skvn-marine` theme active.
 - [ ] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin.
 - [ ] No frontend content remains invisible when JS fails.

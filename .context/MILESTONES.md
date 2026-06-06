@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 1.1.0 — Layout Blocks**
+Current: **V1 / 1.2.0 — Gutenberg Supercharger Motion**
 Status: **IN_PROGRESS**
-Started: **2026-06-05**
+Started: **2026-06-07**
 
 AGENTS.md current milestone phải match file này.
 
@@ -54,40 +54,35 @@ Khi chuyển milestone:
 
 ## Current V1.x Checkpoint
 
-### 1.1.0 — Layout Blocks
+### 1.2.0 — Gutenberg Supercharger Motion
 
 Status: **IN_PROGRESS**
 
 Purpose:
 
-- Add governed layout blocks for repeated artifact sections that are too fragile with core blocks plus raw class names.
-- Start with `skvn-marine/card-grid` and `skvn-marine/card`.
-- Evaluate `skvn-marine/quote` after card-grid/card are validated.
-- Keep visual styling theme-owned and block logic plugin-owned.
-- Carry forward admin preset UX hardening for footer background controls: use native selects for stability, but add swatch/preview UI showing dark presets with light text and light presets with dark text instead of styling native `<option>` elements directly.
+- Add portable, preset-based motion support for plugin-owned blocks.
+- Keep plugin-owned motion functional without the `skvn-marine` theme.
+- Preserve visible no-JS fallback, editor visibility, reduced-motion behavior, and independent device targeting.
+- Keep theme-level animation separate and limited to core blocks, page sections, and theme decoration.
 
 Planning:
 
-- `.context/planning/003_VERSION_1_1_0_LAYOUT_BLOCKS_PLANNING.md`
-- `docs/decisions/product-card-grid-layout-contract.md`
-- Source proposal: `.context/proposals/proposal-layout-blocks.md`
+- `.context/planning/011_VERSION_1_2_0_GUTENBERG_SUPERCHARGER_MOTION_PLANNING.md`
+- `docs/decisions/block-animation-strategy.md`
 
 Acceptance draft:
 
-- [x] Footer background preset admin UI includes a stable swatch/preview treatment: dark backgrounds use light preview text, light backgrounds use dark preview text, and the native select remains accessible.
-- [x] At least two real layout artifacts justify the same grid/card governance
-- [x] Brainstorm trigger reviewed for `1.7.0 — Front page trang Chuyển đổi số`: identify which layout pieces can reuse card-grid/card, and which pieces need separate resource/search/taxonomy planning
-- [x] Core block plus theme-pattern alternative is documented as too fragile or too slow for editors
-- [x] `skvn-marine/card-grid` block exists in plugin
-- [x] `skvn-marine/card` block exists in plugin
-- [x] Blocks use `block.json`, TypeScript, and InnerBlocks
-- [x] Card grid controls map inset, content alignment, image treatment, and equal-height presets to stable `skvn-*` classes
-- [x] Editor preview matches frontend closely enough for layout decisions
-- [x] Theme CSS implements all layout-critical `skvn-*` classes used by saved markup
-- [x] No frontend JavaScript runtime is added unless a real interaction requires it
-- [x] Layout blocks do not expose motion controls and do not depend on theme-only animation behavior
-- [ ] `skvn-marine/quote` is evaluated only after card-grid/card validation
-- [x] Build passes for `skvn-marine-blocks`
+- [x] Human approves `1.2.0` as the exact target milestone/version
+- [ ] Accordion height animation is audited and hardened before adding broader shared motion
+- [ ] Motion presets and triggers are documented before block controls are added
+- [ ] Plugin-owned animation works without `skvn-marine` theme active
+- [ ] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin
+- [ ] Device targeting uses independent Desktop/Tablet/Mobile checkboxes
+- [ ] No frontend content remains invisible when JS fails
+- [ ] Editor content remains visible and editable
+- [ ] Hover motion is guarded for hover-capable pointer devices
+- [ ] Theme animation remains limited to core blocks, page sections, and theme decoration
+- [ ] Build passes for `skvn-marine-blocks`
 - [ ] Human approves milestone completion
 
 ### 1.1.2 — Product Quote Flow & Map Block Testing
@@ -123,33 +118,6 @@ Acceptance draft:
 - [ ] No custom PHP form handler is introduced
 - [ ] No n8n webhook is exposed or required
 - [ ] Human approves closing 1.1.2 testing
-
-### Future Candidate — Gutenberg Supercharger Motion
-
-Status: **PENDING**
-
-Purpose:
-
-- Plan portable animation/motion support for plugin-owned blocks after V1 launch readiness.
-- Candidate promotion target after human approval: `1.2.0 — Gutenberg Supercharger Motion`.
-- Keep plugin-owned motion portable for possible future migration/rename toward `Gutenberg Supercharger`.
-
-Planning:
-
-- `.context/planning/011_FUTURE_CANDIDATE_GUTENBERG_SUPERCHARGER_MOTION_PLANNING.md`
-- `docs/decisions/block-animation-strategy.md`
-
-Acceptance draft:
-
-- [ ] Human approves exact target milestone/version before implementation
-- [ ] Animation remains out of scope for 0.10.0, 0.11.0, 1.0.0, and 1.1.0
-- [ ] Plugin-owned animation works without `skvn-marine` theme active
-- [ ] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin
-- [ ] Device targeting uses independent Desktop/Tablet/Mobile checkboxes
-- [ ] No frontend content remains invisible when JS fails
-- [ ] Editor content remains visible and editable
-- [ ] Theme animation remains limited to core blocks, page sections, and theme decoration
-- [ ] Human approves milestone completion
 
 ### 1.4.0 — SKVN Theme Init Setup UI
 
@@ -189,6 +157,32 @@ Acceptance draft:
 - [ ] Request A Quote Workflow setup maps to approved CF7/page/docs contract
 - [ ] No n8n webhook is exposed
 - [ ] Human approves milestone completion
+
+### 1.4.1 — Layout Blocks Validation & Quote Evaluation
+
+Status: **PENDING**
+
+Purpose:
+
+- Run the deferred editor/frontend/runtime validation for the `1.1.0` card-grid and card blocks.
+- Evaluate whether `skvn-marine/quote` is justified only after card-grid/card validation evidence is available.
+- Keep deferred validation explicit instead of treating the untested `1.1.0` implementation as runtime-approved.
+
+Testing:
+
+- `docs/testing/card-grid-layout-blocks-1.1.0.md`
+
+Acceptance draft:
+
+- [ ] Human runs the deferred card-grid/card editor and frontend test
+- [ ] Desktop, tablet, and mobile screenshots are recorded
+- [ ] No invalid-block or recovery warning appears
+- [ ] Editor/frontend parity is acceptable for layout decisions
+- [ ] Preset combinations do not cause overflow, overlap, or unreadable text
+- [ ] Browser console issues are recorded or confirmed clean
+- [ ] `skvn-marine/quote` is evaluated after validation evidence is available
+- [ ] Any source defects found during validation are fixed and re-tested
+- [ ] Human approves closing the deferred `1.1.0` validation
 
 ### 1.6.0 — SKVN Surface Presets
 

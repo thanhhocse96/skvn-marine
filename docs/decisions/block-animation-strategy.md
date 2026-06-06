@@ -1,7 +1,7 @@
 # Block Animation Strategy
 
 Date: 2026-06-04
-Status: working decision — updated after brainstorm session 2026-06-04
+Status: active for V1 / 1.2.0 — promoted 2026-06-07
 
 ## Summary
 
@@ -9,7 +9,7 @@ SKVN Marine builds its own animation system when animation scope opens, split be
 
 External plugin route is closed for the current shared-host runtime because the reviewed candidates are not acceptable under the site's PHP 8.0 constraint. The host has declined to upgrade. Do not use an external Gutenberg animation plugin unless PHP compatibility is verified and the human explicitly approves.
 
-Animation implementation is deferred until after 1.0.0. The current site ships footer and products only. This document records the architecture decisions to be implemented when animation scope opens.
+Animation implementation is active in V1 / 1.2.0. This document defines the architecture boundary for that milestone.
 
 ---
 

@@ -128,7 +128,7 @@ Theme `skvn-marine` still owns the visual output contract:
 - Design tokens.
 - Patterns.
 - Editor/frontend CSS parity.
-- Shared animation runtime.
+- Shared theme-level animation runtime for core blocks, page sections, and theme decoration.
 
 Do not implement the HTML-2-Gutenberg admin tool in the theme.
 
@@ -137,6 +137,8 @@ Do not make this plugin own the primary SKVN visual system.
 ## [manual] Portable Plugin Animation Boundary
 
 Decision doc: `docs/decisions/block-animation-strategy.md`.
+
+This boundary is active for V1 / 1.2.0.
 
 Future scope may rename or migrate this plugin toward `Gutenberg Supercharger`, so plugin-owned block behavior must remain portable.
 

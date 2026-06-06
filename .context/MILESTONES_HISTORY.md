@@ -518,3 +518,41 @@ Init prompt:
 Next milestone:
 
 - V1 / 1.1.0 — Layout Blocks.
+
+---
+
+## V1 / 1.1.0 — Layout Blocks
+
+Status: **DONE — VALIDATION DEFERRED**
+Started: **2026-06-05**
+Moved forward by human: **2026-06-07**
+
+Purpose:
+
+- Add governed `skvn-marine/card-grid` and `skvn-marine/card` layout blocks.
+- Keep visual styling theme-owned and block logic plugin-owned.
+- Prepare stable layout markup without coupling layout blocks to motion behavior.
+
+Implementation completed:
+
+- [x] Footer background preset admin UI uses stable swatch/preview treatment.
+- [x] Repeated layout artifacts justify shared grid/card governance.
+- [x] Core-block and theme-pattern alternatives were evaluated.
+- [x] `skvn-marine/card-grid` and `skvn-marine/card` exist in the plugin.
+- [x] Blocks use `block.json`, TypeScript, and InnerBlocks.
+- [x] Controls save stable `skvn-*` layout classes.
+- [x] Theme CSS implements the layout-critical classes.
+- [x] No frontend JavaScript runtime was added for static grids.
+- [x] Layout blocks do not expose or depend on motion controls.
+- [x] Plugin build passed.
+
+Deferred by explicit human decision:
+
+- Run `docs/testing/card-grid-layout-blocks-1.1.0.md`.
+- Confirm editor/frontend behavior at desktop, tablet, and mobile widths.
+- Evaluate `skvn-marine/quote` only after card-grid/card validation.
+- Close validation under V1 / 1.4.1.
+
+Next milestone:
+
+- V1 / 1.2.0 — Gutenberg Supercharger Motion.

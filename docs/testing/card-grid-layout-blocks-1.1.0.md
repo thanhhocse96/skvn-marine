@@ -1,13 +1,16 @@
 # Card Grid Layout Blocks 1.1.0 Test
 
+Status: **DEFERRED**
+Deferred on: **2026-06-07**
+Target milestone: **V1 / 1.4.1 — Layout Blocks Validation & Quote Evaluation**
+
 ## Target
 
 WordPress editor and frontend page containing the `SKVN Card Grid Test` pattern.
 
 ## Preconditions
 
-- `skvn-marine` theme version `1.1.0` is active.
-- `skvn-marine-blocks` plugin version `1.1.0` is active.
+- `skvn-marine` theme and `skvn-marine-blocks` plugin include the `1.1.0` layout-block implementation or a later compatible build.
 - Current plugin build assets are deployed.
 
 ## Setup
