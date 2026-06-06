@@ -55,6 +55,23 @@
       ]
     },
     "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "var(--skvn-font-body)",
+          "name": "SKVN System",
+          "slug": "skvn-system"
+        },
+        {
+          "fontFamily": "var(--skvn-font-heading)",
+          "name": "SKVN Heading",
+          "slug": "skvn-heading"
+        },
+        {
+          "fontFamily": "var(--skvn-font-ui)",
+          "name": "SKVN UI",
+          "slug": "skvn-ui"
+        }
+      ],
       "fontSizes": [
         {
           "slug": "sm",
@@ -90,7 +107,7 @@
       "text": "var(--wp--preset--color--skvn-slate-700)"
     },
     "typography": {
-      "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      "fontFamily": "var(--wp--preset--font-family--skvn-system)"
     }
   }
 }

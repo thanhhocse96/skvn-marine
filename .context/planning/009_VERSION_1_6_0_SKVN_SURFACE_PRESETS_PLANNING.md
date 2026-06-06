@@ -51,6 +51,91 @@ WindPress may remain a prototype aid, but production output should use `skvn-*` 
 
 ---
 
+## Typography Preset And Delivery Mode
+
+1.6.0 should also design the first governed typography delivery surface instead of leaving font changes as code-only tokens.
+
+Goal:
+
+- Let admins choose approved font families and delivery mode without raw CSS, raw URLs, or arbitrary font names.
+- Keep font decisions theme-owned because typography is part of the SKVN visual system.
+- Keep the implementation compatible with GeneratePress during V1, but avoid GeneratePress parent-theme edits.
+
+Recommended admin surface:
+
+```text
+SKVN Marine -> Typography
+```
+
+If the SKVN Marine admin surface is not ready, use a temporary Customizer section:
+
+```text
+Customizer -> SKVN Typography
+```
+
+Font family presets:
+
+```text
+Inter
+Roboto
+Open Sans
+Lato
+Montserrat
+Noto Sans
+Source Sans 3
+System stack
+```
+
+Font role controls:
+
+```text
+Body font: approved preset
+Heading font: approved preset or Same as body
+UI font: approved preset or Same as body
+```
+
+Delivery mode:
+
+```text
+Google CDN
+Local self-hosted
+```
+
+Design decision:
+
+- Implement a mode switch, not simultaneous CDN plus local loading by default.
+- Google CDN mode prioritizes fast global delivery and simple operations.
+- Local self-hosted mode prioritizes privacy/control and avoids frontend requests to Google.
+- When possible, prepare or validate local font files after a preset is selected, but only enqueue the selected delivery mode on the frontend.
+- Do not allow arbitrary Google Fonts URLs, arbitrary font-family strings, uploaded unknown font files, or dafont-style sources without explicit license review.
+- Use `font-display: swap` for both delivery modes.
+- Keep fallback stacks behind every selected webfont, for example `"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`.
+
+Option keys to evaluate:
+
+```text
+skvn_font_body_preset
+skvn_font_heading_preset
+skvn_font_ui_preset
+skvn_font_delivery_mode
+```
+
+Theme output contract:
+
+```text
+--skvn-font-body
+--skvn-font-heading
+--skvn-font-ui
+```
+
+Implementation note:
+
+- The first implementation may use a curated preset map rather than a full Google Fonts browser.
+- If local self-hosting downloads files, store generated/cache assets in a machine/site-owned runtime location, not committed source, unless a specific bundled font is approved.
+- Document cache invalidation, missing font fallback, and shared-host outbound request failure behavior before shipping local download logic.
+
+---
+
 ## Candidate Presets
 
 ```text
@@ -123,6 +208,11 @@ Community tagline: Make your site feel more "Á đù VTEC".
 ## Acceptance Draft
 
 - [ ] Surface preset contract is documented before code.
+- [ ] Typography preset and delivery-mode contract is documented before code.
+- [ ] Admin can choose approved body, heading, and UI font presets without raw CSS or raw URLs.
+- [ ] Admin can choose Google CDN or local self-hosted delivery mode.
+- [ ] Frontend enqueues only the selected font delivery mode by default.
+- [ ] Local self-hosted mode documents cache path, failure fallback, and license/source constraints.
 - [ ] Theme CSS defines the approved `skvn-surface--*` classes.
 - [ ] Surface presets use SKVN tokens and do not depend on WindPress.
 - [ ] Glass has a non-blur fallback.

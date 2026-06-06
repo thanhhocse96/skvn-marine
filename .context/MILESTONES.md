@@ -28,7 +28,7 @@ Khi chuyển milestone:
 
 1. Update `AGENTS.md` current milestone.
 2. Update `.context/MILESTONES.md` current milestone.
-3. If this is a release/deploy boundary, sync WordPress theme/plugin release metadata with `node tools/bump-project-version.mjs <version>` and follow `docs/workflows/versioning-release-workflow.md`.
+3. If this is a release/deploy boundary, verify WordPress theme/plugin release metadata with `node tools/bump-project-version.mjs <version>` and follow `docs/workflows/versioning-release-workflow.md`.
 4. If the milestone added or changed runtime PHP `require`/`include` paths, run the runtime file audit in `docs/workflows/deploy-artifact-workflow.md` before zip upload.
 5. Move completed milestone checklist/notes sang `.context/MILESTONES_HISTORY.md`.
 6. Move `RESOLVED_ACTIVE` tensions của milestone cũ từ `.context/TENSIONS_ACTIVE.md` sang `.context/TENSIONS_HISTORY.md`, đổi `Status: ARCHIVED`.
@@ -47,7 +47,8 @@ Khi chuyển milestone:
 - Planning filename phải khớp target version chính, ví dụ `001_VERSION_1_1_0_<TOPIC>_PLANNING.md` hoặc `002_VERSION_2_0_0_<TOPIC>_PLANNING.md`.
 - Không đổi current milestone/version nếu chưa có human approve rõ ràng.
 - `.context/MILESTONES.md` is the planning/scope source of truth. It does not automatically update WordPress theme/plugin `Version:` headers.
-- Before packaging or deploying a milestone release, run `node tools/bump-project-version.mjs <version>` and rebuild plugin assets.
+- When human explicitly starts a milestone, the agent may run `node tools/bump-project-version.mjs <version>` and rebuild plugin assets so the working WordPress metadata advertises the current milestone version. This is a milestone development build, not release approval.
+- Before packaging or deploying a milestone release, verify again with `node tools/bump-project-version.mjs <version>` and rebuild plugin assets.
 
 ---
 
@@ -199,6 +200,7 @@ Purpose:
 - Keep production visual output independent from WindPress/Tailwind utilities.
 - Let the theme own `skvn-surface--*` classes, tokens, fallbacks, and contrast/readability rules.
 - Let plugin/editor controls select safe presets later without raw CSS, raw class, arbitrary color, blur, or shadow input.
+- Design governed typography presets and a font delivery mode switch: Google CDN or local self-hosted, without raw CSS or arbitrary font URLs.
 
 Planning:
 
@@ -207,6 +209,11 @@ Planning:
 Acceptance draft:
 
 - [ ] Surface preset contract is documented before code
+- [ ] Typography preset and delivery-mode contract is documented before code
+- [ ] Admin can choose approved body, heading, and UI font presets without raw CSS or raw URLs
+- [ ] Admin can choose Google CDN or local self-hosted delivery mode
+- [ ] Frontend enqueues only the selected font delivery mode by default
+- [ ] Local self-hosted mode documents cache path, failure fallback, and license/source constraints
 - [ ] Theme CSS defines approved `skvn-surface--*` classes
 - [ ] Presets use SKVN tokens and do not depend on WindPress
 - [ ] Glass has a non-blur fallback

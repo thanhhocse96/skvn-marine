@@ -6,7 +6,9 @@ Keep milestone planning versions and WordPress release artifact versions from dr
 
 `.context/MILESTONES.md` controls scope and planning. It does not automatically update WordPress theme/plugin headers.
 
-Before packaging or deploying a milestone release, sync release metadata with the target milestone version.
+When the human explicitly starts a milestone, the agent may sync working metadata with the target milestone version. Treat that as a milestone development build, not release approval.
+
+Before packaging or deploying a milestone release, verify release metadata with the target milestone version.
 
 ## Version Sources
 
@@ -49,11 +51,14 @@ git diff -- wp-content/themes/skvn-marine/style.css wp-content/plugins/skvn-mari
 
 Bump when:
 
+- human explicitly starts a milestone and wants the WordPress admin/files to advertise the current milestone working version
 - packaging a theme/plugin zip for a milestone release
 - human approves moving from one milestone to the next
 - deploy artifact should advertise a new version in WordPress admin
 
 Do not bump for every small local edit.
+
+If the bump happens at milestone start, rebuild plugin assets after bumping and keep the milestone acceptance checklist as the release gate.
 
 ## Release Checklist
 

@@ -15,7 +15,8 @@ Quy tắc quản lý tension theo milestone:
 
 - Trong cùng milestone hiện tại, tension đã `RESOLVED_ACTIVE` nằm trong `.context/TENSIONS_ACTIVE.md` để agent thấy decision liên quan khi làm task V1.
 - Chỉ khi human tuyên bố chuyển sang milestone/version mới (ví dụ V1 → V2), agent mới move các tensions đã `RESOLVED_ACTIVE` của milestone cũ sang `.context/TENSIONS_HISTORY.md` và đổi `Status: ARCHIVED`.
-- Khi chuyển milestone, agent phải update cả `AGENTS.md` và `.context/MILESTONES.md`, đồng thời move milestone cũ sang `.context/MILESTONES_HISTORY.md`. Nếu đó là release/deploy boundary, sync WordPress theme/plugin release metadata bằng `node tools/bump-project-version.mjs <version>` theo `docs/workflows/versioning-release-workflow.md`. Nếu milestone thêm hoặc đổi PHP runtime `require`/`include`, phải audit deploy artifact theo `docs/workflows/deploy-artifact-workflow.md` trước khi zip/upload.
+- Khi human bắt đầu milestone mới, agent được sync WordPress theme/plugin working metadata sang version milestone bằng `node tools/bump-project-version.mjs <version>` rồi rebuild plugin assets nếu plugin/package metadata đổi. Đây là **milestone development build**, chưa phải release approved.
+- Khi chuyển milestone, agent phải update cả `AGENTS.md` và `.context/MILESTONES.md`, đồng thời move milestone cũ sang `.context/MILESTONES_HISTORY.md`. Nếu đó là release/deploy boundary, verify WordPress theme/plugin release metadata đã sync bằng `node tools/bump-project-version.mjs <version>` theo `docs/workflows/versioning-release-workflow.md`. Nếu milestone thêm hoặc đổi PHP runtime `require`/`include`, phải audit deploy artifact theo `docs/workflows/deploy-artifact-workflow.md` trước khi zip/upload.
 - `.context/TENSIONS_HISTORY.md` không load mặc định, chỉ đọc khi cần audit quyết định cũ hoặc human yêu cầu.
 
 ---
@@ -445,7 +446,8 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 - Không đổi tên planning file hoặc milestone version nếu chưa có human xác nhận.
 - Khi đổi version/milestone thật, phải update đồng bộ `AGENTS.md`, `.context/MILESTONES.md`, và file planning/docs liên quan.
 - `.context/MILESTONES.md` là planning/scope source of truth, không tự động bump WordPress theme/plugin release headers.
-- Trước khi package/deploy milestone release, chạy `node tools/bump-project-version.mjs <version>` rồi rebuild plugin assets.
+- Khi human bắt đầu milestone mới, có thể chạy `node tools/bump-project-version.mjs <version>` rồi rebuild plugin assets để working build hiển thị đúng milestone version trong WordPress admin.
+- Trước khi package/deploy milestone release, verify lại bằng `node tools/bump-project-version.mjs <version>` rồi rebuild plugin assets.
 - Nếu milestone thêm/đổi PHP runtime `require`/`include`, chạy deploy artifact runtime file audit trước khi zip/upload.
 - Release version sync phải cập nhật theme `style.css`, plugin main header, plugin `package.json` / `package-lock.json`, và block metadata versions.
 

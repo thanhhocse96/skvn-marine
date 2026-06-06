@@ -2,7 +2,7 @@
 Theme Name: SKVN Marine
 Template: generatepress
 Text Domain: skvn-marine
-Version: 0.8.0
+Version: 1.1.0
 Requires at least: 6.5
 Requires PHP: 7.4
 Update URI: false
@@ -35,15 +35,38 @@ Author: SKVN
 	--skvn-footer-muted: rgba(219, 234, 254, 0.78);
 	--skvn-footer-social-bg: rgba(255, 255, 255, 0.12);
 	--skvn-footer-text: rgba(255, 255, 255, 0.78);
+	--skvn-font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--skvn-font-heading: var(--skvn-font-body);
+	--skvn-font-ui: var(--skvn-font-body);
 	--skvn-radius-card: 8px;
 	--skvn-shadow-card: 0 10px 30px rgba(8, 47, 73, 0.1);
 	--skvn-content-width: 760px;
 	--skvn-wide-width: 1200px;
 }
 
-body {
+body,
+.editor-styles-wrapper {
 	color: var(--skvn-color-slate-700);
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-family: var(--skvn-font-body);
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: var(--skvn-font-ui);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.wp-block-heading {
+	font-family: var(--skvn-font-heading);
+	letter-spacing: 0;
 }
 
 /* 64px is Wordpress Logo in Editor */

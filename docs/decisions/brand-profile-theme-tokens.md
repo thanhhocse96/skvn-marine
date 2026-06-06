@@ -69,6 +69,9 @@ Canonical 0.7 profile names:
 | CTA background | `--skvn-color-cta` | `var(--skvn-color-blue-700)` | `skvn-blue-700` |
 | CTA hover | `--skvn-color-cta-hover` | `var(--skvn-color-blue-900)` | `skvn-blue-900` |
 | Premium cue | `--skvn-color-premium` | `var(--skvn-color-gold-300)` | `skvn-gold-300` |
+| Body font | `--skvn-font-body` | system font stack | `skvn-system` |
+| Heading font | `--skvn-font-heading` | `var(--skvn-font-body)` | `skvn-heading` |
+| UI font | `--skvn-font-ui` | `var(--skvn-font-body)` | `skvn-ui` |
 | Card radius | `--skvn-radius-card` | `8px` | CSS only |
 | Card shadow | `--skvn-shadow-card` | existing card shadow | CSS only |
 | Section spacing | `--skvn-section-spacing` | `4rem` | future spacing preset candidate |
@@ -94,6 +97,9 @@ Required sync pairs:
 | `settings.color.palette[].slug = skvn-sky-50` | `--skvn-color-sky-50` |
 | `settings.color.palette[].slug = skvn-slate-700` | `--skvn-color-slate-700` |
 | `settings.color.palette[].slug = skvn-white` | `--skvn-color-white` |
+| `settings.typography.fontFamilies[].slug = skvn-system` | `--skvn-font-body` |
+| `settings.typography.fontFamilies[].slug = skvn-heading` | `--skvn-font-heading` |
+| `settings.typography.fontFamilies[].slug = skvn-ui` | `--skvn-font-ui` |
 | `settings.layout.contentSize` | `--skvn-content-width` |
 | `settings.layout.wideSize` | `--skvn-wide-width` |
 

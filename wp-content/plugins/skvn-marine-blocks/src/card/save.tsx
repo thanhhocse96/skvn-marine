@@ -15,7 +15,7 @@ function getCardClassName({ variant, featured, imageTreatment }: CardAttributes)
 	return [
 		'skvn-card',
 		variant && variant !== 'default' ? `skvn-card--${variant}` : '',
-		featured ? 'skvn-card--featured' : '',
+		featured && variant !== 'featured' ? 'skvn-card--featured' : '',
 		imageTreatment ? `skvn-card--image-${imageTreatment}` : '',
 	]
 		.filter(Boolean)
