@@ -8,7 +8,7 @@
 
 ## Current Milestone
 
-Current: **V1 / 1.2.0 — Slider Editor & Motion**
+Current: **V1 / 1.2.1 — SKVN Slider Presets & Inserter**
 Status: **IN_PROGRESS**
 Started: **2026-06-07**
 
@@ -54,44 +54,64 @@ Khi chuyển milestone:
 
 ## Current V1.x Checkpoint
 
-### 1.2.0 — Slider Editor & Motion
+### 1.2.1 — SKVN Slider Presets & Inserter
 
 Status: **IN_PROGRESS**
 
 Purpose:
 
-- Complete the Slider/Slide editor experience so each slide can select, replace, remove, and preview its background image directly in Gutenberg.
-- Add portable, preset-based motion support for plugin-owned blocks.
-- Keep plugin-owned motion functional without the `skvn-marine` theme.
-- Preserve visible no-JS fallback, editor visibility, reduced-motion behavior, and independent device targeting.
-- Keep theme-level animation separate and limited to core blocks, page sections, and theme decoration.
+- Make SKVN-owned blocks immediately discoverable under one `SKVN Marine` Block Inserter category.
+- Expose three add-and-see Slider presets: Hero Slider, Product Showcase, and Card Carousel.
+- Reuse the existing Slider/Slide blocks and Swiper runtime through native Gutenberg variations/templates.
+- Keep the stacked editor and native Gutenberg List View/actions; do not build a slide manager.
 
 Planning:
 
-- `.context/planning/011_VERSION_1_2_0_SLIDER_EDITOR_AND_MOTION_PLANNING.md`
-- `docs/decisions/block-animation-strategy.md`
+- `.context/planning/015_VERSION_1_2_1_SKVN_SLIDER_PRESETS_AND_INSERTER_PLANNING.md`
+- `docs/decisions/slider-presets-and-inserter-1.2.1.md`
+- Init prompt: `docs/artifacts/init-prompt-v1-1.2.1-slider-presets.md`
 
 Acceptance draft:
 
-- [x] Human approves `1.2.0` as the exact target milestone/version
-- [x] Slider editor uses a stacked, directly editable preview instead of running Swiper in the editor
-- [x] Each Slide can choose, replace, and remove a background image through the WordPress Media Library
-- [x] Each Slide exposes governed overlay opacity and editable heading, lead, and CTA content
-- [x] Slider frontend ships required Swiper and structural CSS from the plugin
-- [ ] Human verifies Slider image editing and frontend output onsite
-- [x] Accordion height animation is audited and hardened before adding broader shared motion
-- [x] Motion presets and triggers are documented before block controls are added
-- [x] Plugin-owned animation works without `skvn-marine` theme active by source architecture; onsite verification pending
-- [x] Plugin-owned animation ships required CSS/JS/keyframes/reduced-motion fallback inside the plugin
-- [x] Device targeting uses independent Desktop/Tablet/Mobile checkboxes
-- [x] No frontend content remains invisible when JS fails by fallback design; onsite verification pending
-- [x] Editor content remains visible and editable by editor implementation; onsite verification pending
-- [x] Hover motion is guarded for hover-capable pointer devices
-- [x] Theme animation remains limited to core blocks, page sections, and theme decoration
-- [x] Build passes for `skvn-marine-blocks`
-- [ ] Human runs `docs/testing/onsite-slider-motion-1.2.0.md`
-- [ ] Human reports onsite motion test pass or actionable failure evidence
+- [x] Human approves the add-and-see preset direction and rejects a custom slide manager for MVP
+- [x] `SKVN Marine` appears as a dedicated Block Inserter category
+- [x] Existing SKVN-owned blocks appear under `SKVN Marine`
+- [x] `SKVN Hero Slider` appears as an inserter choice with useful editable sample content
+- [x] `SKVN Product Showcase` appears as an inserter choice with a flow-based media/content split
+- [x] `SKVN Card Carousel` appears as an inserter choice with responsive 3/2/1 slides per view
+- [x] Presets reuse `skvn-marine/slider`, `skvn-marine/slide`, and one Swiper runtime
+- [x] No slide manager, selected-slide canvas, or setup modal is introduced
+- [x] Native Gutenberg List View and block actions remain usable
+- [x] Existing Slider content remains valid
+- [x] Plugin build passes
+- [x] Onsite QA remains deferred to V1 / 1.2.9
 - [ ] Human approves milestone completion
+
+### 1.2.9 — Slider & Motion Onsite QA
+
+Status: **PENDING**
+
+Purpose:
+
+- Consolidate onsite QA deferred from 1.2.0 and 1.2.1.
+- Verify Slider image editing, preset insertion, frontend Swiper behavior, Accordion interaction, Card motion, accessibility, responsive behavior, and fallbacks.
+- Keep implementation milestones moving without falsely marking unrun onsite tests as passed.
+
+Testing:
+
+- `docs/testing/onsite-slider-motion-1.2.9.md`
+
+Acceptance draft:
+
+- [ ] Human verifies all three Slider presets insert useful sample content
+- [ ] Human verifies Slider image choose/replace/remove and editor persistence
+- [ ] Human verifies Hero, Product Showcase, and Card Carousel frontend layouts
+- [ ] Human verifies Slider keyboard, autoplay, reduced-motion, navigation, and responsive behavior
+- [ ] Human verifies Accordion interaction and accessibility
+- [ ] Human verifies Card motion device targeting and no-JS/reduced-motion fallbacks
+- [ ] Invalid-block, console, layout, and cache issues are recorded or confirmed clean
+- [ ] Any source defects are fixed and re-tested
+- [ ] Human approves closing consolidated Slider/Motion QA
 
 ### 1.1.2 — Product Quote Flow & Map Block Testing
 

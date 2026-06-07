@@ -71,3 +71,62 @@
 .skvn-slider__pagination {
 	z-index: 3;
 }
+
+.skvn-slider--hero .skvn-slide {
+	align-items: center;
+	background:
+		linear-gradient(135deg, rgba(7, 59, 90, 0.96), rgba(17, 119, 160, 0.82)),
+		#073b5a;
+	display: flex;
+	min-height: clamp(30rem, 68vh, 48rem);
+}
+
+.skvn-slider--hero .skvn-slide__content {
+	max-width: 48rem;
+}
+
+.skvn-slider--product-showcase .skvn-slide {
+	background: #f4f8fa;
+	color: #073b5a;
+}
+
+.skvn-slider__showcase-layout {
+	align-items: center;
+	margin-block: 0;
+}
+
+.skvn-slider--product-showcase .wp-block-image,
+.skvn-slider--card-carousel .wp-block-image {
+	background: #dcebf1;
+	border-radius: 0.5rem;
+	min-height: 12rem;
+	overflow: hidden;
+}
+
+.skvn-slider--card-carousel .skvn-slide {
+	background: #fff;
+	border: 1px solid #dce4e8;
+	border-radius: 0.75rem;
+	min-height: 100%;
+	padding: 1.25rem;
+}
+
+.skvn-slider--card-carousel .skvn-slide__content {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.skvn-slider--card-carousel .wp-block-buttons {
+	margin-block-start: auto;
+}
+
+.skvn-slider--card-carousel:not(.skvn-slider--editor) {
+	padding-inline: 3.5rem;
+}
+
+@media (max-width: 599px) {
+	.skvn-slider--card-carousel:not(.skvn-slider--editor) {
+		padding-inline: 2.75rem;
+	}
+}

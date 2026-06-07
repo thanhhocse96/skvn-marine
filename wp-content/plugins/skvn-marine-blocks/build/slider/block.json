@@ -2,9 +2,9 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "skvn-marine/slider",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "title": "SKVN Slider",
-  "category": "design",
+  "category": "skvn-marine",
   "icon": "images-alt2",
   "description": "Swiper-powered slider skeleton with stacked editor preview.",
   "textdomain": "skvn-marine-blocks",
@@ -36,6 +36,14 @@
     "slidesPerView": {
       "type": "number",
       "default": 1
+    },
+    "preset": {
+      "type": "string",
+      "default": ""
+    },
+    "responsiveSlides": {
+      "type": "string",
+      "default": "uniform"
     }
   },
   "allowedBlocks": [

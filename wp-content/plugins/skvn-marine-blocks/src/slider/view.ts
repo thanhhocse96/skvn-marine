@@ -20,6 +20,7 @@ type SliderConfig = {
 	dots?: boolean;
 	effect?: string;
 	slidesPerView?: number;
+	responsiveSlides?: string;
 };
 
 const prefersReduced = window.matchMedia(
@@ -45,6 +46,7 @@ document
 			? config.slidesPerView
 			: 1;
 		const delay = Number.isFinite( config.delay ) ? config.delay : 5000;
+		const usesCardBreakpoints = config.responsiveSlides === '3-2-1';
 
 		new Swiper( slider, {
 			modules: [ Autoplay, EffectFade, Keyboard, Navigation, Pagination ],
@@ -76,6 +78,12 @@ document
 						),
 				  }
 				: false,
-			slidesPerView,
+			breakpoints: usesCardBreakpoints
+				? {
+						600: { slidesPerView: 2 },
+						1024: { slidesPerView: 3 },
+				  }
+				: undefined,
+			slidesPerView: usesCardBreakpoints ? 1 : slidesPerView,
 		} );
 	} );

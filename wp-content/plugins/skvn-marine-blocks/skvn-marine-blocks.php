@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SKVN Marine Blocks
  * Description: Custom Gutenberg blocks for SKVN Marine.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * Text Domain: skvn-marine-blocks
@@ -17,6 +17,32 @@ require_once __DIR__ . '/modules/footer-settings/footer-settings.php';
 require_once __DIR__ . '/modules/header-settings/header-settings.php';
 
 add_action( 'init', 'skvn_marine_blocks_register_blocks' );
+add_filter( 'block_categories_all', 'skvn_marine_blocks_register_category' );
+
+/**
+ * Register the shared SKVN Marine block inserter category.
+ *
+ * @param array $categories Existing block categories.
+ * @return array
+ */
+function skvn_marine_blocks_register_category( $categories ) {
+	foreach ( $categories as $category ) {
+		if ( isset( $category['slug'] ) && 'skvn-marine' === $category['slug'] ) {
+			return $categories;
+		}
+	}
+
+	array_unshift(
+		$categories,
+		array(
+			'slug'  => 'skvn-marine',
+			'title' => __( 'SKVN Marine', 'skvn-marine-blocks' ),
+			'icon'  => 'admin-site-alt3',
+		)
+	);
+
+	return $categories;
+}
 
 /**
  * Register SKVN Marine custom blocks.

@@ -556,3 +556,33 @@ Deferred by explicit human decision:
 Next milestone:
 
 - V1 / 1.2.0 — Slider Editor & Motion.
+
+---
+
+## V1 / 1.2.0 — Slider Editor & Motion
+
+Status: **DONE — ONSITE QA DEFERRED**
+Started: **2026-06-07**
+Moved forward by human: **2026-06-07**
+
+Implemented:
+
+- [x] Slide background image choose, replace, remove, and editor preview.
+- [x] Governed overlay opacity.
+- [x] Editable heading, lead, and CTA template.
+- [x] Plugin-owned Swiper and structural CSS.
+- [x] Accessible Accordion progressive enhancement with real-height animation.
+- [x] Card motion presets with independent Desktop/Tablet/Mobile targeting.
+- [x] Reduced-motion and no-JavaScript fallback architecture.
+- [x] Plugin build and PHP syntax checks passed.
+
+Deferred by explicit human decision:
+
+- Onsite editor and frontend verification.
+- Slider image persistence and Swiper behavior.
+- Accordion and Card motion accessibility/responsive checks.
+- Consolidate these tests with 1.2.1 under V1 / 1.2.9.
+
+Next milestone:
+
+- V1 / 1.2.1 — SKVN Slider Presets & Inserter.

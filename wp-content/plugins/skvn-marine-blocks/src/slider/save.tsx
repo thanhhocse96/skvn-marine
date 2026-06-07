@@ -8,6 +8,8 @@ type SliderAttributes = {
 	dots: boolean;
 	effect: string;
 	slidesPerView: number;
+	preset: string;
+	responsiveSlides: string;
 };
 
 type SliderSaveProps = {
@@ -15,8 +17,11 @@ type SliderSaveProps = {
 };
 
 export function save({ attributes }: SliderSaveProps) {
+	const presetClass = attributes.preset
+		? ` skvn-slider--${ attributes.preset }`
+		: '';
 	const blockProps = useBlockProps.save({
-		className: 'skvn-slider swiper',
+		className: `skvn-slider swiper${ presetClass }`,
 		'data-skvn-slider': JSON.stringify({
 			autoplay: attributes.autoplay,
 			delay: attributes.delay,
@@ -25,6 +30,9 @@ export function save({ attributes }: SliderSaveProps) {
 			dots: attributes.dots,
 			effect: attributes.effect,
 			slidesPerView: attributes.slidesPerView,
+			...(attributes.responsiveSlides === '3-2-1'
+				? { responsiveSlides: attributes.responsiveSlides }
+				: {}),
 		}),
 	});
 

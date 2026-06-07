@@ -159,7 +159,8 @@ Implemented V1 / 1.2.0:
 - Fade presets support On scroll or Always; Hover lift uses On hover automatically.
 - Desktop, Tablet, and Mobile are independent toggles.
 - `src/motion.css` and the motion frontend entry are plugin-owned and do not depend on the SKVN theme.
-- Onsite verification contract: `docs/testing/onsite-slider-motion-1.2.0.md`.
+- Onsite verification contract deferred to V1 / 1.2.9:
+  `docs/testing/onsite-slider-motion-1.2.9.md`.
 
 ## [manual] Footer Settings Module And Future Gutenberg Supercharger Boundary
 
@@ -296,6 +297,26 @@ Slider editor UX decision for V1 / 1.2.0:
 - Each Slide directly edits its background image, heading, lead, and CTA.
 - Background image uses the WordPress Media Library with choose, replace, and remove actions.
 - Overlay opacity is governed from 0–80%; raw CSS is not exposed.
+
+V1 / 1.2.1 Slider preset and inserter decision:
+
+- Register one `SKVN Marine` Block Inserter category for all SKVN-owned blocks.
+- Expose Hero Slider, Product Showcase, and Card Carousel as add-and-see presets.
+- Reuse the existing Slider/Slide block slugs and one Swiper runtime.
+- Use Gutenberg variations/templates rather than separate duplicated Slider blocks.
+- Do not build a custom slide manager, selected-slide canvas, or setup modal.
+- Keep native Gutenberg List View and block actions for navigation, reorder, duplicate, and remove.
+- Onsite QA for 1.2.0 and 1.2.1 is consolidated in V1 / 1.2.9.
+
+Implemented V1 / 1.2.1:
+
+- `block_categories_all` registers one plugin-owned `SKVN Marine` category.
+- Slider, Slide, Accordion, Card Grid, and Card metadata use category slug `skvn-marine`.
+- `src/slider/variations.ts` registers Hero Slider, Product Showcase, and Card Carousel with inserter scope and editable InnerBlocks templates.
+- Hero is the default Slider variation so the inserter does not add a fourth generic Slider choice.
+- Product Showcase uses flow-based Columns/Image/content blocks.
+- Card Carousel saves one responsive preset flag and maps it to Swiper 3/2/1 breakpoints without changing the runtime dependency.
+- Existing Slider serialization remains unchanged when the new preset attributes are absent/default.
 
 0.5.1 brand-mapping contract:
 

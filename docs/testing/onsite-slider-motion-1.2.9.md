@@ -1,16 +1,18 @@
-# Onsite Slider Editor & Motion 1.2.0 Test
+# Onsite Slider & Motion 1.2.9 Test
 
-Status: **READY FOR HUMAN TEST**
-Target milestone: **V1 / 1.2.0 — Slider Editor & Motion**
+Status: **DEFERRED**
+Deferred on: **2026-06-07**
+Target milestone: **V1 / 1.2.9 — Slider & Motion Onsite QA**
 
 ## Target
 
 - Onsite WordPress editor and frontend.
 - A draft test page containing at least two SKVN Accordion blocks and one SKVN Card Grid with four SKVN Card blocks.
+- All three 1.2.1 Slider presets: Hero Slider, Product Showcase, and Card Carousel.
 
 ## Preconditions
 
-- Deploy the `skvn-marine-blocks` plugin development build version `1.2.0`.
+- Deploy the completed `1.2.1` or later compatible `skvn-marine-blocks` development build.
 - Clear page/cache layers that can retain old plugin JavaScript or CSS.
 - Keep the browser console open during frontend checks.
 - Use a draft or private test page instead of changing production content directly.
@@ -18,36 +20,43 @@ Target milestone: **V1 / 1.2.0 — Slider Editor & Motion**
 ## Setup
 
 1. Create a draft page using the normal onsite SKVN editing workflow.
-2. Add one `SKVN Slider` and keep its two default `SKVN Slide` children.
-3. Add two `SKVN Accordion` blocks with different content lengths.
-4. Add one `SKVN Card Grid` containing four `SKVN Card` blocks.
-5. Configure the cards:
+2. Insert `SKVN Hero Slider`, `SKVN Product Showcase`, and `SKVN Card Carousel` from the `SKVN Marine` category.
+3. Add one base `SKVN Slider` if it remains intentionally exposed, and keep its two default `SKVN Slide` children.
+4. Add two `SKVN Accordion` blocks with different content lengths.
+5. Add one `SKVN Card Grid` containing four `SKVN Card` blocks.
+6. Configure the cards:
    - Card 1: `Fade up`, `On scroll`, Desktop and Tablet enabled, Mobile disabled.
    - Card 2: `Fade in`, `Always`, all devices enabled.
    - Card 3: `Hover lift`, Desktop enabled, Tablet and Mobile disabled.
    - Card 4: `None`.
-6. Save the draft and open its frontend preview.
+7. Save the draft and open its frontend preview.
 
 ## Slider Editor Checks
 
-1. Confirm each stacked Slide shows `Choose background image` instead of only bare heading/copy fields.
-2. Choose an image from the WordPress Media Library for Slide 1.
-3. Confirm the selected image appears as the Slide background in the editor.
-4. Edit the heading, lead paragraph, and CTA button directly over the image.
-5. Change Overlay opacity between 0% and 80% and confirm the preview updates.
-6. Use `Replace image`, select a different image, and confirm the preview updates.
-7. Use `Remove image` and confirm the media chooser returns without deleting text/CTA content.
-8. Set different images on both slides, save, and reload the editor.
-9. Confirm images and overlay settings persist without invalid-block or recovery warnings.
+1. Confirm `SKVN Marine` appears as a dedicated Block Inserter category.
+2. Confirm all three Slider presets appear without requiring search.
+3. Confirm each preset inserts useful sample content immediately with no setup modal.
+4. Confirm Hero Slider, Product Showcase, and Card Carousel have visibly different intended structures.
+5. Confirm each stacked Slide shows `Choose background image` instead of only bare heading/copy fields where the preset uses background images.
+6. Choose an image from the WordPress Media Library for Slide 1.
+7. Confirm the selected image appears as the Slide background in the editor.
+8. Edit the heading, lead paragraph, and CTA button directly over the image.
+9. Change Overlay opacity between 0% and 80% and confirm the preview updates.
+10. Use `Replace image`, select a different image, and confirm the preview updates.
+11. Use `Remove image` and confirm the media chooser returns without deleting text/CTA content.
+12. Use native Gutenberg List View/actions to reorder, duplicate, and remove a Slide.
+13. Save and reload the editor.
+14. Confirm preset structures, images, overlay settings, and order persist without invalid-block or recovery warnings.
 
 ## Slider Frontend Checks
 
-1. Confirm the Slider shows one slide at a time rather than a vertical list.
-2. Confirm each background image covers its slide without stretching.
-3. Confirm heading, lead, and CTA remain readable above the overlay.
-4. Confirm arrows, dots, keyboard navigation, loop, autoplay, and pause-on-hover follow Slider settings.
-5. Confirm Swiper layout/navigation CSS loads without relying on the SKVN theme.
-6. Enable Reduce motion and confirm autoplay is disabled.
+1. Confirm Hero Slider and Product Showcase show one slide at a time.
+2. Confirm Card Carousel shows 3 cards on desktop, 2 on tablet, and 1 on mobile.
+3. Confirm each background image covers its slide without stretching.
+4. Confirm heading, lead, and CTA remain readable above the overlay.
+5. Confirm arrows, dots, keyboard navigation, loop, autoplay, and pause-on-hover follow preset/settings behavior.
+6. Confirm Swiper layout/navigation CSS loads without relying on the SKVN theme.
+7. Enable Reduce motion and confirm autoplay is disabled.
 
 ## Editor Checks
 
@@ -97,6 +106,8 @@ Target milestone: **V1 / 1.2.0 — Slider Editor & Motion**
 
 - No invalid-block warning appears.
 - Slider images can be chosen, replaced, removed, saved, and rendered.
+- All three Slider presets are discoverable under `SKVN Marine` and insert useful content immediately.
+- Card Carousel responds 3/2/1 across desktop/tablet/mobile.
 - Slider editor remains stacked and editable; frontend initializes as Swiper.
 - Accordion interaction, ARIA state, focus, and keyboard navigation work.
 - Accordion content is never clipped after open/close or rapid toggling.

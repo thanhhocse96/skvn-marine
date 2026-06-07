@@ -285,6 +285,21 @@ Quyết định: không tạo variant 2 cho đến khi có use case thật sự 
 - [ ] Variant 2 là gì? Xác định trước khi trigger Phase B.
 - [ ] Slide order — drag-and-drop reorder trong editor hay chỉ add/delete?
 
+## 11. V1 / 1.2.1 MVP Preset Decision
+
+The active follow-up decision is:
+
+- `docs/decisions/slider-presets-and-inserter-1.2.1.md`
+
+Summary:
+
+- Keep stacked direct editing.
+- Do not build a custom slide manager for MVP.
+- Use native Gutenberg List View/actions for slide structure operations.
+- Add one `SKVN Marine` Block Inserter category.
+- Add Hero Slider, Product Showcase, and Card Carousel as variations/templates
+  over the existing Slider/Slide runtime.
+
 ### 10.1. Question for Dev to trigger Variant 2
 
 Bạn cần ngồi lại và trả lời: trên toàn bộ site SKVN Marine hiện tại và roadmap V1, có những chỗ nào cần slider không phải hero style? Liệt kê ra thì mới biết variant 2 là gì và trigger của Phase B có thật không hay chỉ là 1 variant duy nhất đến V2:

@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 1.2.0 — Slider Editor & Motion**
+Current milestone: **V1 / 1.2.1 — SKVN Slider Presets & Inserter**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
@@ -429,6 +429,8 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 1.1.0 | Layout Blocks |
 | 1.1.2 | Product Quote Flow & Map Block Testing |
 | 1.2.0 | Slider Editor & Motion |
+| 1.2.1 | SKVN Slider Presets & Inserter |
+| 1.2.9 | Slider & Motion Onsite QA |
 | 1.4.0 | SKVN Theme Init Setup UI |
 | 1.4.1 | Layout Blocks Validation & Quote Evaluation |
 | 1.6.0 | SKVN Surface Presets |

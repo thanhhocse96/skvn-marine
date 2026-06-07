@@ -10,6 +10,8 @@ type SliderAttributes = {
 	dots: boolean;
 	effect: string;
 	slidesPerView: number;
+	preset: string;
+	responsiveSlides: string;
 };
 
 type SliderEditProps = {
@@ -20,7 +22,12 @@ type SliderEditProps = {
 const TEMPLATE = [['skvn-marine/slide'], ['skvn-marine/slide']];
 
 export function Edit({ attributes, setAttributes }: SliderEditProps) {
-	const blockProps = useBlockProps({ className: 'skvn-slider skvn-slider--editor' });
+	const presetClass = attributes.preset
+		? ` skvn-slider--${ attributes.preset }`
+		: '';
+	const blockProps = useBlockProps({
+		className: `skvn-slider skvn-slider--editor${ presetClass }`,
+	});
 
 	return (
 		<div {...blockProps}>
@@ -67,7 +74,12 @@ export function Edit({ attributes, setAttributes }: SliderEditProps) {
 						label={__('Slides per view', 'skvn-marine-blocks')}
 						max={4}
 						min={1}
-						onChange={(slidesPerView) => setAttributes({ slidesPerView: slidesPerView || 1 })}
+						onChange={(slidesPerView) =>
+							setAttributes({
+								slidesPerView: slidesPerView || 1,
+								responsiveSlides: 'uniform',
+							})
+						}
 						value={attributes.slidesPerView}
 					/>
 				</PanelBody>

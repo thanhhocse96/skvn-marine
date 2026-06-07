@@ -12,6 +12,7 @@ import { save as slideSave } from './slide/save';
 import sliderMetadata from './slider/block.json';
 import { Edit as SliderEdit } from './slider/edit';
 import { save as sliderSave } from './slider/save';
+import { registerSliderVariations } from './slider/variations';
 
 import cardGridMetadata from './card-grid/block.json';
 import { Edit as CardGridEdit } from './card-grid/edit';
@@ -38,6 +39,7 @@ registerBlockType( sliderMetadata.name, {
 	edit: SliderEdit,
 	save: sliderSave,
 } );
+registerSliderVariations();
 
 registerBlockType( cardGridMetadata.name, {
 	...cardGridMetadata,

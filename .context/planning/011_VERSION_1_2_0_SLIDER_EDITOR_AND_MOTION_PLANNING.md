@@ -1,6 +1,6 @@
 # Version 1.2.0 — Slider Editor & Motion Planning
 
-Status: active
+Status: implemented — onsite QA deferred to V1 / 1.2.9
 Created: 2026-06-04
 Promoted: 2026-06-07
 
@@ -22,7 +22,7 @@ Slider editor scope:
 
 ## Version Placement
 
-Active milestone: **1.2.0 — Slider Editor & Motion**.
+Implemented milestone: **1.2.0 — Slider Editor & Motion**.
 
 Human approved promotion and milestone start on **2026-06-07**.
 
@@ -177,5 +177,5 @@ Plugin block animation assets are separate and should use block-owned `viewScrip
 - [x] Theme `animations.js` remains reserved for core/page/theme-level animation and was not added without a use case.
 - [x] Tailwind/WindPress is prototype-only and not the production animation contract.
 - [x] Build passes for `skvn-marine-blocks`.
-- [ ] Human runs `docs/testing/onsite-slider-motion-1.2.0.md`.
-- [ ] Human approves milestone completion.
+- [ ] Human runs `docs/testing/onsite-slider-motion-1.2.9.md` during V1 / 1.2.9.
+- [x] Human approved moving forward with onsite QA deferred to V1 / 1.2.9.
