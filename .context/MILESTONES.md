@@ -183,6 +183,57 @@ Acceptance draft:
 - [ ] No n8n webhook is exposed or required
 - [ ] Human approves closing 1.1.2 testing
 
+### 1.3.0 — Slider Dynamic Rendering Architecture
+
+Status: **PENDING**
+
+Purpose:
+
+- Convert `skvn-marine/slider` and `skvn-marine/slide` from static Gutenberg
+  saved frontend markup to a server-rendered PHP architecture while the block
+  family is still early enough to migrate deliberately.
+- Establish one stable media/overlay/content render contract shared by Hero
+  Slider, Product Showcase, Card Carousel, and future Slider presets.
+- Prevent compound deprecation debt from accumulating each time Slider frontend
+  markup evolves.
+- Preserve Gutenberg InnerBlocks editing, existing block namespace/attributes,
+  Swiper runtime behavior, and existing published content through an explicit
+  migration/compatibility plan.
+
+Planning:
+
+- `.context/planning/017_VERSION_1_3_0_SLIDER_DYNAMIC_RENDERING_ARCHITECTURE_PLANNING.md`
+- `docs/decisions/slider-block.md`
+- `docs/decisions/slider-static-markup-migration-1.2.1.md` (superseded before implementation)
+- `docs/testing/slider-frontend-media-content-layer-bug-1.2.1.md`
+
+Constraints:
+
+- Do not silently convert the blocks during a 1.2.1 bug patch.
+- Do not rename `skvn-marine/slider` or `skvn-marine/slide`.
+- Do not replace InnerBlocks with a `slides` array or custom slide manager.
+- Do not duplicate Swiper or introduce another Slider controller.
+- Define plugin PHP module ownership, render callbacks, escaping, and deploy
+  artifact requirements before implementation.
+- Existing Slider content must remain editable and render without invalid-block
+  recovery.
+
+Acceptance draft:
+
+- [ ] Static versus dynamic rendering decision and migration boundary are finalized
+- [ ] Current saved Slider/Slide markup variants are inventoried
+- [ ] PHP render contract defines Slider shell and Slide media/content layers
+- [ ] Slider/Slide block metadata registers approved server render paths
+- [ ] Existing InnerBlocks content renders through the dynamic path
+- [ ] Existing saved Slider content remains editable without invalid-block recovery
+- [ ] Hero Slider uses a stable media/overlay/content frame
+- [ ] Product Showcase and Card Carousel retain their distinct flow layouts
+- [ ] Swiper fade, autoplay, arrows, dots, keyboard, loop, and reduced-motion behavior remain functional
+- [ ] PHP input/output handling follows WordPress sanitize/escape rules
+- [ ] New PHP runtime files are included in deploy artifact and plugin zip audits
+- [ ] Plugin build, PHP syntax checks, and onsite migration QA pass
+- [ ] Human approves milestone completion
+
 ### 1.4.0 — SKVN Theme Init Setup UI
 
 Status: **PENDING**
