@@ -6,16 +6,25 @@ Human direction: activate implementation in 1.2.3
 
 ## Purpose
 
-Create an editorial `Feature Showcase` experience inspired by the local
+Create a configurable `Feature Showcase` panel group inspired by the local
 accordion artifacts, without expanding the active 1.2.1 Slider preset scope.
 
-The block should support a premium feature section with:
+The block should support a reusable panel/card set with:
 
-- fixed intro/copy surface
 - expanding image panels on desktop
-- intentionally split mobile layout: intro first, panel rail second
+- mobile progressive disclosure: compact headers first, focused/tapped card body
+  second
+- configurable item count
+- configurable desktop direction
 - editable panel images and text
 - no dependency on Tailwind, CDN scripts, or raw arbitrary classes
+
+The surrounding B2B editorial text stack is not part of the block. It belongs to
+a pattern/composition documented in:
+
+```text
+docs/artifacts/page-blueprints/b2b-seafood-editorial-showcase-pattern.md
+```
 
 ## Source Artifacts
 
@@ -49,9 +58,11 @@ Build as a separate SKVN-owned block, not as the existing `SKVN Accordion`.
 Reasons:
 
 - Existing Accordion is a content accordion with heading/panel semantics.
-- Feature Showcase is an editorial visual component with image panels.
+- Feature Showcase is a governed visual panel group with image cards.
 - It needs a different saved structure and responsive behavior.
 - Naming it Accordion would confuse editors and future QA.
+- The B2B text stack should be supplied by a pattern, not by required block
+  attributes.
 
 ## Activated Code
 
@@ -74,19 +85,17 @@ Activation completed:
 
 Desktop:
 
-- two-column layout
-- intro/copy on the left
-- panel group on the right
-- last panel open by default
+- panel group only
+- horizontal or vertical direction
+- configurable default open panel
 - hover and keyboard focus can expand another panel
 
 Mobile:
 
-- split into two stacked surfaces
-- intro/copy becomes a full-width section
-- panel rail appears after intro
-- rail does not depend on hover
-- vertical labels remain visible as a deliberate mobile visual state
+- compact horizontal card headers by default
+- focused/tapped card reveals image and body content
+- mobile must not depend on hover
+- optional future behavior may hide the group or convert it into a slider
 
 ## Accessibility Contract
 
@@ -96,14 +105,15 @@ Mobile:
 - Respect `prefers-reduced-motion`.
 - Images require editable alt text or safe empty alt when decorative.
 - Mobile content must remain readable without fine pointer hover.
+- If semantic `details`/`summary` is used, styling must preserve keyboard
+  accessibility and no-JS readability.
 
 ## Non-Scope For 1.2.3
 
 - Dynamic product/post queries
-- Arbitrary panel counts beyond the approved MVP count
+- Free absolute layer editor
 - Raw Tailwind utility input
 - Raw CSS input
-- Free absolute layer editor
 - Replacing the existing Accordion block
 - Shipping Tailwind CDN or external image dependencies
 
@@ -112,10 +122,13 @@ Mobile:
 - [x] Human approves activating the parked block source.
 - [x] `SKVN Feature Showcase` appears under `SKVN Marine`.
 - [x] Block inserts useful editable sample content.
-- [x] Intro fields are editable.
-- [x] Four panel labels, headings, copy, and images are editable.
-- [x] Desktop expanding panel behavior supports hover and keyboard focus in source.
-- [x] Mobile uses the split intro plus panel rail state in source.
+- [ ] Block contract is refactored to panel-only, with no required intro/meta
+  text stack.
+- [ ] Panel count can be changed by editors.
+- [ ] Desktop layout direction can be changed by editors.
+- [ ] Panel labels, headings, copy, and images are editable.
+- [ ] Desktop expanding panel behavior supports hover and keyboard focus in source.
+- [ ] Mobile uses compact headers with focus/tap reveal behavior.
 - [x] Reduced-motion users do not receive forced panel animation.
 - [x] No Tailwind CDN, raw class input, or raw CSS input is required.
 - [x] Existing `SKVN Accordion` behavior remains unchanged.

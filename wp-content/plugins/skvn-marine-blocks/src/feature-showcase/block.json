@@ -8,6 +8,13 @@
   "icon": "excerpt-view",
   "description": "Editorial feature showcase with expanding image panels and a mobile rail layout.",
   "textdomain": "skvn-marine-blocks",
+  "styles": [
+    {
+      "name": "b2b-seafood-editorial",
+      "label": "B2B Seafood Editorial",
+      "isDefault": true
+    }
+  ],
   "attributes": {
     "eyebrow": {
       "type": "string",

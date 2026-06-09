@@ -60,10 +60,12 @@ Status: **IN_PROGRESS**
 
 Purpose:
 
-- Park and later activate the artifact-inspired `SKVN Feature Showcase` block.
+- Activate and refactor the artifact-inspired `SKVN Feature Showcase` block into
+  a reusable panel group.
 - Keep V1 / 1.2.1 limited to Slider Presets & Inserter while preserving drafted source for later.
-- Build a separate editorial showcase block rather than overloading the existing `SKVN Accordion`.
-- Use the human-approved mobile split state: intro/copy first, compact panel rail second.
+- Build a separate feature panel block rather than overloading the existing `SKVN Accordion`.
+- Move the surrounding B2B seafood intro/meta typography into a pattern, not
+  required block attributes.
 
 Planning:
 
@@ -80,10 +82,12 @@ Acceptance draft:
 - [x] Human approves activating the parked block source
 - [x] `SKVN Feature Showcase` appears under `SKVN Marine`
 - [x] Block inserts useful editable sample content
-- [x] Intro fields are editable
-- [x] Four panel labels, headings, copy, and images are editable
+- [ ] Block contract is refactored to panel-only, with no required intro/meta text stack
+- [ ] Panel count can be changed by editors
+- [ ] Desktop layout direction can be changed by editors
+- [ ] Panel labels, headings, copy, and images are editable
 - [x] Desktop expanding panel behavior supports hover and keyboard focus in source
-- [x] Mobile uses the split intro plus panel rail state in source
+- [ ] Mobile uses compact headers with focus/tap reveal behavior
 - [x] Reduced-motion users do not receive forced panel animation
 - [x] No Tailwind CDN, raw class input, or raw CSS input is required
 - [x] Existing `SKVN Accordion` behavior remains unchanged
