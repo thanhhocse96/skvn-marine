@@ -332,6 +332,8 @@ Implemented V1 / 1.2.3 Feature Showcase:
 - Editors can add, remove, reorder, and edit panels; choose horizontal or vertical desktop layout; choose the initially open panel; and hide or use disclosure on mobile.
 - Saved markup uses native `details`/`summary` so mobile tap and keyboard interaction remain available without JavaScript.
 - `src/feature-showcase/view.ts` progressively enhances that markup to keep exactly one panel active, close siblings when another panel opens, and prevent the active/only panel from collapsing into an empty surface.
+- On fine-pointer devices, panel hover activates the corresponding `details`; on touch/coarse-pointer devices, summary tap remains the activation path.
+- Enhanced summary clicks prevent the native details toggle before activating the target, avoiding a transient all-closed flash.
 - The first activated static markup is preserved through a Gutenberg deprecation and legacy CSS until old content is resaved.
 
 0.5.1 brand-mapping contract:

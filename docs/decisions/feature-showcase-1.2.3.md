@@ -34,6 +34,9 @@ Approved implementation:
 - `details`/`summary` is the stable saved interaction contract
 - `feature-showcase/view.ts` is a progressive enhancement that enforces one
   active panel and prevents an empty all-closed state
+- fine-pointer desktop devices activate panels on hover
+- touch/coarse-pointer devices keep tap activation
+- enhanced summary clicks prevent the native close-then-reopen toggle frame
 - horizontal and vertical desktop layouts share the same markup
 - mobile supports `accordion` and `hidden`
 - panel count is not capped at four

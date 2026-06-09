@@ -1,5 +1,9 @@
 const showcaseSelector = '.skvn-feature-showcase';
 const itemSelector = '.skvn-feature-showcase__item';
+const summarySelector = '.skvn-feature-showcase__summary';
+const desktopHoverQuery = window.matchMedia(
+	'(hover: hover) and (pointer: fine)'
+);
 
 document
 	.querySelectorAll< HTMLElement >( showcaseSelector )
@@ -33,20 +37,18 @@ document
 		showcase.classList.add( 'skvn-feature-showcase--enhanced' );
 
 		items.forEach( ( item ) => {
-			item.addEventListener( 'toggle', () => {
-				if ( isSynchronizing ) {
-					return;
-				}
+			const summary =
+				item.querySelector< HTMLElement >( summarySelector );
 
-				if ( item.open ) {
+			summary?.addEventListener( 'click', ( event ) => {
+				event.preventDefault();
+				activate( item );
+			} );
+
+			item.addEventListener( 'pointerenter', () => {
+				if ( desktopHoverQuery.matches ) {
 					activate( item );
-					return;
-				}
-
-				if ( item === activeItem ) {
-					activate( activeItem );
 				}
 			} );
 		} );
 	} );
-

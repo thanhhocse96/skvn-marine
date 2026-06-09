@@ -27,15 +27,17 @@ Create or update:
 5. Test desktop direction `Vertical panels`.
 6. Test initially open values `First`, `Last`, and `No panel`.
 7. Save and reload the editor; confirm values and order persist.
-8. On desktop frontend, use pointer hover and keyboard Tab/Enter or Space.
-9. Open each panel and confirm the previously active panel closes.
-10. Click the active panel again and confirm its image/content remains visible.
-11. Repeat step 10 with a showcase containing only one panel.
-12. At mobile width, confirm headers are horizontal and tap reveals content.
-13. Select `Hide on mobile` and confirm only this block is hidden below 782px.
-14. Enable reduced motion and confirm expansion does not force transitions.
-15. Open the previously saved legacy block and confirm no invalid-block warning.
-16. Check the legacy block before resaving and confirm its published layout is still styled.
+8. On desktop frontend, hover every panel and confirm it becomes active without clicking.
+9. Move directly between panels and confirm there is no blank or flashing frame.
+10. Use keyboard Tab/Enter or Space and confirm the focused summary activates.
+11. Open each panel and confirm the previously active panel closes.
+12. Click the active panel again and confirm its image/content remains visible without a flash.
+13. Repeat step 12 with a showcase containing only one panel.
+14. At mobile width, confirm headers are horizontal and tap reveals content.
+15. Select `Hide on mobile` and confirm only this block is hidden below 782px.
+16. Enable reduced motion and confirm expansion does not force transitions.
+17. Open the previously saved legacy block and confirm no invalid-block warning.
+18. Check the legacy block before resaving and confirm its published layout is still styled.
 
 ## Expected Behavior
 
