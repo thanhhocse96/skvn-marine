@@ -6,43 +6,33 @@
   "title": "SKVN Feature Showcase",
   "category": "skvn-marine",
   "icon": "excerpt-view",
-  "description": "Editorial feature showcase with expanding image panels and a mobile rail layout.",
+  "description": "Configurable image panels with horizontal or vertical desktop layouts and mobile disclosure.",
   "textdomain": "skvn-marine-blocks",
-  "styles": [
-    {
-      "name": "b2b-seafood-editorial",
-      "label": "B2B Seafood Editorial",
-      "isDefault": true
-    }
-  ],
   "attributes": {
-    "eyebrow": {
+    "desktopLayout": {
       "type": "string",
-      "default": "Premium Ocean Catch"
+      "default": "horizontal",
+      "enum": [
+        "horizontal",
+        "vertical"
+      ]
     },
-    "headingBefore": {
+    "mobileBehavior": {
       "type": "string",
-      "default": "Global"
+      "default": "accordion",
+      "enum": [
+        "accordion",
+        "hidden"
+      ]
     },
-    "headingAccent": {
+    "defaultOpen": {
       "type": "string",
-      "default": "Seafood"
-    },
-    "headingAfter": {
-      "type": "string",
-      "default": "Exporter"
-    },
-    "intro": {
-      "type": "string",
-      "default": "Premium wild-caught seafood prepared for demanding buyers in the United States, Japan, and the European Union."
-    },
-    "metaLabel": {
-      "type": "string",
-      "default": "Compliance Standards"
-    },
-    "metaText": {
-      "type": "string",
-      "default": "HACCP - BRC GLOBAL - IFS"
+      "default": "last",
+      "enum": [
+        "first",
+        "last",
+        "none"
+      ]
     },
     "items": {
       "type": "array",

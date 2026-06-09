@@ -5,7 +5,7 @@ Target milestone: V1 / 1.2.3
 
 ## Target URL/Page
 
-Create or update a test page onsite, for example:
+Create or update:
 
 ```text
 /feature-showcase-test/
@@ -13,62 +13,52 @@ Create or update a test page onsite, for example:
 
 ## Setup / Preconditions
 
-- The `skvn-marine-blocks` plugin build for V1 / 1.2.3 is uploaded/active.
-- `SKVN Feature Showcase` appears under the `SKVN Marine` inserter category.
-- Insert one `SKVN Feature Showcase` block.
-- Replace at least two panel images with real Media Library images.
+- Upload and activate the V1 / 1.2.3 plugin build.
+- Insert one new `SKVN Feature Showcase`.
+- Keep one previously saved Feature Showcase, if available, for migration testing.
+- Assign real Media Library images to at least two panels.
 
 ## Test Steps
 
-1. Insert the block from `SKVN Marine -> SKVN Feature Showcase`.
-2. Edit eyebrow, heading parts, intro, meta label, and meta text.
-3. Edit all four panel kickers, headings, and copy.
-4. Replace at least two panel images.
-5. Edit image alt text for at least one panel.
-6. Remove one panel image and confirm the block remains usable.
-7. Save the page and reload the editor.
-8. Open the frontend page on desktop.
-9. Hover each panel and confirm the focused/hovered panel expands.
-10. Use keyboard Tab to focus each panel and confirm the panel content appears.
-11. Open mobile width and confirm intro appears first, then the compact panel rail.
-12. Tap/focus panels on mobile and confirm the panel content can be revealed.
-13. Enable reduced motion at OS/browser level if available and re-check that forced transitions do not run.
+1. Confirm the new block contains panels only and no intro/meta text fields.
+2. Add a fifth panel, remove another panel, and reorder two panels.
+3. Edit every panel label, heading, copy, image, and one image alt value.
+4. Test desktop direction `Horizontal panels`.
+5. Test desktop direction `Vertical panels`.
+6. Test initially open values `First`, `Last`, and `No panel`.
+7. Save and reload the editor; confirm values and order persist.
+8. On desktop frontend, use pointer hover and keyboard Tab/Enter or Space.
+9. Open each panel and confirm the previously active panel closes.
+10. Click the active panel again and confirm its image/content remains visible.
+11. Repeat step 10 with a showcase containing only one panel.
+12. At mobile width, confirm headers are horizontal and tap reveals content.
+13. Select `Hide on mobile` and confirm only this block is hidden below 782px.
+14. Enable reduced motion and confirm expansion does not force transitions.
+15. Open the previously saved legacy block and confirm no invalid-block warning.
+16. Check the legacy block before resaving and confirm its published layout is still styled.
 
-## Expected UX / Visual Behavior
+## Expected Behavior
 
-- The block inserts with complete sample content.
-- The intro/copy surface is readable.
-- Panel images cover their panel frame without distortion.
-- Desktop defaults to the last panel open.
-- Hover and keyboard focus can expand another panel.
-- Mobile keeps the intentional split layout: intro first, compact panel rail second.
-- Mobile panel labels remain visible, and focused/tapped panels can reveal their body content.
-- Reduced-motion users do not receive forced panel animation.
+- The block is a reusable panel group, independent from the B2B intro pattern.
+- Item count and order are editor-controlled.
+- Desktop horizontal and vertical modes use the same content.
+- Mobile disclosure works without hover and remains usable with JavaScript disabled.
+- Enhanced mode keeps exactly one panel active and never loses the active image/content after a repeated click.
+- Images cover a stable panel body rather than determining panel dimensions.
+- Existing 1.2.3 content remains styled and migrates without recovery mode.
 
-## Pass / Fail Criteria
+## Pass / Fail
 
-PASS when:
+PASS when all edits persist, both desktop modes work, mobile tap disclosure works,
+legacy content remains valid, and no console or layout errors appear.
 
-- No invalid block warning appears after save/reload.
-- All editable text and image values persist.
-- Desktop hover and keyboard focus both reveal panel content.
-- Mobile layout is readable and does not depend on hover.
-- No console errors are reported.
+FAIL on invalid-block recovery, lost items, inaccessible summaries, overlapping
+text, distorted panel sizing, or legacy frontend regression.
 
-FAIL when:
+## Evidence
 
-- The block is missing from the inserter.
-- Any editor field fails to persist.
-- Keyboard focus cannot reveal panel content.
-- Mobile rail hides all meaningful content with no focus/tap path.
-- Layout overflows or text overlaps incoherently.
-
-## Evidence Human Should Report Back
-
-- Desktop editor screenshot after insertion.
-- Desktop frontend screenshot with the default open panel.
-- Desktop frontend screenshot with a different panel focused or hovered.
-- Mobile frontend screenshot of the split intro + panel rail.
-- Browser and viewport.
-- Console/log notes.
-- Any invalid-block message text, if present.
+- Editor screenshot showing five or more panels.
+- Desktop horizontal and vertical screenshots.
+- Mobile collapsed and expanded screenshots.
+- Legacy block screenshot before and after resave.
+- Browser, viewport, console notes, and any invalid-block message.

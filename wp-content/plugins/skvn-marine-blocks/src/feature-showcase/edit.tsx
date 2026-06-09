@@ -5,28 +5,14 @@ import {
 	RichText,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { Button, PanelBody, TextControl } from '@wordpress/components';
+import {
+	Button,
+	PanelBody,
+	SelectControl,
+	TextControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-
-type FeatureItem = {
-	kicker: string;
-	heading: string;
-	copy: string;
-	imageId: number;
-	imageUrl: string;
-	imageAlt: string;
-};
-
-type FeatureShowcaseAttributes = {
-	eyebrow: string;
-	headingBefore: string;
-	headingAccent: string;
-	headingAfter: string;
-	intro: string;
-	metaLabel: string;
-	metaText: string;
-	items: FeatureItem[];
-};
+import type { FeatureItem, FeatureShowcaseAttributes } from './types';
 
 type FeatureShowcaseEditProps = {
 	attributes: FeatureShowcaseAttributes;
@@ -39,19 +25,33 @@ type SelectedImage = {
 	alt?: string;
 };
 
-const EMPTY_ITEMS: FeatureItem[] = [];
+function createItem( index: number ): FeatureItem {
+	const itemNumber = String( index + 1 ).padStart( 2, '0' );
 
-function getItems( items: FeatureItem[] = EMPTY_ITEMS ) {
-	return items.slice( 0, 4 );
+	return {
+		kicker: `${ itemNumber } - New feature`,
+		heading: 'Feature heading',
+		copy: 'Describe the capability, process, or outcome represented by this panel.',
+		imageId: 0,
+		imageUrl: '',
+		imageAlt: '',
+	};
 }
 
-function stripMarkup( value: string ) {
-	return value.replace( /<[^>]*>/g, '' ).trim();
+function getClassName( attributes: FeatureShowcaseAttributes ) {
+	return [
+		'skvn-feature-showcase',
+		'skvn-feature-showcase--editor',
+		`skvn-feature-showcase--${ attributes.desktopLayout }`,
+		`skvn-feature-showcase--mobile-${ attributes.mobileBehavior }`,
+	].join( ' ' );
 }
 
 export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) {
-	const blockProps = useBlockProps( { className: 'skvn-feature-showcase' } );
-	const items = getItems( attributes.items );
+	const blockProps = useBlockProps( {
+		className: getClassName( attributes ),
+	} );
+	const items = attributes.items || [];
 	const setItem = ( index: number, itemPatch: Partial< FeatureItem > ) => {
 		setAttributes( {
 			items: items.map( ( item, itemIndex ) =>
@@ -59,104 +59,96 @@ export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) 
 			),
 		} );
 	};
+	const moveItem = ( index: number, offset: -1 | 1 ) => {
+		const targetIndex = index + offset;
+
+		if ( targetIndex < 0 || targetIndex >= items.length ) {
+			return;
+		}
+
+		const nextItems = [ ...items ];
+		[ nextItems[ index ], nextItems[ targetIndex ] ] = [
+			nextItems[ targetIndex ],
+			nextItems[ index ],
+		];
+		setAttributes( { items: nextItems } );
+	};
 
 	return (
 		<section { ...blockProps }>
 			<InspectorControls>
-				<PanelBody title={ __( 'Content', 'skvn-marine-blocks' ) }>
-					<TextControl
-						label={ __( 'Eyebrow', 'skvn-marine-blocks' ) }
-						onChange={ ( eyebrow ) => setAttributes( { eyebrow } ) }
-						value={ attributes.eyebrow }
-					/>
-					<TextControl
-						label={ __( 'Meta label', 'skvn-marine-blocks' ) }
-						onChange={ ( metaLabel ) =>
-							setAttributes( { metaLabel } )
+				<PanelBody title={ __( 'Layout', 'skvn-marine-blocks' ) }>
+					<SelectControl
+						label={ __( 'Desktop direction', 'skvn-marine-blocks' ) }
+						onChange={ ( desktopLayout ) =>
+							setAttributes( {
+								desktopLayout:
+									desktopLayout as FeatureShowcaseAttributes[ 'desktopLayout' ],
+							} )
 						}
-						value={ attributes.metaLabel }
+						options={ [
+							{
+								label: __( 'Horizontal panels', 'skvn-marine-blocks' ),
+								value: 'horizontal',
+							},
+							{
+								label: __( 'Vertical panels', 'skvn-marine-blocks' ),
+								value: 'vertical',
+							},
+						] }
+						value={ attributes.desktopLayout }
 					/>
-					<TextControl
-						label={ __( 'Meta text', 'skvn-marine-blocks' ) }
-						onChange={ ( metaText ) =>
-							setAttributes( { metaText } )
+					<SelectControl
+						label={ __( 'Mobile behavior', 'skvn-marine-blocks' ) }
+						onChange={ ( mobileBehavior ) =>
+							setAttributes( {
+								mobileBehavior:
+									mobileBehavior as FeatureShowcaseAttributes[ 'mobileBehavior' ],
+							} )
 						}
-						value={ attributes.metaText }
+						options={ [
+							{
+								label: __( 'Tap to reveal', 'skvn-marine-blocks' ),
+								value: 'accordion',
+							},
+							{
+								label: __( 'Hide on mobile', 'skvn-marine-blocks' ),
+								value: 'hidden',
+							},
+						] }
+						value={ attributes.mobileBehavior }
+					/>
+					<SelectControl
+						label={ __( 'Initially open panel', 'skvn-marine-blocks' ) }
+						onChange={ ( defaultOpen ) =>
+							setAttributes( {
+								defaultOpen:
+									defaultOpen as FeatureShowcaseAttributes[ 'defaultOpen' ],
+							} )
+						}
+						options={ [
+							{
+								label: __( 'Last panel', 'skvn-marine-blocks' ),
+								value: 'last',
+							},
+							{
+								label: __( 'First panel', 'skvn-marine-blocks' ),
+								value: 'first',
+							},
+							{
+								label: __( 'No panel', 'skvn-marine-blocks' ),
+								value: 'none',
+							},
+						] }
+						value={ attributes.defaultOpen }
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div className="skvn-feature-showcase__grid">
-				<div className="skvn-feature-showcase__intro">
-					<RichText
-						allowedFormats={ [] }
-						className="skvn-feature-showcase__eyebrow"
-						onChange={ ( eyebrow ) => setAttributes( { eyebrow } ) }
-						tagName="p"
-						value={ attributes.eyebrow }
-					/>
-					<h2 className="skvn-feature-showcase__heading">
-						<RichText
-							allowedFormats={ [] }
-							onChange={ ( headingBefore ) =>
-								setAttributes( { headingBefore } )
-							}
-							tagName="span"
-							value={ attributes.headingBefore }
-						/>
-						<RichText
-							allowedFormats={ [] }
-							className="skvn-feature-showcase__heading-accent"
-							onChange={ ( headingAccent ) =>
-								setAttributes( { headingAccent } )
-							}
-							tagName="strong"
-							value={ attributes.headingAccent }
-						/>
-						<RichText
-							allowedFormats={ [] }
-							onChange={ ( headingAfter ) =>
-								setAttributes( { headingAfter } )
-							}
-							tagName="span"
-							value={ attributes.headingAfter }
-						/>
-					</h2>
-					<RichText
-						className="skvn-feature-showcase__copy"
-						onChange={ ( intro ) => setAttributes( { intro } ) }
-						tagName="p"
-						value={ attributes.intro }
-					/>
-					<div className="skvn-feature-showcase__meta">
-						<RichText
-							allowedFormats={ [] }
-							className="skvn-feature-showcase__meta-label"
-							onChange={ ( metaLabel ) =>
-								setAttributes( { metaLabel } )
-							}
-							tagName="p"
-							value={ attributes.metaLabel }
-						/>
-						<RichText
-							allowedFormats={ [] }
-							className="skvn-feature-showcase__meta-text"
-							onChange={ ( metaText ) =>
-								setAttributes( { metaText } )
-							}
-							tagName="p"
-							value={ attributes.metaText }
-						/>
-					</div>
-				</div>
-				<div className="skvn-feature-showcase__panels">
+			<div className="skvn-feature-showcase__items">
 					{ items.map( ( item, index ) => (
 						<article
-							aria-label={ `${ __( 'Feature', 'skvn-marine-blocks' ) } ${
-								index + 1
-							}: ${ stripMarkup( item.heading ) }` }
-							className="skvn-feature-showcase__panel"
+							className="skvn-feature-showcase__item"
 							key={ index }
-							tabIndex={ 0 }
 						>
 							{ item.imageUrl && (
 								<img
@@ -165,20 +157,20 @@ export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) 
 									src={ item.imageUrl }
 								/>
 							) }
-							<div className="skvn-feature-showcase__panel-shade" />
+							<div className="skvn-feature-showcase__shade" />
 							<RichText
 								allowedFormats={ [] }
-								className="skvn-feature-showcase__panel-kicker"
+								className="skvn-feature-showcase__label"
 								onChange={ ( kicker ) =>
 									setItem( index, { kicker } )
 								}
 								tagName="p"
 								value={ item.kicker }
 							/>
-							<div className="skvn-feature-showcase__panel-body">
+							<div className="skvn-feature-showcase__content">
 								<RichText
 									allowedFormats={ [] }
-									className="skvn-feature-showcase__panel-title"
+									className="skvn-feature-showcase__title"
 									onChange={ ( heading ) =>
 										setItem( index, { heading } )
 									}
@@ -186,7 +178,7 @@ export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) 
 									value={ item.heading }
 								/>
 								<RichText
-									className="skvn-feature-showcase__panel-copy"
+									className="skvn-feature-showcase__copy"
 									onChange={ ( copy ) =>
 										setItem( index, { copy } )
 									}
@@ -246,17 +238,57 @@ export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) 
 											variant="link"
 										>
 											{ __(
-												'Remove image',
-												'skvn-marine-blocks'
-											) }
+											'Remove image',
+											'skvn-marine-blocks'
+										) }
 										</Button>
 									</>
 								) }
+								<div className="skvn-feature-showcase__item-actions">
+									<Button
+										disabled={ index === 0 }
+										onClick={ () => moveItem( index, -1 ) }
+										variant="secondary"
+									>
+										{ __( 'Move earlier', 'skvn-marine-blocks' ) }
+									</Button>
+									<Button
+										disabled={ index === items.length - 1 }
+										onClick={ () => moveItem( index, 1 ) }
+										variant="secondary"
+									>
+										{ __( 'Move later', 'skvn-marine-blocks' ) }
+									</Button>
+									<Button
+										disabled={ items.length === 1 }
+										isDestructive
+										onClick={ () =>
+											setAttributes( {
+												items: items.filter(
+													( _, itemIndex ) => itemIndex !== index
+												),
+											} )
+										}
+										variant="link"
+									>
+										{ __( 'Remove panel', 'skvn-marine-blocks' ) }
+									</Button>
+								</div>
 							</div>
 						</article>
 					) ) }
-				</div>
 			</div>
+			<Button
+				className="skvn-feature-showcase__add"
+				onClick={ () =>
+					setAttributes( {
+						items: [ ...items, createItem( items.length ) ],
+					} )
+				}
+				variant="primary"
+			>
+				{ __( 'Add panel', 'skvn-marine-blocks' ) }
+			</Button>
 		</section>
 	);
 }

@@ -1,7 +1,7 @@
 # Feature Showcase — 1.2.3 Decision
 
 Date: 2026-06-08
-Status: implemented; onsite QA pending
+Status: source implemented; onsite QA pending
 Milestone: V1 / 1.2.3
 
 ## Updated Decision — Panel-Only Block
@@ -29,6 +29,16 @@ The saved block should own only:
 - mobile behavior
 - default open panel
 
+Approved implementation:
+
+- `details`/`summary` is the stable saved interaction contract
+- `feature-showcase/view.ts` is a progressive enhancement that enforces one
+  active panel and prevents an empty all-closed state
+- horizontal and vertical desktop layouts share the same markup
+- mobile supports `accordion` and `hidden`
+- panel count is not capped at four
+- legacy static markup remains recognized and styled until resaved
+
 The surrounding B2B seafood typography treatment is preserved separately as a
 pattern/style reference.
 
@@ -53,6 +63,14 @@ mobile UX. Mobile should use progressive disclosure:
 - tap/focus reveals the selected card image/content
 - no reliance on hover
 - optional future behavior can hide panels or convert them into a slider
+
+The mobile carousel option is not part of 1.2.3. It remains a future candidate
+because a carousel requires additional runtime and navigation behavior, while
+native disclosure already satisfies the current tap/focus requirement.
+
+Native `details` alone is not sufficient for the desktop panel contract because
+independent details elements can all open or all close. The controller does not
+replace native semantics; it only synchronizes sibling state.
 
 ## Activation Decision
 

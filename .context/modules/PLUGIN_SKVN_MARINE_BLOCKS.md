@@ -328,7 +328,11 @@ Implemented V1 / 1.2.3 Feature Showcase:
 - Metadata is `block.json` and the block is registered from `src/index.ts`.
 - Build output includes `build/feature-showcase/block.json`.
 - Do not overload the existing `SKVN Accordion`; Feature Showcase is a separate editorial image-panel block.
-- Mobile behavior should intentionally use the split state from the artifact: intro/copy first, compact panel rail second.
+- The block owns only the image-panel group. The B2B intro/copy/meta text stack belongs to a separate Gutenberg pattern.
+- Editors can add, remove, reorder, and edit panels; choose horizontal or vertical desktop layout; choose the initially open panel; and hide or use disclosure on mobile.
+- Saved markup uses native `details`/`summary` so mobile tap and keyboard interaction remain available without JavaScript.
+- `src/feature-showcase/view.ts` progressively enhances that markup to keep exactly one panel active, close siblings when another panel opens, and prevent the active/only panel from collapsing into an empty surface.
+- The first activated static markup is preserved through a Gutenberg deprecation and legacy CSS until old content is resaved.
 
 0.5.1 brand-mapping contract:
 

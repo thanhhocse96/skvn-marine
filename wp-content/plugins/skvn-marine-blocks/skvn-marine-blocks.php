@@ -195,7 +195,7 @@ function skvn_marine_blocks_register_blocks() {
 			}
 
 			if (
-				in_array( $block, array( 'accordion', 'card' ), true ) &&
+				in_array( $block, array( 'accordion', 'card', 'feature-showcase' ), true ) &&
 				wp_script_is( 'skvn-marine-blocks-motion-view', 'registered' )
 			) {
 				$args['view_script_handles'] = array( 'skvn-marine-blocks-motion-view' );

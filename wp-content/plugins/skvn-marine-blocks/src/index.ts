@@ -23,6 +23,7 @@ import { Edit as CardEdit } from './card/edit';
 import { save as cardSave } from './card/save';
 
 import featureShowcaseMetadata from './feature-showcase/block.json';
+import featureShowcaseDeprecated from './feature-showcase/deprecated';
 import { Edit as FeatureShowcaseEdit } from './feature-showcase/edit';
 import { save as featureShowcaseSave } from './feature-showcase/save';
 import './feature-showcase/style.css';
@@ -60,6 +61,7 @@ registerBlockType( cardMetadata.name, {
 
 registerBlockType( featureShowcaseMetadata.name, {
 	...featureShowcaseMetadata,
+	deprecated: featureShowcaseDeprecated,
 	edit: FeatureShowcaseEdit,
 	save: featureShowcaseSave,
 } );

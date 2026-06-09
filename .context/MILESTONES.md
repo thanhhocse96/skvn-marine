@@ -82,12 +82,12 @@ Acceptance draft:
 - [x] Human approves activating the parked block source
 - [x] `SKVN Feature Showcase` appears under `SKVN Marine`
 - [x] Block inserts useful editable sample content
-- [ ] Block contract is refactored to panel-only, with no required intro/meta text stack
-- [ ] Panel count can be changed by editors
-- [ ] Desktop layout direction can be changed by editors
-- [ ] Panel labels, headings, copy, and images are editable
+- [x] Block contract is refactored to panel-only, with no required intro/meta text stack
+- [x] Panel count can be changed by editors
+- [x] Desktop layout direction can be changed by editors
+- [x] Panel labels, headings, copy, and images are editable
 - [x] Desktop expanding panel behavior supports hover and keyboard focus in source
-- [ ] Mobile uses compact headers with focus/tap reveal behavior
+- [x] Mobile uses compact headers with focus/tap reveal behavior
 - [x] Reduced-motion users do not receive forced panel animation
 - [x] No Tailwind CDN, raw class input, or raw CSS input is required
 - [x] Existing `SKVN Accordion` behavior remains unchanged

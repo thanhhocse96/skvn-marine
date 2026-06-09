@@ -1,6 +1,6 @@
 # Version 1.2.3 — SKVN Feature Showcase Planning
 
-Status: implemented; onsite QA pending
+Status: source implemented; onsite QA pending
 Created: 2026-06-08
 Human direction: activate implementation in 1.2.3
 
@@ -72,7 +72,9 @@ started:
 - `wp-content/plugins/skvn-marine-blocks/src/feature-showcase/block.json`
 - `wp-content/plugins/skvn-marine-blocks/src/feature-showcase/edit.tsx`
 - `wp-content/plugins/skvn-marine-blocks/src/feature-showcase/save.tsx`
+- `wp-content/plugins/skvn-marine-blocks/src/feature-showcase/deprecated.tsx`
 - `wp-content/plugins/skvn-marine-blocks/src/feature-showcase/style.css`
+- `wp-content/plugins/skvn-marine-blocks/src/feature-showcase/types.ts`
 
 Activation completed:
 
@@ -95,7 +97,18 @@ Mobile:
 - compact horizontal card headers by default
 - focused/tapped card reveals image and body content
 - mobile must not depend on hover
-- optional future behavior may hide the group or convert it into a slider
+- editor can hide the group on mobile
+- a future carousel behavior remains deferred because it would add a separate
+  runtime concern
+
+Saved markup:
+
+- native `details`/`summary` provides no-JS disclosure and keyboard semantics
+- a minimal block-local controller enforces exactly one active panel when
+  JavaScript is available
+- clicking the active/only panel cannot leave the showcase with no visible body
+- desktop presentation changes through governed classes, not separate markup
+- legacy 1.2.3 markup has a Gutenberg deprecation and compatibility CSS
 
 ## Accessibility Contract
 
@@ -122,13 +135,13 @@ Mobile:
 - [x] Human approves activating the parked block source.
 - [x] `SKVN Feature Showcase` appears under `SKVN Marine`.
 - [x] Block inserts useful editable sample content.
-- [ ] Block contract is refactored to panel-only, with no required intro/meta
+- [x] Block contract is refactored to panel-only, with no required intro/meta
   text stack.
-- [ ] Panel count can be changed by editors.
-- [ ] Desktop layout direction can be changed by editors.
-- [ ] Panel labels, headings, copy, and images are editable.
-- [ ] Desktop expanding panel behavior supports hover and keyboard focus in source.
-- [ ] Mobile uses compact headers with focus/tap reveal behavior.
+- [x] Panel count can be changed by editors.
+- [x] Desktop layout direction can be changed by editors.
+- [x] Panel labels, headings, copy, and images are editable.
+- [x] Desktop expanding panel behavior supports hover and keyboard focus in source.
+- [x] Mobile uses compact headers with focus/tap reveal behavior.
 - [x] Reduced-motion users do not receive forced panel animation.
 - [x] No Tailwind CDN, raw class input, or raw CSS input is required.
 - [x] Existing `SKVN Accordion` behavior remains unchanged.

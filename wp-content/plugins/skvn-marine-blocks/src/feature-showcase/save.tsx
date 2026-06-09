@@ -1,90 +1,58 @@
 import { RichText, useBlockProps } from '@wordpress/block-editor';
-
-type FeatureItem = {
-	kicker: string;
-	heading: string;
-	copy: string;
-	imageUrl: string;
-	imageAlt: string;
-};
-
-type FeatureShowcaseAttributes = {
-	eyebrow: string;
-	headingBefore: string;
-	headingAccent: string;
-	headingAfter: string;
-	intro: string;
-	metaLabel: string;
-	metaText: string;
-	items: FeatureItem[];
-};
+import type { FeatureShowcaseAttributes } from './types';
 
 type FeatureShowcaseSaveProps = {
 	attributes: FeatureShowcaseAttributes;
 };
 
-function stripMarkup( value: string ) {
-	return value.replace( /<[^>]*>/g, '' ).trim();
+function getClassName( attributes: FeatureShowcaseAttributes ) {
+	return [
+		'skvn-feature-showcase',
+		`skvn-feature-showcase--${ attributes.desktopLayout }`,
+		`skvn-feature-showcase--mobile-${ attributes.mobileBehavior }`,
+	].join( ' ' );
 }
 
+function isInitiallyOpen(
+	index: number,
+	itemCount: number,
+	defaultOpen: FeatureShowcaseAttributes[ 'defaultOpen' ]
+) {
+	return (
+		( defaultOpen === 'first' && index === 0 ) ||
+		( defaultOpen === 'last' && index === itemCount - 1 )
+	);
+}
 export function save( { attributes }: FeatureShowcaseSaveProps ) {
+	const items = attributes.items || [];
 	const blockProps = useBlockProps.save( {
-		className: 'skvn-feature-showcase',
+		className: getClassName( attributes ),
 	} );
-	const items = ( attributes.items || [] ).slice( 0, 4 );
 
 	return (
 		<section { ...blockProps }>
-			<div className="skvn-feature-showcase__grid">
-				<div className="skvn-feature-showcase__intro">
-					<RichText.Content
-						className="skvn-feature-showcase__eyebrow"
-						tagName="p"
-						value={ attributes.eyebrow }
-					/>
-					<h2 className="skvn-feature-showcase__heading">
-						<RichText.Content
-							tagName="span"
-							value={ attributes.headingBefore }
-						/>
-						<RichText.Content
-							className="skvn-feature-showcase__heading-accent"
-							tagName="strong"
-							value={ attributes.headingAccent }
-						/>
-						<RichText.Content
-							tagName="span"
-							value={ attributes.headingAfter }
-						/>
-					</h2>
-					<RichText.Content
-						className="skvn-feature-showcase__copy"
-						tagName="p"
-						value={ attributes.intro }
-					/>
-					<div className="skvn-feature-showcase__meta">
-						<RichText.Content
-							className="skvn-feature-showcase__meta-label"
-							tagName="p"
-							value={ attributes.metaLabel }
-						/>
-						<RichText.Content
-							className="skvn-feature-showcase__meta-text"
-							tagName="p"
-							value={ attributes.metaText }
-						/>
-					</div>
-				</div>
-				<div className="skvn-feature-showcase__panels">
-					{ items.map( ( item, index ) => (
-						<article
-							aria-label={ `Feature ${ index + 1 }: ${ stripMarkup(
-								item.heading
-							) }` }
-							className="skvn-feature-showcase__panel"
-							key={ index }
-							tabIndex={ 0 }
-						>
+			<div className="skvn-feature-showcase__items">
+				{ items.map( ( item, index ) => (
+					<details
+						className="skvn-feature-showcase__item"
+						key={ index }
+						open={ isInitiallyOpen(
+							index,
+							items.length,
+							attributes.defaultOpen
+						) }
+					>
+						<summary className="skvn-feature-showcase__summary">
+							<span className="skvn-feature-showcase__index">
+								{ String( index + 1 ).padStart( 2, '0' ) }
+							</span>
+							<RichText.Content
+								className="skvn-feature-showcase__label"
+								tagName="span"
+								value={ item.kicker }
+							/>
+						</summary>
+						<div className="skvn-feature-showcase__body">
 							{ item.imageUrl && (
 								<img
 									alt={ item.imageAlt }
@@ -92,27 +60,25 @@ export function save( { attributes }: FeatureShowcaseSaveProps ) {
 									src={ item.imageUrl }
 								/>
 							) }
-							<div className="skvn-feature-showcase__panel-shade" />
-							<RichText.Content
-								className="skvn-feature-showcase__panel-kicker"
-								tagName="p"
-								value={ item.kicker }
+							<span
+								aria-hidden="true"
+								className="skvn-feature-showcase__shade"
 							/>
-							<div className="skvn-feature-showcase__panel-body">
+							<div className="skvn-feature-showcase__content">
 								<RichText.Content
-									className="skvn-feature-showcase__panel-title"
+									className="skvn-feature-showcase__title"
 									tagName="h3"
 									value={ item.heading }
 								/>
 								<RichText.Content
-									className="skvn-feature-showcase__panel-copy"
+									className="skvn-feature-showcase__copy"
 									tagName="p"
 									value={ item.copy }
 								/>
 							</div>
-						</article>
-					) ) }
-				</div>
+						</div>
+					</details>
+				) ) }
 			</div>
 		</section>
 	);
