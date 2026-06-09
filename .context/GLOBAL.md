@@ -112,6 +112,7 @@ Current active docs:
 - `docs/testing/onsite-slider-motion-1.2.9.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
+- `docs/workflows/ideation-chom-revslider-theme-tra-phi-to-gutenberg.md`
 - `docs/workflows/deploy-artifact-workflow.md`
 - `docs/workflows/layout-translator-workflow.md`
 - `docs/workflows/onsite-qa-checklist.md`
