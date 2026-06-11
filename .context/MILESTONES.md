@@ -128,18 +128,28 @@ Constraints:
 
 Acceptance draft:
 
-- [ ] Static versus dynamic rendering decision and migration boundary are finalized
-- [ ] Current saved Slider/Slide markup variants are inventoried
-- [ ] PHP render contract defines Slider shell and Slide media/content layers
-- [ ] Slider/Slide block metadata registers approved server render paths
-- [ ] Existing InnerBlocks content renders through the dynamic path
+- [x] Static versus dynamic rendering decision and migration boundary are finalized
+- [x] Current saved Slider/Slide markup variants are inventoried
+- [x] PHP render contract defines Slider shell and Slide media/content layers
+- [x] Slider/Slide block metadata registers approved server render paths
+- [x] Existing InnerBlocks content renders through the dynamic path
 - [ ] Existing saved Slider content remains editable without invalid-block recovery
-- [ ] Hero Slider uses a stable media/overlay/content frame
+- [x] Compatibility fixtures parse and render initial, image-enabled, Hero, Product Showcase, and Card Carousel saved markup
+- [x] Compatibility fixtures confirm InnerBlocks render exactly once through the PHP frontend renderer
+- [x] Hero Slider source uses a stable media/overlay/content frame
 - [ ] Product Showcase and Card Carousel retain their distinct flow layouts
 - [ ] Swiper fade, autoplay, arrows, dots, keyboard, loop, and reduced-motion behavior remain functional
-- [ ] PHP input/output handling follows WordPress sanitize/escape rules
-- [ ] New PHP runtime files are included in deploy artifact and plugin zip audits
-- [ ] Plugin build, PHP syntax checks, and onsite migration QA pass
+- [x] Slider runtime uses shared reduced-motion detection and conservative hover/focus/document-visibility pause/resume
+- [x] Existing arbitrary Slider delay values remain valid and are not restricted to `3/5/7/9s`
+- [x] PHP input/output handling follows WordPress sanitize/escape rules
+- [x] Product Showcase and Card Carousel suppress legacy Hero background media in PHP fixture output
+- [x] Card Carousel config remains `3/2/1` in PHP fixture output
+- [x] Plugin build passes
+- [x] Plugin bootstrap and Slider render module pass PHP syntax checks
+- [x] Layout audit finds no Slider viewport-width or overflow-masking rule
+- [x] New PHP runtime files are included in the deploy artifact and plugin zip
+- [x] V1 / 1.3.1 onsite handoff includes document-visibility autoplay checks
+- [ ] Onsite migration QA passes under V1 / 1.3.1
 - [ ] Human approves milestone completion
 
 ### 1.3.1 — Slider Dynamic Rendering Onsite QA
@@ -221,6 +231,10 @@ Acceptance draft:
 - [ ] No-JavaScript disclosure and links remain usable
 - [ ] Plugin build and onsite QA pass
 - [ ] Human approves milestone completion
+
+### 1.3.5 Custom Icon made by WhySchools
+
+- [ ] Upload custom icon
 
 ### 1.4.0 — SKVN Theme Init Setup UI
 

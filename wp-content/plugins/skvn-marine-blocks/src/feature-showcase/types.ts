@@ -12,5 +12,6 @@ export type FeatureShowcaseAttributes = {
 	mobileBehavior: 'accordion' | 'hidden';
 	defaultOpen: 'first' | 'last' | 'none';
 	gradientPreset: '' | 'deep-navy' | 'marine-teal' | 'fresh-sky';
+	labelRotation: 'default' | '180';
 	items: FeatureItem[];
 };

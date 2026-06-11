@@ -13,6 +13,9 @@ function getClassName( attributes: FeatureShowcaseAttributes ) {
 		attributes.gradientPreset
 			? `skvn-feature-showcase--gradient-${ attributes.gradientPreset }`
 			: '',
+		attributes.labelRotation === '180'
+			? 'skvn-feature-showcase--label-rotate-180'
+			: '',
 	]
 		.filter( Boolean )
 		.join( ' ' );

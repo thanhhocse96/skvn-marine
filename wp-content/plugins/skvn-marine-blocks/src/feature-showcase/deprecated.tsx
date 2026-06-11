@@ -187,6 +187,7 @@ const deprecated = [
 				mobileBehavior: 'accordion',
 				defaultOpen: 'last',
 				gradientPreset: '',
+				labelRotation: 'default',
 				items: attributes.items || [],
 			};
 		},

@@ -44,6 +44,14 @@
         "fresh-sky"
       ]
     },
+    "labelRotation": {
+      "type": "string",
+      "default": "default",
+      "enum": [
+        "default",
+        "180"
+      ]
+    },
     "items": {
       "type": "array",
       "default": [

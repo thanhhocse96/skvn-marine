@@ -125,6 +125,11 @@
 	display: none;
 }
 
+.skvn-feature-showcase--horizontal.skvn-feature-showcase--label-rotate-180
+	.skvn-feature-showcase__label {
+	transform: rotate(180deg);
+}
+
 .skvn-feature-showcase__body {
 	height: 100%;
 	inset: 0;

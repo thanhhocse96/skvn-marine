@@ -47,6 +47,9 @@ function getClassName( attributes: FeatureShowcaseAttributes ) {
 		attributes.gradientPreset
 			? `skvn-feature-showcase--gradient-${ attributes.gradientPreset }`
 			: '',
+		attributes.labelRotation === '180'
+			? 'skvn-feature-showcase--label-rotate-180'
+			: '',
 	]
 		.filter( Boolean )
 		.join( ' ' );
@@ -176,6 +179,33 @@ export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) 
 							},
 						] }
 						value={ attributes.gradientPreset }
+					/>
+					<SelectControl
+						disabled={ attributes.desktopLayout === 'vertical' }
+						help={ __(
+							attributes.desktopLayout === 'vertical'
+								? 'Available only for horizontal desktop panels.'
+								: 'Applies to vertical labels on horizontal desktop panels.',
+							'skvn-marine-blocks'
+						) }
+						label={ __( 'Label direction', 'skvn-marine-blocks' ) }
+						onChange={ ( labelRotation ) =>
+							setAttributes( {
+								labelRotation:
+									labelRotation as FeatureShowcaseAttributes[ 'labelRotation' ],
+							} )
+						}
+						options={ [
+							{
+								label: __( 'As shown', 'skvn-marine-blocks' ),
+								value: 'default',
+							},
+							{
+								label: __( 'Rotate 180°', 'skvn-marine-blocks' ),
+								value: '180',
+							},
+						] }
+						value={ attributes.labelRotation }
 					/>
 				</PanelBody>
 			</InspectorControls>
