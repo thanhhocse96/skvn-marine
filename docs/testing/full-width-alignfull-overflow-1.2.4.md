@@ -3,7 +3,8 @@
 ## Target
 
 - Onsite page: `Test Page 3` (record the exact onsite URL with the evidence)
-- Surfaces: top-level `.alignfull` blocks and the selected Gutenberg footer page
+- Surfaces: full-page pattern root wrappers, top-level `.alignfull` blocks, and
+  the selected Gutenberg footer page
 
 ## Preconditions
 
@@ -14,17 +15,25 @@
 ## Steps
 
 1. Open the target page at desktop width with the vertical scrollbar visible.
-2. Inspect `.entry-content`, the top-level `.alignfull` page wrapper, nested
-   `.alignfull` blocks such as `.skvn-translated-hero`, `.skvn-section`, and
+2. Insert the `SKVN Artifact Exporter Test` and `SKVN Homepage Test` patterns
+   on separate blank pages.
+3. Confirm their root wrappers are `.skvn-translated-page.alignfull` and
+   `.skvn-pattern-test-page.alignfull`.
+4. Inspect `.entry-content`, the full-page pattern root, nested `.alignfull`
+   blocks such as `.skvn-translated-hero`, `.skvn-section`, and
    `.skvn-trust-strip`, plus `.skvn-footer-page` and
    `.skvn-site-footer.alignfull`.
-3. Record each element's `getBoundingClientRect()` and `window.innerWidth`.
-4. Repeat at tablet and mobile widths.
-5. Check the page for horizontal scrolling.
+5. Record each element's `getBoundingClientRect()` and
+   `document.documentElement.clientWidth`.
+6. Repeat at tablet and mobile widths.
+7. Check the page for horizontal scrolling.
 
 ## Expected
 
-- Direct full-width blocks and the custom footer start at `x = 0`.
+- Full-page pattern roots, direct full-width blocks, and the custom footer
+  start at `x = 0`.
+- Full-page pattern roots are not constrained to the `760px` content width in
+  either the editor or frontend.
 - Nested legacy `.alignfull` blocks do not receive GeneratePress negative
   viewport margins.
 - Their right edge does not exceed `document.documentElement.clientWidth`.
