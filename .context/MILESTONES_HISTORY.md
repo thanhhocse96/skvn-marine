@@ -619,7 +619,7 @@ Acceptance:
 Deferred:
 
 - Frontend Hero Slider media/content frame bug is documented in
-  `docs/testing/slider-frontend-media-content-layer-bug-1.2.1.md`.
+  `docs/testing/archives/slider-frontend-media-content-layer-bug-1.2.1.md`.
 - The static markup workaround was rejected to avoid compound deprecation debt.
 - Dynamic Slider rendering architecture is planned for V1 / 1.3.0.
 - Slider/motion onsite QA must be reconciled with the V1 / 1.3.0 migration

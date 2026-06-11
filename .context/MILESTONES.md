@@ -108,10 +108,9 @@ Purpose:
 
 Planning:
 
-- `.context/planning/017_VERSION_1_3_0_SLIDER_DYNAMIC_RENDERING_ARCHITECTURE_PLANNING.md`
-- `docs/decisions/slider-block.md`
-- `docs/decisions/slider-static-markup-migration-1.2.1.md` (superseded before implementation)
-- `docs/testing/slider-frontend-media-content-layer-bug-1.2.1.md`
+- `docs/decisions/slider-completion-spec-1.3.0.md`
+- Historical evidence is linked from that document through each folder's
+  `/archives/` directory.
 
 Constraints:
 
@@ -123,6 +122,9 @@ Constraints:
   artifact requirements before implementation.
 - Existing Slider content must remain editable and render without invalid-block
   recovery.
+- Expanded carousel/showcase UX such as the 5x2 editor grid, ten-card limit,
+  marquee, centered mode, card links, visual presets, and responsive spacing is
+  not part of 1.3.0.
 
 Acceptance draft:
 

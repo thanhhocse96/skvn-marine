@@ -293,17 +293,20 @@ V1.x / 1.6.0 planned SKVN surface presets:
 
 Slider editor UX decision for V1 / 1.2.0:
 
-- Use a stacked editor preview; do not run Swiper/autoplay inside Gutenberg.
-- Each Slide directly edits its background image, heading, lead, and CTA.
-- Background image uses the WordPress Media Library with choose, replace, and remove actions.
-- Overlay opacity is governed from 0–80%; raw CSS is not exposed.
+- Active Slider source of truth:
+  `docs/decisions/slider-completion-spec-1.3.0.md`.
+- V1 / 1.3.0 completes dynamic rendering, compatibility, accessibility, and
+  baseline geometry before expanded carousel/showcase UX.
+- Do not run Swiper/autoplay inside Gutenberg.
+- Hero uses the Slide background-image control; Product Showcase and Card
+  Carousel do not expose or render that background treatment.
 
-Future carousel/showcase editor UX decision approved on 2026-06-11:
+Future carousel/showcase direction retained for a later human-approved
+milestone:
 
-- Decision doc: `docs/decisions/slider-carousel-showcase-ux.md`.
-- Planning file:
-  `.context/planning/019_FUTURE_CANDIDATE_SLIDER_CAROUSEL_SHOWCASE_UX_PLANNING.md`.
-- This supersedes stacked preview for carousel/showcase presets only. Hero may
+- Historical decision and planning files are linked from the active Slider
+  source of truth through their `/archives/` paths.
+- Carousel/showcase presets may later use a non-moving editor grid. Hero may
   retain a vertically readable editor surface.
 - Carousel/showcase editor preview is a non-moving grid with a maximum 5 columns
   by 2 rows and a hard maximum of 10 Slides.
@@ -323,7 +326,9 @@ Future carousel/showcase editor UX decision approved on 2026-06-11:
 - Visual styles and backgrounds use governed presets with previews.
 - Responsive spacing uses tokens and linked sides, not raw pixels, negative
   margins, or arbitrary CSS.
-- Frontend markup work must align with V1 / 1.3.0 dynamic Slider rendering.
+- Do not implement this expanded UX during 1.3.0.
+- Future frontend markup must use the V1 / 1.3.0 dynamic Slider rendering
+  foundation.
 
 V1 / 1.2.1 Slider preset and inserter decision:
 
