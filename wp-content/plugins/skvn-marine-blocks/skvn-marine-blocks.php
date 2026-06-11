@@ -15,6 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/modules/footer-settings/footer-settings.php';
 require_once __DIR__ . '/modules/header-settings/header-settings.php';
+require_once __DIR__ . '/modules/slider-render/slider-render.php';
 require_once __DIR__ . '/modules/typography-settings/typography-settings.php';
 
 add_action( 'init', 'skvn_marine_blocks_register_blocks' );
@@ -179,6 +180,16 @@ function skvn_marine_blocks_register_blocks() {
 
 			if ( 'slider' === $block && wp_script_is( 'skvn-marine-slider-view', 'registered' ) ) {
 				$args['view_script'] = 'skvn-marine-slider-view';
+			}
+
+			if ( 'slider' === $block ) {
+				$args['render_callback']  = 'skvn_marine_blocks_render_slider';
+				$args['skip_inner_blocks'] = true;
+			}
+
+			if ( 'slide' === $block ) {
+				$args['render_callback']  = 'skvn_marine_blocks_render_slide';
+				$args['skip_inner_blocks'] = true;
 			}
 
 			if (

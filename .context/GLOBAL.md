@@ -120,6 +120,7 @@ Current active docs:
 - `docs/workflows/versioning-release-workflow.md`
 - `docs/explain/explain-for-5-years-old.md`
 - `docs/artifacts/init-prompt-v1-1.0.0-launch-ready.md`
+- `docs/artifacts/init-prompt-v1-1.3.0-slider-dynamic-rendering.md`
 - `docs/artifacts/brand-palette-options.html`
 
 ---

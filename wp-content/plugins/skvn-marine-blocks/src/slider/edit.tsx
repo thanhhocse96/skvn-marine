@@ -1,5 +1,11 @@
-import { InnerBlocks, InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import {
+	InnerBlocks,
+	InspectorControls,
+	store as blockEditorStore,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl, ToggleControl } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 type SliderAttributes = {
@@ -16,15 +22,33 @@ type SliderAttributes = {
 
 type SliderEditProps = {
 	attributes: SliderAttributes;
+	clientId: string;
 	setAttributes: (attributes: Partial<SliderAttributes>) => void;
 };
 
 const TEMPLATE = [['skvn-marine/slide'], ['skvn-marine/slide']];
 
-export function Edit({ attributes, setAttributes }: SliderEditProps) {
+export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 	const presetClass = attributes.preset
 		? ` skvn-slider--${ attributes.preset }`
 		: '';
+	const slideCount = useSelect(
+		( select ) => {
+			const editor = select( blockEditorStore ) as {
+				getBlockCount: ( blockClientId: string ) => number;
+			};
+
+			return editor.getBlockCount( clientId );
+		},
+		[ clientId ]
+	);
+	const hasFiveSlideLimit = [ 'hero', 'product-showcase' ].includes(
+		attributes.preset
+	);
+	const allowedBlocks =
+		hasFiveSlideLimit && slideCount >= 5
+			? []
+			: [ 'skvn-marine/slide' ];
 	const blockProps = useBlockProps({
 		className: `skvn-slider skvn-slider--editor${ presetClass }`,
 	});
@@ -85,7 +109,10 @@ export function Edit({ attributes, setAttributes }: SliderEditProps) {
 				</PanelBody>
 			</InspectorControls>
 			<div className="skvn-slider__editor-stack">
-				<InnerBlocks allowedBlocks={['skvn-marine/slide']} template={TEMPLATE} />
+				<InnerBlocks
+					allowedBlocks={ allowedBlocks }
+					template={ TEMPLATE }
+				/>
 			</div>
 		</div>
 	);

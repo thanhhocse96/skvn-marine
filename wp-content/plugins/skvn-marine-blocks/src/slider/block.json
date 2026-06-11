@@ -49,6 +49,9 @@
   "allowedBlocks": [
     "skvn-marine/slide"
   ],
+  "providesContext": {
+    "skvn-marine/sliderPreset": "preset"
+  },
   "supports": {
     "html": false
   }

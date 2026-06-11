@@ -10,6 +10,9 @@
   "parent": [
     "skvn-marine/slider"
   ],
+  "usesContext": [
+    "skvn-marine/sliderPreset"
+  ],
   "textdomain": "skvn-marine-blocks",
   "attributes": {
     "backgroundImageId": {
