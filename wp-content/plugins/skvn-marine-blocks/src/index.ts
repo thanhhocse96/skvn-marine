@@ -1,5 +1,4 @@
 import { registerBlockType } from '@wordpress/blocks';
-import './slider/style.css';
 
 import accordionMetadata from './accordion/block.json';
 import { Edit as AccordionEdit } from './accordion/edit';

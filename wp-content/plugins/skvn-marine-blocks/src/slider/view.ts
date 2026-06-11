@@ -85,6 +85,11 @@ function parseSliderConfig( rawConfig: string ): NormalizedSliderConfig {
 document
 	.querySelectorAll< SliderElement >( '[data-skvn-slider]' )
 	.forEach( ( slider ) => {
+		if ( slider.swiper?.destroyed ) {
+			slider.skvnSliderCleanup?.();
+			delete slider.swiper;
+		}
+
 		if (
 			slider.swiper ||
 			slider.dataset.skvnSliderInitialized === 'true'
@@ -173,6 +178,7 @@ document
 			let pointerInside = false;
 			let focusInside = slider.contains( document.activeElement );
 			let focusTimeout: number | undefined;
+			let cleaned = false;
 
 			const pauseAutoplay = () => {
 				swiper.autoplay?.pause();
@@ -227,6 +233,11 @@ document
 				resumeAutoplay();
 			};
 			const cleanup = () => {
+				if ( cleaned ) {
+					return;
+				}
+
+				cleaned = true;
 				slider.removeEventListener(
 					'pointerenter',
 					handlePointerEnter
@@ -248,6 +259,11 @@ document
 
 				delete slider.skvnSliderCleanup;
 				delete slider.dataset.skvnSliderInitialized;
+				slider.classList.remove( 'skvn-slider--initialized' );
+
+				if ( slider.swiper?.destroyed ) {
+					delete slider.swiper;
+				}
 			};
 
 			slider.addEventListener( 'pointerenter', handlePointerEnter );

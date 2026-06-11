@@ -16,6 +16,7 @@ const indexTs = read('src/index.ts');
 const sliderEdit = read('src/slider/edit.tsx');
 const sliderSave = read('src/slider/save.tsx');
 const sliderView = read('src/slider/view.ts');
+const slideEdit = read('src/slide/edit.tsx');
 const slideSave = read('src/slide/save.tsx');
 const sliderDecision = readFileSync(
 	resolve(root, 'docs/decisions/slider-completion-spec-1.3.0.md'),
@@ -50,6 +51,10 @@ assert.match(sliderView, /querySelectorAll<\s*SliderElement\s*>\(\s*'\[data-skvn
 assert.match(sliderView, /try\s*\{[\s\S]*JSON\.parse/, 'frontend config parsing must be guarded');
 assert.match(sliderView, /removeEventListener\(\s*'visibilitychange'/);
 assert.match(sliderView, /swiper\.on\(\s*'destroy',\s*cleanup\s*\)/);
+assert.match(sliderView, /slider\.swiper\?\.destroyed/);
+assert.match(sliderView, /classList\.remove\(\s*'skvn-slider--initialized'/);
+assert.match(slideEdit, /select\(\s*coreDataStore\s*\)/);
+assert.match(slideEdit, /attachment\?\.source_url\s*\|\|\s*attributes\.backgroundImageUrl/);
 
 assert.ok(packageJson.dependencies?.swiper, 'Swiper dependency must be declared');
 assert.match(sliderDecision, /Keep one Swiper runtime/);
@@ -60,8 +65,18 @@ assert.match(packageJson.scripts?.build ?? '', /src\/slider\/view\.ts/);
 
 assert.match(pluginPhp, /build\/index\.ts\.js/, 'PHP must register actual editor build output');
 assert.match(pluginPhp, /build\/view\.ts\.js/, 'PHP must register actual slider view build output');
+assert.match(
+	pluginPhp,
+	/build\/style-view\.ts\.css/,
+	'PHP must register the CSS filename emitted for the Slider view entry',
+);
 assert.match(pluginPhp, /__DIR__\s*\.\s*'\/build\/'\s*\.\s*\$block/, 'PHP must register deployable build block metadata');
 assert.match(pluginPhp, /'slider' === \$block[\s\S]*'view_script'[\s\S]*'skvn-marine-slider-view'/);
+assert.match(
+	pluginPhp,
+	/'editor_style_handles'\]\[\]\s*=\s*'skvn-marine-slider-view'/,
+	'Slider frontend CSS must also be available in the editor',
+);
 assert.match(
 	pluginPhp,
 	/function_exists\(\s*'register_block_type'\s*\)/,

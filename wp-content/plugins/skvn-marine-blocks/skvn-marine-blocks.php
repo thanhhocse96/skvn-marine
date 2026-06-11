@@ -109,12 +109,12 @@ function skvn_marine_blocks_register_blocks() {
 		);
 	}
 
-	$slider_style = __DIR__ . '/build/view.ts.css';
+	$slider_style = __DIR__ . '/build/style-view.ts.css';
 
 	if ( file_exists( $slider_style ) ) {
 		wp_register_style(
 			'skvn-marine-slider-view',
-			plugins_url( 'build/view.ts.css', __FILE__ ),
+			plugins_url( 'build/style-view.ts.css', __FILE__ ),
 			array(),
 			filemtime( $slider_style )
 		);
@@ -176,6 +176,13 @@ function skvn_marine_blocks_register_blocks() {
 				wp_style_is( 'skvn-marine-blocks-editor', 'registered' )
 			) {
 				$args['editor_style_handles'] = array( 'skvn-marine-blocks-editor' );
+			}
+
+			if (
+				in_array( $block, array( 'slider', 'slide' ), true ) &&
+				wp_style_is( 'skvn-marine-slider-view', 'registered' )
+			) {
+				$args['editor_style_handles'][] = 'skvn-marine-slider-view';
 			}
 
 			if ( 'slider' === $block && wp_script_is( 'skvn-marine-slider-view', 'registered' ) ) {

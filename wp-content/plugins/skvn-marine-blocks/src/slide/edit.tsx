@@ -7,6 +7,7 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { Button, PanelBody, RangeControl } from '@wordpress/components';
+import { store as coreDataStore } from '@wordpress/core-data';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
@@ -36,7 +37,27 @@ type SelectedImage = {
 };
 
 export function Edit( { attributes, clientId, setAttributes }: SlideEditProps ) {
-	const hasImage = Boolean( attributes.backgroundImageUrl );
+	const attachment = useSelect(
+		( select ) => {
+			if ( ! attributes.backgroundImageId ) {
+				return null;
+			}
+
+			const coreData = select( coreDataStore ) as {
+				getMedia: (
+					id: number
+				) => { source_url?: string } | null | undefined;
+			};
+
+			return coreData.getMedia( attributes.backgroundImageId );
+		},
+		[ attributes.backgroundImageId ]
+	);
+	const resolvedImageUrl =
+		attachment?.source_url || attributes.backgroundImageUrl;
+	const hasImage = Boolean(
+		attributes.backgroundImageId || attributes.backgroundImageUrl
+	);
 	const parentSlider = useSelect(
 		( select ) => {
 			const editor = select( blockEditorStore ) as {
@@ -71,7 +92,8 @@ export function Edit( { attributes, clientId, setAttributes }: SlideEditProps ) 
 		'product-showcase',
 		'card-carousel',
 	].includes( parentSlider.preset );
-	const showsBackgroundImage = supportsBackgroundImage && hasImage;
+	const showsBackgroundImage =
+		supportsBackgroundImage && Boolean( resolvedImageUrl );
 	const { selectBlock } = useDispatch( blockEditorStore ) as {
 		selectBlock: ( blockClientId: string ) => void;
 	};
@@ -194,7 +216,7 @@ export function Edit( { attributes, clientId, setAttributes }: SlideEditProps ) 
 					<img
 						alt={ attributes.backgroundImageAlt }
 						className="skvn-slide__background-image"
-						src={ attributes.backgroundImageUrl }
+						src={ resolvedImageUrl }
 					/>
 					<span
 						aria-hidden="true"
