@@ -306,6 +306,12 @@ milestone:
 
 - Historical decision and planning files are linked from the active Slider
   source of truth through their `/archives/` paths.
+- Slider navigation and pagination controls are specified in
+  `docs/decisions/slider-navigation-and-pagination-controls.md` as a Future
+  Candidate after V1 / 1.3.0 and V1 / 1.3.1. The approved direction uses
+  independent arrow/pagination attributes, conditional same-position
+  clustering, Swiper-owned timed pagination, one Slider-level governed delay,
+  and no per-Slide duration.
 - Carousel/showcase presets may later use a non-moving editor grid. Hero may
   retain a vertically readable editor surface.
 - Carousel/showcase editor preview is a non-moving grid with a maximum 5 columns
