@@ -40,6 +40,11 @@
 	z-index: 0;
 }
 
+.skvn-slider--editor {
+    max-width: none;
+    width: 100%;
+}
+
 .skvn-slider--editor .skvn-slide {
 	border: 1px solid #dcdcde;
 	border-radius: 4px;
