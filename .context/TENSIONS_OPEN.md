@@ -30,3 +30,15 @@ Milestone:  V1 / 1.3.1
 Status:     OPEN
 Resolved:
 Decision:   Conservative implementation: Slider-only Inter; human review whether to retain, self-host, or promote it into the 1.6.0 typography system.
+
+## [2026-06-12 15:30] | editor-governance
+Tension:    Tiện ích copy/paste block là editor-governance dùng chung, trong khi milestone hiện tại tập trung vào Feature Showcase autoplay và panel links.
+Context:    Human yêu cầu hai nút copy block và paste block để giữ nguyên Gutenberg block markup khi chuyển nội dung giữa các trang.
+Proposal:   Thêm một editor utility độc lập dùng public Gutenberg APIs; không override clipboard handler, parser, UI DOM, hoặc WordPress core.
+Constraint: Current milestone: "V1 / 1.3.2 — Feature Showcase Autoplay And Panel Links".
+Severity:   low
+Tags:       editor-governance, blocks, milestone
+Milestone:  V1 / 1.3.2
+Status:     OPEN
+Resolved:
+Decision:   Conservative implementation: one isolated editor entry with removable public-API SlotFill actions; no settings, persistence, core patch, or custom clipboard format.

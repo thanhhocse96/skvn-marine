@@ -228,15 +228,21 @@ Status: **PENDING**
 Purpose:
 
 - Add `SKVN Marine -> Core Control` as the shared settings and registry surface
-  for optional WordPress core-block enhancements.
+  for optional WordPress core-block and editor enhancements.
 - Establish a migration-ready Core Control architecture inside the current
   `skvn-marine-blocks` plugin.
 - Prove the architecture with the first opt-in enhancement:
   `Core Button Hover Colors`.
+- Move the existing editor-only Block Copy/Paste utility under Core Control and
+  govern it with the same registry and option.
 
 Decision:
 
 - `docs/decisions/core-control-core-button-hover.md`
+
+Planning:
+
+- `.context/planning/023_VERSION_1_3_4_CORE_CONTROL_PLANNING.md`
 
 Dependencies:
 
@@ -252,12 +258,15 @@ Scope:
 - Register one reusable feature registry so later core enhancements do not
   duplicate menu, Settings API, sanitization, or asset-loading logic.
 - Add `Core Button Hover Colors`, disabled by default.
+- Add `Block Copy/Paste`, disabled by default.
 - Extend all `core/button` blocks with namespaced hover text/background color
   controls in a separate stable Inspector panel.
 - Apply configured colors to `:hover` and `:focus-visible`, with scoped CSS and
   reduced-motion handling.
 - Preserve compatibility attributes and saved values when the feature is
   disabled.
+- Block Copy/Paste must not override native clipboard handlers, alter saved
+  markup, add frontend assets, or depend on Gutenberg private DOM/UI.
 
 Constraints:
 
@@ -266,7 +275,8 @@ Constraints:
 - Do not use raw unnamespaced attributes, classes, options, or CSS variables.
 - Do not use `!important` or require frontend JavaScript.
 - The feature toggle controls UI and styling, not parsing compatibility.
-- Do not add other Core Control enhancements in this milestone.
+- Do not add Core Control enhancements beyond Button Hover and Block Copy/Paste
+  in this milestone.
 - Do not add automatic third-party plugin conflict detection.
 - Keep the first admin UI functional and clear; visual redesign is later scope.
 
@@ -276,6 +286,7 @@ Acceptance draft:
 - [ ] The registry supports adding another feature without duplicating the settings-page foundation
 - [ ] `skvn_core_controls` is registered and sanitizes only known boolean keys
 - [ ] `Core Button Hover Colors` defaults to disabled
+- [ ] `Block Copy/Paste` defaults to disabled
 - [ ] Disabled state exposes no hover controls and applies no hover styling
 - [ ] Enabled state exposes text/background hover controls for all `core/button` blocks
 - [ ] Existing buttons remain unchanged until hover values are configured
@@ -284,6 +295,10 @@ Acceptance draft:
 - [ ] Disable/re-enable preserves configured values
 - [ ] Editor reload and plugin deactivate/reactivate do not produce invalid blocks
 - [ ] Editor preview and frontend output remain consistent
+- [ ] Enabled Block Copy/Paste exposes exactly two editor menu actions
+- [ ] Disabled Block Copy/Paste exposes neither action
+- [ ] Slider and nested block hierarchy survive cross-page visual-editor paste
+- [ ] Native WordPress copy/paste behavior remains unchanged
 - [ ] No `!important`, frontend JavaScript, WordPress core change, or GeneratePress change is introduced
 - [ ] PHP lint, plugin build, deploy artifact audit, and onsite QA pass
 - [ ] Human approves milestone completion

@@ -39,8 +39,8 @@ human changes. Do not revert, overwrite, clean, or reformat unrelated work.
 ## Goal
 
 Implement the approved Core Control foundation inside the existing
-`skvn-marine-blocks` plugin and prove it with one optional enhancement:
-`Core Button Hover Colors`.
+`skvn-marine-blocks` plugin and prove it with two optional enhancements:
+`Core Button Hover Colors` and `Block Copy/Paste`.
 
 Deliver:
 
@@ -49,13 +49,15 @@ Deliver:
 - one namespaced option: `skvn_core_controls`
 - registry-driven Settings API sanitization and admin toggles
 - one Core Control editor entry point
+- one registry-governed editor-only Block Copy/Paste utility
 - unconditional `core/button` compatibility attributes
 - conditional Button Hover Inspector UI and styling
 - frontend hover and `:focus-visible` colors
 - preserved values and valid blocks across disable/re-enable and plugin
   deactivate/reactivate cycles
 
-Do not implement another Core Control enhancement in this milestone.
+Do not implement another Core Control enhancement beyond Button Hover and
+Block Copy/Paste in this milestone.
 
 ## Mandatory Architecture And Compatibility Gate
 
@@ -144,12 +146,14 @@ Initial stored shape:
 ```php
 [
     'button_hover_colors' => true,
+    'block_clipboard'      => true,
 ]
 ```
 
 Rules:
 
 - `button_hover_colors` defaults to `false`.
+- `block_clipboard` defaults to `false`.
 - The PHP registry is the source of truth for known feature IDs and defaults.
 - Save with the WordPress Settings API.
 - Require `manage_options` and normal nonce protection.
@@ -184,6 +188,10 @@ The toggle must not control:
 - parsing saved values
 - value preservation
 - block validity
+
+For `block_clipboard`, the toggle controls whether its two editor menu actions
+are registered. The feature stores no attributes and requires no compatibility
+registration while disabled.
 
 When disabled:
 
@@ -278,6 +286,9 @@ After approval:
 - Add the admin submenu and Settings API.
 - Add the editor configuration transport.
 - Add conditional asset registration/loading.
+- Move `src/editor/block-clipboard.tsx` to
+  `src/core-controls/block-clipboard/index.tsx` and register it only when
+  `block_clipboard` is enabled.
 - Keep the admin UI functional and clear; visual redesign is out of scope.
 
 Before editing, tell the human exactly which files will change.
@@ -354,6 +365,7 @@ Do not rename:
 - [ ] One option stores Core Control toggle states.
 - [ ] Unknown option keys are discarded.
 - [ ] Button Hover defaults to disabled.
+- [ ] Block Copy/Paste defaults to disabled.
 - [ ] Compatibility attributes remain registered while disabled.
 - [ ] Disabled state exposes no UI and applies no frontend styling.
 - [ ] Enabled state exposes Text and Background hover colors.
@@ -365,6 +377,9 @@ Do not rename:
 - [ ] Reduced motion removes transitions.
 - [ ] No `!important` or frontend JavaScript is introduced.
 - [ ] No WordPress core, GeneratePress, or private Gutenberg UI is modified.
+- [ ] Block Copy/Paste does not override native clipboard events.
+- [ ] Enabled Block Copy/Paste exposes exactly two actions; disabled exposes neither.
+- [ ] Slider and nested block hierarchy survive cross-page visual-editor paste.
 - [ ] PHP sanitization, escaping, and capability checks pass review.
 - [ ] Plugin build and PHP lint pass.
 - [ ] Deploy artifact and ZIP contain every Core Control runtime file.
@@ -402,7 +417,7 @@ wsl -d Debian -- bash -lc "cd /mnt/d/Github/skvn-marine && unzip -l build/skvn-m
 Source checks:
 
 ```bash
-rg -n "skvn_core_controls|button_hover_colors|skvnHover|render_block_core/button" wp-content/plugins/skvn-marine-blocks
+rg -n "skvn_core_controls|button_hover_colors|block_clipboard|skvnHover|render_block_core/button" wp-content/plugins/skvn-marine-blocks
 rg -n "!important|100vw|50vw|overflow-x" wp-content/plugins/skvn-marine-blocks/src/core-controls
 git diff --check
 git status --short
@@ -440,4 +455,3 @@ At each phase report:
 - remaining human evidence
 - whether the next phase requires approval
 ```
-

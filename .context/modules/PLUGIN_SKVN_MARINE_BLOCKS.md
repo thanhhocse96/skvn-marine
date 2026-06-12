@@ -142,6 +142,12 @@ Do not make this plugin own the primary SKVN visual system.
   enhancements.
 - The first planned enhancement is `Core Button Hover Colors`; it defaults to
   disabled to avoid conflicts with plugins that provide similar behavior.
+- V1 / 1.3.4 also adopts the existing editor-only `Block Copy/Paste` utility as
+  a second registry feature. It defaults to disabled and adds no saved
+  attributes, frontend assets, PHP render adapter, or custom clipboard format.
+- Block Copy/Paste uses public Gutenberg serialization, parsing, insertion,
+  plugin/SlotFill, and notice APIs only. It must not override native clipboard
+  events or depend on private editor DOM/UI.
 - The toggle controls editor UI and frontend styling, but compatibility data
   must remain registered so disabling the feature cannot invalidate blocks or
   discard saved hover values.
@@ -149,6 +155,8 @@ Do not make this plugin own the primary SKVN visual system.
   Do not modify WordPress core, GeneratePress, or Gutenberg private panel UI.
 - This is a decided future direction only. Do not implement until human assigns
   it to a milestone.
+- Planning:
+  `.context/planning/023_VERSION_1_3_4_CORE_CONTROL_PLANNING.md`.
 
 ## [manual] Portable Plugin Animation Boundary
 

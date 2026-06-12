@@ -9,8 +9,8 @@ Date: 2026-06-12
 `SKVN Marine` will contain a submenu named `Core Control`.
 
 This screen is the shared registry and settings surface for optional
-enhancements to WordPress core blocks. The first enhancement is
-`Core Button Hover Colors`.
+enhancements to WordPress core blocks and the Gutenberg editor. V1 / 1.3.4
+ships `Core Button Hover Colors` and `Block Copy/Paste`.
 
 The initial admin UI may be plain. Stable settings, compatibility, and an
 extensible feature registry take priority over visual polish.
@@ -95,6 +95,13 @@ The registry is a keyed array. The initial conceptual shape is:
         'editor_module'=> 'button-hover',
         'style_handle' => 'skvn-marine-core-button-hover',
     ],
+    'block_clipboard' => [
+        'label'         => 'Block Copy/Paste',
+        'description'   => 'Adds explicit copy and paste actions for serialized Gutenberg blocks.',
+        'default'       => false,
+        'block_types'   => [],
+        'editor_module' => 'block-clipboard',
+    ],
 ]
 ```
 
@@ -175,12 +182,14 @@ Use the option `skvn_core_controls` with this initial shape:
 ```php
 [
     'button_hover_colors' => true,
+    'block_clipboard'      => true,
 ]
 ```
 
 Requirements:
 
 - `button_hover_colors` defaults to `false`.
+- `block_clipboard` defaults to `false`.
 - Save through the WordPress Settings API.
 - Require `manage_options` and normal nonce protection.
 - Sanitize only known boolean feature keys.
@@ -209,6 +218,29 @@ When enabled:
 Compatibility attributes or equivalent parsing support must remain registered
 even while the feature is disabled. Disabling the feature must never discard
 data or trigger Gutenberg block recovery.
+
+## Block Copy/Paste
+
+`Block Copy/Paste` is an editor-only utility with no saved attributes, frontend
+rendering, CSS, or PHP feature adapter.
+
+When enabled it registers two public Gutenberg menu actions:
+
+- `Copy selected block(s)`
+- `Paste block(s)`
+
+It uses public WordPress packages and block-editor stores to serialize, parse,
+check insertion permission, insert blocks, and show notices. It must not
+override native clipboard events, patch Gutenberg internals, inspect private
+editor DOM, introduce a custom clipboard format, or alter saved block markup.
+
+When disabled, neither custom action is registered. Native WordPress
+copy/paste remains unchanged. The feature can be removed without content
+migration if WordPress core later provides an equivalent reliable workflow.
+
+Detailed implementation and runtime gates:
+
+- `.context/planning/023_VERSION_1_3_4_CORE_CONTROL_PLANNING.md`
 
 ## Editor UX
 
@@ -290,6 +322,7 @@ Do not ship the editor extension until this gate passes.
 
 - `Core Control` appears under the existing `SKVN Marine` admin menu.
 - `Core Button Hover Colors` defaults to off.
+- `Block Copy/Paste` defaults to off.
 - The toggle saves and sanitizes correctly.
 - Disabled state exposes no editor controls and applies no hover CSS.
 - Enabled state supports text and background hover colors on all core buttons.
@@ -300,6 +333,10 @@ Do not ship the editor extension until this gate passes.
 - Editor preview and frontend behavior match.
 - The implementation uses no `!important` and no frontend JavaScript.
 - Another hover plugin can remain authoritative while this feature is disabled.
+- Enabling Block Copy/Paste exposes exactly two editor actions.
+- Disabling Block Copy/Paste removes both actions without changing content.
+- Complex block hierarchies survive visual-editor copy/paste.
+- Native Gutenberg clipboard behavior is never overridden.
 
 ## Implementation workflow
 
