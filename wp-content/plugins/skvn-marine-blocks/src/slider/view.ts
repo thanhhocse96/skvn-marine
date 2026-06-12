@@ -12,7 +12,12 @@ import {
 	createAutoplayPauseCoordinator,
 	type AutoplayPauseCoordinator,
 } from '../shared/autoplay';
+import { normalizeGovernedTime } from '../shared/governed-time';
 import { prefersReducedMotion } from '../shared/motion';
+import {
+	SLIDER_AUTOPLAY_TIME,
+	SLIDER_TRANSITION_TIME,
+} from './time';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
@@ -101,16 +106,6 @@ function normalizeChoice< T extends string >(
 		: fallback;
 }
 
-function normalizeNumberChoice< T extends number >(
-	value: unknown,
-	allowed: readonly T[],
-	fallback: T
-) {
-	return typeof value === 'number' && allowed.includes( value as T )
-		? ( value as T )
-		: fallback;
-}
-
 function parseSliderConfig(
 	rawConfig: string,
 	fallbackSlideCount: number
@@ -156,11 +151,9 @@ function parseSliderConfig(
 		autoplay:
 			hasMultipleSlides &&
 			( typeof parsed.autoplay === 'boolean' ? parsed.autoplay : true ),
-		autoplayDelay: clampInteger(
+		autoplayDelay: normalizeGovernedTime(
 			parsed.autoplayDelay,
-			7000,
-			1000,
-			12000
+			SLIDER_AUTOPLAY_TIME
 		),
 		loop:
 			hasMultipleSlides &&
@@ -197,10 +190,9 @@ function parseSliderConfig(
 			[ 'directional-wipe', 'fade', 'slide', 'zoom-out' ] as const,
 			parsed.effect === 'fade' ? 'fade' : 'directional-wipe'
 		),
-		transitionDuration: normalizeNumberChoice(
+		transitionDuration: normalizeGovernedTime(
 			parsed.transitionDuration,
-			[ 600, 700, 800, 900, 1000 ] as const,
-			800
+			SLIDER_TRANSITION_TIME
 		),
 		heightPreset: normalizeChoice(
 			parsed.heightPreset,

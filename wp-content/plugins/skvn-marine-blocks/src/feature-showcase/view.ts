@@ -1,9 +1,10 @@
 import {
 	createAutoplayPauseCoordinator,
-	normalizeGovernedDelay,
 	type AutoplayPauseCoordinator,
 } from '../shared/autoplay';
+import { normalizeGovernedTime } from '../shared/governed-time';
 import { prefersReducedMotion } from '../shared/motion';
+import { FEATURE_SHOWCASE_AUTOPLAY_TIME } from './time';
 
 const showcaseSelector = '.skvn-feature-showcase';
 const itemSelector = '.skvn-feature-showcase__item';
@@ -11,8 +12,6 @@ const summarySelector = '.skvn-feature-showcase__summary';
 const desktopHoverQuery = window.matchMedia(
 	'(hover: hover) and (pointer: fine)'
 );
-const governedDelays = [ 3000, 5000, 7000, 9000 ] as const;
-
 type ShowcaseElement = HTMLElement & {
 	skvnFeatureShowcaseCleanup?: () => void;
 };
@@ -36,10 +35,9 @@ document
 			showcase.dataset.skvnInteraction === 'autoplay'
 				? 'autoplay'
 				: 'hover';
-		const autoplayDelay = normalizeGovernedDelay(
+		const autoplayDelay = normalizeGovernedTime(
 			Number( showcase.dataset.skvnAutoplayDelay ),
-			governedDelays,
-			5000
+			FEATURE_SHOWCASE_AUTOPLAY_TIME
 		);
 		const autoplayEnabled =
 			interactionMode === 'autoplay' &&

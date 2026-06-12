@@ -14,7 +14,12 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
+import { GovernedTimeControl } from '../shared/governed-time-control';
+import {
+	SLIDER_AUTOPLAY_TIME,
+	SLIDER_TRANSITION_TIME,
+} from './time';
 
 type SliderAttributes = {
 	autoplay: boolean;
@@ -55,8 +60,6 @@ type SliderEditProps = {
 };
 
 const TEMPLATE = [['skvn-marine/slide'], ['skvn-marine/slide']];
-const GOVERNED_DELAYS = [ 5000, 7000, 9000, 12000 ];
-const GOVERNED_TRANSITION_DURATIONS = [ 600, 700, 800, 900, 1000 ];
 
 export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 	const presetClass = attributes.preset
@@ -108,9 +111,6 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 	const blockProps = useBlockProps({
 		className: `skvn-slider skvn-slider--editor skvn-slider--height-${ attributes.heightPreset }${ presetClass }`,
 	});
-	const hasLegacyDelay = ! GOVERNED_DELAYS.includes(
-		attributes.autoplayDelay
-	);
 	const controlsCluster =
 		attributes.showArrows &&
 		attributes.showPagination &&
@@ -129,7 +129,8 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 						label={__('Autoplay', 'skvn-marine-blocks')}
 						onChange={(autoplay) => setAttributes({ autoplay })}
 					/>
-					<SelectControl
+					<GovernedTimeControl
+						config={ SLIDER_AUTOPLAY_TIME }
 						label={__('Autoplay duration', 'skvn-marine-blocks')}
 						help={__(
 							'One duration applies to every slide.',
@@ -137,44 +138,11 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 						)}
 						onChange={(autoplayDelay) =>
 							setAttributes({
-								autoplayDelay: Number( autoplayDelay ),
+								autoplayDelay,
 							})
 						}
-						options={[
-							...(hasLegacyDelay
-								? [
-										{
-											label: sprintf(
-												__(
-													'Legacy: %s seconds (preserved)',
-													'skvn-marine-blocks'
-												),
-												(
-													attributes.autoplayDelay /
-													1000
-												).toLocaleString()
-											),
-											value: String(
-												attributes.autoplayDelay
-											),
-										},
-								  ]
-								: []),
-							{ label: __('5 seconds', 'skvn-marine-blocks'), value: '5000' },
-							{ label: __('7 seconds', 'skvn-marine-blocks'), value: '7000' },
-							{ label: __('9 seconds', 'skvn-marine-blocks'), value: '9000' },
-							{ label: __('12 seconds', 'skvn-marine-blocks'), value: '12000' },
-						]}
-						value={String( attributes.autoplayDelay )}
+						value={ attributes.autoplayDelay }
 					/>
-					{hasLegacyDelay && (
-						<Notice isDismissible={false} status="info">
-							{__(
-								'This saved Slider uses a legacy duration. It remains unchanged until you choose a governed duration.',
-								'skvn-marine-blocks'
-							)}
-						</Notice>
-					)}
 					<ToggleControl
 						checked={attributes.loop}
 						label={__('Loop', 'skvn-marine-blocks')}
@@ -329,23 +297,15 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 								]}
 								value={effectiveTransitionStyle}
 							/>
-							<SelectControl
+							<GovernedTimeControl
+								config={ SLIDER_TRANSITION_TIME }
 								label={__('Transition duration', 'skvn-marine-blocks')}
 								onChange={(transitionDuration) =>
 									setAttributes({
-										transitionDuration: Number( transitionDuration ),
+										transitionDuration,
 									})
 								}
-								options={GOVERNED_TRANSITION_DURATIONS.map(
-									( duration ) => ({
-										label: sprintf(
-											__('%d ms', 'skvn-marine-blocks'),
-											duration
-										),
-										value: String( duration ),
-									})
-								)}
-								value={String( attributes.transitionDuration )}
+								value={ attributes.transitionDuration }
 							/>
 						</>
 					)}

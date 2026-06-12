@@ -9,16 +9,6 @@ type AutoplayPauseCoordinatorOptions = {
 	onResume: () => void;
 };
 
-export function normalizeGovernedDelay< T extends number >(
-	value: unknown,
-	allowed: readonly T[],
-	fallback: T
-) {
-	return typeof value === 'number' && allowed.includes( value as T )
-		? ( value as T )
-		: fallback;
-}
-
 export function createAutoplayPauseCoordinator(
 	element: HTMLElement,
 	{ onPause, onResume }: AutoplayPauseCoordinatorOptions

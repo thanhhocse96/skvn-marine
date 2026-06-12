@@ -10,12 +10,13 @@ import {
 	Button,
 	PanelBody,
 	Popover,
-	RangeControl,
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { GovernedTimeControl } from '../shared/governed-time-control';
+import { FEATURE_SHOWCASE_AUTOPLAY_TIME } from './time';
 import type { FeatureItem, FeatureShowcaseAttributes } from './types';
 
 type FeatureShowcaseEditProps = {
@@ -186,30 +187,21 @@ export function Edit( { attributes, setAttributes }: FeatureShowcaseEditProps ) 
 						value={ attributes.interactionMode }
 					/>
 					{ attributes.interactionMode === 'autoplay' && (
-						<RangeControl
+						<GovernedTimeControl
+							config={ FEATURE_SHOWCASE_AUTOPLAY_TIME }
 							help={ __(
 								'Autoplay runs only on the frontend and pauses for pointer, keyboard focus, hidden tabs, and reduced motion.',
 								'skvn-marine-blocks'
 							) }
 							label={ __(
-								'Panel duration',
+								'Autoplay duration',
 								'skvn-marine-blocks'
 							) }
-							marks={ [
-								{ label: '3s', value: 3000 },
-								{ label: '5s', value: 5000 },
-								{ label: '7s', value: 7000 },
-								{ label: '9s', value: 9000 },
-							] }
-							max={ 9000 }
-							min={ 3000 }
 							onChange={ ( autoplayDelay ) =>
 								setAttributes( {
-									autoplayDelay: ( autoplayDelay ||
-										5000 ) as FeatureShowcaseAttributes[ 'autoplayDelay' ],
+									autoplayDelay,
 								} )
 							}
-							step={ 2000 }
 							value={ attributes.autoplayDelay }
 						/>
 					) }
