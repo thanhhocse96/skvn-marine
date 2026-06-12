@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 1.3.1 — Slider Navigation & Pagination Controls UX**
+Current: **V1 / 1.3.2 — Feature Showcase Autoplay And Panel Links**
 Status: **IN_PROGRESS**
-Started: **2026-06-11**
+Started: **2026-06-12**
 
 AGENTS.md current milestone phải match file này.
 
@@ -90,8 +90,10 @@ Acceptance draft:
 
 ### 1.3.1 — Slider Navigation & Pagination Controls UX
 
-Status: **IN_PROGRESS**
+Status: **DONE**
 Started: **2026-06-11**
+Completed: **2026-06-12**
+Approved by human: **2026-06-12**
 
 Purpose:
 
@@ -116,61 +118,27 @@ Dependencies:
 
 Acceptance draft:
 
-- [ ] `dots` migrates to the approved pagination contract without invalidating existing content
-- [ ] Arrow visibility, three styles, and four positions follow the decision contract
-- [ ] Pill is disabled when Side center is selected
-- [ ] Pagination visibility, four styles, and three positions follow the decision contract
-- [ ] Matching bottom positions cluster as `arrows | pagination`
-- [ ] Different arrow and pagination positions remain independent
-- [ ] Zero/one real Slide hides both control families and disables autoplay
-- [ ] Timed pagination follows Swiper autoplay without a second timer/controller
-- [ ] Current/total numbering uses real Slides and excludes loop clones
-- [ ] Slider duration uses governed `5/7/9/12s` choices with a documented legacy-value policy
-- [ ] Hover, focus, document visibility, and interaction pause reasons compose correctly
-- [ ] Mobile and reduced-motion fallbacks work
-- [ ] Editor preview remains static and does not run autoplay/timer progress
-- [ ] Human approves 1.3.1 controls UX implementation
+- [x] `dots` migrates to the approved pagination contract without invalidating existing content
+- [x] Arrow visibility, three styles, and four positions follow the decision contract
+- [x] Pill is disabled when Side center is selected
+- [x] Pagination visibility, four styles, and three positions follow the decision contract
+- [x] Matching bottom positions cluster as `arrows | pagination`
+- [x] Different arrow and pagination positions remain independent
+- [x] Zero/one real Slide hides both control families and disables autoplay
+- [x] Timed pagination follows Swiper autoplay without a second timer/controller
+- [x] Current/total numbering uses real Slides and excludes loop clones
+- [x] Slider duration uses governed `5/7/9/12s` choices with a documented legacy-value policy
+- [x] Hover, focus, document visibility, and interaction pause reasons compose correctly
+- [x] Mobile and reduced-motion fallbacks work
+- [x] Editor preview remains static and does not run autoplay/timer progress
+- [x] Human approves 1.3.1 controls UX implementation
 
-### 1.3.2 — Slider Dynamic Rendering & Controls Onsite QA
 
-Status: **PENDING**
 
-Purpose:
+### 1.3.2 — Feature Showcase Autoplay And Panel Links
 
-- Run the Slider, Accordion, Card motion, and B2B Feature Showcase checks that
-  were not completed before starting the 1.3.0 dynamic rendering migration.
-- Test Slider frontend behavior against the 1.3.0 server-rendered contract,
-  instead of approving the superseded static frontend architecture.
-- Verify the V1 / 1.3.1 navigation, pagination, timed-progress, responsive, and
-  accessibility controls on the corrected rendering foundation.
-- Repeat image editing, Slider controls, and Full Width Canvas checks because
-  the 1.3.0 renderer and 1.3.1 controls UX changed those surfaces.
-- Keep unrelated previously passed evidence only where the implementation did
-  not change the tested surface.
-
-Testing:
-
-- `docs/testing/onsite-slider-motion-1.3.2.md`
-- `docs/testing/onsite-feature-showcase-1.2.3.md`
-
-Acceptance draft:
-
-- [ ] Human verifies all three Slider presets insert useful sample content
-- [ ] Human verifies existing Slider content opens without invalid-block recovery
-- [ ] Human verifies Hero, Product Showcase, and Card Carousel frontend layouts through the dynamic render path
-- [ ] Human verifies V1 / 1.3.1 arrow and pagination controls across desktop and mobile
-- [ ] Human verifies timed pagination, pause/resume, reduced-motion fallback, and real-Slide numbering
-- [ ] Human verifies idle and repeated-interaction memory use settles without continuous growth
-- [ ] Human verifies Accordion interaction and accessibility
-- [ ] Human verifies Card motion device targeting and no-JS/reduced-motion fallbacks
-- [ ] Human verifies the B2B Seafood Feature Showcase pattern editor/frontend layout
-- [ ] Invalid-block, console, layout, and cache issues are recorded or confirmed clean
-- [ ] Any source defects are fixed and re-tested
-- [ ] Human approves closing Slider Dynamic Rendering onsite QA
-
-### 1.3.3 — Feature Showcase Autoplay And Panel Links
-
-Status: **PENDING**
+Status: **IN_PROGRESS**
+Started: **2026-06-12**
 
 Purpose:
 
@@ -185,14 +153,13 @@ Purpose:
 
 Planning:
 
-- `.context/planning/020_VERSION_1_3_3_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md`
+- `.context/planning/020_VERSION_1_3_2_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md`
 
 Dependencies:
 
 - V1 / 1.3.0 dynamic Slider rendering must be complete.
-- V1 / 1.3.2 onsite QA must confirm Slider autoplay, hover/focus pause,
-  accessibility, reduced motion, compatibility, and no-JavaScript behavior are
-  stable.
+- V1 / 1.3.1 Slider controls UX is complete and approved by the human.
+- Broader Slider and motion regression QA remains scheduled under V1 / 1.3.9.
 
 Constraints:
 
@@ -205,7 +172,7 @@ Constraints:
 
 Acceptance draft:
 
-- [ ] V1 / 1.3.0, V1 / 1.3.1, and V1 / 1.3.2 stability gates are complete
+- [x] V1 / 1.3.0 and V1 / 1.3.1 stability gates are complete
 - [ ] Hover and Autoplay modes work without an all-closed state
 - [ ] Delay control snaps only to `3s`, `5s`, `7s`, and `9s`
 - [ ] Hover, keyboard focus, document visibility, and reduced motion pause or disable autoplay correctly
@@ -216,6 +183,8 @@ Acceptance draft:
 - [ ] No-JavaScript disclosure and links remain usable
 - [ ] Plugin build and onsite QA pass
 - [ ] Human approves milestone completion
+
+### 1.3.3 — Products Slider có hook vào product
 
 ### 1.3.4 — Core Control Foundation & Core Button Hover
 
@@ -288,7 +257,44 @@ Acceptance draft:
 
 - [ ] Upload custom icon
 
-### 1.3.9 — SKVN Team Credits Easter Egg
+### 1.3.9 — Slider Dynamic Rendering & Controls Onsite QA
+
+Status: **PENDING**
+
+Purpose:
+
+- Run the Slider, Accordion, Card motion, and B2B Feature Showcase checks that
+  were not completed before starting the 1.3.0 dynamic rendering migration.
+- Test Slider frontend behavior against the 1.3.0 server-rendered contract,
+  instead of approving the superseded static frontend architecture.
+- Verify the V1 / 1.3.1 navigation, pagination, timed-progress, responsive, and
+  accessibility controls on the corrected rendering foundation.
+- Repeat image editing, Slider controls, and Full Width Canvas checks because
+  the 1.3.0 renderer and 1.3.1 controls UX changed those surfaces.
+- Keep unrelated previously passed evidence only where the implementation did
+  not change the tested surface.
+
+Testing:
+
+- `docs/testing/onsite-slider-motion-1.3.2.md`
+- `docs/testing/onsite-feature-showcase-1.2.3.md`
+
+Acceptance draft:
+
+- [ ] Human verifies all three Slider presets insert useful sample content
+- [ ] Human verifies existing Slider content opens without invalid-block recovery
+- [ ] Human verifies Hero, Product Showcase, and Card Carousel frontend layouts through the dynamic render path
+- [ ] Human verifies V1 / 1.3.1 arrow and pagination controls across desktop and mobile
+- [ ] Human verifies timed pagination, pause/resume, reduced-motion fallback, and real-Slide numbering
+- [ ] Human verifies idle and repeated-interaction memory use settles without continuous growth
+- [ ] Human verifies Accordion interaction and accessibility
+- [ ] Human verifies Card motion device targeting and no-JS/reduced-motion fallbacks
+- [ ] Human verifies the B2B Seafood Feature Showcase pattern editor/frontend layout
+- [ ] Invalid-block, console, layout, and cache issues are recorded or confirmed clean
+- [ ] Any source defects are fixed and re-tested
+- [ ] Human approves closing Slider Dynamic Rendering onsite QA
+
+### 1.3.10 — SKVN Team Credits Easter Egg
 
 Status: **PENDING**
 

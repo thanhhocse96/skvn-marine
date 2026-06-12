@@ -781,3 +781,28 @@ Repair evidence:
 Next milestone:
 
 - V1 / 1.3.1 — Slider Navigation & Pagination Controls UX.
+
+---
+
+## V1 / 1.3.1 — Slider Navigation & Pagination Controls UX
+
+Status: **DONE**
+Started: **2026-06-11**
+Completed: **2026-06-12**
+Approved by human: **2026-06-12**
+
+Completed:
+
+- [x] Existing dots behavior migrates to the pagination contract without invalidating content.
+- [x] Arrow and pagination visibility, style, position, and clustering controls work.
+- [x] Zero/one Slide disables controls and autoplay.
+- [x] Timed pagination follows Swiper autoplay and real-Slide numbering.
+- [x] Governed autoplay and transition durations are exposed in the editor.
+- [x] Hover, focus, visibility, interaction pause, mobile, and reduced-motion behavior work.
+- [x] Editor preview remains static.
+- [x] Presentation panel copy, Zoom Out behavior, and governed Slider height presets were refined.
+- [x] Human fully approved the milestone and requested transition.
+
+Next milestone:
+
+- V1 / 1.3.2 — Feature Showcase Autoplay And Panel Links.

@@ -231,22 +231,22 @@ There must be one active frontend render engine: PHP.
 - Confirm the Slider render module exists in the zip.
 - Complete a targeted human smoke check for the reported image, width,
   pagination, and idle-memory failures.
-- Complete combined regression QA later under V1 / 1.3.2.
+- Complete combined regression QA later under V1 / 1.3.9.
 
-## 11. V1 / 1.3.3 Shared Autoplay Follow-Up Boundary
+## 11. V1 / 1.3.2 Shared Autoplay Follow-Up Boundary
 
-V1 / 1.3.3 adds Feature Showcase autoplay and panel links after V1 / 1.3.0
-implementation, V1 / 1.3.1 controls UX, and V1 / 1.3.2 onsite QA confirm Slider
-stability.
+V1 / 1.3.2 adds Feature Showcase autoplay and panel links after V1 / 1.3.0
+implementation and human approval of V1 / 1.3.1 controls UX. Broader combined
+Slider regression QA remains scheduled under V1 / 1.3.9.
 
 Planning:
 
 ```text
-.context/planning/020_VERSION_1_3_3_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md
+.context/planning/020_VERSION_1_3_2_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md
 ```
 
 Agents changing Slider in V1 / 1.3.0 must keep the following behavior
-separable so V1 / 1.3.3 can share real invariants without rewriting the Slider
+separable so V1 / 1.3.2 can share real invariants without rewriting the Slider
 controller:
 
 - reduced-motion detection
@@ -267,7 +267,7 @@ During V1 / 1.3.0:
 - Do not restrict the Slider editor to `3/5/7/9s` during this milestone.
 - Do not add Feature Showcase autoplay or LinkControl to the V1 / 1.3.0 scope.
 
-After V1 / 1.3.2 stability verification, V1 / 1.3.3 may extract shared code only
+During V1 / 1.3.2, shared code may be extracted only
 where there are two real consumers or a project invariant:
 
 - `prefersReducedMotion()` from `src/shared/motion.ts`
@@ -280,7 +280,7 @@ where there are two real consumers or a project invariant:
 Compatibility rule:
 
 - Existing Slider content may contain delay values outside `3/5/7/9s`.
-- V1 / 1.3.3 must not silently change those saved values or their frontend
+- V1 / 1.3.2 must not silently change those saved values or their frontend
   timing.
 - If the Slider editor adopts the governed presets, define how legacy values
   display and persist before restricting the control.
@@ -332,6 +332,6 @@ Archived files are historical evidence, not active instructions.
 Active related documents:
 
 - `docs/testing/onsite-slider-motion-1.3.2.md`
-- `.context/planning/020_VERSION_1_3_3_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md`
+- `.context/planning/020_VERSION_1_3_2_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md`
 - `docs/decisions/fullscreen-step-slider-1.5.0.md`
 - `.context/planning/018_VERSION_1_5_0_FULLSCREEN_STEP_SLIDER_PLANNING.md`

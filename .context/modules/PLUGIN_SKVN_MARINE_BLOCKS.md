@@ -397,13 +397,13 @@ Implemented V1 / 1.2.3 Feature Showcase:
   colors or gradients.
 - The first activated static markup is preserved through a Gutenberg deprecation and legacy CSS until old content is resaved.
 
-Planned V1 / 1.3.3 Feature Showcase autoplay and panel links:
+Active V1 / 1.3.2 Feature Showcase autoplay and panel links:
 
 - Planning file:
-  `.context/planning/020_VERSION_1_3_3_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md`.
-- Do not begin implementation until V1 / 1.3.0 dynamic rendering and V1 /
-  1.3.2 onsite Slider QA confirm stable autoplay, hover/focus pause, reduced
-  motion, compatibility, and no-JavaScript behavior.
+  `.context/planning/020_VERSION_1_3_2_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md`.
+- Implementation begins after V1 / 1.3.0 dynamic rendering and the human-approved
+  V1 / 1.3.1 Slider controls milestone. Broader regression QA remains under
+  V1 / 1.3.9.
 - Feature Showcase adds governed `hover` and `autoplay` interaction modes.
 - Autoplay delay uses a snapping WordPress RangeControl with only `3`, `5`,
   `7`, and `9` second values; no arbitrary timing input.

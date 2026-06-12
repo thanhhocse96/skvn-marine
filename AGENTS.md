@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 1.3.1 — Slider Navigation & Pagination Controls UX**
+Current milestone: **V1 / 1.3.2 — Feature Showcase Autoplay And Panel Links**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
@@ -496,10 +496,11 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 1.2.9 | Slider & Motion Onsite QA |
 | 1.3.0 | Slider Dynamic Rendering Architecture |
 | 1.3.1 | Slider Navigation & Pagination Controls UX |
-| 1.3.2 | Slider Dynamic Rendering & Controls Onsite QA |
-| 1.3.3 | Feature Showcase Autoplay And Panel Links |
+| 1.3.2 | Feature Showcase Autoplay And Panel Links |
+| 1.3.3 | Products Slider có hook vào product |
 | 1.3.4 | Core Control Foundation & Core Button Hover |
-| 1.3.9 | SKVN Team Credits Easter Egg |
+| 1.3.9 | Slider Dynamic Rendering & Controls Onsite QA |
+| 1.3.10 | SKVN Team Credits Easter Egg |
 | 1.4.0 | SKVN Theme Init Setup UI |
 | 1.4.1 | Layout Blocks Validation & Quote Evaluation |
 | 1.5.0 | Fullscreen Step Slider |

@@ -1,9 +1,9 @@
-# V1 / 1.3.3 — Feature Showcase Autoplay And Panel Links Planning
+# V1 / 1.3.2 — Feature Showcase Autoplay And Panel Links Planning
 
-Status: PENDING
+Status: IN_PROGRESS
 Created: 2026-06-11
-Human direction: implement only after Slider dynamic rendering and onsite QA
-are verified stable.
+Started: 2026-06-12
+Human direction: begin after V1 / 1.3.1 Slider controls were fully approved.
 
 ## 1. Goal
 
@@ -20,16 +20,15 @@ contract and must not turn Feature Showcase into another Swiper carousel.
 
 ## 2. Dependency And Entry Gate
 
-Do not begin V1 / 1.3.3 implementation until:
+V1 / 1.3.2 implementation begins after:
 
 - V1 / 1.3.0 dynamic Slider rendering is complete
-- V1 / 1.3.1 controls UX is complete and V1 / 1.3.2 onsite QA confirms Slider
-  autoplay, hover/focus pause, keyboard
-  behavior, reduced motion, no-JavaScript fallback, and compatibility are stable
-- any Slider runtime defects found during QA are fixed and re-tested
+- V1 / 1.3.1 controls UX is complete and approved by the human
+- Slider autoplay, hover/focus pause, keyboard behavior, reduced motion, and
+  compatibility are stable enough to provide shared invariants
+- broader combined onsite regression remains scheduled under V1 / 1.3.9
 
-The current milestone remains V1 / 1.3.0 until the human explicitly approves a
-milestone transition.
+The human approved starting this milestone on 2026-06-12.
 
 ## 3. Feature Showcase Interaction Contract
 
@@ -177,7 +176,7 @@ Before implementation:
 
 ## 9. Slider Follow-Up
 
-V1 / 1.3.3 should update Slider only where sharing is justified:
+V1 / 1.3.2 should update Slider only where sharing is justified:
 
 - replace duplicate reduced-motion detection with the shared helper
 - normalize Slider delay against the approved delay presets if compatibility
