@@ -134,6 +134,22 @@ Do not implement the HTML-2-Gutenberg admin tool in the theme.
 
 Do not make this plugin own the primary SKVN visual system.
 
+## [manual] Core Control
+
+- Decision source: `docs/decisions/core-control-core-button-hover.md`.
+- `Core Control` is a submenu under the existing `SKVN Marine` admin menu and
+  is the shared registry/settings surface for optional WordPress core-block
+  enhancements.
+- The first planned enhancement is `Core Button Hover Colors`; it defaults to
+  disabled to avoid conflicts with plugins that provide similar behavior.
+- The toggle controls editor UI and frontend styling, but compatibility data
+  must remain registered so disabling the feature cannot invalidate blocks or
+  discard saved hover values.
+- Extend `core/button` through namespaced plugin attributes and scoped CSS.
+  Do not modify WordPress core, GeneratePress, or Gutenberg private panel UI.
+- This is a decided future direction only. Do not implement until human assigns
+  it to a milestone.
+
 ## [manual] Portable Plugin Animation Boundary
 
 Decision doc: `docs/decisions/block-animation-strategy.md`.

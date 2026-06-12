@@ -64,6 +64,8 @@ Current planning file:
 - Historical Slider planning from 1.2.0, 1.2.1, and the superseded 1.3.0 draft now lives under `.context/planning/archives/`.
 - `.context/planning/016_VERSION_1_2_3_FEATURE_SHOWCASE_PLANNING.md` — active `1.2.3` Feature Showcase plan. Source is activated under `src/feature-showcase/` as `skvn-marine/feature-showcase`.
 - `.context/planning/020_VERSION_1_3_3_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md` — approved future `1.3.3` plan for governed Feature Showcase hover/autoplay modes, snapping `3/5/7/9s` delay, per-panel Gutenberg LinkControl CTA, and shared autoplay invariants with Slider after `1.3.1` stability verification.
+- `.context/planning/021_VERSION_1_3_1_SLIDER_EDITOR_AND_CORE_TRANSITIONS_PLANNING.md` — approved expansion of the current `1.3.1` scope: centered editor Add Slide action, governed/hidden Slides Per View controls, Directional Wipe/Fade/Zoom Out, `600–1000ms` transition duration, and reduced-motion fallback.
+- `.context/planning/022_FUTURE_CANDIDATE_SLIDER_EXTENSION_API_PLANNING.md` — Future Candidate for the `2.x.x` phase: WordPress-native Transition/Pagination Extension API, namespaced registries, fallback/governance, and Portal Zoom plus Timed Tabs as reference integrations outside the lightweight core.
 - `docs/decisions/slider-completion-spec-1.3.0.md` — active Slider source of truth. V1 / 1.3.0 completes dynamic rendering, compatibility, accessibility, and geometry; expanded carousel/showcase UX remains a later human-approved milestone.
 - `docs/decisions/slider-navigation-and-pagination-controls.md` — approved V1 / 1.3.1 direction for independent arrow/pagination style and position controls, conditional bottom clustering, Swiper-owned timed pagination, governed `5/7/9/12s` duration, and responsive/accessibility fallbacks after the failed 1.3.0 media, width, pagination, and memory behavior is corrected.
 - `.context/planning/013_VERSION_2_0_0_TO_3_0_0_STANDALONE_BLOCK_THEME_PLANNING.md` — medium/long-term plan: 2.0.0 starts migration away from GeneratePress; 3.0.0 completes standalone SKVN theme direction. Gutenberg remains the WP content/editor model; custom blocks become additive governed site enhancements.
@@ -95,6 +97,7 @@ Current active docs:
 - `docs/decisions/footer-page-settings-0.9.0.md`
 - `docs/decisions/footer-appearance-settings-0.11.0.md`
 - `docs/decisions/header-actions-search-0.12.0.md`
+- `docs/decisions/core-control-core-button-hover.md`
 - `docs/decisions/product-card-grid-layout-contract.md`
 - `docs/decisions/block-animation-strategy.md`
 - `docs/decisions/skvn-editor-controls-0.8.0.md`

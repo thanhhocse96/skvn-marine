@@ -28,6 +28,7 @@ type PaginationStyle =
 	| 'timed-segments';
 type BottomPosition = 'bottom-left' | 'bottom-center' | 'bottom-right';
 type PauseReason = 'focus' | 'hidden' | 'interaction' | 'pointer';
+type TransitionStyle = 'directional-wipe' | 'fade' | 'zoom-out';
 
 type SliderConfig = {
 	autoplay?: boolean;
@@ -40,6 +41,9 @@ type SliderConfig = {
 	paginationStyle?: string;
 	paginationPosition?: string;
 	effect?: string;
+	transitionStyle?: string;
+	transitionDuration?: number;
+	heightPreset?: string;
 	slidesPerView?: number;
 	responsiveSlides?: string;
 	slideCount?: number;
@@ -55,7 +59,9 @@ type NormalizedSliderConfig = {
 	showPagination: boolean;
 	paginationStyle: PaginationStyle;
 	paginationPosition: BottomPosition;
-	effect: 'fade' | 'slide';
+	transitionStyle: TransitionStyle;
+	transitionDuration: number;
+	heightPreset: 'default' | 'viewport-below-header';
 	slidesPerView: number;
 	responsiveSlides: '3-2-1' | 'uniform';
 	slideCount: number;
@@ -83,6 +89,16 @@ function normalizeChoice< T extends string >(
 	fallback: T
 ) {
 	return typeof value === 'string' && allowed.includes( value as T )
+		? ( value as T )
+		: fallback;
+}
+
+function normalizeNumberChoice< T extends number >(
+	value: unknown,
+	allowed: readonly T[],
+	fallback: T
+) {
+	return typeof value === 'number' && allowed.includes( value as T )
 		? ( value as T )
 		: fallback;
 }
@@ -168,7 +184,20 @@ function parseSliderConfig(
 			[ 'bottom-left', 'bottom-center', 'bottom-right' ] as const,
 			'bottom-center'
 		),
-		effect: parsed.effect === 'fade' ? 'fade' : 'slide',
+		transitionStyle: normalizeChoice(
+			parsed.transitionStyle,
+			[ 'directional-wipe', 'fade', 'zoom-out' ] as const,
+			parsed.effect === 'fade' ? 'fade' : 'directional-wipe'
+		),
+		transitionDuration: normalizeNumberChoice(
+			parsed.transitionDuration,
+			[ 600, 700, 800, 900, 1000 ] as const,
+			800
+		),
+		heightPreset:
+			parsed.heightPreset === 'viewport-below-header'
+				? 'viewport-below-header'
+				: 'default',
 		slidesPerView: clampInteger( parsed.slidesPerView, 1, 1, 4 ),
 		responsiveSlides:
 			parsed.responsiveSlides === '3-2-1' ? '3-2-1' : 'uniform',
@@ -261,11 +290,35 @@ document
 		const config = parseSliderConfig( rawConfig, realSlideCount );
 		const usesCardBreakpoints = config.responsiveSlides === '3-2-1';
 		const reducedMotion = prefersReducedMotion();
+		const transitionStyle = reducedMotion
+			? 'fade'
+			: config.transitionStyle;
 		const paginationElement =
 			slider.querySelector< HTMLElement >( '.swiper-pagination' );
 		const timedPagination =
 			config.paginationStyle === 'timed-fraction' ||
 			config.paginationStyle === 'timed-segments';
+		const syncViewportHeight = () => {
+			if ( config.heightPreset !== 'viewport-below-header' ) {
+				return;
+			}
+
+			const header = document.querySelector< HTMLElement >(
+				'#masthead, .site-header'
+			);
+			const adminBar = document.querySelector< HTMLElement >(
+				'#wpadminbar'
+			);
+			const offset =
+				( header?.getBoundingClientRect().height ?? 0 ) +
+				( adminBar?.getBoundingClientRect().height ?? 0 );
+
+			slider.style.setProperty(
+				'--skvn-slider-viewport-offset',
+				`${ Math.max( 0, Math.round( offset ) ) }px`
+			);
+		};
+		syncViewportHeight();
 
 		if ( config.slideCount <= 1 ) {
 			slider.classList.add( 'skvn-slider--static' );
@@ -278,6 +331,15 @@ document
 			'skvn-slider--reduced-motion',
 			reducedMotion
 		);
+		slider.classList.add(
+			`skvn-slider--transition-${ transitionStyle }`
+		);
+		slider.style.setProperty(
+			'--skvn-slider-transition-duration',
+			`${ config.transitionDuration }ms`
+		);
+
+		window.addEventListener( 'resize', syncViewportHeight );
 
 		try {
 			const pagination =
@@ -340,10 +402,11 @@ document
 								stopOnLastSlide: ! config.loop,
 						  }
 						: false,
-				effect: config.effect,
+				effect: transitionStyle === 'fade' ? 'fade' : 'slide',
 				fadeEffect: {
 					crossFade: true,
 				},
+				speed: config.transitionDuration,
 				keyboard: { enabled: true },
 				loop: config.loop,
 				navigation: config.showArrows
@@ -371,6 +434,7 @@ document
 			const pauseReasons = new Set< PauseReason >();
 			let focusTimeout: number | undefined;
 			let cleaned = false;
+			let previousRealIndex = 0;
 
 			if ( document.hidden ) {
 				pauseReasons.add( 'hidden' );
@@ -424,6 +488,15 @@ document
 				);
 			};
 			const handleRealIndexChange = () => {
+				const direction = swiper.swipeDirection === 'prev'
+					? 'previous'
+					: swiper.swipeDirection === 'next'
+						? 'next'
+						: swiper.realIndex >= previousRealIndex
+							? 'next'
+							: 'previous';
+				slider.dataset.skvnDirection = direction;
+				previousRealIndex = swiper.realIndex;
 				resetProgress();
 
 				if (
@@ -448,6 +521,14 @@ document
 				}
 
 				updatePaginationA11y();
+			};
+			const handleTransitionStart = () => {
+				if ( transitionStyle === 'directional-wipe' ) {
+					slider.classList.add( 'skvn-slider--transitioning' );
+				}
+			};
+			const handleTransitionEnd = () => {
+				slider.classList.remove( 'skvn-slider--transitioning' );
 			};
 			const handlePointerEnter = ( event: PointerEvent ) => {
 				if ( event.pointerType === 'mouse' ) {
@@ -567,11 +648,14 @@ document
 					'visibilitychange',
 					handleVisibilityChange
 				);
+				window.removeEventListener( 'resize', syncViewportHeight );
 				swiper.off( 'autoplayTimeLeft', handleAutoplayTimeLeft );
 				swiper.off( 'navigationNext', handleManualNavigation );
 				swiper.off( 'navigationPrev', handleManualNavigation );
 				swiper.off( 'paginationUpdate', updatePaginationA11y );
 				swiper.off( 'realIndexChange', handleRealIndexChange );
+				swiper.off( 'transitionStart', handleTransitionStart );
+				swiper.off( 'transitionEnd', handleTransitionEnd );
 				swiper.off( 'sliderFirstMove', handleInteractionStart );
 				swiper.off( 'touchEnd', handleInteractionEnd );
 
@@ -581,8 +665,18 @@ document
 
 				delete slider.skvnSliderCleanup;
 				delete slider.dataset.skvnSliderInitialized;
-				slider.classList.remove( 'skvn-slider--initialized' );
+				slider.classList.remove(
+					'skvn-slider--initialized',
+					'skvn-slider--transitioning'
+				);
 				slider.style.removeProperty( '--skvn-slider-progress' );
+				slider.style.removeProperty(
+					'--skvn-slider-transition-duration'
+				);
+				slider.style.removeProperty(
+					'--skvn-slider-viewport-offset'
+				);
+				delete slider.dataset.skvnDirection;
 
 				if ( slider.swiper?.destroyed ) {
 					delete slider.swiper;
@@ -607,6 +701,8 @@ document
 			swiper.on( 'navigationPrev', handleManualNavigation );
 			swiper.on( 'paginationUpdate', updatePaginationA11y );
 			swiper.on( 'realIndexChange', handleRealIndexChange );
+			swiper.on( 'transitionStart', handleTransitionStart );
+			swiper.on( 'transitionEnd', handleTransitionEnd );
 			swiper.on( 'sliderFirstMove', handleInteractionStart );
 			swiper.on( 'touchEnd', handleInteractionEnd );
 			slider.skvnSliderCleanup = cleanup;
@@ -615,6 +711,7 @@ document
 			handleRealIndexChange();
 			syncAutoplay();
 		} catch {
+			window.removeEventListener( 'resize', syncViewportHeight );
 			slider.skvnSliderCleanup?.();
 			delete slider.dataset.skvnSliderInitialized;
 			slider.classList.remove( 'skvn-slider--initialized' );

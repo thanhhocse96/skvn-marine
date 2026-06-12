@@ -4,14 +4,16 @@ import {
 	store as blockEditorStore,
 	useBlockProps,
 } from '@wordpress/block-editor';
+import { createBlock } from '@wordpress/blocks';
 import {
+	Button,
 	Notice,
 	PanelBody,
 	RangeControl,
 	SelectControl,
 	ToggleControl,
 } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { __, sprintf } from '@wordpress/i18n';
 
 type SliderAttributes = {
@@ -33,6 +35,9 @@ type SliderAttributes = {
 		| 'timed-segments';
 	paginationPosition: 'bottom-left' | 'bottom-center' | 'bottom-right';
 	effect: string;
+	transitionStyle: '' | 'directional-wipe' | 'fade' | 'zoom-out';
+	transitionDuration: number;
+	heightPreset: 'default' | 'viewport-below-header';
 	slidesPerView: number;
 	preset: string;
 	responsiveSlides: string;
@@ -46,6 +51,7 @@ type SliderEditProps = {
 
 const TEMPLATE = [['skvn-marine/slide'], ['skvn-marine/slide']];
 const GOVERNED_DELAYS = [ 5000, 7000, 9000, 12000 ];
+const GOVERNED_TRANSITION_DURATIONS = [ 600, 700, 800, 900, 1000 ];
 
 export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 	const presetClass = attributes.preset
@@ -64,12 +70,37 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 	const hasFiveSlideLimit = [ 'hero', 'product-showcase' ].includes(
 		attributes.preset
 	);
+	const hasGovernedSlidesPerView = [
+		'hero',
+		'product-showcase',
+		'card-carousel',
+	].includes( attributes.preset );
+	const hasGovernedTransition = attributes.preset === 'card-carousel';
+	const reachedSlideLimit = hasFiveSlideLimit && slideCount >= 5;
+	const effectiveTransitionStyle =
+		attributes.transitionStyle ||
+		(attributes.effect === 'fade' ? 'fade' : 'directional-wipe');
 	const allowedBlocks =
-		hasFiveSlideLimit && slideCount >= 5
-			? []
-			: [ 'skvn-marine/slide' ];
+		reachedSlideLimit ? [] : [ 'skvn-marine/slide' ];
+	const { insertBlock, selectBlock } = useDispatch( blockEditorStore ) as {
+		insertBlock: (
+			block: ReturnType< typeof createBlock >,
+			index: number,
+			rootClientId: string
+		) => void;
+		selectBlock: ( blockClientId: string ) => void;
+	};
+	const addSlide = () => {
+		if ( reachedSlideLimit ) {
+			return;
+		}
+
+		const slide = createBlock( 'skvn-marine/slide' );
+		insertBlock( slide, slideCount, clientId );
+		selectBlock( slide.clientId );
+	};
 	const blockProps = useBlockProps({
-		className: `skvn-slider skvn-slider--editor${ presetClass }`,
+		className: `skvn-slider skvn-slider--editor skvn-slider--height-${ attributes.heightPreset }${ presetClass }`,
 	});
 	const hasLegacyDelay = ! GOVERNED_DELAYS.includes(
 		attributes.autoplayDelay
@@ -259,44 +290,109 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 					initialOpen={false}
 					title={__('Layout', 'skvn-marine-blocks')}
 				>
+					{hasGovernedTransition ? (
+						<Notice isDismissible={false} status="info">
+							{__(
+								'Card Carousel uses its governed directional movement for the responsive 3/2/1 layout.',
+								'skvn-marine-blocks'
+							)}
+						</Notice>
+					) : (
+						<>
+							<SelectControl
+								label={__('Transition', 'skvn-marine-blocks')}
+								onChange={(transitionStyle) =>
+									setAttributes({
+										transitionStyle:
+											transitionStyle as SliderAttributes['transitionStyle'],
+									})
+								}
+								options={[
+									{
+										label: __('Directional wipe', 'skvn-marine-blocks'),
+										value: 'directional-wipe',
+									},
+									{ label: __('Fade', 'skvn-marine-blocks'), value: 'fade' },
+									{ label: __('Zoom out', 'skvn-marine-blocks'), value: 'zoom-out' },
+								]}
+								value={effectiveTransitionStyle}
+							/>
+							<SelectControl
+								label={__('Transition duration', 'skvn-marine-blocks')}
+								onChange={(transitionDuration) =>
+									setAttributes({
+										transitionDuration: Number( transitionDuration ),
+									})
+								}
+								options={GOVERNED_TRANSITION_DURATIONS.map(
+									( duration ) => ({
+										label: sprintf(
+											__('%d ms', 'skvn-marine-blocks'),
+											duration
+										),
+										value: String( duration ),
+									})
+								)}
+								value={String( attributes.transitionDuration )}
+							/>
+						</>
+					)}
 					<SelectControl
-						label={__('Effect', 'skvn-marine-blocks')}
-						onChange={(effect) => setAttributes({ effect })}
-						options={[
-							{ label: __('Slide', 'skvn-marine-blocks'), value: 'slide' },
-							{ label: __('Fade', 'skvn-marine-blocks'), value: 'fade' },
-						]}
-						value={attributes.effect}
-					/>
-					<RangeControl
-						label={__('Slides per view', 'skvn-marine-blocks')}
-						max={4}
-						min={1}
-						onChange={(slidesPerView) =>
+						label={__('Slider height', 'skvn-marine-blocks')}
+						help={
+							attributes.heightPreset ===
+							'viewport-below-header'
+								? __(
+										'Fills the visible viewport below the site header.',
+										'skvn-marine-blocks'
+								  )
+								: undefined
+						}
+						onChange={(heightPreset) =>
 							setAttributes({
-								slidesPerView: slidesPerView || 1,
-								responsiveSlides: 'uniform',
+								heightPreset:
+									heightPreset as SliderAttributes['heightPreset'],
 							})
 						}
-						value={attributes.slidesPerView}
+						options={[
+							{ label: __('Default', 'skvn-marine-blocks'), value: 'default' },
+							{
+								label: __('Viewport below header', 'skvn-marine-blocks'),
+								value: 'viewport-below-header',
+							},
+						]}
+						value={attributes.heightPreset}
 					/>
+					{!hasGovernedSlidesPerView && (
+						<RangeControl
+							label={__('Slides per view', 'skvn-marine-blocks')}
+							max={4}
+							min={1}
+							onChange={(slidesPerView) =>
+								setAttributes({
+									slidesPerView: slidesPerView || 1,
+									responsiveSlides: 'uniform',
+								})
+							}
+							value={attributes.slidesPerView}
+						/>
+					)}
 				</PanelBody>
 			</InspectorControls>
 			<div className="skvn-slider__editor-stack">
 				<InnerBlocks
 					allowedBlocks={ allowedBlocks }
+					renderAppender={ () => null }
 					template={ TEMPLATE }
 				/>
 			</div>
-			{slideCount > 1 &&
-				(attributes.showArrows || attributes.showPagination) && (
-					<div
-						aria-label={__(
-							'Static controls preview',
-							'skvn-marine-blocks'
-						)}
-						className={staticControlsClass}
-					>
+			<div
+				aria-label={__(
+					'Static controls preview',
+					'skvn-marine-blocks'
+				)}
+				className={staticControlsClass}
+			>
 						{attributes.showArrows && (
 							<div
 								className={`skvn-slider__arrows skvn-slider__arrows--${ attributes.arrowStyle } skvn-slider__arrows--${ attributes.arrowPosition }`}
@@ -319,6 +415,25 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 								/>
 							</div>
 						)}
+						<Button
+							className="skvn-slider__add-slide"
+							disabled={reachedSlideLimit}
+							icon="plus-alt2"
+							onClick={addSlide}
+							title={
+								reachedSlideLimit
+									? __(
+											'This Slider preset supports up to five slides.',
+											'skvn-marine-blocks'
+									  )
+									: __('Add slide', 'skvn-marine-blocks')
+							}
+							variant="secondary"
+						>
+							{reachedSlideLimit
+								? __('Slide limit reached', 'skvn-marine-blocks')
+								: __('Add slide', 'skvn-marine-blocks')}
+						</Button>
 						{controlsCluster && (
 							<span
 								aria-hidden="true"
@@ -366,8 +481,7 @@ export function Edit({ attributes, clientId, setAttributes }: SliderEditProps) {
 								)}
 							</div>
 						)}
-					</div>
-				)}
+			</div>
 		</div>
 	);
 }

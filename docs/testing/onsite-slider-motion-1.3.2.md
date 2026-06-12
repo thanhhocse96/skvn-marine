@@ -66,6 +66,16 @@ repeated because the dynamic rendering migration changed those surfaces.
     disabled while Pill is selected.
 15. Confirm the editor shows a static preview of the selected arrow and
     pagination styles without running Swiper, autoplay, or live timer progress.
+16. Confirm the centered `Add slide` button inserts and selects a new Slide,
+    remains editor-only, and becomes unavailable at the five-Slide Hero/Product
+    Showcase limit.
+17. Confirm Hero and Product Showcase hide Slides Per View and remain fixed at
+    one; Card Carousel hides it and remains 3/2/1; an unclassified legacy
+    Slider retains the compatible 1–4 control.
+18. Confirm Hero and Product Showcase offer Directional wipe, Fade, and Zoom
+    out with only `600/700/800/900/1000ms`; Card Carousel explains its governed
+    responsive movement instead of exposing incompatible transition controls.
+19. Confirm `Slider height` offers Default and `Viewport below header`.
 
 ## Slider Frontend Checks
 
@@ -108,6 +118,23 @@ repeated because the dynamic rendering migration changed those surfaces.
     interaction ends and no hover/focus/visibility reason remains.
 27. Enable Reduce motion and confirm autoplay is disabled and does not resume
     after a tab visibility change.
+28. Confirm Slider text uses Inder when the font request succeeds, falls back
+    readably when it does not, and the Hero heading is visibly smaller/lighter
+    than the previous oversized treatment.
+29. Select `Viewport below header` and confirm the Slider fills the visible
+    area from the bottom edge of the site header to the bottom of the viewport.
+    Repeat while logged in so the WordPress admin bar is also accounted for.
+30. Test Directional wipe, Fade, and Zoom out using arrows, pagination,
+    autoplay, keyboard, and swipe. Confirm direction remains correct when loop
+    wraps from the last real Slide to the first and back.
+31. Confirm Zoom out remains clipped inside the Slider frame and none of the
+    transitions increases document width or creates horizontal scrolling.
+32. During Directional wipe, confirm the incoming Slide edge is feathered
+    instead of showing a hard vertical seam, then becomes fully sharp when the
+    transition finishes.
+33. During Directional wipe, confirm the incoming Hero content staggers in this
+    order: heading, paragraph after `100ms`, and Buttons after another `100ms`.
+    Confirm both next and previous navigation use the same semantic order.
 
 ## Memory Stability Check
 
@@ -189,6 +216,11 @@ repeated because the dynamic rendering migration changed those surfaces.
   `docs/decisions/slider-navigation-and-pagination-controls.md`.
 - Legacy `dots`, `arrows`, and arbitrary delay content migrates without
   invalid-block recovery or silent timing changes.
+- Legacy `effect: fade` remains Fade until the editor explicitly changes it.
+- Inder remains scoped to Slider output and has a readable system fallback.
+- `Viewport below header` accounts for the site header and logged-in admin bar.
+- Directional wipe, Fade, and Zoom out respect the governed duration and
+  reduced-motion fallback.
 
 ## Fail Evidence To Report
 
@@ -198,6 +230,11 @@ repeated because the dynamic rendering migration changed those surfaces.
 - Screenshot or short screen recording.
 - Screenshot of the Slider sidebar for one clustered configuration, one
   independent configuration, and one preserved legacy delay.
+- Desktop and mobile screenshots for Default and `Viewport below header`,
+  including one logged-in screenshot with the admin bar visible.
+- Short recording of all three transitions, including one loop wrap.
+- Network/console note confirming whether the Inder font request loaded or
+  fell back.
 - Exact block preset, trigger, and device-toggle combination.
 - Whether the failure occurred before hiding the tab, while hidden, or after
   returning, and whether pointer hover or keyboard focus remained inside.

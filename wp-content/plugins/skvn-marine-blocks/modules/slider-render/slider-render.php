@@ -95,6 +95,12 @@ function skvn_marine_blocks_get_slider_attributes( $attributes, $block ) {
 		}
 	}
 
+	if ( ! array_key_exists( 'transitionStyle', $raw_attributes ) ) {
+		$attributes['transitionStyle'] = isset( $raw_attributes['effect'] ) && 'fade' === $raw_attributes['effect']
+			? 'fade'
+			: 'directional-wipe';
+	}
+
 	return $attributes;
 }
 
@@ -171,7 +177,24 @@ function skvn_marine_blocks_render_slider( $attributes, $content, $block ) {
 
 	$attributes        = skvn_marine_blocks_get_slider_attributes( $attributes, $block );
 	$preset            = skvn_marine_blocks_normalize_slider_preset( $attributes['preset'] ?? '' );
-	$effect            = isset( $attributes['effect'] ) && 'fade' === $attributes['effect'] ? 'fade' : 'slide';
+	$legacy_effect     = isset( $attributes['effect'] ) && 'fade' === $attributes['effect'] ? 'fade' : 'slide';
+	$transition_style  = skvn_marine_blocks_normalize_slider_choice(
+		$attributes['transitionStyle'] ?? ( 'fade' === $legacy_effect ? 'fade' : 'directional-wipe' ),
+		array( 'directional-wipe', 'fade', 'zoom-out' ),
+		'directional-wipe'
+	);
+	$transition_duration = isset( $attributes['transitionDuration'] ) && in_array(
+		(int) $attributes['transitionDuration'],
+		array( 600, 700, 800, 900, 1000 ),
+		true
+	)
+		? (int) $attributes['transitionDuration']
+		: 800;
+	$height_preset     = skvn_marine_blocks_normalize_slider_choice(
+		$attributes['heightPreset'] ?? 'default',
+		array( 'default', 'viewport-below-header' ),
+		'default'
+	);
 	$responsive_slides = isset( $attributes['responsiveSlides'] ) && '3-2-1' === $attributes['responsiveSlides']
 		? '3-2-1'
 		: 'uniform';
@@ -188,7 +211,7 @@ function skvn_marine_blocks_render_slider( $attributes, $content, $block ) {
 	}
 
 	if ( 'card-carousel' === $preset ) {
-		$effect            = 'slide';
+		$transition_style  = 'directional-wipe';
 		$slides_per_view   = 3;
 		$responsive_slides = '3-2-1';
 	}
@@ -255,7 +278,9 @@ function skvn_marine_blocks_render_slider( $attributes, $content, $block ) {
 		'showPagination'    => $show_pagination,
 		'paginationStyle'   => $pagination_style,
 		'paginationPosition' => $pagination_position,
-		'effect'            => $effect,
+		'transitionStyle'   => $transition_style,
+		'transitionDuration' => $transition_duration,
+		'heightPreset'      => $height_preset,
 		'slidesPerView'     => $slides_per_view,
 		'slideCount'        => $slide_count,
 	);
@@ -269,6 +294,8 @@ function skvn_marine_blocks_render_slider( $attributes, $content, $block ) {
 	if ( $preset ) {
 		$class_name .= ' skvn-slider--' . $preset;
 	}
+
+	$class_name .= ' skvn-slider--height-' . $height_preset;
 
 	if ( $show_arrows ) {
 		$class_name .= ' skvn-slider--has-arrows';

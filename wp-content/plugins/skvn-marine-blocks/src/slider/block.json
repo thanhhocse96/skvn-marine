@@ -49,6 +49,18 @@
       "type": "string",
       "default": "slide"
     },
+    "transitionStyle": {
+      "type": "string",
+      "default": ""
+    },
+    "transitionDuration": {
+      "type": "number",
+      "default": 800
+    },
+    "heightPreset": {
+      "type": "string",
+      "default": "default"
+    },
     "slidesPerView": {
       "type": "number",
       "default": 1
