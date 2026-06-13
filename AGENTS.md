@@ -79,7 +79,7 @@ Quy tắc tóm tắt:
 | Thuộc về | Layer | Ví dụ |
 |---|---|---|
 | `skvn-marine/` | Theme | Visual system, design tokens, block styles, patterns, WooCommerce visual override, animation runtime, media helpers |
-| `skvn-marine-blocks/` | Plugin | Custom Gutenberg blocks có logic: slider, accordion, product-grid, product-list |
+| `skvn-marine-blocks/` | Plugin | Custom Gutenberg blocks có logic: slider, accordion, product-collection, post-collection |
 | External plugins | Không touch | WooCommerce, CF7, CFDB7, Rank Math, Polylang, n8n |
 | GeneratePress | Không touch tuyệt đối | `themes/generatepress/**` |
 
@@ -364,8 +364,23 @@ if (!prefersReduced) { /* run animation */ }
 ### Plugin: Product Grid / Product List
 
 - Dùng WooCommerce native query — KHÔNG custom SQL trực tiếp
-- V1: WooCommerce native blocks/patterns trước, custom block sau khi homepage đã xong
-- Pagination cho Product List
+- V1 / 1.3.3: human-approved dynamic collections milestone replaces the old
+  V2-only deferral for custom product/post collection surfaces.
+- Build custom dynamic SKVN blocks as `skvn-marine/product-collection` and
+  `skvn-marine/post-collection`, with editor-facing variations Product Grid,
+  Product Carousel, Post Grid, and Post Carousel.
+- Product collection uses WooCommerce/native APIs under the hood; Post
+  collection uses WordPress native APIs.
+- Store query/layout/action attributes only; do not store product/post card
+  snapshots in saved content.
+- Grid and Carousel are layout modes. Product/Post remain the query owners.
+- Carousel may reuse Slider/Swiper adapter and shared pause/reduced-motion
+  policy. Grid must not load carousel runtime.
+- Do not depend on WooCommerce experimental Product Collection extension APIs as
+  the SKVN source of truth in V1.
+- Product attribute query, Product Taxonomy Collections admin, grouped taxonomy
+  navigation, faceted filters, archive builder, and universal CPT collection are
+  deferred to 2.x.x or later unless human explicitly changes scope.
 - Mobile: CTA (Request a Quote) luôn visible, KHÔNG chỉ hiện khi hover
 
 ### Page Display / Sidebar Controls
@@ -497,7 +512,7 @@ Mỗi task đưa cho AI nên có đủ 6 phần:
 | 1.3.0 | Slider Dynamic Rendering Architecture |
 | 1.3.1 | Slider Navigation & Pagination Controls UX |
 | 1.3.2 | Feature Showcase Autoplay And Panel Links |
-| 1.3.3 | Products Slider có hook vào product |
+| 1.3.3 | Dynamic Product And Post Collections |
 | 1.3.4 | Core Control Foundation & Core Button Hover |
 | 1.3.9 | Slider Dynamic Rendering & Controls Onsite QA |
 | 1.3.10 | SKVN Team Credits Easter Egg |

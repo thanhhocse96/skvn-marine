@@ -86,13 +86,39 @@ src/
 - `skvn-marine/slider`
 - `skvn-marine/slide`
 - `skvn-marine/accordion`
+- `skvn-marine/product-collection` — planned V1 / 1.3.3 dynamic product grid/carousel foundation
+- `skvn-marine/post-collection` — planned V1 / 1.3.3 dynamic post grid/carousel foundation
 
-## [manual] Deferred Blocks
+## [manual] Product And Post Collections
 
-- V1 KHÔNG build custom `skvn-marine/product-grid`.
-- V1 KHÔNG build custom `skvn-marine/product-list`.
-- V1 dùng WooCommerce native blocks/patterns cho product grid/list.
-- V2 mới thêm Product Grid/List custom hoặc style blocks liên quan nếu cần.
+Earlier V1 product surfaces used WooCommerce native blocks/patterns first. That
+0.4.0 deferral is superseded for the human-approved future milestone
+V1 / 1.3.3.
+
+V1 / 1.3.3 planned direction:
+
+- Decision: `docs/decisions/skvn-dynamic-collections-1.3.3.md`.
+- Planning: `.context/planning/024_VERSION_1_3_3_DYNAMIC_COLLECTIONS_PLANNING.md`.
+- Testing: `docs/testing/onsite-dynamic-collections-1.3.3.md`.
+- Build two custom dynamic SKVN blocks:
+  `skvn-marine/product-collection` and `skvn-marine/post-collection`.
+- Expose four inserter choices: Product Grid, Product Carousel, Post Grid, and
+  Post Carousel.
+- Store query/layout/action attributes only; do not store product/post card
+  snapshots in saved content.
+- Product collection uses WooCommerce/native APIs under the hood. Post
+  collection uses WordPress native APIs.
+- Do not use direct custom SQL.
+- Do not depend on WooCommerce experimental Product Collection extension APIs as
+  the SKVN source of truth in V1.
+- Grid and Carousel are layout modes. Product/Post remain the query owners.
+- Grid must not load carousel runtime. Carousel may reuse the Slider/Swiper
+  adapter, pause policy, document visibility behavior, and reduced-motion guard.
+- Product/Post cards must not be forced into `skvn-marine/slide` InnerBlocks.
+- Product Taxonomy Collections admin, attribute/tag thumbnails, grouped taxonomy
+  navigation, product attribute query, faceted filters, archive builder, and
+  universal CPT collection remain deferred to 2.x.x or later unless human
+  explicitly changes scope.
 
 ## [manual] Future Layout Blocks
 

@@ -12,7 +12,7 @@
 - WindPress/Tailwind may be used as a prototyping aid, but production visual-system implementation should be SKVN theme tokens/classes and must not require WindPress for future plugin portability.
 - Use TypeScript for custom Gutenberg block plugin.
 - Use Swiper for slider.
-- Product Grid/List V1: use WooCommerce native blocks/patterns. Custom Product Grid/List or related style blocks are deferred to V2.
+- Product sections started with WooCommerce native blocks/patterns. V1 / 1.3.3 now plans custom dynamic SKVN Product/Post Collection blocks for Product Grid, Product Carousel, Post Grid, and Post Carousel; Product Taxonomy Collections admin and advanced filtering remain deferred to 2.x.x or later.
 - Plugin architecture: block-centric feature modules with minimal shared services. Blocks own feature logic; `src/shared/` is only for cross-block invariants/utilities such as motion, a11y, DOM/config parsing, and shared types.
 - Version planning decisions are recorded in `.context/planning/000_VERSION_1_1_0_PLANNING.md`: V1 uses Gutenberg patterns + theme CSS for hero, feature strips, stat/icon cards, about/factory, and map/contact; custom blocks are reserved for interaction-heavy logic or future editor governance.
 

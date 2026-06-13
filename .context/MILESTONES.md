@@ -184,42 +184,114 @@ Acceptance draft:
 - [ ] Plugin build and onsite QA pass
 - [ ] Human approves milestone completion
 
-### 1.3.3 — Products Slider có hook vào product
+### 1.3.3 — Dynamic Product And Post Collections
 
 Status: **PENDING**
 
-Architecture carry-in from V1 / 1.3.2:
+Purpose:
 
-- Product Slider should build on the existing Slider/Swiper foundation rather
-  than introduce another carousel engine.
-- It inherits the shared pointer/focus/document-visibility pause policy through
-  the Slider adapter.
-- It owns its WooCommerce query, product-card markup, responsive behavior, and
-  any milestone-approved delay list.
-- It must not use the Feature Showcase timer or share a mutable Swiper instance
-  with another Slider.
+- Add governed dynamic collection blocks for product and post surfaces:
+  Product Grid, Product Carousel, Post Grid, and Post Carousel.
+- Use custom SKVN dynamic blocks while querying/rendering through native
+  WordPress and WooCommerce APIs under the hood.
+- Keep editor UX simple with four inserter choices, backed by two logic blocks:
+  `skvn-marine/product-collection` and `skvn-marine/post-collection`.
+- Preserve B2B funnel context through product card actions and Request Quote
+  URLs.
+- Ship plugin-owned baseline CSS/runtime so the blocks remain portable if the
+  SKVN theme changes.
 
-```mermaid
-flowchart TB
-    Policy["Shared Pause Policy<br/>hover | focus | hidden"]
+Decision:
 
-    Slider["Slider Foundation"]
-    Product["Product Slider"]
-    Feature["Feature Showcase"]
+- `docs/decisions/skvn-dynamic-collections-1.3.3.md`
 
-    Policy --> Slider
-    Policy --> Product
-    Policy --> Feature
+Planning:
 
-    Slider --> SwiperA["Per-instance Swiper"]
-    Product --> SwiperB["Per-instance Swiper"]
-    Feature --> Timer["Block-local timer"]
+- `.context/planning/024_VERSION_1_3_3_DYNAMIC_COLLECTIONS_PLANNING.md`
 
-    Product --> Woo["WooCommerce product query"]
-```
+Testing:
 
-This diagram records the intended reuse boundary only. Product Slider source
-implementation remains outside V1 / 1.3.2.
+- `docs/testing/onsite-dynamic-collections-1.3.3.md`
+
+Architecture:
+
+- Product collections own WooCommerce product query, product card markup,
+  quote/context actions, and WooCommerce inactive fallback.
+- Post collections own WordPress post query and post card markup.
+- Grid and Carousel are layout modes, not separate query owners.
+- Editor-facing inserter choices are:
+  `SKVN Product Grid`, `SKVN Product Carousel`, `SKVN Post Grid`,
+  and `SKVN Post Carousel`.
+- Saved content stores query/layout/action attributes only. It does not store
+  snapshots of product or post card HTML.
+- Carousel layouts reuse only the relevant Slider/Swiper foundation: adapter,
+  pause policy, document visibility behavior, and reduced-motion guard.
+- Grid layouts do not load carousel runtime.
+- Product/Post cards must not be forced into `skvn-marine/slide` InnerBlocks.
+
+Constraints:
+
+- Do not use direct custom SQL.
+- Do not depend on WooCommerce experimental Product Collection extension APIs
+  as the SKVN source of truth in V1.
+- Do not save product/post snapshots into page content.
+- Do not implement Product Taxonomy Collections admin in this milestone.
+- Do not implement product attribute query, faceted filters, AJAX load more,
+  grouped taxonomy navigation, archive builder, or universal CPT collection in
+  this milestone.
+- Do not add custom object/transient caching unless onsite evidence proves it
+  is required.
+- Product collections must not fatal when WooCommerce is inactive.
+- Carousel autoplay is off by default, disabled for reduced motion, and must not
+  run in the editor.
+- If autoplay is enabled, render a visible Pause/Play control.
+
+Implementation order:
+
+1. Contract and shared constants/types.
+2. Post Collection Grid.
+3. Product Collection Grid.
+4. Shared carousel runtime and Product/Post Carousel variations.
+5. Performance, dependency, fallback, and accessibility hardening.
+6. Human onsite QA and source fix pass.
+
+Acceptance draft:
+
+- [ ] `docs/decisions/skvn-dynamic-collections-1.3.3.md` is reviewed before source implementation
+- [ ] `skvn-marine/product-collection` and `skvn-marine/post-collection` are registered as dynamic blocks
+- [ ] Four inserter choices exist: Product Grid, Product Carousel, Post Grid, Post Carousel
+- [ ] Saved markup stores attributes only and does not snapshot product/post cards
+- [ ] Product collections query through WooCommerce/native APIs without direct custom SQL
+- [ ] Post collections query through WordPress native APIs
+- [ ] Query controls support category/tag multi-select, `AND`/`OR`, item limit, and approved order modes
+- [ ] `Shuffle balanced pool` avoids SQL random ordering and uses the documented pool strategy
+- [ ] Grid respects max 5 columns and max 3 rows
+- [ ] Carousel respects max 10 items
+- [ ] Responsive presets `1-1-1`, `2-1-1`, `3-2-1`, `4-2-1`, and `5-3-1` work
+- [ ] Product cards support governed field visibility and quote/view/custom action modes
+- [ ] Request Quote action preserves product context in the generated URL
+- [ ] Post cards support governed field visibility and read/custom action modes
+- [ ] Badge behavior supports display-only and archive-link modes
+- [ ] Product image fallback uses product image, WooCommerce placeholder, then SKVN fallback
+- [ ] Post image fallback uses featured image, then SKVN fallback
+- [ ] Carousel reuses shared pause/reduced-motion policy without making grid load carousel runtime
+- [ ] Autoplay off/default, pause, document visibility, focus, and reduced-motion behavior pass
+- [ ] WooCommerce inactive state does not fatal product collection blocks
+- [ ] Plugin baseline CSS keeps blocks readable without relying on theme patterns
+- [ ] Theme pattern follow-up is deferred until plugin implementation and onsite QA pass
+- [ ] Plugin build, PHP syntax checks, deploy artifact audit if runtime PHP paths change, and onsite QA pass
+- [ ] Human approves milestone completion
+
+Deferred to 2.x.x or later:
+
+- `Products -> Taxonomy Collections`
+- Product Taxonomy Collections admin
+- Attribute/tag thumbnail metadata UI
+- Group by taxonomy
+- Faceted/AJAX filtering
+- Archive builder
+- Technical product/specification card
+- Universal CPT collection block
 
 ### 1.3.4 — Core Control Foundation & Core Button Hover
 

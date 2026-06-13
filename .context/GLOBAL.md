@@ -37,8 +37,8 @@
 | Plugin root | `skvn-marine-blocks/` | Plugin | skvn-marine-blocks.php |
 | Slider block | `src/slider/` + `src/slide/` | Plugin | Swiper frontend, stacked editor preview |
 | Accordion block | `src/accordion/` | Plugin | Keyboard nav bắt buộc |
-| Product Grid block | `src/product-grid/` | Plugin | WooCommerce query |
-| Product List block | `src/product-list/` | Plugin | WooCommerce query + pagination |
+| Product Collection block | `src/product-collection/` | Plugin | Planned 1.3.3 dynamic WooCommerce grid/carousel |
+| Post Collection block | `src/post-collection/` | Plugin | Planned 1.3.3 dynamic post grid/carousel |
 <!-- AUTO_END -->
 
 ---
@@ -64,6 +64,7 @@ Current planning file:
 - Historical Slider planning from 1.2.0, 1.2.1, and the superseded 1.3.0 draft now lives under `.context/planning/archives/`.
 - `.context/planning/016_VERSION_1_2_3_FEATURE_SHOWCASE_PLANNING.md` — active `1.2.3` Feature Showcase plan. Source is activated under `src/feature-showcase/` as `skvn-marine/feature-showcase`.
 - `.context/planning/020_VERSION_1_3_2_FEATURE_SHOWCASE_AUTOPLAY_AND_LINKS_PLANNING.md` — active `1.3.2` plan for governed Feature Showcase hover/autoplay modes, snapping `3/5/7/9s` delay, per-panel Gutenberg LinkControl CTA, and shared autoplay invariants with Slider after `1.3.1` approval.
+- `.context/planning/024_VERSION_1_3_3_DYNAMIC_COLLECTIONS_PLANNING.md` — future `1.3.3` plan for dynamic Product/Post Collection blocks: Product Grid, Product Carousel, Post Grid, Post Carousel, native WP/Woo query adapters, governed cards/actions, shuffle-balanced ordering, and onsite QA.
 - `.context/planning/021_VERSION_1_3_1_SLIDER_EDITOR_AND_CORE_TRANSITIONS_PLANNING.md` — approved expansion of the current `1.3.1` scope: centered editor Add Slide action, governed/hidden Slides Per View controls, Directional Wipe/Fade/Zoom Out, `600–1000ms` transition duration, and reduced-motion fallback.
 - `.context/planning/022_FUTURE_CANDIDATE_SLIDER_EXTENSION_API_PLANNING.md` — Future Candidate for the `2.x.x` phase: WordPress-native Transition/Pagination Extension API, namespaced registries, fallback/governance, and Portal Zoom plus Timed Tabs as reference integrations outside the lightweight core.
 - `docs/decisions/slider-completion-spec-1.3.0.md` — active Slider source of truth. V1 / 1.3.0 completes dynamic rendering, compatibility, accessibility, and geometry; expanded carousel/showcase UX remains a later human-approved milestone.
@@ -98,6 +99,7 @@ Current active docs:
 - `docs/decisions/footer-appearance-settings-0.11.0.md`
 - `docs/decisions/header-actions-search-0.12.0.md`
 - `docs/decisions/core-control-core-button-hover.md`
+- `docs/decisions/skvn-dynamic-collections-1.3.3.md`
 - `docs/decisions/product-card-grid-layout-contract.md`
 - `docs/decisions/block-animation-strategy.md`
 - `docs/decisions/skvn-editor-controls-0.8.0.md`
@@ -114,6 +116,7 @@ Current active docs:
 - `docs/testing/header-actions-search-0.12.0.md`
 - `docs/testing/onsite-0.11-0.12-completion-checklist.md`
 - `docs/testing/onsite-editor-controls-0.8.0.md`
+- `docs/testing/onsite-dynamic-collections-1.3.3.md`
 - `docs/testing/onsite-slider-motion-1.3.2.md`
 - `docs/testing/testing-checklist.md`
 - `docs/workflows/context-map-workflow.md`
@@ -201,7 +204,7 @@ Shared host chỉ hỗ trợ PHP 8.0. `Out of the Block: OpenStreetMap` yêu c�
 
 **V1 (current)** — Một website B2B marine, local-first
 - Theme child + design system + block styles + patterns
-- Plugin blocks: Slider, Accordion, Product Grid, Product List
+- Plugin blocks: Slider, Accordion, Product Collection, Post Collection
 - Page display/sidebar controls in 0.5.1; Quote UI/editor controls in 0.6.0; basic CF7/CFDB7 source/docs contract in 0.7.0; quote-flow runtime verification/handoff in 0.7.1; SKVN Editor Controls in 0.8.0; Footer Page Settings in 0.9.0; onsite UI/test debt closed in 0.10.0; CF7 data-flow and map block/display testing in 1.1.2; n8n after 1.0.0
 - English content, prepare cho multilingual nhưng KHÔNG activate Polylang
 
