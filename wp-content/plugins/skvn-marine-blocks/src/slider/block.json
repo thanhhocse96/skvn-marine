@@ -81,6 +81,32 @@
       "type": "string",
       "enum": ["subtle", "medium", "strong"],
       "default": "medium"
+    },
+    "parallaxAdvanced": {
+      "type": "boolean",
+      "default": false
+    },
+    "parallaxDepth": {
+      "type": "string",
+      "enum": ["both", "translate", "scale"],
+      "default": "both"
+    },
+    "parallaxDirection": {
+      "type": "string",
+      "enum": ["horizontal", "vertical"],
+      "default": "horizontal"
+    },
+    "parallaxTranslate": {
+      "type": "number",
+      "default": 30
+    },
+    "parallaxScale": {
+      "type": "number",
+      "default": 1.12
+    },
+    "parallaxInset": {
+      "type": "number",
+      "default": 35
     }
   },
   "allowedBlocks": [

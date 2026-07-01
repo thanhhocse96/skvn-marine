@@ -58,6 +58,12 @@ type SliderConfig = {
 	slideCount?: number;
 	enableParallax?: boolean;
 	parallaxIntensity?: string;
+	parallaxAdvanced?: boolean;
+	parallaxDepth?: string;
+	parallaxDirection?: string;
+	parallaxTranslate?: number;
+	parallaxScale?: number;
+	parallaxInset?: number;
 };
 
 type NormalizedSliderConfig = {
@@ -83,6 +89,12 @@ type NormalizedSliderConfig = {
 	slideCount: number;
 	enableParallax: boolean;
 	parallaxIntensity: 'subtle' | 'medium' | 'strong';
+	parallaxAdvanced: boolean;
+	parallaxDepth: 'both' | 'translate' | 'scale';
+	parallaxDirection: 'horizontal' | 'vertical';
+	parallaxTranslate: number;
+	parallaxScale: number;
+	parallaxInset: number;
 };
 
 type SliderElement = HTMLElement & {
@@ -98,6 +110,17 @@ function clampInteger(
 ) {
 	return typeof value === 'number' && Number.isFinite( value )
 		? Math.min( maximum, Math.max( minimum, Math.round( value ) ) )
+		: fallback;
+}
+
+function clampNumber(
+	value: unknown,
+	fallback: number,
+	minimum: number,
+	maximum: number
+) {
+	return typeof value === 'number' && Number.isFinite( value )
+		? Math.min( maximum, Math.max( minimum, value ) )
 		: fallback;
 }
 
@@ -220,6 +243,23 @@ function parseSliderConfig(
 			[ 'subtle', 'medium', 'strong' ] as const,
 			'medium'
 		),
+		parallaxAdvanced:
+			typeof parsed.parallaxAdvanced === 'boolean'
+				? parsed.parallaxAdvanced
+				: false,
+		parallaxDepth: normalizeChoice(
+			parsed.parallaxDepth,
+			[ 'both', 'translate', 'scale' ] as const,
+			'both'
+		),
+		parallaxDirection: normalizeChoice(
+			parsed.parallaxDirection,
+			[ 'horizontal', 'vertical' ] as const,
+			'horizontal'
+		),
+		parallaxTranslate: clampInteger( parsed.parallaxTranslate, 30, 0, 80 ),
+		parallaxScale: clampNumber( parsed.parallaxScale, 1.12, 1, 1.5 ),
+		parallaxInset: clampInteger( parsed.parallaxInset, 35, 0, 80 ),
 	};
 }
 
@@ -420,15 +460,56 @@ function initSlider( slider: SliderElement ): void {
 		window.addEventListener( 'resize', syncViewportHeight );
 
 		if ( shouldParallax ) {
-			const translateMap = { subtle: '-15%', medium: '-30%', strong: '-50%' } as const;
-			const scaleMap = { subtle: 1.06, medium: 1.12, strong: 1.20 } as const;
-			const insetMap = { subtle: '-20%', medium: '-35%', strong: '-50%' } as const;
+			// Preset baseline (magnitudes in %). Advanced mode overrides these
+			// with the raw per-attribute values from the inspector.
+			const presetTranslate = { subtle: 15, medium: 30, strong: 50 } as const;
+			const presetScale = { subtle: 1.06, medium: 1.12, strong: 1.2 } as const;
+			const presetInset = { subtle: 20, medium: 35, strong: 50 } as const;
 			const intensity = config.parallaxIntensity;
-			slider.querySelectorAll< HTMLElement >( '.skvn-slide__bg' ).forEach( ( bg ) => {
-				bg.setAttribute( 'data-swiper-parallax', translateMap[ intensity ] );
-				bg.setAttribute( 'data-swiper-parallax-scale', String( scaleMap[ intensity ] ) );
-			} );
-			slider.style.setProperty( '--skvn-parallax-inset', insetMap[ intensity ] );
+			const advanced = config.parallaxAdvanced;
+			const depth = advanced ? config.parallaxDepth : 'both';
+			const direction = advanced ? config.parallaxDirection : 'horizontal';
+			const translateMag = advanced
+				? config.parallaxTranslate
+				: presetTranslate[ intensity ];
+			const scaleVal = advanced
+				? config.parallaxScale
+				: presetScale[ intensity ];
+			const insetMag = advanced
+				? config.parallaxInset
+				: presetInset[ intensity ];
+			const includeTranslate = depth !== 'scale';
+			const includeScale = depth !== 'translate';
+			// Inset (edge-guard) only matters when the layer translates; scale
+			// alone stays centred and needs no offset.
+			const effectiveInset = includeTranslate ? insetMag : 0;
+			const axis = direction === 'vertical' ? 'y' : 'x';
+
+			slider
+				.querySelectorAll< HTMLElement >( '.skvn-slide__bg' )
+				.forEach( ( bg ) => {
+					bg.removeAttribute( 'data-swiper-parallax-x' );
+					bg.removeAttribute( 'data-swiper-parallax-y' );
+					bg.removeAttribute( 'data-swiper-parallax-scale' );
+
+					if ( includeTranslate ) {
+						bg.setAttribute(
+							`data-swiper-parallax-${ axis }`,
+							`-${ translateMag }%`
+						);
+					}
+
+					if ( includeScale ) {
+						bg.setAttribute(
+							'data-swiper-parallax-scale',
+							String( scaleVal )
+						);
+					}
+				} );
+			slider.style.setProperty(
+				'--skvn-parallax-inset',
+				`-${ effectiveInset }%`
+			);
 		}
 
 		try {

@@ -1,9 +1,16 @@
 # Decision — Slider Parallax (Both Depth) 1.3.8
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Milestone:** V1 / 1.3.8 — Slider Parallax  
 **Status:** DECIDED  
-**Date:** 2026-06-22  
+**Date:** 2026-06-22 (rev. 2026-07-01)  
+
+> **Revision 1.1 (2026-07-01)** — Reverses the "governed / hidden" stance below.
+> Per Dev direction, the underlying depth parameters are now **exposed** behind an
+> **Advanced** toggle. The intensity preset (Subtle/Medium/Strong) remains the default
+> quick-pick; Advanced reveals raw controls that override it. See **Inspector UX** for
+> the current contract. The "Governed Internally — Hidden from UI" section is retained
+> for historical context but is **superseded**.
 
 ---
 
@@ -159,11 +166,17 @@ slider.style.setProperty('--skvn-parallax-inset', insetMap[parallaxIntensity]);
   - help: *"Controls how far the background travels and how much it scales during the transition. Higher intensity = stronger depth effect."*
   - **ButtonGroup not dropdown**: intensity is a tactile feel comparison, not a numeric value — user needs to pick by eye, not from a list.
 - **When disabled**, hide intensity control
-- **Badge** when `enableParallax: true`: `"Parallax ON · {intensity}"`
+- **Advanced toggle** (rev 1.1): when on, hides the Intensity preset and reveals raw controls that override it:
+  - **Depth mechanism** (Both / Translate only / Scale only)
+  - **Direction** (Horizontal / Vertical) — shown when depth includes translate; maps to `data-swiper-parallax-x` / `-y`
+  - **Translate** (0–80%), **Edge guard / inset** (0–80%) — shown when depth includes translate
+  - **Scale** (1.00–1.50) — shown when depth includes scale
+  - Preset (non-advanced) still injects the governed table values below; advanced injects the raw attribute values
+- **Badge** when `enableParallax: true`: `"Parallax ON · {intensity}"` (or `"Parallax ON · custom"` in advanced mode)
   - Reason: editor does not run Swiper parallax runtime; badge confirms the setting is active without misleading user into thinking the effect should be visible in editor.
 - No parallax runtime in editor — stacked slide preview remains static
 
-### Governed Internally — Hidden from UI
+### Governed Internally — Hidden from UI  *(SUPERSEDED by rev 1.1 — now exposed via Advanced toggle)*
 
 **Depth mechanism: Both (translate + scale)** is always applied when parallax is enabled. It is **not exposed** as a user control.
 
@@ -216,8 +229,8 @@ These are automatic guards in `view.ts`, not user-facing controls.
 ## Deferred / Out of Scope 1.3.8
 
 - Per-block `__content` parallax translate (too risky with zoom-out transition)
-- Scale-only mode (translate gives better visual results; scale-only deferred)
-- User-facing "depth mechanism" dropdown (governed both is the only exposed option)
+- ~~Scale-only mode~~ — **now exposed** via Advanced depth control (rev 1.1)
+- ~~User-facing "depth mechanism" dropdown~~ — **now exposed** via Advanced toggle (rev 1.1)
 - Parallax on step slider frames (1.3.10 inherits foundation; fine-tuning deferred to 1.3.10)
 - Content-layer intensity coupling (background layer is the primary depth mechanism)
 - Mobile `< 768px` disable guard — parallax runs on mobile when `slidesPerView === 1` and reduced-motion is off. This supersedes 026 §mobile which suggested a breakpoint guard.

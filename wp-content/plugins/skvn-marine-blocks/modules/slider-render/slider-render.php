@@ -349,6 +349,36 @@ function skvn_marine_blocks_render_slider( $attributes, $content, $block ) {
 			array( 'subtle', 'medium', 'strong' ),
 			'medium'
 		),
+		'parallaxAdvanced'  => isset( $attributes['parallaxAdvanced'] ) ? (bool) $attributes['parallaxAdvanced'] : false,
+		'parallaxDepth'     => skvn_marine_blocks_normalize_slider_choice(
+			$attributes['parallaxDepth'] ?? 'both',
+			array( 'both', 'translate', 'scale' ),
+			'both'
+		),
+		'parallaxDirection' => skvn_marine_blocks_normalize_slider_choice(
+			$attributes['parallaxDirection'] ?? 'horizontal',
+			array( 'horizontal', 'vertical' ),
+			'horizontal'
+		),
+		'parallaxTranslate' => skvn_marine_blocks_normalize_slider_integer(
+			$attributes['parallaxTranslate'] ?? 30,
+			30,
+			0,
+			80
+		),
+		'parallaxScale'     => max(
+			1.0,
+			min(
+				1.5,
+				is_numeric( $attributes['parallaxScale'] ?? null ) ? (float) $attributes['parallaxScale'] : 1.12
+			)
+		),
+		'parallaxInset'     => skvn_marine_blocks_normalize_slider_integer(
+			$attributes['parallaxInset'] ?? 35,
+			35,
+			0,
+			80
+		),
 	);
 
 	if ( '3-2-1' === $responsive_slides ) {
