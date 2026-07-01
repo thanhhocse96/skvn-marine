@@ -8,9 +8,9 @@
 
 ## Current Milestone
 
-Current: **V1 / 1.3.7 — Collection Block UI & Card Styles**
-Status: **IN PROGRESS**
-Started: **2026-06-23**
+Current: **V1 / 1.3.10 — Fullscreen Step Slider**
+Status: **PENDING**
+Started: **not yet**
 
 AGENTS.md current milestone phải match file này.
 
@@ -300,8 +300,10 @@ Acceptance draft:
 
 ### 1.3.8 — Slider Parallax
 
-Status: **PENDING**
-Started: **not yet**
+Status: **DONE**
+Started: **2026-07-01**
+Completed: **2026-07-01**
+Approved by human: **2026-07-01**
 
 Purpose:
 
@@ -559,8 +561,10 @@ Acceptance draft:
 
 ### 1.3.7 — Collection Block UI & Card Styles
 
-Status: **IN PROGRESS**
+Status: **DONE**
 Started: **2026-06-23**
+Completed: **2026-07-01**
+Approved by human: **2026-07-01**
 
 Human confirmed (Option A + added scope 2026-06-22): Dedicated 1.3.7 slot for collection UI/card styles polish + "hover button" work (fix stuck case of buttons inside Slider not receiving hover like Gutenberg `a:hover { color: var(--contrast); }` mechanism, plus polish hovers on new collection CTAs). See `docs/testing/onsite-button-hover-1.3.7.md` for DevTools verification steps. Planning source 028 finalized; button hover compatibility pulled from 1.3.8 plans per user request. Human moved current milestone to 1.3.7 on 2026-06-23.
 

@@ -7,7 +7,7 @@
 
 ## 0. Milestone hiện tại
 
-Current milestone: **V1 / 1.3.7 — Collection Block UI & Card Styles**
+Current milestone: **V1 / 1.3.10 — Fullscreen Step Slider**
 
 Milestone source of truth: `.context/MILESTONES.md`.
 
